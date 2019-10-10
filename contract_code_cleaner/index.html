@@ -1,0 +1,196 @@
+<!-- <pre style="width: 100%; height: 100%; margin:0px; "></pre> -->
+
+<div id="resolution_holder" style="width: 1920px; height: 1080px; min-width: 1980px; min-height: 1080px;">
+
+<input id="code_contract_name_input" style="margin-left: 25%; margin-top: 25px; position: absolute;"/>
+
+<button id="scatter_login_btn" style="margin-left: 75%; margin-top: 25px; position: absolute;" onclick="loginWithScatter()"> LOGIN WITH SCATTER </button>
+<button id="scatter_login_btn" style="margin-left: 75%; margin-top: 51px; position: absolute;" onclick="clearContract()"> CLEAR CONTRACT </button>
+<button id="scatter_login_btn" style="margin-left: 75%; margin-top: 91px; position: absolute;" onclick="clearABI()"> CLEAR ABI </button>
+<p id="scatter_login_status" style="margin-left: 85%; margin-top: 25px; position: absolute;"> no scatter account </p>
+
+
+
+
+</div>
+<div id="main_holder" style="width: 100%; height: 100%; margin:0px;"></div>
+
+<script src='dist-web/eosjs-api.js'></script>
+<script src='dist-web/eosjs-jsonrpc.js'></script>
+<script src='dist-web/eosjs-jssig.js'></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-core.min.js"></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-eosjs.min.js"></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-eosjs2.min.js"></script>
+
+<!-- VUE for future use -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+<!-- SCATTER imports -->
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-core.min.js"></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-eosjs.min.js"></script>
+<script src="https://cdn.scattercdn.com/file/scatter-cdn/js/latest/scatterjs-plugin-eosjs2.min.js"></script>
+
+<script>
+
+  // Setting global variables
+  /* **************************************************** */
+
+ScatterJS.plugins(new ScatterEOS());
+var account;
+var scatter;
+var scatterEos;
+var requiredFields;
+
+const connectionOptions = {
+  initTimeout: 10000
+}
+const network = {
+    blockchain:'eos',
+    chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+    host:'eu1.eosdac.io',
+    port:443,
+    protocol:'https'
+  }
+
+var code_contract_name;
+  var active_view = "text"; // For autoupdate to re-init view that is currently selected by user.
+
+// END TIMER
+
+/* ************************************** */
+// End global variables
+
+// SCATTER-related funcs
+
+function loginWithScatter()
+{
+  ScatterJS.scatter.connect('eosio', connectionOptions).then(connected => {
+    if (!connected) {
+    // User does not have Scatter installed/unlocked.
+      console.log("SCATTER: Connection troubles!");
+      return false;
+    }
+    else
+  {
+    console.log("SCATTER: Connected!");
+  }
+  scatter = ScatterJS.scatter;
+  scatterEos = scatter.eos(network, eosjs_api.Api, { rpc });
+  requiredFields = {
+    accounts: [network]
+  };
+
+   scatter.getIdentity(requiredFields).then(async function() {
+      account = scatter.identity.accounts.find(x => x.blockchain === 'eos');
+      console.log(account);
+      document.getElementById("code_contract_name_input").value = await account.name;
+    }).then(async function() {
+      updatePlayerName();
+      var el = document.getElementById("scatter_login_status");
+      el.innerHTML = "scatter name connected";
+   });
+  });
+
+
+  window.scatter = null;
+}
+// END SCATTER
+
+function clearABI()
+{
+  console.log("Clearing ABI " + code_contract_name);
+
+  // Generate a TX and send it with Scatter
+  requiredFields = {
+    accounts: [network]
+  };
+
+
+  scatterEos.transact({
+      actions: [{
+        account: 'eosio',
+        name: 'setabi',
+        authorization: [{
+          actor: account.name,
+          permission: account.authority
+        }],
+    data: {
+          account: code_contract_name,
+          abi: "".toString(`hex`)
+    }
+  }]
+}, {
+  blocksBehind: 3,
+  expireSeconds: 30,
+})
+.then(trx => {
+      console.log(`Transaction ID: ${trx.transaction_id}`);
+    }).catch(error => {
+      console.error(error);
+    });
+  //window.scatter = null;
+}
+
+function clearContract()
+{
+  console.log("Clearing contract " + code_contract_name);
+
+  // Generate a TX and send it with Scatter
+  requiredFields = {
+    accounts: [network]
+  };
+
+  //scatterEos.setcode(code_contract_name, 0, 0, new Uint8Array());
+
+
+  scatterEos.transact({
+      actions: [{
+        account: 'eosio',
+        name: 'setcode',
+        authorization: [{
+          actor: account.name,
+          permission: account.authority
+        }],
+    data: {
+          account: code_contract_name,
+          vmtype: 0,
+          vmversion: 0,
+          code: new Uint8Array()
+    }
+  }]
+}, {
+  blocksBehind: 3,
+  expireSeconds: 30,
+})
+.then(trx => {
+      console.log(`Transaction ID: ${trx.transaction_id}`);
+    }).catch(error => {
+      console.error(error);
+    });
+}
+
+
+function updatePlayerName()
+{
+  code_contract_name = document.getElementById("code_contract_name_input").value;
+  console.log("Name updated: " + code_contract_name);
+}
+</script>
+
+<script>
+
+  // Start the execution of this code
+  // on page load.
+
+  let pre = document.getElementsByTagName('pre')[0];
+  const defaultPrivateKey = "5JtUScZK2XEp3g9gh7F8bwtPTRAkASmNrrftmx4AxDKD5K4zDnr"; // bob
+  const rpc = new eosjs_jsonrpc.JsonRpc('https://api.eosn.io');
+  const signatureProvider = new eosjs_jssig.JsSignatureProvider([defaultPrivateKey]);
+  const api = new eosjs_api.Api({ rpc, signatureProvider });
+
+  //console.log( rpc.get_account('dexaraniiznx') );   // <<<==== WORKING!
+
+  var content = "";
+  var response_json;
+</script>
+</div>
