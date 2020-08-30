@@ -47,7 +47,7 @@ const connectionOptions = {
 const network = {
     blockchain:'eos',
     chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-    host:'eu1.eosdac.io',
+    host:'api.eosargentina.io',
     port:443,
     protocol:'https'
   }
@@ -184,7 +184,7 @@ function updatePlayerName()
 
   let pre = document.getElementsByTagName('pre')[0];
   const defaultPrivateKey = "5JtUScZK2XEp3g9gh7F8bwtPTRAkASmNrrftmx4AxDKD5K4zDnr"; // bob
-  const rpc = new eosjs_jsonrpc.JsonRpc('api.eosnewyork.io');
+  const rpc = new eosjs_jsonrpc.JsonRpc('https://bp.cryptolions.io');
   const signatureProvider = new eosjs_jssig.JsSignatureProvider([defaultPrivateKey]);
   const api = new eosjs_api.Api({ rpc, signatureProvider });
 
