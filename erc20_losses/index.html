@@ -1,0 +1,32 @@
+<header>
+  <title>Stuck Tokens</title>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+  <script src="./src/index.js"></script>
+  <link rel="stylesheet" href="src/style.css">
+</header>
+<body>
+  <div class="split left">
+    <div class="centered">
+      <h2>Stuck tokens in tokens scanner</h2>
+      <textarea id="tokenContracts" placeholder="Token contract addresses seperated with newline">
+0xdac17f958d2ee523a2206206994597c13d831ec7
+0xB8c77482e45F1F44dE1745F52C74426C631bDD52
+0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+0xae7ab96520de3a18e5e111b5eaab095312d7fe84
+0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0
+0x3883f5e181fccaf8410fa61e12b59bad963fb645
+0x2260fac5e5542a773aa44fbcfedf7c193bc2c599
+0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE
+0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
+0x6b175474e89094c44da98b954eedeac495271d0f</textarea>
+      <br>
+      <button id="scan">Scan</button>
+    </div>
+  </div>
+  <div class="split right">
+    <div class="centered">
+      <h2>Status</h2>
+      <textarea id="status" disabled></textarea>
+    </div>
+  </div>
+</body>
