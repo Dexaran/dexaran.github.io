@@ -1,0 +1,62 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: colors.$text-primary;
+
+  @include media.for-large-desktop {
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 3px;
+  }
+}
+
+.columnHeader {
+  padding: 16px 20px;
+  background-color: colors.$background-secondary;
+  margin-bottom: 10px;
+
+  @include media.for-large-desktop {
+    padding: 24px 30px;
+    margin-bottom: 16px;
+  }
+}
+
+.description {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 24px;
+  color: colors.$text-secondary;
+
+  @include media.for-large-desktop {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.columnContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  overflow-y: auto;
+  gap: 10px;
+  padding-right: 1px;
+  scroll-padding-right: 2px;
+  @include media.for-large-desktop {
+    gap: 16px;
+  }
+}

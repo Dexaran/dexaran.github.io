@@ -1,0 +1,52 @@
+@keyframes glow-title {
+  0% {
+    text-shadow: 0 0 10px rgba(43, 231, 106, 0);
+  }
+
+  50% {
+    text-shadow: 0 0 10px rgba(43, 231, 106, 0.80);
+  }
+
+  100% {
+    text-shadow: 0 0 10px rgba(43, 231, 106, 0);
+  }
+}
+
+@keyframes glow-main {
+  0% {
+    text-shadow: 0 12px 44px  rgba(43, 231, 106, 0), 0px -12px 44px rgba(43, 231, 106, 0);
+  }
+
+  50% {
+    text-shadow: 0 12px 44px rgba(43, 231, 106, 0.8), 0px -12px 44px rgba(43, 231, 106, 0.8);
+  }
+
+  100% {
+    text-shadow: 0 12px 44px  rgba(43, 231, 106, 0), 0px -12px 44px  rgba(43, 231, 106, 0);
+  }
+}
+
+
+@keyframes glow-header-bg {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes glow-arrow {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
