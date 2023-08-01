@@ -59,22 +59,22 @@ export default function Home() {
             <TabHeader
               isActive={activeTab === 0}
               arrowDirection="right"
-              title="Resources"
-              description={"Lorem ipsum do111111lor sit amet, consectetur adipisicing elit. Consequatur eveniet, repellat. Laboriosam praesentium quasi vel voluptatibus. Deleniti necessitatibus quidem sed!"}
+              title="EIP-223"
+              description={"ERC-223 is a token standard designed to be an alternative to ERC-20. ERC-223 solves a number of problems ERC-20 has - most notably ERC-20 token transfers can not be handled by the recipient which means there is no way to filter or prevent any user mistakes or handle any errors that may occur during the transaction. As the result of lack of transaction handling a new method of depositing tokens to contracts was introduced in ERC-20: approve & transferFrom mechanism. This is a pull transaction which is not designed for trustless decentralized payment system which further increases the risks for ERC-20 token users. ERC-223 standard is the only Ethereum token standards that solves this problems. We fight for the security of blockchain industry and its users. We believe that letting a user to lose all his life savings as a result of a mistake that could be easily prevented is not acceptable for a global standard of digital assets. This page will be aggregating the updates and useful resources related to the adoption and development of ERC-223 standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to https://github.com/Dexaran/dexaran.github.io/issues and open a new issue. Describe your content and it will be listed at this page in the next update."}
               handleClick={() => setActiveTab(0)}
             />
             {activeTab === 0 && <div className={styles.resources}>
-              <Column description={`ERC stands for "Ethereum Request for Comments"`} title="📝 Articles">
+              <Column description={`ERC stands for "Ethereum Request for Comments"`} title="Articles">
                 {articles.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
               </Column>
-              <Column description="Useful resources regarding ERC-223" title="📔 ERC-223">
+              <Column description="Useful resources regarding ERC-223" title="ERC-223">
                 {erc223.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
               </Column>
-              <Column description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!" title="👨🏻‍💻 Development resources">
+              <Column description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!" title="Development resources">
                 {devResources.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
