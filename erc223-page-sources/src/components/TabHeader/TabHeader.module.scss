@@ -21,6 +21,8 @@
   align-items: center;
   margin-bottom: 8px;
 
+  animation: glow-main 90s infinite ease-in-out;
+
   @include media.for-large-desktop {
     font-size: 38px;
     line-height: 56px;
