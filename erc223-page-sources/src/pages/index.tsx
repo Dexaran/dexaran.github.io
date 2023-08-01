@@ -116,13 +116,13 @@ export default function Home() {
           <div className={clsx(styles.tab, activeTab === 1 && styles.active)}>
             <TabHeader
               title="Events"
-              description="Here the main events and interesting discussions"
+              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here."
               arrowDirection="left"
               isActive={activeTab === 1}
               handleClick={() => setActiveTab(1)}
             />
             <div className={styles.eventsTabContent}>
-              <Column title="📅 Latest events">
+              <Column title="Events timeline">
                 {events.map(({url, title, date}) => {
                   return <RecentEvent key={title} url={url} title={title} date={date} />
                 })}
