@@ -144,6 +144,7 @@
   animation: glow-header-bg 5s infinite ease-in-out;
   position: absolute;
   height: 100%;
+  pointer-events: none;
 }
 
 .leftImage {
