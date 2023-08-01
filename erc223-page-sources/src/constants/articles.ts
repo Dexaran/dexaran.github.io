@@ -14,7 +14,7 @@ export const articles: IArticle[] = [
   },
   {
     title: "Callisto Security statement regarding ERC-20 standard.",
-    description: "",
+    description: "...",
     url: "https://callisto.network/erc-20-standard-callisto-network-security-department-statement/"
   }
 ];
