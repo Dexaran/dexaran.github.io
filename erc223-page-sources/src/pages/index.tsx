@@ -20,15 +20,15 @@ const inactiveResourceTabs: Array<{
 }> = [
   {
     key: "articles",
-    title: "📝 Articles"
+    title: "Articles"
   },
   {
     key: "erc223",
-    title: "📔 ERC-223",
+    title: "ERC-223",
   },
   {
    key: "dev-sources",
-   title: "👨🏻‍💻 Dev. sources"
+   title: "Dev. sources"
   }
 ];
 
