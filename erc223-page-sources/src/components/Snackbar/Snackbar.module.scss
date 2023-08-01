@@ -1,0 +1,73 @@
+@use "src/styles/colors";
+
+.customSnackbar {
+  min-height: 50px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  max-width: 740px;
+  display: flex;
+  align-items: center;
+  background-color: #0E2F16;
+  color: colors.$text-primary;
+  z-index: 1400;
+  position: fixed;
+  border: 1px solid colors.$palette-green;
+
+  justify-content: center;
+
+  bottom: 24px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  margin-right:-50%;
+  font-size: 16px;
+  line-height: 28px;
+  opacity: 0;
+
+  animation-name: showSnackbar;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-duration: 230ms;
+}
+
+@keyframes showSnackbar {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.iconWrapper {
+  //width: 44px;
+  //height: 44px;
+  //min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.buttonWrapper {
+  margin-left: 16px;
+}
+
+.text {
+  position: relative;
+  top: -1px;
+}
+
+.snackbarContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.snackbarBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

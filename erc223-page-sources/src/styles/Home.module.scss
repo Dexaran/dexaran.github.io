@@ -1,0 +1,266 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+@import "src/styles/keyframes";
+
+.tabs {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  overflow: auto;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer {
+  font-size: 16px;
+  line-height: 28px;
+  height: 118px;
+  background-color: colors.$background-primary;
+  border-top: colors.$border-primary;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    width: 33%;
+  }
+
+  .licence {
+    text-align: center;
+  }
+
+  a {
+    transition-duration: 0.2s;
+
+    &:hover {
+      color: colors.$palette-green;
+    }
+  }
+}
+
+.donationWrapper {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 0 32px;
+  gap: 12px;
+  flex: 0 0 auto;
+  position: relative;
+
+  h1 {
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 56px;
+    color: colors.$text-primary;
+
+    animation: glow-main 5s infinite ease-in-out;
+  }
+
+  p {
+    color: colors.$text-secondary;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  @include media.for-large-desktop {
+    gap: 8px;
+
+    h1 {
+      font-size: 68px;
+      line-height: 80px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 32px;
+    }
+  }
+}
+
+.tab {
+  border-top: 1px solid colors.$border-primary;
+  border-bottom: 1px solid colors.$border-primary;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 0.34;
+  overflow: auto;
+
+  &:not(:last-child) {
+    border-right: 1px solid colors.$border-primary;
+  }
+
+  &.active {
+    flex: 0.664;
+  }
+}
+
+.resources {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 0 20px;
+  flex: 1;
+  overflow-y: hidden;
+
+  > div {
+    width: 33%;
+  }
+
+  @include media.for-large-desktop {
+    padding: 0 30px;
+    gap: 30px;
+  }
+}
+
+.eventsTabContent {
+  padding: 0 20px;
+
+  flex: 1;
+  overflow-y: auto;
+}
+
+.bgImage {
+  animation: glow-header-bg 5s infinite ease-in-out;
+  position: absolute;
+  height: 100%;
+}
+
+.leftImage {
+  left: 0;
+}
+
+.rightImage {
+  right: 0;
+}
+
+.resourceTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid colors.$border-primary;
+  margin: 0 20px;
+}
+
+.inactiveContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.resourceTabButton {
+  background-color: colors.$background-primary;
+  border: 0;
+  padding: 0;
+  height: 60px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  color: colors.$text-primary;
+
+  &:not(:last-child) {
+    border-right: 1px solid colors.$border-primary;
+  }
+
+  &.active {
+    background-color: colors.$background-secondary;
+  }
+
+  &:hover:not(.active) {
+    cursor: pointer;
+    background-color: #323531;
+  }
+}
+
+.inactiveTabColumn {
+  display: flex;
+  flex-direction: column;
+  //border: 1px solid colors.$border-primary;
+  overflow-y: auto;
+  gap: 10px;
+  margin: 10px 20px 0;
+  padding-right: 1px;
+}
+
+.footerLinks {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.addressRow {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.donation {
+  display: flex;
+  align-items: center;
+  padding: 10px 32px 10px 20px;
+  border-radius: 100px;
+  background-color: colors.$background-secondary;
+  gap: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition-duration: 0.2s;
+
+
+  &:hover {
+    border-color: colors.$palette-green;
+    .donationAddress {
+      color: colors.$palette-green;
+    }
+    svg {
+      color: colors.$palette-green;
+    }
+  }
+}
+
+.donationLabel {
+  color: colors.$text-secondary;
+}
+
+.donationAddress {
+  transition-duration: 0.2s;
+  color: colors.$text-primary;
+}
+
+.donationText {
+  display: grid;
+  gap: 4px;
+}
+
+.copyAddressForDonationsButton {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  width: 24px;
+  height: 24px;
+
+  svg {
+    color: colors.$text-secondary;
+    transition-duration: 0.2s;
+  }
+}
