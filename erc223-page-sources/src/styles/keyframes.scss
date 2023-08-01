@@ -1,3 +1,11 @@
+
+.glow-title {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  animation: glow 7s infinite ease-in-out alternate;
+}
+
 @keyframes glow-title {
   0% {
     text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
