@@ -51,12 +51,12 @@ export default function Home() {
         <img className={clsx(styles.bgImage, styles.leftImage)} src={`${basePath}/left-header-bg.png`} alt=""/>
         <img className={clsx(styles.bgImage, styles.rightImage)} src={`${basePath}/right-header-bg.png`} alt=""/>
         <h1>ERC-223</h1>
-      </header>
-      
         <p>ERC-223 is a token standard designed to be an alternative to ERC-20. ERC-223 solves a number of problems ERC-20 has - most notably ERC-20 token transfers can not be handled by the recipient which means there is no way to filter or prevent any user mistakes or handle any errors that may occur during the transaction. We believe that letting a user to lose all his life savings as a result of a mistake that could be easily prevented is not acceptable for a global standard of digital assets.</p>
         <br></br>
         <p>This page will be aggregating the updates and useful resources related to the adoption and development of ERC-223 standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to https://github.com/Dexaran/dexaran.github.io/issues and open a new issue. Describe your content and it will be listed at this page in the next update.</p>
 
+      </header>
+      
       <main className={styles.main}>
         <div className={styles.tabs}>
           <div className={clsx(styles.tab, activeTab === 0 && styles.active)}>
