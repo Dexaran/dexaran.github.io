@@ -51,7 +51,7 @@ export default function Home() {
         <img className={clsx(styles.bgImage, styles.leftImage)} src={`${basePath}/left-header-bg.png`} alt=""/>
         <img className={clsx(styles.bgImage, styles.rightImage)} src={`${basePath}/right-header-bg.png`} alt=""/>
         <h1>ERC-223</h1>
-        <p>Designed by security experts to protect user funds from accidental loss</p>
+        <p>Token standard designed by security engineers. Properly handles errors, prevents user mistakes, does not allow inexperienced token holders to accidentally lose their tokens.</p>
       </header>
       <main className={styles.main}>
         <div className={styles.tabs}>
@@ -60,7 +60,7 @@ export default function Home() {
               isActive={activeTab === 0}
               arrowDirection="right"
               title="Resources"
-              description={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eveniet, repellat. Laboriosam praesentium quasi vel voluptatibus. Deleniti necessitatibus quidem sed!"}
+              description={"Lorem ipsum do111111lor sit amet, consectetur adipisicing elit. Consequatur eveniet, repellat. Laboriosam praesentium quasi vel voluptatibus. Deleniti necessitatibus quidem sed!"}
               handleClick={() => setActiveTab(0)}
             />
             {activeTab === 0 && <div className={styles.resources}>
