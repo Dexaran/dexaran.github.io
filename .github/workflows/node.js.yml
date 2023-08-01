@@ -5,8 +5,11 @@ name: GitHub Pages deploy
 
 on:
   push:
+    paths:
+      - erc223-page-sources/**
     branches: [master]
-
+concurrency:
+  group: ci-${{ github.ref }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,14 +23,15 @@ jobs:
           node-version: '16.x'
 
       - name: Installing my packages
-        run: npm install
+        run: cd erc223-page-sources && npm install
 
       - name: Build my App
-        run: npm run build && npm run export && touch ./out/.nojekyll
+        run: cd erc223-page-sources && npm run build && npm run export
 
-      - name: Deploy 🚀
+      - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           GITHUB_TOKEN: ${{ secrets.token }}
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: out # The folder the action should deploy.
+          FOLDER: erc223-page-sources/out # The folder the action should deploy.
+          target-folder: erc223
