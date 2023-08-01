@@ -1,0 +1,93 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+@import "src/styles/keyframes";
+
+.tabHeader {
+  padding: 20px;
+  flex: 0 0 auto;
+
+  @include media.for-large-desktop {
+    padding: 30px;
+  }
+}
+
+.tabTitle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  color: colors.$text-primary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+
+  @include media.for-large-desktop {
+    font-size: 38px;
+    line-height: 56px;
+  }
+
+}
+
+.tabDescription {
+  font-size: 14px;
+  line-height: 24px;
+  color: colors.$text-secondary;
+
+  @include media.for-large-desktop {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.arrowButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  color: colors.$text-secondary;
+  position: relative;
+  transition-duration: 0.2s;
+
+  svg {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%);
+    transition-duration: 0.2s;
+    border: 1px solid transparent;
+  }
+
+  &.left {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: colors.$text-primary;
+  }
+
+  &[disabled] {
+    color: #5F625F;
+    pointer-events: none;
+  }
+}
+
+.arrowGlow {
+  position: absolute;
+  animation: glow-arrow 4s ease-in-out infinite alternate;
+  transform: rotate(180deg);
+}

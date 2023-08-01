@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Key translator</title>
+  <link rel="canonical" href="https://github.com/Dexaran" />
+  <meta name="description" content="Decentralized Naming Service">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/etherwallet-master.min.css">
+  <script type="text/javascript" src="js/etherwallet-master.min.js"></script>
+  <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+  <script type="text/javascript" src="js/etherwallet-static_old.min.js"></script>
+  <script type="text/javascript" src="js/etherwallet-static.min.js"></script>
+  <script type="text/javascript" src="js/abi.js"></script>
+
+  <script type="text/javascript" src="web3.min.js"></script>
+
+  <script type="text/javascript" src="js/source/01_global.js"></script>
+  <script type="text/javascript" src="js/dex.js"></script>
+  <script type="text/javascript" src="js/dex_utils.js"></script>
+
+  <script type="text/javascript" src="js/etherwallet-master.js"></script>
+
+  <link rel="apple-touch-icon" sizes="60x60" href="/fav/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fav/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/fav/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/fav/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/fav/dex32x32.png" sizes="32x32">
+  <link rel="manifest" href="/fav/manifest.json">
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="msapplication-TileColor" content="#2e4868">
+  <meta name="msapplication-TileImage" content="/fav/mstile-144x144.png">
+  <meta name="msapplication-config" content="/fav/browserconfig.xml">
+  <meta name="theme-color" content="#2e4868">
+</head>
+
+<body>
+
+<header class="container-fluid bg-navy text-white">
+<section class="container">
+  <a href="https://github.com/Dexaran"><img src="images/etherwallet-logo.png" height="95px" width="auto" alt="DX" /></a>
+  <div>
+  <p style="font-size:200%; font-family:verdana; color: black;">Wallet Generation Process</p>
+</div>
+</section>
+</header>
+
+<!-- navtabs -->
+<section class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a id="generate-wallet" class="ptabs" showId="paneWalgen">         Generate Wallet   </a></li>
+  </ul>
+</section>
+<br />
+<!-- tab panes -->
+
+<section class="container" style="min-height: 70%">
+
+  <div class="tab-content">
+
+
+
+
+
+
+    <!-- wallet generator -->
+    <div class="tab-pane active" id="paneWalgen">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <h4>Enter a private key:</small> </h4>
+            <input type="text" class="form-control" placeholder="private key is 64 hexadecimal characters" id="ethgenpassword" />
+          </div>
+
+      <div class="col-md-8" id="divParam11">
+        <div class="col-sm-8 well">
+          <p class="item read-unit256">
+            <label style="font-size: 19px; font-family: monospace;"> ↳ Elliptic Curve Digital Signature Algorithm (Secp256k1) output  (in hex)</label>
+            <textarea id="output-ECDNA" class="form-control" type="text"></textarea>
+          </p>
+        </div>
+
+        <div class="col-sm-8 well">
+          <p class="item read-unit256">
+            <label style="font-size: 19px; font-family: monospace;"> ↳ Keccak-256 hash of ECDSA output</label>
+            <textarea id="output-Keccak-256" class="form-control" type="text"></textarea>
+          </p>
+        </div>
+
+        <div class="col-sm-8 well">
+          <p class="item read-unit256">
+            <label style="font-size: 19px; font-family: monospace;"> ↳ Account address  (in hex)</label>
+            <input id="output-Address" class="form-control" type="text" />
+          </p>
+        </div>
+
+      </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <h4>Click the button to get account from private key:</small> </h4>
+            <a class="btn btn-primary btn-block" onclick="DexFunc1()" id="generatewallet"> Decrypt from PrivateKey </a>
+          </div>
+          <div>
+            <p>
+From the Yellow Paper of Ethereum.
+</P>
+<p>
+There are 3 main steps to get from <strong>private</strong> -> <strong>address</strong>: <br></p>
+<uL>
+  <li>
+    Create a random private key (64 (hex) characters / 256 bits / 32 bytes)<br>
+</li>
+  <li>
+    Derive the public key from this private key (128 (hex) characters / 512 bits / 64 bytes)<br>
+  </li>
+  <li>
+    Derive the address from this public key. (40 (hex) characters / 160 bits / 20 bytes)<br>
+
+  </li>
+</ul>
+Even though a lot of people call the address the public key, it's actually not the case in Ethereum. There is a separate public key that acts as a middleman that you won't ever see, </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- send transaction -->
+    
+    <div class="tab-pane" id="paneSendTrans" style="display: none;">
+      <h2> Access account </h2>
+
+
+
+
+
+
+<section id="contract-by-ABI" style="display: none;">
+<!-- Address -->
+  <section class="col-sm-6 clearfix">
+  <h4> Contract Address</h4>
+  <input id="customContractAddress" class="form-control" placeholder="0x00000000000000000"/>
+  </section>
+
+<!-- ABI Textarea -->
+  <section class="col-xs-12 clearfix">
+  <h4> ABI / JSON Interface </h4>
+  <textarea class="form-control" rows="6" id="tatAbi" onkeyup="dropdownContract()" placeholder='[{ "type":"constructor", "inputs": [{ "name":"param1", "type":"uint256", "indexed":true }], "name":"Event" }, { "type":"function", "inputs": [{"name":"a", "type":"uint256"}], "name":"foo", "outputs": [] }] '></textarea>
+  </section>
+
+<!-- Button -->
+  <section class="col-xs-12 clearfix">
+  <button class="btn btn-primary" onclick="dropdownContract()" translate="x_Access"> ACCESS </button>
+  <div id="contractAbiStatus"></div>
+
+  </section>
+</section id="contract-by-ABI">
+
+
+<section id="contract-by-name">
+
+    <h4> Contract Name</h4>
+    <input id="customContractName" class="form-control" placeholder="Contract Name" onkeyup="initiateNameContract()"/>
+      <div id="contractAbiNameStatus"></div>
+  </section>
+
+<!-- Contract Info CONTRACT_Interact_CTA -->
+<section>
+<div id="readWriteContract" style="display: none;">
+  <span class="col-md-4" >
+    <h4>Read / Write Contract </h4>
+    <div class="btn-group">
+      <p>
+      Select function:<i class="caret"></i></p>
+      <ul class="dropdown-menu" id="functionsDropdownList">
+        <li ><a onclick="selectFunc(index)">Func Name</a></li>
+      </ul>
+    </div>
+  </span>
+
+
+
+
+  <div class="col-md-8 col-sm-6" id="divSelectedFuncTx">
+  <div class="col-md-8" id="divParam">
+
+
+  <!-- TEST 
+          <div class="col-sm-8">
+            <div class="col-sm-6">
+                <label> iput name </label>
+            </div>
+            <div class="col-sm-8"><input class="form-control" type="text" placeholder="address"/>
+          </div>
+          </div> -->
+
+
+
+
+
+</div>
+  <div class="col-md-8" id="divOutput" >
+</div>
+  <div class="col-sm-8" id="writeContractBtnDiv" style="display: none;">
+    <button class="btn btn-primary" id="btnWriteContract" onclick="generateContractCallTx()"> WRITE </button>
+    <div id="currentAccountCheck"></div>
+    <div id="contractTxInfo" style="display: none;">
+      <textarea class="form-control" rows="4" disabled id="tarawCallContractTx"></textarea>
+        <p class="item">
+          <label> Send Ether: </label>
+          <input id="etherToContract" class="form-control" type="text" placeholder="0" value="0"/>
+        </p>
+        <p class="item">
+          <label> Transaction gas: </label>
+          <input id="gasToContract" class="form-control" type="text" placeholder="21000" value="21000"/>
+        </p>
+        <button class="btn btn-primary" id="btnSendContractTx" onclick="sendContractTx()"> SEND TRANSACTION </button>
+        <div id="sendContractTxResult"></div>
+    </div>
+  </div>
+  <div class="col-sm-6" id="readContractBtnDiv" style="display: none;">
+    <button class="btn btn-primary" id="btnReadContract" onclick="readFromContract()"> READ </button>
+  </div>
+<div>
+</section>
+
+
+</div>
+
+
+</section>
+
+  </div> <!-- /tab panes -->
+</body>
+</html>
+
+
+

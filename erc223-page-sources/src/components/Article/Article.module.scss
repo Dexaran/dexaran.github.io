@@ -1,0 +1,94 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+@import "src/styles/keyframes";
+
+$image-overlay-opacity: 0.9;
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 16px;
+  color: colors.$text-secondary;
+  flex-shrink: 0;
+  border: 1px solid colors.$border-primary;
+  //&:hover .articleTitle {
+  //  text-decoration: underline;
+  //}
+
+  transition-duration: 0.2s;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: #323531;
+    border-color: colors.$palette-green;
+
+    .articleTitle {
+      animation-play-state: paused;
+      animation: none;
+      text-shadow: 0 0 16px rgba(43, 231, 106, 0.80);
+    }
+
+    .backdrop {
+      background-color: #323531;
+    }
+  }
+
+  @include media.for-large-desktop {
+    gap: 8px;
+    padding: 24px 30px;
+  }
+}
+
+.backdrop {
+  transition-duration: 0.2s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(26, 28, 25, $image-overlay-opacity);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 24px;
+  position: relative;
+  z-index: 2;
+  @include media.for-large-desktop {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.articleTitle {
+  color: colors.$palette-green;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  transition-duration: 0.2s;
+  position: relative;
+  z-index: 2;
+  animation: glow-title 5s ease-in-out infinite;
+
+  @include media.for-large-desktop {
+    font-size: 20px;
+    line-height: 34px;
+  }
+}

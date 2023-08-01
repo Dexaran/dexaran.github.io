@@ -1,0 +1,64 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.recentEvent {
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  gap: 10px;
+  padding: 14px 20px;
+
+  border: 1px solid colors.$border-primary;
+  transition-duration: 0.2s;
+
+  &:hover {
+    background-color: #323531;
+    border: 1px solid colors.$palette-green;
+
+    .arrow {
+      color: colors.$palette-green;
+      transform: rotate(-45deg);
+    }
+
+    .title {
+      text-shadow: 0 0 16px rgba(43, 231, 106, 0.80);
+    }
+  }
+}
+
+.date {
+  font-size: 16px;
+  line-height: 28px;
+
+  @include media.for-large-desktop {
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: colors.$palette-green;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 600;
+
+  @include media.for-large-desktop {
+    font-size: 20px;
+    line-height: 34px;
+  }
+}
+
+.arrow {
+  transition-duration: 0.2s;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C6CFC4;
+}

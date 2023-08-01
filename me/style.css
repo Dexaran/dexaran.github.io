@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+html,main{
+background: #030D0F;
+}
+
+h1,h2,h3,h4,h5,h6,p,a{
+color: #80A2BF;
+font-family: Roboto;
+}
+
+/* nav bar */
+.header {
+  background-color: rgba(0,0,0,0);
+  transition: 1s;
+}
+.sticky {
+  background-color: rgba(1,1,1,1);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+}
+/* nav bar */
+/*-----------------main video background -----------------*/
+#video-text h1{
+  font-size: 4vmin;
+  margin: 2rem 3rem 0;
+  mix-blend-mode: screen;
+  font-weight: 100;
+  padding-top: 0%;
+  padding-bottom: 0%;
+    margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+.video-text-left{
+  text-align: left;
+}
+.video-text-right{
+  text-align: right;
+}
+video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*
+    object-position: center; */
+}
+.video-text-bg{
+  min-height: 100vh;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+
+  /*
+    display: flex;
+  align-items: center;
+  justify-content: center;*/
+}
+/*-----------------main video background -----------------*/
+#video-text{
+  visibility: hidden;
+}
+#headerId{
+  visibility: hidden;
+}
+.video-show-header {
+  animation: showBlock 1s linear forwards;
+  background-color: transparent;
+}
+.video-show-text {
+  animation: showBlock 1s linear forwards;
+  background-color: transparent;
+}
+
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
