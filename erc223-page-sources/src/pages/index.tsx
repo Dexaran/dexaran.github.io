@@ -51,10 +51,8 @@ export default function Home() {
         <img className={clsx(styles.bgImage, styles.leftImage)} src={`${basePath}/left-header-bg.png`} alt=""/>
         <img className={clsx(styles.bgImage, styles.rightImage)} src={`${basePath}/right-header-bg.png`} alt=""/>
         <h1>ERC-223</h1>
-        <p>ERC-223 is a token standard designed to be an alternative to ERC-20. ERC-223 solves a number of problems ERC-20 has - most notably ERC-20 token transfers can not be handled by the recipient which means there is no way to filter or prevent any user mistakes or handle any errors that may occur during the transaction. We believe that letting a user to lose all his life savings as a result of a mistake that could be easily prevented is not acceptable for a global standard of digital assets.</p>
-        <br></br>
-        <p>This page will be aggregating the updates and useful resources related to the adoption and development of ERC-223 standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to https://github.com/Dexaran/dexaran.github.io/issues and open a new issue. Describe your content and it will be listed at this page in the next update.</p>
-
+        <h2>Designed by security experts to protect user funds from accidental loss</h2>
+        <p><a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> is a token standard designed to be an alternative to <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a>. <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> solves a number of problems <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a> has - most notably <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a> token transfers can not be handled by the recipient which means there is no way to filter or prevent any user mistakes or handle any errors that may occur during the transaction. We believe that letting a user to lose all his life savings as a result of a mistake that could be easily prevented is not acceptable for a global standard of digital assets.</p>
       </header>
       
       <main className={styles.main}>
@@ -64,7 +62,11 @@ export default function Home() {
               isActive={activeTab === 0}
               arrowDirection="right"
               title="EIP-223"
-              description={"Token standard designed by security engineers. Properly handles errors, prevents user mistakes, does not allow inexperienced token holders to accidentally lose their tokens."}
+              description={
+                <>
+                  This page will be aggregating the updates and useful resources related to the adoption and development of <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to <a href="https://github.com/Dexaran/dexaran.github.io/issues" target="_blank" rel="noopener noreferrer">https://github.com/Dexaran/dexaran.github.io/issues</a> and open a new issue. Describe your content and it will be listed at this page in the next update.
+                </>
+              }
               handleClick={() => setActiveTab(0)}
             />
             {activeTab === 0 && <div className={styles.resources}>
@@ -143,8 +145,9 @@ export default function Home() {
           }} role="button" className={styles.donation}>
             <img src={`${basePath}/donat.png`} alt=""/>
             <div className={styles.donationText}>
-              <span className={styles.donationLabel}>This is a non-profit project, but donations appreciated:</span>
+            <span className={styles.donationLabelLarge}>This is a non-profit project, but donations appreciated:</span>
               <div className={styles.addressRow}>
+              <span className={styles.donationLabel}>Donations appreciated:</span>
                 <span className={styles.donationAddress}>{addressForDonation}</span>
                 <div className={styles.copyAddressForDonationsButton} >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

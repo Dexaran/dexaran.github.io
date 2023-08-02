@@ -24,16 +24,14 @@
 }
 
 .footer {
-  visibility: hidden;
-  font-size: 16px;
-  line-height: 28px;
-  height: 118px;
+  font-size: 14px;
+  line-height: 24px;
   background-color: colors.$background-primary;
   border-top: colors.$border-primary;
-  padding: 0 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   & > div {
     width: 33%;
@@ -41,14 +39,23 @@
 
   .licence {
     text-align: center;
+    pointer-events: none;
   }
 
   a {
+    pointer-events: auto;
+    color: colors.$text-primary;
     transition-duration: 0.2s;
 
     &:hover {
       color: colors.$palette-green;
     }
+  }
+
+  @include media.for-large-desktop {
+    padding: 20px;
+    font-size: 18px;
+    line-height: 32px;
   }
 }
 
@@ -61,37 +68,64 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 24px 0 32px;
+  padding: 44px 0 40px;
   gap: 12px;
   flex: 0 0 auto;
   position: relative;
+  overflow: hidden;
 
   h1 {
-    font-size: 45px;
-    font-weight: 600;
+    font-size: 38px;
     line-height: 56px;
+    font-weight: 600;
     color: colors.$text-primary;
+    max-width: 840px;
 
     animation: glow-main 70s infinite ease-in-out;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 600;
+    text-align: center;
+    color: colors.$text-secondary;
+    max-width: 840px;
+    margin-bottom: 12px;
   }
 
   p {
     color: colors.$text-secondary;
-    font-size: 16px;
-    line-height: 28px;
+    font-size: 18px;
+    line-height: 32px;
+    max-width: 840px;
+  }
+
+  a {
+    color: colors.$palette-green;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   @include media.for-large-desktop {
-    gap: 8px;
-
     h1 {
       font-size: 68px;
       line-height: 80px;
+      max-width: 1000px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      line-height: 38px;
+      margin-bottom: 20px;
+      max-width: 1000px;
     }
 
     p {
-      font-size: 18px;
-      line-height: 32px;
+      font-size: 20px;
+      line-height: 34px;
+      max-width: 1000px;
     }
   }
 }
@@ -99,12 +133,12 @@
 .tab {
   border-top: 1px solid colors.$border-primary;
   border-bottom: 1px solid colors.$border-primary;
-  padding-bottom: 20px;
 
   display: flex;
   flex-direction: column;
   flex: 0.34;
   overflow: auto;
+  overflow-x: hidden;
 
   &:not(:last-child) {
     border-right: 1px solid colors.$border-primary;
@@ -143,16 +177,29 @@
 .bgImage {
   animation: glow-header-bg 5s infinite ease-in-out;
   position: absolute;
-  height: 100%;
+  height: 500px;
+  top: 0px;
   pointer-events: none;
 }
 
 .leftImage {
-  left: 0;
+  left: -75%;
+  @include media.for-large-desktop {
+    left: -40%;
+  }
+  @include media.for-ultra-large-desktop {
+    left: -25%;
+  }
 }
 
 .rightImage {
-  right: 0;
+  right: -75%;
+  @include media.for-large-desktop {
+    right: -40%;
+  }
+  @include media.for-ultra-large-desktop {
+    right: -25%;
+  }
 }
 
 .resourceTabs {
@@ -167,6 +214,7 @@
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
+  max-height: 100vh;
 }
 
 .resourceTabButton {
@@ -205,10 +253,18 @@
 
 .footerLinks {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+
+
+  @include media.for-large-desktop {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;  
+    gap: 4px;
+  }
 }
 
 .addressRow {
@@ -220,14 +276,13 @@
 .donation {
   display: flex;
   align-items: center;
-  padding: 10px 32px 10px 20px;
+  padding: 8px;
   border-radius: 100px;
   background-color: colors.$background-secondary;
   gap: 8px;
   border: 1px solid transparent;
   cursor: pointer;
   transition-duration: 0.2s;
-
 
   &:hover {
     border-color: colors.$palette-green;
@@ -238,10 +293,33 @@
       color: colors.$palette-green;
     }
   }
+
+  img {
+    width: 32px;
+  }
+
+  @include media.for-large-desktop {
+    padding: 10px 32px 10px 20px;
+    img {
+      width: 58px;
+    }
+  }
 }
 
 .donationLabel {
   color: colors.$text-secondary;
+  display: block;
+  white-space: nowrap;
+  @include media.for-large-desktop {
+    display: none;
+  }
+}
+.donationLabelLarge {
+  color: colors.$text-secondary;
+  display: none;
+  @include media.for-large-desktop {
+    display: block;
+  }
 }
 
 .donationAddress {

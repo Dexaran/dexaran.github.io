@@ -4,7 +4,7 @@ import {basePath} from "../../constants/build-config/isProd";
 
 interface Props {
   title: string,
-  description: string,
+  description: string | React.ReactNode,
   arrowDirection: "left" | "right",
   isActive: boolean,
   handleClick: () => void
