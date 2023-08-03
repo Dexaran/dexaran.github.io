@@ -39,6 +39,8 @@ export default function Home() {
   const [activeResource, setActiveResource] = useState<IResourceTab>("articles");
 
   const {showMessage} = useSnackbar();
+  const [eventId, setEventId] = useState(null as null | string);
+
   return (
     <div className={styles.page}>
       <Head>
@@ -138,9 +140,19 @@ export default function Home() {
               handleClick={() => setActiveTab(1)}
             />
             <div className={styles.eventsTabContent}>
+                <span>{ `eventId: ${eventId}`}</span>
               <Column title="📅 Events timeline">
-                {events.map(({url, urls, title, date}) => {
-                  return <RecentEvent key={title} url={url} urls={urls} title={title} date={date} />
+                {events.map(({url, urls, title, date, id}) => {
+                  return <RecentEvent
+                    key={title}
+                    url={url}
+                    urls={urls}
+                    title={title}
+                    date={date}
+                    isHighlighted={!!eventId && eventId===id}
+                    onMouseEnter={() => { setEventId(id || null) }}
+                    onMouseLeave={() => setEventId(null)}
+                  />
                 })}
               </Column>
             </div>

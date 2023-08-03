@@ -9,15 +9,18 @@ interface Props {
     url: string,
     title: string,  
   }[],
-  date: string
+  date: string,
+  isHighlighted: boolean,
+  onMouseEnter: () => void,
+  onMouseLeave: () => void,
 }
 
-export default function RecentEvent({ url, urls, title, date }: Props) {
+export default function RecentEvent({ url, urls, title, date, isHighlighted, onMouseEnter, onMouseLeave }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   if (urls?.length) {
     return (
       <>
-        <div className={styles.recentEventMultipleLinks} onClick={ ()=>setIsOpen(!isOpen)}>
+        <div className={`${styles.recentEventMultipleLinks} ${isHighlighted ? styles.highlighted : ""}`} onClick={ ()=>setIsOpen(!isOpen)} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           <div className={styles.titleConrainer}>
             <span className={styles.text}>
               <span className={styles.title}>{title}</span>
@@ -48,7 +51,7 @@ export default function RecentEvent({ url, urls, title, date }: Props) {
     )
   }
   return (
-    <a target="_blank" className={styles.recentEvent} href={url}>
+    <a target="_blank" className={`${styles.recentEvent} ${isHighlighted ? styles.highlighted : ""}`} href={url} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <span className={styles.text}>
         <span className={styles.title}>{title}</span>
         <span className={styles.date}>{date}</span>

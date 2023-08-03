@@ -110,13 +110,18 @@ To add new Event Record:
 
 - **Open** *src/constants/event.ts*
 
-- **Add** new Object to array with following required fields:
+- **Add** new Object to array with following fields:
 
 ````
 {
   title: string,
   date: string,
-  url?: string,
+  url: string,
+  urls?: {
+    title: string,
+    url: string,  
+  }[],
+  id: string
 }
 ````
 
@@ -130,17 +135,7 @@ To add new Event Record:
 }
 ````
 
-Also Event may contain several links, in this case you need to fill in the **urls** field
-````
-{
-  title: string,
-  date: string,
-  urls: {
-    title: string,
-    url: string,  
-  }[],
-}
-````
+Event may contain several links, in this case you need to fill in the **urls** field
 
 **Example Multiple links**:
 
@@ -164,6 +159,8 @@ Also Event may contain several links, in this case you need to fill in the **url
   date: "10.08.2024"
 }
 ````
+
+If you want to highlight related events you can add them **id** field.
 
 New card will appear in events list.
 

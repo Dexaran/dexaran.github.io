@@ -21,9 +21,21 @@
     }
 
     .title {
+      color: colors.$palette-green;
       text-shadow: 0 0 16px rgba(43, 231, 106, 0.80);
     }
   }
+}
+
+.highlighted {
+  border: 1px solid colors.$text-primary;
+  .title {
+    color: colors.$text-primary;
+    text-shadow: 0 0 16px colors.$text-primary;
+  }
+  .date {
+    color: colors.$text-primary;
+  }  
 }
 
 .date {
@@ -89,6 +101,7 @@
     }
 
     .title {
+      color: colors.$palette-green;
       text-shadow: 0 0 16px rgba(43, 231, 106, 0.80);
     }
   }
@@ -173,3 +186,4 @@
   border-top: 1px solid colors.$border-primary;
   padding: 0px 20px;
 }
+
