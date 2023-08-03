@@ -138,9 +138,9 @@ export default function Home() {
               handleClick={() => setActiveTab(1)}
             />
             <div className={styles.eventsTabContent}>
-              <Column title="Events timeline">
-                {events.map(({url, title, date}) => {
-                  return <RecentEvent key={title} url={url} title={title} date={date} />
+              <Column title="📅 Events timeline">
+                {events.map(({url, urls, title, date}) => {
+                  return <RecentEvent key={title} url={url} urls={urls} title={title} date={date} />
                 })}
               </Column>
             </div>

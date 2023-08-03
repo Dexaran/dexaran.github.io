@@ -8,7 +8,20 @@ export const events: IRecentEvent[] = [
   },
   {
     title: "Lorem ipsum dolor sit amet.",
-    url: "#",
+    urls: [
+      {
+        title: 'ERC-223: our mission is to make Ethereum tokens secure',
+        url: '#'  
+      },
+      {
+        title: 'ERC-223 is added to token standards',
+        url: '#'  
+      },
+      {
+        title: 'Security concerns regarding the Ethereum token standard ERC-20',
+        url: '#'  
+      },
+    ],
     date: "10.08.2024"
   },
   {

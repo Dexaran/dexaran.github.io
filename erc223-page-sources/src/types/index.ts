@@ -7,7 +7,11 @@ export type IArticle = {
 
 export type IRecentEvent = {
   title: string,
-  url: string,
+  url?: string,
+  urls?: {
+    title: string,
+    url: string,  
+  }[],
   date: string
 }
 
