@@ -70,17 +70,27 @@ export default function Home() {
               handleClick={() => setActiveTab(0)}
             />
             {activeTab === 0 && <div className={styles.resources}>
-              <Column description={`ERC stands for "Ethereum Request for Comments"`} title="Articles">
+              <Column 
+                title="📝 Articles"
+                description={`ERC stands for "Ethereum Request for Comments"`}
+                tooltipText="Here are collected articles that describe in detail the problems of the ERC-20 standard"
+              >
                 {articles.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
               </Column>
-              <Column description="Useful resources regarding ERC-223" title="ERC-223">
+              <Column 
+                title="📔 ERC-223"
+                description="Useful resources regarding ERC-223"
+              >
                 {erc223.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
               </Column>
-              <Column description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!" title="Development resources">
+              <Column 
+                title="👨🏻‍💻 Development resources"
+                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!"
+              >
                 {devResources.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
                 })}
