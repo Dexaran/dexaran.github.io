@@ -27,17 +27,6 @@
   }
 }
 
-.highlighted {
-  border: 1px solid colors.$text-primary;
-  .title {
-    color: colors.$text-primary;
-    text-shadow: 0 0 16px colors.$text-primary;
-  }
-  .date {
-    color: colors.$text-primary;
-  }  
-}
-
 .date {
   color: colors.$text-secondary;
   font-size: 16px;
@@ -84,7 +73,6 @@
   width: 100%;
   justify-content: space-between;
   flex-direction: column;
-  gap: 10px;
   padding: 14px 0px;
   align-items: center;
 
@@ -185,5 +173,16 @@
   width: 100%;
   border-top: 1px solid colors.$border-primary;
   padding: 0px 20px;
+  margin-top: 10px;
 }
 
+.highlighted {
+  border: 1px solid colors.$text-primary;
+  .title {
+    color: colors.$text-primary;
+    text-shadow: 0 0 16px colors.$text-primary;
+  }
+  .date {
+    color: colors.$text-primary;
+  }  
+}

@@ -32,7 +32,7 @@ export default function RecentEvent({ url, urls, title, date, isHighlighted, onM
               </svg>
             </span>
           </div>
-          <Collapse open={isOpen} style={{width:"100%"}}>
+          <Collapse open={isOpen} style={{ width:"100%" }}>
             <div className={styles.urlsContainer}>
               {urls.map(({ title, url }) => (
                 <a target="_blank"  key={url} className={styles.urlContainer} href={url} onClick={(event) => event.stopPropagation()}>
