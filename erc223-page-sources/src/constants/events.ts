@@ -8,6 +8,11 @@ export const events: IRecentEvent[] = [
     id: "eip_submission",
   },
   {
+    title: "Script that calculates ERC-20 losses automatically is developed. Today $130M worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
+    url: "https://dexaran.github.io/erc20_losses/",
+    date: "18.07.2023",
+  },
+  {
     title: "[github] ERC-20 issue was reported to OpenZeppelin. OpenZeppelin refused to do anything with the issue and leaves it in wontfix state.",
     url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/4451",
     date: "11.07.2023",
