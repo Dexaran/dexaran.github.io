@@ -5,6 +5,7 @@ export const events: IRecentEvent[] = [
     title: "[github] ERC-223 status is changed from 'draft' to 'review'",
     url: "https://github.com/ethereum/EIPs/pull/7339",
     date: "2.08.2023",
+    id: "eip_submission",
   },
   {
     title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
@@ -15,6 +16,7 @@ export const events: IRecentEvent[] = [
     title: "[github] ERC-223 is officially merged as a 'draft' EIP to Ethereum/EIPs",
     url: "https://github.com/ethereum/EIPs/pull/6485",
     date: "6.03.2023",
+    id: "eip_submission",
   },
   {
     title: "[ETH reddit] Known problems of ERC-20 standard article",
@@ -200,13 +202,13 @@ export const events: IRecentEvent[] = [
     title: "[ETC reddit] Initial ERC-223 announcement on ETC public media",
     url: "https://www.reddit.com/r/EthereumClassic/comments/5xn8p8/new_erc_tokens_standard_proposal/",
     date: "5.03.2017",
-    id: "tag_eip_submission",
+    id: "eip_submission",
   },
   {
     title: "[github] Token standard was created and submitted as Ethereum EIP 223",
     url: "https://github.com/ethereum/eips/issues/223",
     date: "5.03.2017",
-    id: "tag_eip_submission",
+    id: "eip_submission",
   },
   {
     title: "[github] Reference implementation of ERC-223 token was created",
