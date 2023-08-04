@@ -2,6 +2,16 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[QTUM reddit] $260,000 loss caused by ERC-20 flaws was discovered in QTUM contract",
+    url: "https://www.reddit.com/r/Qtum/comments/762nwo/260000_lost_because_of_erc20_qtum_token/",
+    date: "12.10.2017",
+  },
+  {
+    title: "[ETC reddit] ERC-223 compliant multisig wallets",
+    url: "https://www.reddit.com/r/EthereumClassic/comments/7575k4/erc223compliant_multisig_wallets/",
+    date: "8.10.2017",
+  },
+  {
     title: "[ETH reddit] Reminder about ERC-20 problems on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/6uckdx/reminder_about_problems_of_most_erc20_tokens/",
     date: "17.08.2017",
