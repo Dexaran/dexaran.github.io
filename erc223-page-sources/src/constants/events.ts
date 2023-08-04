@@ -39,6 +39,11 @@ export const events: IRecentEvent[] = [
     date: "25.05.2021",
   },
   {
+    title: "Trust Wallet supports ERC-223 tokens",
+    url: "https://www.blockdata.tech/profiles/trust-wallet",
+    date: "2.04.2020",
+  },
+  {
     title: "[EOS] Dexaran described the ERC-20 standard problems in a comparison to EOS C++ token",
     url: "https://www.eosgo.io/blog/shadowed-advantage-of-eos-that-you-might-not-know/",
     date: "31.10.2019",
@@ -49,6 +54,11 @@ export const events: IRecentEvent[] = [
     url: "https://github.com/EOSIO/eosio.contracts/blob/410433f6bd57e6ea38146d5e64b7b0412104cfd3/contracts/eosio.token/src/eosio.token.cpp",
     date: "26.06.2019",
     id: "eos_cpp_token",
+  },
+  {
+    title: "FieldCoin article regarding ERC-223 standard",
+    url: "https://steemit.com/cryptocurrency/@fieldcoin/erc223-a-new-standard",
+    date: "7.5.2018",
   },
   {
     title: "Cointelligence articles: comparison of ERC-20, ERC-223 and ERC-777 standards",
