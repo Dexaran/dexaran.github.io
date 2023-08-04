@@ -53,7 +53,7 @@ export default function Home() {
         <img className={clsx(styles.bgImage, styles.leftImage)} src={`${basePath}/left-header-bg.png`} alt=""/>
         <img className={clsx(styles.bgImage, styles.rightImage)} src={`${basePath}/right-header-bg.png`} alt=""/>
         <h1>ERC-223</h1>
-        <h2>Designed by security experts to protect user funds from accidental loss</h2>
+        <h2>Token standard designed by security experts. Prevents user mistakes and accidental loss of funds.</h2>
         <p><a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> is a token standard designed to be an alternative to <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a>. <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> solves a number of problems <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a> has - most notably <a href="https://eips.ethereum.org/EIPS/eip-20" target="_blank" rel="noopener noreferrer">ERC-20</a> token transfers can not be handled by the recipient which means there is no way to filter or prevent any user mistakes or handle any errors that may occur during the transaction. We believe that letting a user to lose all his life savings as a result of a mistake that could be easily prevented is not acceptable for a global standard of digital assets.</p>
       </header>
       
