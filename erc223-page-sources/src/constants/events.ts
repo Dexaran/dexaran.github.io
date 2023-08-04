@@ -89,7 +89,7 @@ export const events: IRecentEvent[] = [
     id: "storj",
   },
   {
-    title: "[ETH reddit] Discussion with Ethereum Foundation members regarding ERC-223",
+    title: "[ETH reddit] Discussion with Ethereum Foundation members regarding ERC-223 and lost funds in ERC-20 tokens",
     url: "https://www.reddit.com/r/ethereum/comments/66gr2a/metropolis_and_erc23_request_for/",
     date: "20.04.2017",
     id: "ethereum_foundation",
@@ -98,7 +98,7 @@ export const events: IRecentEvent[] = [
     title: "[medium] Vitalik Buterin responded to a question regarding ERC-223 standard",
     url: "https://dexaran820.medium.com/response-to-vitaliks-speech-about-erc-23-ad240a27490f",
     date: "17.04.2017",
-    id: "eth_reddit_ens",
+    id: "ethereum_foundation",
   },
   {
     title: "[ETH reddit] Where it all started: Attention! Be careful using Ethereum tokens.",
