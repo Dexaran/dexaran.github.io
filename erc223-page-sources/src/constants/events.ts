@@ -2,6 +2,33 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[🍿Ongoing] ERC-223 removed from the list of token standards as it is in 'draft'",
+    url: "https://github.com/ethereum/ethereum-org-website/pull/10841",
+    date: "1.09.2023",
+    id: "ethereum-org",
+  },
+  {
+    title: "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
+    url: "https://www.reddit.com/r/ethereum/comments/15cbwoe/erc223_is_added_to_token_standards_documentation/",
+    date: "1.09.2023",
+    id: "ethereum-org",
+  },
+  {
+    title: "[🍿Ongoing] ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/standards/tokens/",
+    urls: [
+      {
+        title: 'part 1',
+        url: 'https://github.com/ethereum/ethereum-org-website/pull/9651'  
+      },
+      {
+        title: 'part 2',
+        url: 'https://github.com/ethereum/ethereum-org-website/pull/10782'  
+      }
+    ],
+    date: "25.08.2023",
+    id: "ethereum-org",
+  },
+  {
     title: "[github] ERC-223 status is changed from 'draft' to 'review'",
     url: "https://github.com/ethereum/EIPs/pull/7339",
     date: "2.08.2023",
