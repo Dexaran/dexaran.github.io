@@ -29,6 +29,11 @@ export const events: IRecentEvent[] = [
     date: "17.09.2021",
   },
   {
+    title: "[github] Callisto Network Security Department adopted a practice of describing ERC-20 vulnerabilities and recommending transfer function security restrictions in their reports",
+    url: "https://github.com/EthereumCommonwealth/Roadmap/issues/65",
+    date: "25.05.2021",
+  },
+  {
     title: "[EOS] Dexaran described the ERC-20 standard problems in a comparison to EOS C++ token",
     url: "https://www.eosgo.io/blog/shadowed-advantage-of-eos-that-you-might-not-know/",
     date: "31.10.2019",
