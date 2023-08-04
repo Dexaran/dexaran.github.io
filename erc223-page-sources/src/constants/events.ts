@@ -2,6 +2,21 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] ERC-223 status is changed from 'draft' to 'review'",
+    url: "https://github.com/ethereum/EIPs/pull/7339",
+    date: "2.08.2023",
+  },
+  {
+    title: "[github] ERC-223 is officially merged as a 'draft' EIP to Ethereum/EIPs",
+    url: "https://github.com/ethereum/EIPs/pull/6485",
+    date: "6.03.2023",
+  },
+  {
+    title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
+    url: "https://twitter.com/feindura/status/1676623784726470658",
+    date: "5.07.2023",
+  },
+  {
     title: "[ETH reddit] Known problems of ERC-20 standard article",
     url: "https://www.reddit.com/r/ethereum/comments/11nwvo6/known_problems_of_erc20_token_standard_summary/",
     date: "10.03.2023",
