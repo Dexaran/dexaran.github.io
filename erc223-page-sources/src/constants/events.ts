@@ -2,6 +2,44 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[ETH reddit] Reminder about ERC-20 problems on r/ethereum",
+    url: "https://www.reddit.com/r/ethereum/comments/6uckdx/reminder_about_problems_of_most_erc20_tokens/",
+    date: "17.08.2017",
+  },
+  {
+    title: "Bittrex re-standardized its deposit contracts to accept ERC-223 tokens.",
+    urls: [
+      {
+        title: 'reddit',
+        url: 'https://www.reddit.com/r/EthereumClassic/comments/6tvyav/bittrex_restandardized_its_deposit_contracts_for/'  
+      },
+      {
+        title: 'steem.it',
+        url: 'https://steemit.com/cryptocurrency/@cryptocoinclub/erc223-deposit-contracts-are-now-good-for-bittrex'  
+      },
+      {
+        title: 'stack exchange',
+        url: 'https://ethereum.stackexchange.com/questions/30794/bittrex-using-smart-contract-address-to-get-funds-erc-20-deposit'  
+      },
+    ],
+    date: "15.08.2017",
+    id: "erc223_support",
+  },
+  /*
+  {
+    title: "[STORJ reddit] The first loss of $5000 is discovered in STORJ contract. It happened exactly as I warned the STORJ devs earlier.",
+    url: "https://www.reddit.com/r/EthereumClassic/comments/6tvyav/bittrex_restandardized_its_deposit_contracts_for/",
+    date: "15.08.2017",
+    id: "erc223_support",
+  },
+  */ 
+  {
+    title: "[STORJ reddit] The first loss of $5000 is discovered in STORJ contract. It happened exactly as I warned the STORJ devs earlier.",
+    url: "https://www.reddit.com/r/storj/comments/6t2czj/5000_are_lost_storj_erc20_tokens_are_vulnerable/",
+    date: "11.08.2017",
+    id: "storj",
+  },
+  {
     title: "[ETH reddit] First in the world ERC-223 ICO launched",
     url: "https://www.reddit.com/r/ethereum/comments/6m2vvn/the_first_erc223_ico_is_now_launched_on/",
     date: "8.07.2017",
