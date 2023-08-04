@@ -2,19 +2,30 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
-    title: "ERC-223 copy was submitted as ECIP to Ethereum Classic",
+    title: "[github] ERC-223 copy was submitted as ECIP to Ethereum Classic",
     url: "https://github.com/ethereumproject/ECIPs/issues/53",
     date: "18.05.2017",
     id: "tag_eip_submission",
   },
   {
-    title: "Reddit announcement: Attention! Be careful using Ethereum tokens.",
+    title: "[Ethereum reddit] Where it all started: Attention! Be careful using Ethereum tokens.",
     url: "https://www.reddit.com/r/ethereum/comments/60ql37/attention_be_careful_using_ethereum_tokens/",
     date: "21.03.2017",
     id: "reddit_early_warnings",
   },
   {
-    title: "Token standard was created and submitted as Ethereum EIP 223",
+    title: "[ETC reddit] Explanation of the difference between ERC-20 and ERC-223",
+    url: "https://www.reddit.com/r/EthereumClassic/comments/5ydst4/explanation_of_the_difference_between_erc20_and/",
+    date: "9.03.2017",
+  },
+  {
+    title: "[ETC reddit] Initial ERC-223 announcement on ETC public media",
+    url: "https://www.reddit.com/r/EthereumClassic/comments/5xn8p8/new_erc_tokens_standard_proposal/",
+    date: "9.03.2017",
+    id: "tag_eip_submission",
+  },
+  {
+    title: "[github] Token standard was created and submitted as Ethereum EIP 223",
     url: "https://github.com/ethereum/eips/issues/223",
     date: "07.03.2017",
     id: "tag_eip_submission",
