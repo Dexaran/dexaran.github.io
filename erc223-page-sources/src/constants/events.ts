@@ -24,6 +24,11 @@ export const events: IRecentEvent[] = [
     date: "10.03.2023",
   },
   {
+    title: "[github] ERC-223 & ERC-20 Compatible Decentralized Exchange is created",
+    url: "https://github.com/SoyFinance/smart-contracts/tree/938e74f8af23445de7741c6b93e2e9b5d588374f",
+    date: "17.06.2022",
+  },
+  {
     title: "[ETH reddit] Breaking changes to ERC-223 standard announcement",
     url: "https://www.reddit.com/r/ethereum/comments/pq1l6y/breaking_change_to_erc223_token_standard/",
     date: "17.09.2021",
