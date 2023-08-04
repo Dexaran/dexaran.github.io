@@ -1,6 +1,41 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [https://github.com/ethereum/EIPs/issues/20#issuecomment-289227754
+export const events: IRecentEvent[] = [
+  {
+    title: "[ETH reddit] Known problems of ERC-20 standard article",
+    url: "https://www.reddit.com/r/ethereum/comments/11nwvo6/known_problems_of_erc20_token_standard_summary/",
+    date: "10.03.2023",
+  },
+  {
+    title: "[ETH reddit] Breaking changes to ERC-223 standard announcement",
+    url: "https://www.reddit.com/r/ethereum/comments/pq1l6y/breaking_change_to_erc223_token_standard/",
+    date: "17.09.2021",
+  },
+  {
+    title: "[ETH reddit] Reminder about ERC-20 security flaws",
+    url: "https://www.reddit.com/r/ethereum/comments/7wvmg8/security_alert_specification_of_erc20/",
+    date: "11.02.2018",
+  },
+  {
+    title: "[ETH reddit] The total amount of lost ERC-20 tokens reached $1,000,000",
+    url: "https://www.reddit.com/r/ethereum/comments/7mea1c/erc20_anniversary_new_ath_reached_1_000_000_lost/",
+    date: "27.12.2017",
+  },
+  {
+    title: "[ETH reddit] User u/cryptoassetmana lost $130,000 due to the known ERC-20 flaw and reported it",
+    url: "https://www.reddit.com/r/0xProject/comments/7lpc5n/ive_sent_my_tokens_to_the_zrx_smart_contract/",
+    date: "23.12.2017",
+  },
+  {
+    title: "[ethereum.org] Request to stop promoting ERC-20 at the official ethereum.org web page",
+    url: "https://github.com/ethereum/ethereum-org/issues/755",
+    date: "20.12.2017",
+  },
+  {
+    title: "[ETH reddit] Notice regarding Raiden and potential ERC-20 problems of state channels",
+    url: "https://www.reddit.com/r/ethereum/comments/7btfq1/notice_about_raiden_state_channel_can_burn/",
+    date: "9.11.2017",
+  },
   {
     title: "[QTUM reddit] $260,000 loss caused by ERC-20 flaws was discovered in QTUM contract",
     url: "https://www.reddit.com/r/Qtum/comments/762nwo/260000_lost_because_of_erc20_qtum_token/",
@@ -95,6 +130,12 @@ export const events: IRecentEvent[] = [https://github.com/ethereum/EIPs/issues/2
     id: "storj",
   },
   {
+    title: "[Ethereum Foundation / ERC-20] Dexaran commented that ERC-20 has security flaw and it caused a loss of funds already.",
+    url: "https://github.com/ethereum/EIPs/pull/610#issuecomment-296711733",
+    date: "24.04.2017",
+    id: "ethereum_foundation",
+  },
+  {
     title: "[ETH reddit] Discussion with Ethereum Foundation members regarding ERC-223 and lost funds in ERC-20 tokens",
     url: "https://www.reddit.com/r/ethereum/comments/66gr2a/metropolis_and_erc23_request_for/",
     date: "20.04.2017",
@@ -107,7 +148,7 @@ export const events: IRecentEvent[] = [https://github.com/ethereum/EIPs/issues/2
     id: "ethereum_foundation",
   },
   {
-    title: "[ERC-20 thread] Dexarans comment on EIP20 discussion thread regarding approve() function vulnerability",
+    title: "[ERC-20 thread] Dexarans comment on EIP#20 discussion thread regarding approve() function vulnerability",
     url: "https://github.com/ethereum/EIPs/issues/20#issuecomment-289227754 ",
     date: "25.03.2017",
     id: "erc20_vulnerability_on_issue",
@@ -134,6 +175,11 @@ export const events: IRecentEvent[] = [https://github.com/ethereum/EIPs/issues/2
     url: "https://github.com/ethereum/eips/issues/223",
     date: "5.03.2017",
     id: "tag_eip_submission",
+  },
+  {
+    title: "[github] Reference implementation of ERC-223 token was created",
+    url: "https://github.com/Dexaran/ERC223-token-standard/tree/cbc8a3c262e91ca5207d4814d1df3cffca9fd7b2",
+    date: "5.03.2017",
   },
 
   /*
