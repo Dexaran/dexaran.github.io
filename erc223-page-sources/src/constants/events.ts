@@ -12,6 +12,11 @@ export const events: IRecentEvent[] = [
     date: "17.09.2021",
   },
   {
+    title: "Cointelligence articles: comparison of ERC-20, ERC-223 and ERC-777 standards",
+    url: "https://www.cointelligence.com/content/comparison-erc20-erc223-new-ethereum-erc777-token-standard/?ref=hackernoon.com",
+    date: "11.02.2018",
+  },
+  {
     title: "[ETH reddit] Reminder about ERC-20 security flaws",
     url: "https://www.reddit.com/r/ethereum/comments/7wvmg8/security_alert_specification_of_erc20/",
     date: "11.02.2018",
