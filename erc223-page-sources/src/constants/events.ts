@@ -7,14 +7,14 @@ export const events: IRecentEvent[] = [
     date: "2.08.2023",
   },
   {
-    title: "[github] ERC-223 is officially merged as a 'draft' EIP to Ethereum/EIPs",
-    url: "https://github.com/ethereum/EIPs/pull/6485",
-    date: "6.03.2023",
-  },
-  {
     title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
     url: "https://twitter.com/feindura/status/1676623784726470658",
     date: "5.07.2023",
+  },
+  {
+    title: "[github] ERC-223 is officially merged as a 'draft' EIP to Ethereum/EIPs",
+    url: "https://github.com/ethereum/EIPs/pull/6485",
+    date: "6.03.2023",
   },
   {
     title: "[ETH reddit] Known problems of ERC-20 standard article",
