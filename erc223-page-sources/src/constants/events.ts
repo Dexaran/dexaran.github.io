@@ -1,6 +1,6 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [
+export const events: IRecentEvent[] = [https://github.com/ethereum/EIPs/issues/20#issuecomment-289227754
   {
     title: "[QTUM reddit] $260,000 loss caused by ERC-20 flaws was discovered in QTUM contract",
     url: "https://www.reddit.com/r/Qtum/comments/762nwo/260000_lost_because_of_erc20_qtum_token/",
@@ -67,6 +67,12 @@ export const events: IRecentEvent[] = [
     id: "appeal_to_developers",
   },
   {
+    title: "[ERC-20 discussion thread] Dexarans comment regarding the potential problem of stuck tokens",
+    url: "https://github.com/ethereum/EIPs/issues/20#issuecomment-307752081",
+    date: "12.06.2017",
+    id: "erc20_vulnerability_on_issue",
+  },
+  {
     title: "[ETH reddit] ENS contract was deployed and instantly became a trap for more ERC-20 tokens",
     url: "https://www.reddit.com/r/ethereum/comments/6e8y9o/the_ens_contract_becomes_token_holder_erc20/",
     date: "30.05.2017",
@@ -99,6 +105,12 @@ export const events: IRecentEvent[] = [
     url: "https://dexaran820.medium.com/response-to-vitaliks-speech-about-erc-23-ad240a27490f",
     date: "17.04.2017",
     id: "ethereum_foundation",
+  },
+  {
+    title: "[ERC-20 thread] Dexarans comment on EIP20 discussion thread regarding approve() function vulnerability",
+    url: "https://github.com/ethereum/EIPs/issues/20#issuecomment-289227754 ",
+    date: "25.03.2017",
+    id: "erc20_vulnerability_on_issue",
   },
   {
     title: "[ETH reddit] Where it all started: Attention! Be careful using Ethereum tokens.",
