@@ -75,7 +75,7 @@
   overflow: hidden;
 
   h1 {
-    font-size: 38px;
+    font-size: 42px;
     line-height: 56px;
     font-weight: 600;
     color: colors.$text-primary;
@@ -84,7 +84,7 @@
     animation: glow-main 70s infinite ease-in-out;
   }
   h2 {
-    font-size: 24px;
+    font-size: 30px;
     line-height: 36px;
     font-weight: 600;
     text-align: center;
@@ -95,7 +95,7 @@
 
   p {
     color: colors.$text-secondary;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 32px;
     max-width: 840px;
   }
