@@ -10,6 +10,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.25.0",
     "@types/node": "20.4.5",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",
