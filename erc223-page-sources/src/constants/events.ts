@@ -8,6 +8,12 @@ export const events: IRecentEvent[] = [
     id: "eip_submission",
   },
   {
+    title: "[github] ERC-20 issue was reported to OpenZeppelin. OpenZeppelin refused to do anything with the issue and leaves it in wontfix state.",
+    url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/4451",
+    date: "11.07.2023",
+    id: "open_zeppelin_report",
+  },
+  {
     title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
     url: "https://twitter.com/feindura/status/1676623784726470658",
     date: "5.07.2023",
