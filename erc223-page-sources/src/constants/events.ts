@@ -97,6 +97,18 @@ export const events: IRecentEvent[] = [
     id: "ethereum-org",
   },
   {
+    title: "[EIP] EIP-7417: Token Converter is submitted to Ethereum EIPs. The token converter will transform ERC-20 tokens to ERC-223 and back if necessary",
+    url: "https://ethereum-magicians.org/t/token-standard-converter/15252",
+    date: "27.07.2023",
+    id: "converter",
+  },
+  {
+    title: "[github] Token Standards Converter source code is completed",
+    url: "https://github.com/Dexaran/TokenStandardConverter",
+    date: "27.07.2023",
+    id: "converter",
+  },
+  {
     title: "[🍿Ongoing] ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/",
     urls: [
       {
