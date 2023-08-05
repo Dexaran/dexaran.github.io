@@ -134,13 +134,13 @@ export default function Home() {
           <div className={clsx(styles.tab, activeTab === 1 && styles.active)}>
             <TabHeader
               title="Events"
-              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead. (Total: 64 publications)"
+              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead."
               arrowDirection="left"
               isActive={activeTab === 1}
               handleClick={() => setActiveTab(1)}
             />
             <div className={styles.eventsTabContent}>
-              <Column title="📅 Events timeline">
+              <Column title="📅 Events timeline (Total: 64 publications)">
                 {events.map(({url, urls, title, date, id}) => {
                   return <RecentEvent
                     key={title}
