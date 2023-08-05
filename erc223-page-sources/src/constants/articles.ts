@@ -15,7 +15,7 @@ export const articles: IArticle[] = [
   },
   {
     title: "Callisto Security statement regarding ERC-20 standard.",
-    description: " - ",
+    description: "Statement by the security auditing organization",
     url: "https://callisto.network/erc-20-standard-callisto-network-security-department-statement/",
     image: "callisto-statement.png"
   },
@@ -26,6 +26,12 @@ export const articles: IArticle[] = [
     image: "cryptonomist.png"
   },
   {
+    title: "Dexaran's interview regarding ERC-20, ERC-223 and ERC-777 development",
+    description: "",
+    url: "https://www.cointelligence.com/content/comparison-erc20-erc223-new-ethereum-erc777-token-standard/?ref=hackernoon.com",
+    image: "cointelligence-interview.png"
+  },
+  {
     title: "Dexarans interview with CryptoInsidersHK",
     description: "",
     url: "https://cryptoinsiders.online/understanding-erc-223-tokens-a-safer-approach-to-gas-fees-and-enhanced-security/",
@@ -33,15 +39,15 @@ export const articles: IArticle[] = [
   },
   {
     title: "ERC-20 vs ERC-223 vs ERC-777",
-    description: "",
+    description: "Third party media describes the research on token standards",
     url: "https://101blockchains.com/erc20-vs-erc223-vs-erc777/",
     image: "101blockchain.png"
   },
   {
     title: "Cryptopolitan announces ERC-223 standard",
-    description: "",
+    description: "Third party media publication",
     url: "https://www.cryptopolitan.com/ethereum-implements-new-token-standard/",
-    image: "101blockchain.png"
+    image: "croptopolitan.png"
   },
   
 ];
