@@ -83,7 +83,7 @@ export default function Home() {
               </Column>
               <Column 
                 title="ERC-223"
-                description="Official stuff on subject"
+                description="The most important links"
               >
                 {erc223.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
