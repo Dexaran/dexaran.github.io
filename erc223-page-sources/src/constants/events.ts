@@ -35,7 +35,7 @@ export const events: IRecentEvent[] = [
     date: "2.08.2023",
   },
   {
-    title: "Dexarans interview with CryptoInsedersHK regarding ERC-223",
+    title: "Dexarans interview with CryptoInsidersHK regarding ERC-223",
     url: "https://twitter.com/Dexaran/status/1686884138870091776",
     date: "2.08.2023",
   },
