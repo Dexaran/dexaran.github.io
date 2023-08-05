@@ -1,6 +1,6 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [
+export const events: IRecentEvent[] = [https://dexaran820.medium.com/erc-20-approve-transferfrom-asset-transfer-method-poses-a-threat-to-users-funds-safety-ff7195127018
   {
     title: "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
@@ -22,30 +22,30 @@ export const events: IRecentEvent[] = [
   {
     title: "[twitter] Discussion regarding ERC-223 implementation patterns",
     url: "https://twitter.com/krakovia_evm/status/1686887407231115264",
-    date: "2.09.2023",
+    date: "2.08.2023",
   },
   {
     title: "[🍿Ongoing] ERC-223 removed from the official token standards documentation as it is in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/pull/10841",
-    date: "1.09.2023",
+    date: "1.08.2023",
     id: "ethereum-org",
   },
   {
     title: "[🍿Ongoing] Cryptonomist releases an article regarding ERC-223 being added to the official token standards documentation",
     url: "https://twitter.com/Cryptonomist_en/status/1686017991006121984",
-    date: "31.08.2023",
+    date: "31.07.2023",
     id: "ethereum-org",
   },
   {
     title: "Callisto Security statement regarding ERC-20 tokens is removed at r/ethereum with a reason 'It is not related to Ethereum or ecosystem'",
     url: "https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/",
-    date: "31.08.2023",
+    date: "31.07.2023",
     id: "callisto_sec_dep",
   },
   {
     title: "Callisto Security statement regarding ERC-20 tokens is assigned 'Vulnerability Disclosure' status at r/CyberSecurity",
     url: "https://www.reddit.com/r/cybersecurity/comments/15ejbjs/erc20_standard_callisto_security_department/",
-    date: "31.08.2023",
+    date: "31.07.2023",
     id: "callisto_sec_dep",
   },
   {
@@ -60,24 +60,24 @@ export const events: IRecentEvent[] = [
         url: 'https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/'  
       }
     ],
-    date: "31.08.2023",
+    date: "31.07.2023",
     id: "callisto_sec_dep",
   },
   {
     title: "Callisto Security releases a statement regarding ERC-20 tokens",
     url: "https://drive.google.com/file/d/1P7FIqEroAs7KcjYp526euV9w8wOB7rIH/view",
-    date: "31.08.2023",
+    date: "31.07.2023",
     id: "callisto_sec_dep",
   },
   {
     title: "[ETH reddit] ERC-223 declaration: our mission is to make Ethereum tokens secure",
     url: "https://www.reddit.com/r/ethereum/comments/15dx29h/erc223_our_mission_is_to_make_ethereum_tokens/",
-    date: "30.08.2023",
+    date: "30.07.2023",
   },
   {
     title: "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/15cbwoe/erc223_is_added_to_token_standards_documentation/",
-    date: "28.08.2023",
+    date: "28.07.2023",
     id: "ethereum-org",
   },
   {
@@ -92,13 +92,18 @@ export const events: IRecentEvent[] = [
         url: 'https://github.com/ethereum/ethereum-org-website/pull/10782'  
       }
     ],
-    date: "25.08.2023",
+    date: "25.07.2023",
     id: "ethereum-org",
+  },
+  {
+    title: "[medium] Pull Transaction VS Push Transaction article is published",
+    url: "https://dexaran820.medium.com/erc-20-approve-transferfrom-asset-transfer-method-poses-a-threat-to-users-funds-safety-ff7195127018",
+    date: "22.07.2023",
   },
   {
     title: "[twitter] ERC-223 & ERC-20 compatibility discussion focused on the necessity to support approvals.",
     url: "https://twitter.com/Dexaran/status/1678446110795341834",
-    date: "10.09.2023",
+    date: "10.07.2023",
   },
   {
     title: "Script that calculates ERC-20 losses automatically is developed. Today $130,000,000 worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
