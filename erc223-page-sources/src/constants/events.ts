@@ -162,7 +162,7 @@ export const events: IRecentEvent[] = [
     date: "10.07.2023",
   },
   {
-    title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
+    title: "[♛ Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
     url: "https://twitter.com/feindura/status/1676623784726470658",
     date: "5.07.2023",
   },
@@ -353,19 +353,19 @@ export const events: IRecentEvent[] = [
     id: "storj",
   },
   {
-    title: "[Ethereum Foundation / ERC-20] Dexaran commented that ERC-20 has security flaw and it caused a loss of funds already.",
+    title: "[♛ Ethereum Foundation] Dexaran commented that ERC-20 has security flaw and it caused a loss of funds already.",
     url: "https://github.com/ethereum/EIPs/pull/610#issuecomment-296711733",
     date: "24.04.2017",
     id: "ethereum_foundation",
   },
   {
-    title: "[ETH reddit] Discussion with Ethereum Foundation members regarding ERC-223 and lost funds in ERC-20 tokens",
+    title: "[♛ ETH reddit] Discussion with Ethereum Foundation members regarding ERC-223 and lost funds in ERC-20 tokens",
     url: "https://www.reddit.com/r/ethereum/comments/66gr2a/metropolis_and_erc23_request_for/",
     date: "20.04.2017",
     id: "ethereum_foundation",
   },  
   {
-    title: "[medium] Vitalik Buterin responded to a question regarding ERC-223 standard",
+    title: "[♛ medium] Vitalik Buterin responded to a question regarding ERC-223 standard",
     url: "https://dexaran820.medium.com/response-to-vitaliks-speech-about-erc-23-ad240a27490f",
     date: "17.04.2017",
     id: "ethereum_foundation",
