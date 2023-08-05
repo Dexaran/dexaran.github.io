@@ -1,6 +1,11 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [https://dexaran820.medium.com/erc-20-approve-transferfrom-asset-transfer-method-poses-a-threat-to-users-funds-safety-ff7195127018
+export const events: IRecentEvent[] = [
+  {
+    title: "[🍿Ongoing] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 1 day",
+    url: "https://www.reddit.com/r/ethereum/comments/15hdz96/today_at_least_130m_worth_of_tokens_are_lost/",
+    date: "2.08.2023",
+  },
   {
     title: "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
@@ -23,6 +28,12 @@ export const events: IRecentEvent[] = [https://dexaran820.medium.com/erc-20-appr
     title: "[twitter] Discussion regarding ERC-223 implementation patterns",
     url: "https://twitter.com/krakovia_evm/status/1686887407231115264",
     date: "2.08.2023",
+  },
+  {
+    title: "[CENSORED] Crosspost of the Security statement from r/Cybersecurity is awaiting approval for 3 days and not getting approved",
+    url: "https://www.reddit.com/r/ethereum/comments/15fjuxt/erc20_standard_callisto_security_department/",
+    date: "1.08.2023",
+    id: "callisto_sec_dep",
   },
   {
     title: "[🍿Ongoing] ERC-223 removed from the official token standards documentation as it is in 'draft'",
@@ -95,11 +106,13 @@ export const events: IRecentEvent[] = [https://dexaran820.medium.com/erc-20-appr
     date: "25.07.2023",
     id: "ethereum-org",
   },
+  /*   /// Not the most relevant to ERC-223 I guess
   {
     title: "[medium] Pull Transaction VS Push Transaction article is published",
     url: "https://dexaran820.medium.com/erc-20-approve-transferfrom-asset-transfer-method-poses-a-threat-to-users-funds-safety-ff7195127018",
     date: "22.07.2023",
   },
+  */
   {
     title: "[twitter] ERC-223 & ERC-20 compatibility discussion focused on the necessity to support approvals.",
     url: "https://twitter.com/Dexaran/status/1678446110795341834",
