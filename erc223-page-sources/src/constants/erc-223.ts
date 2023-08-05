@@ -20,9 +20,15 @@ export const erc223: IArticle[] = [
     image: "original-issue.png"
   },
   {
-    title: "EIP-223: Raw",
-    description: "The original eip-223.md at github.com/ethereum/EIPs",
-    url: "https://github.com/ethereum/EIPs/blob/master/EIPS/eip-223.md",
+    title: "EIP-7417: Token Converter",
+    description: "Formal specification of the contract that makes standards interoperable",
+    url: "https://github.com/Dexaran/EIPs/blob/patch-7/EIPS/eip-7417.md",
     image: "ethereum-magicians-223.png"
+  },
+  {
+    title: "Token Converter source code",
+    description: "Formal specification of the contract that makes standards interoperable",
+    url: "https://github.com/Dexaran/EIPs/blob/patch-7/EIPS/eip-7417.md",
+    image: "converter-source.png"
   }
 ]
