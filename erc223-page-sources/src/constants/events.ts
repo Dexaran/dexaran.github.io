@@ -26,13 +26,19 @@ export const events: IRecentEvent[] = [
     id: "ethereum-org",
   },
   {
+    title: "[🍿Ongoing] Cryptonomist releases an article regarding ERC-223 being added to the official token standards documentation",
+    url: "https://twitter.com/Cryptonomist_en/status/1686017991006121984",
+    date: "31.08.2023",
+    id: "ethereum-org",
+  },
+  {
     title: "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/15cbwoe/erc223_is_added_to_token_standards_documentation/",
     date: "28.08.2023",
     id: "ethereum-org",
   },
   {
-    title: "[🍿Ongoing] ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/standards/tokens/",
+    title: "[🍿Ongoing] ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/",
     urls: [
       {
         title: 'part 1',
@@ -47,7 +53,7 @@ export const events: IRecentEvent[] = [
     id: "ethereum-org",
   },
   {
-    title: "Script that calculates ERC-20 losses automatically is developed. Today $130M worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
+    title: "Script that calculates ERC-20 losses automatically is developed. Today $130,000,000 worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
     url: "https://dexaran.github.io/erc20_losses/",
     date: "18.07.2023",
   },
