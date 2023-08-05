@@ -270,6 +270,11 @@ export const events: IRecentEvent[] = [
     date: "8.10.2017",
   },
   {
+    title: "[♛ Ethereum Foundation] Discussion thread with ENS founder regarding ERC-20 losses and ERC-223 vs approveAndCall()",
+    url: "https://www.reddit.com/r/ethereum/comments/6uckdx/comment/dlxw6vu/?utm_source=reddit&utm_medium=web2x&context=3",
+    date: "17.08.2017",
+  },
+  {
     title: "[ETH reddit] Reminder about ERC-20 problems on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/6uckdx/reminder_about_problems_of_most_erc20_tokens/",
     date: "17.08.2017",
