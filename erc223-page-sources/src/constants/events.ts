@@ -346,7 +346,7 @@ export const events: IRecentEvent[] = [
     date: "19.05.2017",
   },
   {
-    title: "[STORJ reddit] ☆☆☆ Legendary reply from STORJ dev ☆☆☆: 'We know our users will lose money but we prefer to err on the side of well tested insecure code'",
+    title: "[☆STORJ reddit☆] Legendary reply from STORJ dev: 'We know our users will lose money but we prefer to err on the side of well tested insecure code'",
     url: "https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/?utm_source=reddit&utm_medium=web2x&context=3",
     date: "11.05.2017",
     id: "storj",
