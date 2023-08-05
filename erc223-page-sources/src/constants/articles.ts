@@ -47,7 +47,7 @@ export const articles: IArticle[] = [
     title: "Cryptopolitan announces ERC-223 standard",
     description: "Third party media publication",
     url: "https://www.cryptopolitan.com/ethereum-implements-new-token-standard/",
-    image: "croptopolitan.png"
+    image: "cryptopolitan.png"
   },
   
 ];
