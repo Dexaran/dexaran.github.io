@@ -30,5 +30,5 @@ export const erc223: IArticle[] = [
     description: "Formal specification of the contract that makes standards interoperable",
     url: "https://github.com/Dexaran/EIPs/blob/patch-7/EIPS/eip-7417.md",
     image: "converter-source.png"
-  }
+  },
 ]
