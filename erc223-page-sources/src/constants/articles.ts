@@ -24,7 +24,7 @@ export const articles: IArticle[] = [
     description: "The token standard by hacker Dexaran has been added to Ethereum’s list of standards",
     url: "https://en.cryptonomist.ch/2023/07/31/erc-223-lands-among-ethereum-standars/",
     image: "cryptonomist.png"
-  },,
+  },
   {
     title: "Dexarans interview with CryptoInsidersHK",
     description: "",
