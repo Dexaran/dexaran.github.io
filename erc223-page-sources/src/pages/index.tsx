@@ -46,7 +46,7 @@ export default function Home() {
       <Head>
         <title>ERC-223</title>
         <meta name="description" content="ERC-223 articles, events and development sources aggregator" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=1280,initial-scale=1">
         <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
       <header className={styles.header}>
