@@ -166,7 +166,7 @@ export default function Home() {
           }} role="button" className={styles.donation}>
             <img src={`${basePath}/donat.png`} alt=""/>
             <div className={styles.donationText}>
-            <span className={styles.donationLabelLarge}>This is a non-profit project, but donations appreciated:</span>
+            <span className={styles.donationLabelLarge}> ... </span>
               <div className={styles.addressRow}>
               <span className={styles.donationLabel}>Donations appreciated:</span>
                 <span className={styles.donationAddress}>{addressForDonation}</span>
