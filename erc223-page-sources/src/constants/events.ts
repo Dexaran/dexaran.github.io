@@ -1,8 +1,8 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/
+export const events: IRecentEvent[] = [
   {
-    title: "[🍿Ongoing] An issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
+    title: "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
     date: "2.08.2023",
     id: "ethereum-org",
@@ -14,13 +14,18 @@ export const events: IRecentEvent[] = [https://www.reddit.com/r/ethereum/comment
     id: "ethereum-org",
   },
   {
-    title: "[🍿Ongoing] Discussion regarding improper removal of the ERC-223 from standards list was initiated at EthereumOrg discord. As per the discussion the removal was done by mistake.",
+    title: "[🍿Ongoing] Discussion regarding improper removal of the ERC-223 from standards list was initiated at EthereumOrg discord. As per the discussion the removal was considered a mistake.",
     url: "https://discord.com/channels/714888181740339261/776139785550168084/1135924177904353390",
     date: "2.08.2023",
     id: "ethereum-org",
   },
   {
-    title: "[🍿Ongoing] ERC-223 removed from the list of token standards as it is in 'draft'",
+    title: "[twitter] Discussion regarding ERC-223 implementation patterns",
+    url: "https://twitter.com/krakovia_evm/status/1686887407231115264",
+    date: "2.09.2023",
+  },
+  {
+    title: "[🍿Ongoing] ERC-223 removed from the official token standards documentation as it is in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/pull/10841",
     date: "1.09.2023",
     id: "ethereum-org",
@@ -89,6 +94,11 @@ export const events: IRecentEvent[] = [https://www.reddit.com/r/ethereum/comment
     ],
     date: "25.08.2023",
     id: "ethereum-org",
+  },
+  {
+    title: "[twitter] ERC-223 & ERC-20 compatibility discussion focused on the necessity to support approvals.",
+    url: "https://twitter.com/Dexaran/status/1678446110795341834",
+    date: "10.09.2023",
   },
   {
     title: "Script that calculates ERC-20 losses automatically is developed. Today $130,000,000 worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
