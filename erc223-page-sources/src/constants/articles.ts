@@ -21,8 +21,14 @@ export const articles: IArticle[] = [
   },
   {
     title: "Cryptonomist: ERC-223",
-    description: " - ",
+    description: "The token standard by hacker Dexaran has been added to Ethereum’s list of standards",
     url: "https://en.cryptonomist.ch/2023/07/31/erc-223-lands-among-ethereum-standars/",
     image: "cryptonomist.png"
+  },,
+  {
+    title: "Dexarans interview with CryptoInsidersHK",
+    description: " ",
+    url: "https://cryptoinsiders.online/understanding-erc-223-tokens-a-safer-approach-to-gas-fees-and-enhanced-security/",
+    image: "crypto-insiders.png"
   },
 ];
