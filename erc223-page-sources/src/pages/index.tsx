@@ -73,7 +73,7 @@ export default function Home() {
             />
             {activeTab === 0 && <div className={styles.resources}>
               <Column 
-                title="📝 Articles"
+                title="Articles"
                 description={`ERC stands for "Ethereum Request for Comments"`}
                 tooltipText="Here are collected articles that describe in detail the problems of the ERC-20 standard"
               >
@@ -82,7 +82,7 @@ export default function Home() {
                 })}
               </Column>
               <Column 
-                title="📔 ERC-223"
+                title="ERC-223"
                 description="Useful resources regarding ERC-223"
               >
                 {erc223.map(({url, title, description, image}, index) => {
@@ -90,7 +90,7 @@ export default function Home() {
                 })}
               </Column>
               <Column 
-                title="👨🏻‍💻 Development resources"
+                title="Development resources"
                 description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!"
               >
                 {devResources.map(({url, title, description, image}, index) => {
@@ -134,7 +134,7 @@ export default function Home() {
           <div className={clsx(styles.tab, activeTab === 1 && styles.active)}>
             <TabHeader
               title="Events"
-              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead."
+              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead. (Total: 64 publications)"
               arrowDirection="left"
               isActive={activeTab === 1}
               handleClick={() => setActiveTab(1)}
