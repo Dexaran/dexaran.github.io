@@ -1,6 +1,6 @@
 import {IRecentEvent} from "../types";
 
-export const events: IRecentEvent[] = [
+export const events: IRecentEvent[] = [https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/
   {
     title: "[🍿Ongoing] An issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
@@ -30,6 +30,44 @@ export const events: IRecentEvent[] = [
     url: "https://twitter.com/Cryptonomist_en/status/1686017991006121984",
     date: "31.08.2023",
     id: "ethereum-org",
+  },
+  {
+    title: "Callisto Security statement regarding ERC-20 tokens is removed at r/ethereum with a reason 'It is not related to Ethereum or ecosystem'",
+    url: "https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/",
+    date: "31.08.2023",
+    id: "callisto_sec_dep",
+  },
+  {
+    title: "Callisto Security statement regarding ERC-20 tokens is assigned 'Vulnerability Disclosure' status at r/CyberSecurity",
+    url: "https://www.reddit.com/r/cybersecurity/comments/15ejbjs/erc20_standard_callisto_security_department/",
+    date: "31.08.2023",
+    id: "callisto_sec_dep",
+  },
+  {
+    title: "Callisto Security statement regarding ERC-20 tokens is published on r/CyberSecurity and r/ethereum",
+    urls: [
+      {
+        title: 'r/CyberSecurity',
+        url: 'https://www.reddit.com/r/cybersecurity/comments/15ejbjs/erc20_standard_callisto_security_department/'  
+      },
+      {
+        title: 'r/ethereum',
+        url: 'https://www.reddit.com/r/ethereum/comments/15ej9zk/erc20_standard_callisto_security_department/'  
+      }
+    ],
+    date: "31.08.2023",
+    id: "callisto_sec_dep",
+  },
+  {
+    title: "Callisto Security releases a statement regarding ERC-20 tokens",
+    url: "https://drive.google.com/file/d/1P7FIqEroAs7KcjYp526euV9w8wOB7rIH/view",
+    date: "31.08.2023",
+    id: "callisto_sec_dep",
+  },
+  {
+    title: "[ETH reddit] ERC-223 declaration: our mission is to make Ethereum tokens secure",
+    url: "https://www.reddit.com/r/ethereum/comments/15dx29h/erc223_our_mission_is_to_make_ethereum_tokens/",
+    date: "30.08.2023",
   },
   {
     title: "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
