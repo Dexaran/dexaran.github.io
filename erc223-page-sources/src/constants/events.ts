@@ -2,9 +2,14 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[discord] Educational post regarding ERC-20 insecurity is created on CryptoDevs discord",
+    url: "https://discord.com/channels/435685690936786944/1136758298159353988",
+    date: "4.08.2023",
+  },
+  {
     title: "[🍿Ongoing] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 1 day",
     url: "https://www.reddit.com/r/ethereum/comments/15hdz96/today_at_least_130m_worth_of_tokens_are_lost/",
-    date: "2.08.2023",
+    date: "3.08.2023",
   },
   {
     title: "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
