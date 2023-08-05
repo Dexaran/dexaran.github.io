@@ -2,6 +2,24 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[🍿Ongoing] An issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
+    url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
+    date: "2.08.2023",
+    id: "ethereum-org",
+  },
+  {
+    title: "[🍿Ongoing] ERC-223 status is changed from 'draft' to 'review'",
+    url: "https://github.com/ethereum/EIPs/pull/7339",
+    date: "2.08.2023",
+    id: "ethereum-org",
+  },
+  {
+    title: "[🍿Ongoing] Discussion regarding improper removal of the ERC-223 from standards list was initiated at EthereumOrg discord. As per the discussion the removal was done by mistake.",
+    url: "https://discord.com/channels/714888181740339261/776139785550168084/1135924177904353390",
+    date: "2.08.2023",
+    id: "ethereum-org",
+  },
+  {
     title: "[🍿Ongoing] ERC-223 removed from the list of token standards as it is in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/pull/10841",
     date: "1.09.2023",
@@ -10,7 +28,7 @@ export const events: IRecentEvent[] = [
   {
     title: "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/15cbwoe/erc223_is_added_to_token_standards_documentation/",
-    date: "1.09.2023",
+    date: "28.08.2023",
     id: "ethereum-org",
   },
   {
@@ -27,12 +45,6 @@ export const events: IRecentEvent[] = [
     ],
     date: "25.08.2023",
     id: "ethereum-org",
-  },
-  {
-    title: "[github] ERC-223 status is changed from 'draft' to 'review'",
-    url: "https://github.com/ethereum/EIPs/pull/7339",
-    date: "2.08.2023",
-    id: "eip_submission",
   },
   {
     title: "Script that calculates ERC-20 losses automatically is developed. Today $130M worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
