@@ -8,13 +8,21 @@ export const erc223: IArticle[] = [
     image: "source.png"
   },
   {
-    title: "This is official source code",
-    description: "for any questions mail me dexaran@ethereumclassic.org",
-    url: "https://dexaran820.medium.com/known-problems-of-erc20-token-standard-e98887b9532c"
+    title: "EIP-223: Specification",
+    description: "Ethereum Improvement Proposal #223",
+    url: "https://eips.ethereum.org/EIPS/eip-223",
+    image: "erc-223-eip.png"
   },
   {
-    title: "This is official source code",
-    description: "for any questions mail me dexaran@ethereumclassic.org",
-    url: "https://dexaran820.medium.com/known-problems-of-erc20-token-standard-e98887b9532c"
+    title: "Original discussion thread: issue#223",
+    description: "The most debated EIP in the history of Ethereum!",
+    url: "https://github.com/ethereum/eips/issues/223",
+    image: "original-issue.png"
+  },
+  {
+    title: "EIP-223: Raw",
+    description: "The original eip-223.md at github.com/ethereum/EIPs",
+    url: "https://github.com/ethereum/EIPs/blob/master/EIPS/eip-223.md",
+    image: "ethereum-magicians-223.png"
   }
 ]
