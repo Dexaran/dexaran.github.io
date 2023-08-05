@@ -31,4 +31,17 @@ export const articles: IArticle[] = [
     url: "https://cryptoinsiders.online/understanding-erc-223-tokens-a-safer-approach-to-gas-fees-and-enhanced-security/",
     image: "crypto-insiders.png"
   },
+  {
+    title: "ERC-20 vs ERC-223 vs ERC-777",
+    description: "",
+    url: "https://101blockchains.com/erc20-vs-erc223-vs-erc777/",
+    image: "101blockchain.png"
+  },
+  {
+    title: "Cryptopolitan announces ERC-223 standard",
+    description: "",
+    url: "https://www.cryptopolitan.com/ethereum-implements-new-token-standard/",
+    image: "101blockchain.png"
+  },
+  
 ];
