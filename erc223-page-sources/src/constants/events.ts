@@ -52,6 +52,16 @@ export const events: IRecentEvent[] = [
     id: "ethereum-org",
   },
   {
+    title: "[ETH reddit] Call To Action is announced",
+    url: "https://www.reddit.com/r/ethereum/comments/15fp7fb/call_to_action_we_invite_developers_and_content/",
+    date: "1.08.2023",
+  },
+  {
+    title: "[github] ERC-223 Ecosystem coordination repo is created by EthereumCommonwealth",
+    url: "https://github.com/EthereumCommonwealth/ERC-223-ecosystem/tree/main",
+    date: "1.08.2023",
+  },
+  {
     title: "[🍿Ongoing] Cryptonomist releases an article regarding ERC-223 being added to the official token standards documentation",
     url: "https://twitter.com/Cryptonomist_en/status/1686017991006121984",
     date: "31.07.2023",
