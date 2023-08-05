@@ -27,7 +27,7 @@ export const articles: IArticle[] = [
   },,
   {
     title: "Dexarans interview with CryptoInsidersHK",
-    description: " ",
+    description: "",
     url: "https://cryptoinsiders.online/understanding-erc-223-tokens-a-safer-approach-to-gas-fees-and-enhanced-security/",
     image: "crypto-insiders.png"
   },
