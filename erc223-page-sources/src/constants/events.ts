@@ -167,15 +167,20 @@ export const events: IRecentEvent[] = [
     date: "5.07.2023",
   },
   {
+    title: "[ETH reddit] Known problems of ERC-20 standard article",
+    url: "https://www.reddit.com/r/ethereum/comments/11nwvo6/known_problems_of_erc20_token_standard_summary/",
+    date: "10.03.2023",
+  },
+  {
+    title: "UToday is publishing an overview article about ERC-223",
+    url: "https://u.today/new-ethereum-token-erc-223-added-to-eth-documentation-heres-what-to-know",
+    date: "7.03.2023",
+  },
+  {
     title: "[github] ERC-223 is officially merged as a 'draft' EIP to Ethereum/EIPs",
     url: "https://github.com/ethereum/EIPs/pull/6485",
     date: "6.03.2023",
     id: "eip_submission",
-  },
-  {
-    title: "[ETH reddit] Known problems of ERC-20 standard article",
-    url: "https://www.reddit.com/r/ethereum/comments/11nwvo6/known_problems_of_erc20_token_standard_summary/",
-    date: "10.03.2023",
   },
   {
     title: "[github] ERC-223 & ERC-20 Compatible Decentralized Exchange is created",
@@ -186,6 +191,11 @@ export const events: IRecentEvent[] = [
     title: "[ETH reddit] Breaking changes to ERC-223 standard announcement",
     url: "https://www.reddit.com/r/ethereum/comments/pq1l6y/breaking_change_to_erc223_token_standard/",
     date: "17.09.2021",
+  },
+  {
+    title: "ERC-223 Token Development Services released",
+    url: "https://sophialinnea09.medium.com/erc223-token-development-services-security-tokenizer-8ea0dfe8bf07",
+    date: "25.05.2021",
   },
   {
     title: "[github] Callisto Network Security Department adopted a practice of describing ERC-20 vulnerabilities and recommending transfer function security restrictions in their reports",
