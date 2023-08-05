@@ -66,7 +66,7 @@ export default function Home() {
               title="EIP-223"
               description={
                 <>
-                  This page will be aggregating the updates and useful resources related to the adoption and development of <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to <a href="https://github.com/Dexaran/dexaran.github.io/issues" target="_blank" rel="noopener noreferrer">https://github.com/Dexaran/dexaran.github.io/issues</a> and open a new issue. Describe your content and it will be listed at this page in the next update.
+                  This page will be aggregating the updates and resources related to the adoption and development of <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">ERC-223</a> standard. If you wish to contribute to the development - you can write guidelines, articles, code templates or spread the word about our efforts. Your content can get listed at this page too! You can navigate to <a href="https://github.com/Dexaran/dexaran.github.io/issues" target="_blank" rel="noopener noreferrer">https://github.com/Dexaran/dexaran.github.io/issues</a> and open a new issue. Describe your content and it will be listed at this page in the next update.
                 </>
               }
               handleClick={() => setActiveTab(0)}
@@ -74,8 +74,8 @@ export default function Home() {
             {activeTab === 0 && <div className={styles.resources}>
               <Column 
                 title="Articles"
-                description={`ERC stands for "Ethereum Request for Comments"`}
-                tooltipText="Here are collected articles that describe in detail the problems of the ERC-20 standard"
+                description={`Articles about the tokens development`}
+                tooltipText="The most important articles written by the author of ERC-223 are pinned"
               >
                 {articles.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
@@ -83,7 +83,7 @@ export default function Home() {
               </Column>
               <Column 
                 title="ERC-223"
-                description="Useful resources regarding ERC-223"
+                description="Official stuff on subject"
               >
                 {erc223.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
@@ -91,7 +91,7 @@ export default function Home() {
               </Column>
               <Column 
                 title="Development resources"
-                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis earum neque voluptas voluptates!"
+                description="Tutorials, guidelines, examples"
               >
                 {devResources.map(({url, title, description, image}, index) => {
                   return <Article image={image} animationDelay={index * 0.2} key={title} url={url} title={title} description={description} />
