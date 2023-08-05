@@ -35,6 +35,11 @@ export const events: IRecentEvent[] = [
     date: "2.08.2023",
   },
   {
+    title: "Dexarans interview with CryptoInsedersHK regarding ERC-223",
+    url: "https://twitter.com/Dexaran/status/1686884138870091776",
+    date: "2.08.2023",
+  },
+  {
     title: "[CENSORED] Crosspost of the Security statement from r/Cybersecurity is awaiting approval for 3 days and not getting approved",
     url: "https://www.reddit.com/r/ethereum/comments/15fjuxt/erc20_standard_callisto_security_department/",
     date: "1.08.2023",
