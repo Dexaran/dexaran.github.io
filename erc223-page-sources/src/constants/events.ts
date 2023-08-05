@@ -146,11 +146,6 @@ export const events: IRecentEvent[] = [
   },
   */
   {
-    title: "[twitter] ERC-223 & ERC-20 compatibility discussion focused on the necessity to support approvals.",
-    url: "https://twitter.com/Dexaran/status/1678446110795341834",
-    date: "10.07.2023",
-  },
-  {
     title: "Script that calculates ERC-20 losses automatically is developed. Today $130,000,000 worth of tokens are lost in 49 examined contracts out of 1300 existing token contracts.",
     url: "https://dexaran.github.io/erc20_losses/",
     date: "18.07.2023",
@@ -162,9 +157,19 @@ export const events: IRecentEvent[] = [
     id: "open_zeppelin_report",
   },
   {
+    title: "[twitter] ERC-223 & ERC-20 compatibility discussion focused on the necessity to support approvals.",
+    url: "https://twitter.com/Dexaran/status/1678446110795341834",
+    date: "10.07.2023",
+  },
+  {
     title: "[Ethereum Foundation] The creator of the ERC-20 says he doesn't want to use it in his new project.",
     url: "https://twitter.com/feindura/status/1676623784726470658",
     date: "5.07.2023",
+  },
+  {
+    title: "[article] Cryptopolitan announces ERC-223 submission",
+    url: "https://www.cryptopolitan.com/ethereum-implements-new-token-standard/",
+    date: "4.07.2023",
   },
   {
     title: "[ETH reddit] Known problems of ERC-20 standard article",
