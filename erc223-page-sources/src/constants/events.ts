@@ -7,7 +7,7 @@ export const events: IRecentEvent[] = [
     date: "4.08.2023",
   },
   {
-    title: "[🍿Ongoing] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 1 day",
+    title: "[🍿Ongoing] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 2 days",
     url: "https://www.reddit.com/r/ethereum/comments/15hdz96/today_at_least_130m_worth_of_tokens_are_lost/",
     date: "3.08.2023",
   },
