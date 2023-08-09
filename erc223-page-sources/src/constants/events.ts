@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[🍿Ongoing/github] Escalation of ERC-20 vulnerability discovery at Ethereum Cat Herders",
+    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/251#issuecomment-1671601389",
+    date: "9.08.2023",
+  },
+  {
     title: "[🍿Ongoing/github] Ethereum moderator 'removed ERC-223 because of a personal feeling that something is wrong with it'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854#issuecomment-1670628057",
     date: "9.08.2023",
