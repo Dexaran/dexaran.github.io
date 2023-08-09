@@ -4,7 +4,7 @@ export const events: IRecentEvent[] = [
   {
     title: "[🍿Ongoing/github] Ethereum moderator 'removed ERC-223 because of a personal feeling that something is wrong with it'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854#issuecomment-1670628057",
-    date: "7.08.2023",
+    date: "9.08.2023",
   },
   {
     title: "[github] Requested a warning for ERC-20 users at ethereum.org",
