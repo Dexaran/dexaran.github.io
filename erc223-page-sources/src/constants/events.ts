@@ -7,6 +7,11 @@ export const events: IRecentEvent[] = [
     date: "10.08.2023",
   },
   {
+    title: "[github] Ethereum Foundation employee highlighted that EIP process does not allow for amendments upon vulnerability disclosure and nobody expected that a vulnerability can be discovered in a "final" EIP",
+    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/255#issuecomment-1671895165",
+    date: "9.08.2023",
+  },
+  {
     title: "[🍿Ongoing/github] Escalation of ERC-20 vulnerability discovery at Ethereum Cat Herders",
     url: "https://github.com/ethereum-cat-herders/EIPIP/issues/255#issuecomment-1671648545",
     date: "9.08.2023",
