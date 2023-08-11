@@ -6,7 +6,7 @@ import {
   useAccount,
   useBalance, 
   useContractRead,
-  useContractWrite, useDisconnect, useNetwork,
+  useContractWrite, useDisconnect, useNetwork, usePrepareContractWrite,
 } from "wagmi";
 import {useWeb3Modal, Web3Button} from "@web3modal/react";
 import testTokenABI from "../constants/abi/test-token.json";
@@ -75,13 +75,14 @@ export default function Home() {
     watch: true
   });
 
-  const {isLoading, isSuccess, write} = useContractWrite({
+  const {config:configGiveAway} = usePrepareContractWrite({
     address: TEST_TOKEN_ERC20_ADDRESS as any,
     abi: testTokenABI,
     functionName: 'giveAway',
     args: [parseEther("100")]
   });
 
+  const {isLoading, isSuccess, write} = useContractWrite(configGiveAway);
 
   useEffect(() => {
     setHasMounted(true);
