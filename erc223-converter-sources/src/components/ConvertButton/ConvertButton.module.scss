@@ -1,0 +1,27 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.actionButtonWrapper {
+  margin-top: 20px;
+}
+
+.convertButton {
+  background-color: colors.$palette-green;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  border-radius: 8px;
+  color: colors.$background-primary;
+  height: 48px;
+  width: 100%;
+  border: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #787B78;
+  }
+}
