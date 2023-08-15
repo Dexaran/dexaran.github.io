@@ -140,7 +140,7 @@ export default function Home() {
               handleClick={() => setActiveTab(1)}
             />
             <div className={styles.eventsTabContent}>
-              <Column title="📅 Events timeline (Total: 64 publications)">
+              <Column title="📅 Events timeline (Total: 68 publications)">
                 {events.map(({url, urls, title, date, id}) => {
                   return <RecentEvent
                     key={title}
