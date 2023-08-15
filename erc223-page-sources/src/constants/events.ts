@@ -2,11 +2,6 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
-    title: "[ethresear.ch] Publication regarding $130M lost in ERC-20 tokens submitted to EthResearch forum",
-    url: "https://ethresear.ch/t/security-concerns-regarding-token-standards-and-130m-worth-of-erc20-tokens-loss-on-ethereum-mainnet/16387",
-    date: "15.08.2023",
-  },
-  {
     title: "[🍿Ongoing/EIPs] ERC-223 is moving to 'last call'",
     url: "https://github.com/ethereum/EIPs/pull/7483",
     date: "14.08.2023",
