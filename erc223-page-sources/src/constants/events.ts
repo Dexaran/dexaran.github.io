@@ -13,6 +13,20 @@ export const events: IRecentEvent[] = [
     id: "ethereum-org",
   },
   {
+    title: "1 ETH bounty to anyone who can ask Vitalik Buterin regarding $130M loss on a public conference is announced",
+    urls: [
+      {
+        title: 'r/ethereum',
+        url: 'https://www.reddit.com/r/ethereum/comments/15pxqll/i_will_tip_1_eth_to_anyone_who_can_ask_vitalik/'  
+      },
+      {
+        title: 'twitter',
+        url: 'https://twitter.com/Dexaran/status/1690702687778603008'  
+      }
+    ],
+    date: "13.08.2023",
+  },
+  {
     title: "[r/ethereum] EIP-7417 Token Converter is announced at ETH reddit",
     url: "https://www.reddit.com/r/ethereum/comments/15p60rb/eip7417_making_erc20_and_erc223_tokens/",
     date: "12.08.2023",
