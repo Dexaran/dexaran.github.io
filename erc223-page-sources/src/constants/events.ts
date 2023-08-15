@@ -2,10 +2,29 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[ethresear.ch] Publication regarding $130M lost in ERC-20 tokens submitted to EthResearch forum",
+    url: "https://ethresear.ch/t/security-concerns-regarding-token-standards-and-130m-worth-of-erc20-tokens-loss-on-ethereum-mainnet/16387",
+    date: "15.08.2023",
+  },
+  {
     title: "[🍿Ongoing/EIPs] ERC-223 is moving to 'last call'",
     url: "https://github.com/ethereum/EIPs/pull/7483",
     date: "14.08.2023",
     id: "ethereum-org",
+  },
+  {
+    title: "1 ETH bounty to anyone who can ask Vitalik Buterin regarding $130M loss on a public conference is announced",
+    urls: [
+      {
+        title: 'r/ethereum',
+        url: 'https://www.reddit.com/r/ethereum/comments/15pxqll/i_will_tip_1_eth_to_anyone_who_can_ask_vitalik/',  
+      },
+      {
+        title: 'twitter',
+        url: 'https://twitter.com/Dexaran/status/1690702687778603008',  
+      }
+    ],
+    date: "13.08.2023",
   },
   {
     title: "[r/ethereum] EIP-7417 Token Converter is announced at ETH reddit",
