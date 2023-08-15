@@ -2,6 +2,12 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] Update on token standards documentation at ethereum.org: arguing regarding ERC-223, ERC-20 and security practices in general with ethereum mods",
+    url: "https://github.com/ethereum/ethereum-org-website/issues/10854#issuecomment-1679275590",
+    date: "15.08.2023",
+    id: "ethereum-org",
+  },
+  {
     title: "[r/ethereum] Dex223, a decentralized exchange for ERC-20 and ERC-223 tokens is announced. The team starts to accept feature requests.",
     url: "https://www.reddit.com/r/ethereum/comments/15rsudo/dex223_a_new_decentralized_exchange_we_are/",
     date: "15.08.2023",
