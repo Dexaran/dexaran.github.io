@@ -2,6 +2,28 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[ethresear.ch] Publication regarding $130M lost in ERC-20 tokens submitted to EthResearch forum",
+    url: "https://ethresear.ch/t/security-concerns-regarding-token-standards-and-130m-worth-of-erc20-tokens-loss-on-ethereum-mainnet/16387",
+    date: "15.08.2023",
+  },
+  {
+    title: "[🍿Ongoing/EIPs] ERC-223 is moving to 'last call'",
+    url: "https://github.com/ethereum/EIPs/pull/7483",
+    date: "14.08.2023",
+    id: "ethereum-org",
+  },
+  {
+    title: "[r/ethereum] EIP-7417 Token Converter is announced at ETH reddit",
+    url: "https://www.reddit.com/r/ethereum/comments/15p60rb/eip7417_making_erc20_and_erc223_tokens/",
+    date: "12.08.2023",
+  },
+  {
+    title: "[r/ethereum] The output of the ERC-20 losses calculation script is approved after 9 days",
+    url: "https://www.reddit.com/r/ethereum/comments/15hdz96/today_at_least_130m_worth_of_tokens_are_lost/",
+    date: "12.08.2023",
+    id: "reddit-censorship",
+  },
+  {
     title: "[github] Update of ERC-223 specification to match reference implementation for some reason called 'fix major vuln' by EIP editor",
     url: "https://github.com/ethereum/EIPs/pull/7472",
     date: "10.08.2023",
@@ -12,7 +34,7 @@ export const events: IRecentEvent[] = [
     date: "9.08.2023",
   },
   {
-    title: "[🍿Ongoing/github] Escalation of ERC-20 vulnerability discovery at Ethereum Cat Herders",
+    title: "[github] Escalation of ERC-20 vulnerability discovery at Ethereum Cat Herders",
     url: "https://github.com/ethereum-cat-herders/EIPIP/issues/255#issuecomment-1671648545",
     date: "9.08.2023",
   },
@@ -37,9 +59,10 @@ export const events: IRecentEvent[] = [
     date: "4.08.2023",
   },
   {
-    title: "[🍿Ongoing] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 2 days",
+    title: "[r/ethereum] The output of the ERC-20 losses calculation script is pending approval by r/ethereum mods for 9 days",
     url: "https://www.reddit.com/r/ethereum/comments/15hdz96/today_at_least_130m_worth_of_tokens_are_lost/",
     date: "3.08.2023",
+    id: "reddit-censorship",
   },
   {
     title: "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
