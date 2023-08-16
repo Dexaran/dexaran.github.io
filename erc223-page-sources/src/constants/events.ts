@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[Callisto] Dex223 vs Soy.Finance ERC-223 compatible exchange description",
+    url: "https://www.reddit.com/r/CallistoCrypto/comments/15sa2dk/dex223_explanation/",
+    date: "15.08.2023",
+  },
+  {
     title: "[github] Update on token standards documentation at ethereum.org: arguing regarding ERC-223, ERC-20 and security practices in general with ethereum mods",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854#issuecomment-1679275590",
     date: "15.08.2023",
