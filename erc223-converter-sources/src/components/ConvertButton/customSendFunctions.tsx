@@ -5,12 +5,11 @@ import { Wallet } from "@ethersproject/wallet";
 import ERC20ABI from "../../constants/abi/erc20.json";
 import ERC223ABI from "../../constants/abi/erc223.json";
 
-const CLOConverterContractAddress = "0xB83b6a34802bb4149834110c28e3E0e270d804A8";
 const TEST_TOKEN_ERC20_ADDRESS: Address = "0x9e3549954138E52C230aCB92A9358C3842ABEb41";
 const TEST_TOKEN_ERC223_ADDRESS: Address = "0x3133Be95A145C79240507D3aB09b1F41077041ad";
 const soyAddress = "0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65";
 
-const CLO_CONVERTER_CONTRACT_ADDRESS = "0xB83b6a34802bb4149834110c28e3E0e270d804A8";
+const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 const CLO_CONFIG = {
   name: "Callisto",
   symbol: "CLO",
@@ -65,7 +64,7 @@ const gas_limit = 100000;
 
 const WALLET_TEST_2 = "0x4CC3F2003303610d07b2F97d95FE629F156663C2"
 
-const test_custom_send_erc223_transaction = async ({ tokenAddress = TEST_TOKEN_ERC223_ADDRESS, recipientAddress = CLOConverterContractAddress, amount = "1" }: { tokenAddress?: string, recipientAddress?: string, amount?: string }) => {
+const test_custom_send_erc223_transaction = async ({ tokenAddress = TEST_TOKEN_ERC223_ADDRESS, recipientAddress = CLO_CONVERTER_CONTRACT_ADDRESS, amount = "1" }: { tokenAddress?: string, recipientAddress?: string, amount?: string }) => {
   try {
     // const networkConfig = NetworksConfigs[network];
 

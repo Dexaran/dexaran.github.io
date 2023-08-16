@@ -3,8 +3,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import {
   Address,
+  mainnet,
   useAccount,
   useBalance, 
+  useConnect, 
   useContractRead,
   useContractWrite, useDisconnect, useNetwork, usePrepareContractWrite,
 } from "wagmi";
@@ -14,7 +16,7 @@ import ERC20ABI from "../constants/abi/erc20.json";
 import ERC223ABI from "../constants/abi/erc223.json";
 import TokenConverterABI from "../constants/abi/tokenConverter.json";
 import {useEffect, useMemo, useState} from "react";
-import {formatEther, parseEther} from "viem";
+import {createWalletClient, formatEther, http, parseEther, publicActions} from "viem";
 import clsx from "clsx";
 import {Manrope} from "next/font/google";
 import Checkbox from "../components/Checkbox";
@@ -24,13 +26,72 @@ import { ConverterIcons } from '@/components/ConverterIcons';
 import ChangeNetwork from '@/components/ChangeNetwork/ChangeNetwork';
 import SelectTokent from '@/components/SelectTokent/SelectTokent';
 import { ConvertToERC223, ConvertToERC20 } from '@/components/ConvertButton/ConvertButton';
+import { privateKeyToAccount } from 'viem/accounts'
+import { MockConnector } from 'wagmi/connectors/mock'
+import { ConnectWallet } from '@/components/ConnectWallet/ConnectWallet';
 
 
-const CLOConverterContractAddress = "0xB83b6a34802bb4149834110c28e3E0e270d804A8";
+const CLOConverterContractAddress = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 const TEST_TOKEN_ERC20_ADDRESS: Address = "0x9e3549954138E52C230aCB92A9358C3842ABEb41";
 const TEST_TOKEN_ERC223_ADDRESS: Address = "0x3133Be95A145C79240507D3aB09b1F41077041ad";
 const soyAddress = "0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65";
+const TEST_WALLET_PK = "0x667b7fdbb728769abe46c01d71465a213342cddeb5b1d9162ca0676c6a3f659a"
+
 export const manrope = Manrope({subsets: ['latin']});
+
+const TestKeystore = () => {
+  const { connector: activeConnector, isConnected } = useAccount()
+
+  const account = privateKeyToAccount(TEST_WALLET_PK)
+  const walletClient = createWalletClient({ 
+    account, 
+    chain: callisto,
+    transport: http()
+  }).extend(publicActions) 
+
+  
+  const connector = new MockConnector({
+    options: {
+      walletClient: walletClient
+    },
+  })
+
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect({
+      connector
+    })
+
+    return (
+      <>
+        {isConnected && <div>Connected to {activeConnector?.name}</div>}
+   
+        <button
+            disabled={!connector.ready}
+            key={connector.id}
+            onClick={() => connect({ connector })}
+          >
+            {connector.name}
+            {isLoading &&
+              pendingConnector?.id === connector.id &&
+              ' (connecting)'}
+          </button>
+
+        {connectors.map((connector) => (
+          <button
+            disabled={!connector.ready}
+            key={connector.id}
+            onClick={() => connect({ connector })}
+          >
+            {connector.name}
+            {isLoading &&
+              pendingConnector?.id === connector.id &&
+              ' (connecting)'}
+          </button>
+        ))}
+   
+        {error && <div>{error.message}</div>}
+      </>
+    )}
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -136,7 +197,6 @@ export default function Home() {
                 <button onClick={() => switchNetwork?.(820)} className={styles.convertButton}>Change to callisto</button>
               </div>
             }
-
             {(isNetworkSupported || !isConnected) && <div className={styles.converterFieldsWrapper}>
               <SelectTokent
                 amountToConvert={amountToConvert}
@@ -146,19 +206,24 @@ export default function Home() {
                 tokenBalanceERC20={tokenBalanceERC20}
                 tokenBalanceERC223={tokenBalanceERC223}
               />
-              {toERC223 ?
-                <ConvertToERC223
-                  amountToConvert={amountToConvert}
-                  tokenAddress={tokenAddress}
-                  tokenBalanceERC20={tokenBalanceERC20}
-                /> :
-                <ConvertToERC20
-                  amountToConvert={amountToConvert}
-                  tokenAddressERC223={tokenAddressERC223}
-                  tokenBalanceERC223={tokenBalanceERC223}
-                />
-              }
             </div>}
+            {(isConnected && isNetworkSupported) && 
+              <>
+                {toERC223 ?
+                  <ConvertToERC223
+                    amountToConvert={amountToConvert}
+                    tokenAddress={tokenAddress}
+                    tokenBalanceERC20={tokenBalanceERC20}
+                  /> :
+                  <ConvertToERC20
+                    amountToConvert={amountToConvert}
+                    tokenAddressERC223={tokenAddressERC223}
+                    tokenBalanceERC223={tokenBalanceERC223}
+                  />
+                }
+              </>
+            }
+            {!isConnected && <ConnectWallet />}
           </div>
           <div className={styles.temporaryBlock}>
             <div className={styles.converterFieldsLabel}>This block is temporary and will be removed</div>
@@ -169,6 +234,7 @@ export default function Home() {
 
             <div className={styles.address}>Account: {address ? address : "Not connected"}</div>
             <div/>
+            <TestKeystore />
           </div>
         </div>
       </main>

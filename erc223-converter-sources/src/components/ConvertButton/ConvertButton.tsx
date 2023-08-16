@@ -2,13 +2,12 @@ import React, { useMemo } from "react";
 import styles from "./ConvertButton.module.scss";
 import {  useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import TokenConverterABI from "../../constants/abi/tokenConverter.json";
-import { useWeb3Modal } from "@web3modal/react";
 import ERC20ABI from "../../constants/abi/erc20.json";
 import ERC223ABI from "../../constants/abi/erc223.json";
 
 import { formatEther, parseEther } from "viem";
 
-const CLO_CONVERTER_CONTRACT_ADDRESS = "0xB83b6a34802bb4149834110c28e3E0e270d804A8";
+const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 
 export const ConvertToERC223 = ({ 
   amountToConvert,
@@ -20,8 +19,7 @@ export const ConvertToERC223 = ({
   tokenAddress: any,
 
 }) => {
-  const {address, isConnected} = useAccount();
-  const {open, close, setDefaultChain} = useWeb3Modal();
+  const { address } = useAccount();
 
   const {data: readData} = useContractRead({
     address: tokenAddress,
@@ -72,20 +70,15 @@ export const ConvertToERC223 = ({
 
   return (
     <div className={styles.actionButtonWrapper}>
-      {!isConnected
-        ? <button onClick={open} className={styles.convertButton}>Connect wallet</button>
-        : <>
-          {!isEnoughBalance && <button disabled className={styles.convertButton}>Insufficient amount</button>}
-          {isEnoughBalance && !readData &&
-          <button onClick={writeTokenApprove} className={styles.convertButton}>Approve test tokens</button>}
-          {isEnoughBalance && readData && +amountToConvert > +formatEther(readData as any) &&
-          <button onClick={writeTokenApprove} className={styles.convertButton}>Approve test tokens</button>}
-          {isEnoughBalance && readData && +amountToConvert <= +formatEther(readData as any) &&
-          <button disabled={!amountToConvert} onClick={writeConvert} className={styles.convertButton}>
-            {amountToConvert ? "Convert to ERC-223" : "Enter amount"}
-          </button>}
-        </>
-      }
+      {!isEnoughBalance && <button disabled className={styles.convertButton}>Insufficient amount</button>}
+      {isEnoughBalance && !readData &&
+      <button onClick={writeTokenApprove} className={styles.convertButton}>Approve test tokens</button>}
+      {isEnoughBalance && readData && +amountToConvert > +formatEther(readData as any) &&
+      <button onClick={writeTokenApprove} className={styles.convertButton}>Approve test tokens</button>}
+      {isEnoughBalance && readData && +amountToConvert <= +formatEther(readData as any) &&
+      <button disabled={!amountToConvert} onClick={writeConvert} className={styles.convertButton}>
+        {amountToConvert ? "Convert to ERC-223" : "Enter amount"}
+      </button>}
     </div>
   )
 }
@@ -99,10 +92,7 @@ export const ConvertToERC20 = ({
   tokenBalanceERC223: any,
   tokenAddressERC223: any,
 }) => {
-  const {address, isConnected} = useAccount();
-  const {open, close, setDefaultChain} = useWeb3Modal();
-
-    const isEnoughBalance223 = useMemo(() => {
+  const isEnoughBalance223 = useMemo(() => {
     if (!tokenBalanceERC223?.formatted) {
       return false;
     }
@@ -122,25 +112,19 @@ export const ConvertToERC20 = ({
 
   const {write: convertToERC20} = useContractWrite(config);
 
-  // const {confi
   return (
     <div className={styles.actionButtonWrapper}>
-      {!isConnected
-        ? <button onClick={open} className={styles.convertButton}>Connect wallet</button>
-        : <>
-          {!isEnoughBalance223 && <button disabled className={styles.convertButton}>Insufficient amount</button>}
-          {isEnoughBalance223 &&
-          <button disabled={!amountToConvert} onClick={convertToERC20} className={styles.convertButton}>
-            {amountToConvert ? "Convert to ERC-20" : "Enter amount"}
-          </button>}
-          {/* <button onClick={() => test_custom_send_erc20_transaction({})} className={styles.convertButton}>
-            CUSTOM ERC20 SEND
-          </button>
-          <button onClick={() => test_custom_send_erc223_transaction({})} className={styles.convertButton}>
-            CUSTOM ERC223 SEND
-          </button> */}
-        </>
-      }
+      {!isEnoughBalance223 && <button disabled className={styles.convertButton}>Insufficient amount</button>}
+      {isEnoughBalance223 &&
+      <button disabled={!amountToConvert} onClick={convertToERC20} className={styles.convertButton}>
+        {amountToConvert ? "Convert to ERC-20" : "Enter amount"}
+      </button>}
+      {/* <button onClick={() => test_custom_send_erc20_transaction({})} className={styles.convertButton}>
+        CUSTOM ERC20 SEND
+      </button>
+      <button onClick={() => test_custom_send_erc223_transaction({})} className={styles.convertButton}>
+        CUSTOM ERC223 SEND
+      </button> */}
     </div>
   )
 }

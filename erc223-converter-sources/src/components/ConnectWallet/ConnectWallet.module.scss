@@ -1,0 +1,100 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.actionButtonWrapper {
+  margin-top: 20px;
+}
+
+.connectButton {
+  background-color: colors.$palette-green;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  border-radius: 8px;
+  color: colors.$background-primary;
+  height: 48px;
+  width: 100%;
+  border: 0;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #787B78;
+  }
+}
+.importKeystoreButton {
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  border-radius: 8px;
+  color: colors.$text-primary;
+  height: 48px;
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid colors.$palette-green;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #787B78;
+  }
+}
+
+.importModalContainer {
+  padding: 40px;
+}
+
+.browseContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  p {
+    color: colors.$text-primary;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; 
+  }
+}
+
+.browseButton {
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  border-radius: 0px;
+  color: colors.$text-primary;
+  height: 48px;
+  width: 100%;
+  border: 1px solid colors.$border-active;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #787B78;
+  }
+}
+
+.amountInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.amountInput {
+  padding: 10px 55px 10px 20px;
+  border: 1px solid colors.$border-primary;
+  width: 100%;
+  background-color: colors.$background-primary;
+  outline: 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: colors.$text-primary;
+}
