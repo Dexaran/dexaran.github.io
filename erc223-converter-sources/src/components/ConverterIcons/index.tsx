@@ -28,7 +28,11 @@ const icons: {
   [IconName.success]: Success,
 };
 
-export const ConverterIcons = ({ name, size = "24px", ...rest }: ComponentProps<"svg"> & { name: IconNameType, size?: string | number }) => {
+export const ConverterIcons = ({
+  name,
+  size = "24px",
+  ...rest
+}: ComponentProps<"svg"> & { name: IconNameType; size?: string | number }) => {
   const Icon = icons[name];
   if (!Icon) return <span>?</span>;
   return <Icon size={size} {...rest} />;

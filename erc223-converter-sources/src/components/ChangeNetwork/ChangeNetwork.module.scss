@@ -1,13 +1,12 @@
 @use "src/styles/colors";
 @use "src/styles/media";
 
-
 .container {
   padding: 20px 40px;
   border-bottom: 1px solid colors.$border-primary;
   display: flex;
   gap: 20px;
- }
+}
 
 .pickNetworkButton {
   cursor: pointer;
@@ -47,7 +46,7 @@
   display: flex;
   flex-direction: column;
   // gap: 20px
-  padding: 20px 0px
+  padding: 20px 0px;
 }
 .network {
   display: flex;
@@ -65,6 +64,5 @@
     font-style: normal;
     font-weight: 600;
     line-height: 28px; /* 175% */
-  
   }
 }

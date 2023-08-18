@@ -21,9 +21,8 @@
 
   &[disabled] {
     pointer-events: none;
-    background-color: #787B78;
+    background-color: #787b78;
   }
-  
 }
 .connectButton::after {
   content: "";
@@ -59,9 +58,6 @@
 // animation-duration: 230ms;
 // }
 
-
-
-
 .importKeystoreButton {
   background-color: transparent;
   font-size: 16px;
@@ -80,7 +76,7 @@
 
   &[disabled] {
     pointer-events: none;
-    background-color: #787B78;
+    background-color: #787b78;
   }
 }
 
@@ -97,7 +93,7 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 28px; 
+    line-height: 28px;
   }
 }
 
@@ -117,7 +113,7 @@
 
   &[disabled] {
     pointer-events: none;
-    background-color: #787B78;
+    background-color: #787b78;
   }
 }
 

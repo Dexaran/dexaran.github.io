@@ -18,7 +18,7 @@
 .modalContent {
   width: 100%;
   max-width: 440px;
-  max-height: min(80vh, 600px); 
+  max-height: min(80vh, 600px);
   background-color: colors.$background-secondary;
   display: flex;
   flex-direction: column;
@@ -47,19 +47,18 @@
     gap: 0px;
     padding: 12px;
   }
- }
- .modalHeaderTitle {
+}
+.modalHeaderTitle {
   color: colors.$text-primary;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 34px; /* 170% */
 }
- .modalHeaderClose {
+.modalHeaderClose {
   padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
- }
-
+}

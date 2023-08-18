@@ -1,6 +1,5 @@
 @use "colors";
 
-
 * {
   box-sizing: border-box;
 }
@@ -11,13 +10,14 @@ body {
   margin: 0;
 }
 
-body, html, #__next, .wrapper {
+body,
+html,
+#__next,
+.wrapper {
   margin: 0;
   padding: 0;
   height: 100%;
 }
-
-
 
 body {
   background-color: colors.$background-primary;
@@ -28,13 +28,19 @@ a {
   color: colors.$text-secondary;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
 /* total width */
 .scrollbar::-webkit-scrollbar {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   width: 8px;
   height: 16px;
   z-index: 999999;
@@ -42,7 +48,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* background of the scrollbar except button or resizer */
 .scrollbar::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   padding: 0 2px;
 }
 
@@ -56,9 +62,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* set button(top and bottom of the scrollbar) */
 .scrollbar::-webkit-scrollbar-button {
-  display:none;
+  display: none;
 }
-
 
 /* scrollbar when element is hovered */
 .scrollbar:hover::-webkit-scrollbar-thumb {
@@ -73,6 +78,6 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .scrollbar {
-  scrollbar-color: colors.$border-primary rgba(0,0,0,0);
+  scrollbar-color: colors.$border-primary rgba(0, 0, 0, 0);
   scrollbar-width: thin;
 }

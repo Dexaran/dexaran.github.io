@@ -10,13 +10,13 @@ export const Modal = ({
   isOpen,
   handleClose,
   title,
-	large,
+  large,
 }: {
   children: any;
   isOpen: boolean;
   handleClose: any;
   title?: string;
-	large?: boolean;
+  large?: boolean;
 }) => {
   const nodeRef = useRef(null);
   useEffect(() => {
@@ -33,7 +33,10 @@ export const Modal = ({
         <div className={clsx(manrope.className, styles.modal)} ref={nodeRef}>
           <div className={clsx(styles.modalContent, large && styles.large)}>
             <div
-              className={clsx(styles.modalHeaderContainer, !title && styles.modalHeaderWithoutTitle)}
+              className={clsx(
+                styles.modalHeaderContainer,
+                !title && styles.modalHeaderWithoutTitle,
+              )}
             >
               <span className={styles.modalHeaderTitle}>{title}</span>
               <div className={styles.modalHeaderClose} onClick={handleClose}>

@@ -29,10 +29,10 @@ export default function SuccessfullModal({
   isOpen: boolean;
   handleClose: any;
   toERC223: boolean;
-  txHash?:string;
+  txHash?: string;
   contractAddress?: string;
 }) {
-  const {showMessage} = useSnackbar();
+  const { showMessage } = useSnackbar();
 
   return (
     <Modal isOpen={isOpen} handleClose={handleClose} large>
@@ -45,19 +45,29 @@ export default function SuccessfullModal({
         <p className={styles.successfullModalDescription}>Tokens are delivered to your address.</p>
         <div className={styles.successfullModalTx}>
           <p>Transaction</p>
-          <span onClick={async () => {
-            await navigator.clipboard.writeText(txHash);
-            showMessage("Transaction hash copied");
-          }}>{renderShortHash(txHash, 10)}</span>
+          <span
+            onClick={async () => {
+              await navigator.clipboard.writeText(txHash);
+              showMessage("Transaction hash copied");
+            }}
+          >
+            {renderShortHash(txHash, 10)}
+          </span>
         </div>
         <div className={styles.successfullModalContract}>
           <p>{`${toERC223 ? "ERC-223" : "ERC-20"} token contract`}</p>
-          <span onClick={async () => {
-            await navigator.clipboard.writeText(contractAddress);
-            showMessage("Contract address copied");
-          }}>{renderShortAddress(contractAddress, 10)}</span>
+          <span
+            onClick={async () => {
+              await navigator.clipboard.writeText(contractAddress);
+              showMessage("Contract address copied");
+            }}
+          >
+            {renderShortAddress(contractAddress, 10)}
+          </span>
         </div>
-        <PrimaryButton onClick={handleClose} style={{ marginTop: "20px" }}>Done</PrimaryButton>
+        <PrimaryButton onClick={handleClose} style={{ marginTop: "20px" }}>
+          Done
+        </PrimaryButton>
       </div>
     </Modal>
   );
@@ -130,11 +140,7 @@ export const ConvertToERC223 = ({
 
   return (
     <div className={styles.actionButtonWrapper}>
-      {!isEnoughBalance && (
-        <PrimaryButton disabled>
-          Insufficient amount
-        </PrimaryButton>
-      )}
+      {!isEnoughBalance && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
       {isEnoughBalance &&
         (!readData || (readData && +amountToConvert > +formatEther(readData as any))) && (
           <PrimaryButton onClick={writeTokenApprove} isLoading={approving}>

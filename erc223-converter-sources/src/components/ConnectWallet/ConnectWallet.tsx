@@ -67,7 +67,7 @@ export const ConnectWallet = () => {
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const importKeystoreFileHandler = async () => {
-    console.log("🚀 ~ importKeystoreFileHandler ~ importKeystoreFileHandler:")
+    console.log("🚀 ~ importKeystoreFileHandler ~ importKeystoreFileHandler:");
     setIsUnlockingKeystore(true);
     try {
       const result = await unlockKeystore(keystore, password);

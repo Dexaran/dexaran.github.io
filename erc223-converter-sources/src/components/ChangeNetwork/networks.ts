@@ -48,7 +48,7 @@ export type NetworkConfig = {
   chainId: number;
   color: string;
 };
-    
+
 export const NetworksConfigs: {
   [networkName in Network]: NetworkConfig;
 } = {
