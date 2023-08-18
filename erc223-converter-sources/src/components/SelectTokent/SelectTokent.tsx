@@ -11,7 +11,7 @@ interface Props {
   amountToConvert: any,
   setAmountToConvert: any,
   tokenAddress: any,
-  setTokenAddress: any,
+  setTokenAddressERC20: any,
   tokenBalanceERC20: any,
   tokenBalanceERC223: any,
 }
@@ -20,7 +20,7 @@ export default function SelectTokent({
   amountToConvert,
   setAmountToConvert,
   tokenAddress,
-  setTokenAddress,
+  setTokenAddressERC20,
   tokenBalanceERC20,
   tokenBalanceERC223,
 }: Props) {
@@ -40,22 +40,22 @@ export default function SelectTokent({
   })
 
   useEffect(() => {
-    setTokenAddress(defaultTokenAddress)
-   }, [defaultTokenAddress, setTokenAddress])
+    setTokenAddressERC20(defaultTokenAddress)
+   }, [defaultTokenAddress, setTokenAddressERC20])
 
    useEffect(() => {
      if (!isCustomToken) {
-      setTokenAddress(defaultTokenAddress)
+      setTokenAddressERC20(defaultTokenAddress)
       setCustomTokenAddress("")
     }
-   }, [isCustomToken, setTokenAddress, setCustomTokenAddress, defaultTokenAddress])
+   }, [isCustomToken, setTokenAddressERC20, setCustomTokenAddress, defaultTokenAddress])
 
    const isCustomTokenAddressValid = isAddress(customTokenAddress);
    useEffect(() => {
      if (isAddress(customTokenAddress)) {
-       setTokenAddress(customTokenAddress)
+       setTokenAddressERC20(customTokenAddress)
     }
-  }, [customTokenAddress, setTokenAddress])
+  }, [customTokenAddress, setTokenAddressERC20])
   
   return (
     <div className={styles.container}>
@@ -130,7 +130,7 @@ export default function SelectTokent({
         <div className={styles.networksContainer}>
         {chainTokens.map(token => (
           <div key={token.token_address} className={styles.network} onClick={() => { 
-            setTokenAddress(token.token_address);
+            setTokenAddressERC20(token.token_address);
             setIsOpen(false);
           }}>
             <img src={token.imgUri} width="32px" height="32px" alt={token.original_name} />

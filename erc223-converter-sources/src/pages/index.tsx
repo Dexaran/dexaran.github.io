@@ -1,111 +1,33 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
-import {
-  Address,
-  mainnet,
-  useAccount,
-  useBalance, 
-  useConnect, 
-  useContractRead,
-  useContractWrite, useDisconnect, useNetwork, usePrepareContractWrite,
-} from "wagmi";
-import {useWeb3Modal, Web3Button} from "@web3modal/react";
-import testTokenABI from "../constants/abi/test-token.json";
-import ERC20ABI from "../constants/abi/erc20.json";
-import ERC223ABI from "../constants/abi/erc223.json";
+import Head from "next/head";
+import styles from "../styles/Home.module.scss";
+import { useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
 import TokenConverterABI from "../constants/abi/tokenConverter.json";
-import {useEffect, useMemo, useState} from "react";
-import {createWalletClient, formatEther, http, parseEther, publicActions} from "viem";
+import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
-import {Manrope} from "next/font/google";
-import Checkbox from "../components/Checkbox";
-import {callisto} from "../constants/chains/clo";
-import { useSwitchNetwork } from 'wagmi'
-import { ConverterIcons } from '@/components/ConverterIcons';
-import ChangeNetwork from '@/components/ChangeNetwork/ChangeNetwork';
-import SelectTokent from '@/components/SelectTokent/SelectTokent';
-import { ConvertToERC223, ConvertToERC20 } from '@/components/ConvertButton/ConvertButton';
-import { privateKeyToAccount } from 'viem/accounts'
-import { MockConnector } from 'wagmi/connectors/mock'
-import { ConnectWallet } from '@/components/ConnectWallet/ConnectWallet';
+import { Manrope } from "next/font/google";
+import { useSwitchNetwork } from "wagmi";
+import { ConverterIcons } from "@/components/ConverterIcons";
+import ChangeNetwork from "@/components/ChangeNetwork/ChangeNetwork";
+import SelectTokent from "@/components/SelectTokent/SelectTokent";
+import { ConvertToERC223, ConvertToERC20 } from "@/components/ConvertButton/ConvertButton";
+import { ConnectWallet } from "@/components/ConnectWallet/ConnectWallet";
+import { DebugBlock } from "@/components/DebugBlock/DebugBlock";
+import { PrimaryButton } from "@/components/Button/Button";
 
+export const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 
-const CLOConverterContractAddress = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
-const TEST_TOKEN_ERC20_ADDRESS: Address = "0x9e3549954138E52C230aCB92A9358C3842ABEb41";
-const TEST_TOKEN_ERC223_ADDRESS: Address = "0x3133Be95A145C79240507D3aB09b1F41077041ad";
-const soyAddress = "0x9FaE2529863bD691B4A7171bDfCf33C7ebB10a65";
-const TEST_WALLET_PK = "0x667b7fdbb728769abe46c01d71465a213342cddeb5b1d9162ca0676c6a3f659a"
-
-export const manrope = Manrope({subsets: ['latin']});
-
-const TestKeystore = () => {
-  const { connector: activeConnector, isConnected } = useAccount()
-
-  const account = privateKeyToAccount(TEST_WALLET_PK)
-  const walletClient = createWalletClient({ 
-    account, 
-    chain: callisto,
-    transport: http()
-  }).extend(publicActions) 
-
-  
-  const connector = new MockConnector({
-    options: {
-      walletClient: walletClient
-    },
-  })
-
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect({
-      connector
-    })
-
-    return (
-      <>
-        {isConnected && <div>Connected to {activeConnector?.name}</div>}
-   
-        <button
-            disabled={!connector.ready}
-            key={connector.id}
-            onClick={() => connect({ connector })}
-          >
-            {connector.name}
-            {isLoading &&
-              pendingConnector?.id === connector.id &&
-              ' (connecting)'}
-          </button>
-
-        {connectors.map((connector) => (
-          <button
-            disabled={!connector.ready}
-            key={connector.id}
-            onClick={() => connect({ connector })}
-          >
-            {connector.name}
-            {isLoading &&
-              pendingConnector?.id === connector.id &&
-              ' (connecting)'}
-          </button>
-        ))}
-   
-        {error && <div>{error.message}</div>}
-      </>
-    )}
+export const manrope = Manrope({ subsets: ["latin"] });
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [amountToConvert, setAmountToConvert] = useState("");
   const [toERC223, setToERC223] = useState(true);
-  const [tokenAddress, setTokenAddress] = useState();
+  const [tokenAddressERC20, setTokenAddressERC20] = useState();
 
-  const {address, isConnected} = useAccount();
+  const { address, isConnected } = useAccount();
 
-  const {open, close, setDefaultChain} = useWeb3Modal();
-
-  const {switchNetwork} = useSwitchNetwork()
-  const {disconnect} = useDisconnect();
-  const {chain, chains} = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
+  const { chain, chains } = useNetwork();
 
   const isNetworkSupported = useMemo(() => {
     if (chain && chain.id === 820) {
@@ -115,35 +37,24 @@ export default function Home() {
     return false;
   }, [chain]);
 
-  const {data:tokenBalanceERC20} = useBalance({
+  const { data: tokenBalanceERC20 } = useBalance({
     address,
-    token: tokenAddress,
-    watch: true
+    token: tokenAddressERC20,
+    watch: true,
   });
 
-  const {data: tokenAddressERC223} = useContractRead({
-    address: CLOConverterContractAddress,
+  const { data: tokenAddressERC223 } = useContractRead({
+    address: CLO_CONVERTER_CONTRACT_ADDRESS,
     abi: TokenConverterABI,
     functionName: "getWrapperFor",
-    args: [
-      tokenAddress
-    ]
+    args: [tokenAddressERC20],
   });
 
-  const {data: tokenBalanceERC223} = useBalance({
+  const { data: tokenBalanceERC223 } = useBalance({
     address,
     token: tokenAddressERC223 as any,
-    watch: true
+    watch: true,
   });
-
-  const {config:configGiveAway} = usePrepareContractWrite({
-    address: TEST_TOKEN_ERC20_ADDRESS as any,
-    abi: testTokenABI,
-    functionName: 'giveAway',
-    args: [parseEther("100")]
-  });
-
-  const {isLoading, isSuccess, write} = useContractWrite(configGiveAway);
 
   useEffect(() => {
     setHasMounted(true);
@@ -157,18 +68,19 @@ export default function Home() {
     <>
       <Head>
         <title>ERC223 converter</title>
-        <meta name="description" content="Generated by create next app"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="icon" href="/favicon.ico"/>
+        <meta name="description" content="Generated by create next app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={clsx(styles.main, manrope.className)}>
-
         <div className={styles.contentBlock}>
           <div className={styles.contentBlockHeader}>
             <h1 className={styles.h1}>Ethereum Token Converter</h1>
-            <p className={styles.description}>This is a token converter that converts ERC-20 tokens to ERC-223.
-              It can also convert ERC-223 tokens back to ERC-20 at any time. No fees are charged.
-              Read more about the conversion process <a href="#">here.</a></p>
+            <p className={styles.description}>
+              This is a token converter that converts ERC-20 tokens to ERC-223. It can also convert
+              ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more about the
+              conversion process <a href="#">here.</a>
+            </p>
           </div>
           <ChangeNetwork />
           <div className={styles.converter}>
@@ -176,14 +88,19 @@ export default function Home() {
               <span className={styles.infoIcon}>
                 <ConverterIcons name="info" size="32px" />
               </span>
-              <p className={styles.infoText}>You are converting your ERC-20 token to ERC-223 token</p>
+              <p className={styles.infoText}>
+                You are converting your ERC-20 token to ERC-223 token
+              </p>
             </div>
             <div className={styles.fromLabel}>
               <span>From</span>
               <span>{toERC223 ? "ERC-20" : "ERC-223"}</span>
             </div>
             <div className={styles.switchButtonWrapper}>
-              <button className={`${styles.switchButton} ${toERC223 ? "" : styles.rotated}`} onClick={() => setToERC223(!toERC223)}>
+              <button
+                className={`${styles.switchButton} ${toERC223 ? "" : styles.rotated}`}
+                onClick={() => setToERC223(!toERC223)}
+              >
                 <ConverterIcons name="swap" fill="#FDFFFC" />
               </button>
             </div>
@@ -191,53 +108,50 @@ export default function Home() {
               <span>To</span>
               <span>{toERC223 ? "ERC-223" : "ERC-20"}</span>
             </div>
-            {isConnected && !isNetworkSupported &&
+            {isConnected && !isNetworkSupported && (
               <div className={styles.notSupported}>
                 Converter for {chain?.name} is not supported yet
-                <button onClick={() => switchNetwork?.(820)} className={styles.convertButton}>Change to callisto</button>
+                <PrimaryButton onClick={() => switchNetwork?.(820)}>
+                  Change to callisto
+                </PrimaryButton>
               </div>
-            }
-            {(isNetworkSupported || !isConnected) && <div className={styles.converterFieldsWrapper}>
-              <SelectTokent
-                amountToConvert={amountToConvert}
-                setAmountToConvert={setAmountToConvert}
-                tokenAddress={tokenAddress}
-                setTokenAddress={setTokenAddress}
-                tokenBalanceERC20={tokenBalanceERC20}
-                tokenBalanceERC223={tokenBalanceERC223}
-              />
-            </div>}
-            {(isConnected && isNetworkSupported) && 
+            )}
+            {(isNetworkSupported || !isConnected) && (
+              <div className={styles.converterFieldsWrapper}>
+                <SelectTokent
+                  amountToConvert={amountToConvert}
+                  setAmountToConvert={setAmountToConvert}
+                  tokenAddress={tokenAddressERC20}
+                  setTokenAddressERC20={setTokenAddressERC20}
+                  tokenBalanceERC20={tokenBalanceERC20}
+                  tokenBalanceERC223={tokenBalanceERC223}
+                />
+              </div>
+            )}
+            {isConnected && isNetworkSupported && (
               <>
-                {toERC223 ?
+                {toERC223 ? (
                   <ConvertToERC223
                     amountToConvert={amountToConvert}
-                    tokenAddress={tokenAddress}
+                    tokenAddressERC20={tokenAddressERC20}
+                    tokenAddressERC223={tokenAddressERC223}
                     tokenBalanceERC20={tokenBalanceERC20}
-                  /> :
+                  />
+                ) : (
                   <ConvertToERC20
                     amountToConvert={amountToConvert}
+                    tokenAddressERC20={tokenAddressERC20}
                     tokenAddressERC223={tokenAddressERC223}
                     tokenBalanceERC223={tokenBalanceERC223}
                   />
-                }
+                )}
               </>
-            }
+            )}
             {!isConnected && <ConnectWallet />}
           </div>
-          <div className={styles.temporaryBlock}>
-            <div className={styles.converterFieldsLabel}>This block is temporary and will be removed</div>
-            {isConnected && <div className={styles.buttons}>
-              <button disabled={!isNetworkSupported} onClick={write} className={styles.getTestTokens}>Get 100 test tokens</button>
-              <button onClick={open} className={styles.getTestTokens}>Wallet</button>
-            </div>}
-
-            <div className={styles.address}>Account: {address ? address : "Not connected"}</div>
-            <div/>
-            <TestKeystore />
-          </div>
+          {/* <DebugBlock /> */}
         </div>
       </main>
     </>
-  )
+  );
 }

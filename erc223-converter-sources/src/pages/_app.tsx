@@ -7,6 +7,7 @@ import {projectId} from "../constants/config/projectId";
 import {mainnet, bsc} from "wagmi/chains";
 import {callisto} from "../constants/chains/clo";
 import { publicProvider } from 'wagmi/providers/public';
+import {SnackbarProvider} from "../providers/SnackbarProvider";
 
 const chains = [mainnet as Chain, bsc as Chain, callisto as Chain];
 
@@ -21,11 +22,15 @@ const wagmiConfig = createConfig({
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
 
 export default function App({Component, pageProps}: AppProps) {
-  return <>
-    <WagmiConfig config={wagmiConfig}>
-      <Component {...pageProps} />
-    </WagmiConfig>
+  return (
+    <>
+      <WagmiConfig config={wagmiConfig}>
+        <SnackbarProvider>
+          <Component {...pageProps} />
+        </SnackbarProvider>
+      </WagmiConfig>
 
-    <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
-  </>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+    </>
+  );
 }

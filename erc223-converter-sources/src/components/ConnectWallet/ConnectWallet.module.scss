@@ -23,7 +23,45 @@
     pointer-events: none;
     background-color: #787B78;
   }
+  
 }
+.connectButton::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  // border-right-color: #ffffff;
+  // border-bottom-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// animation-name: showSnackbar;
+// animation-fill-mode: forwards;
+// animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+// animation-duration: 230ms;
+// }
+
+
+
+
 .importKeystoreButton {
   background-color: transparent;
   font-size: 16px;

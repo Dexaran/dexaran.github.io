@@ -24,6 +24,10 @@
   flex-direction: column;
   overflow-y: auto;
   border: 1px solid colors.$border-primary;
+  position: relative;
+  &.large {
+    max-width: 560px;
+  }
 }
 
 .modalHeaderContainer {
@@ -35,6 +39,14 @@
   align-items: center;
   gap: 20px;
   width: 100%;
+  &.modalHeaderWithoutTitle {
+    position: absolute;
+    right: 0;
+    border-bottom: none;
+    width: auto;
+    gap: 0px;
+    padding: 12px;
+  }
  }
  .modalHeaderTitle {
   color: colors.$text-primary;
