@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "ERC-223 is moved to 'Last Call' status",
+    url: "https://github.com/ethereum/EIPs/pull/7483#pullrequestreview-1585680567",
+    date: "19.08.2023",
+  },
+  {
     title: "[Callisto] Dex223 vs Soy.Finance ERC-223 compatible exchange description",
     url: "https://www.reddit.com/r/CallistoCrypto/comments/15sa2dk/dex223_explanation/",
     date: "15.08.2023",
