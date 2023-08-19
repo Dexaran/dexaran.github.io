@@ -47,6 +47,8 @@ export default function Home() {
         <title>ERC-223</title>
         <meta name="description" content="ERC-223 articles, events and development sources aggregator" />
         <meta name="viewport" content="width=1280,initial-scale=1" />
+        <meta name="keywords" content="ERC-223 ethereum token standard"/>
+
         <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
       <header className={styles.header}>
