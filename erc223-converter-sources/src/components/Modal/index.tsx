@@ -11,12 +11,14 @@ export const Modal = ({
   handleClose,
   title,
   large,
+  id = "react-portal-modal-container",
 }: {
   children: any;
   isOpen: boolean;
   handleClose: any;
   title?: string;
   large?: boolean;
+  id?: string;
 }) => {
   const nodeRef = useRef(null);
   useEffect(() => {
@@ -28,7 +30,7 @@ export const Modal = ({
   }, [handleClose]);
 
   return (
-    <ReactPortal wrapperId="react-portal-modal-container">
+    <ReactPortal wrapperId={id}>
       {isOpen ? (
         <div className={clsx(manrope.className, styles.modal)} ref={nodeRef}>
           <div className={clsx(styles.modalContent, large && styles.large)}>

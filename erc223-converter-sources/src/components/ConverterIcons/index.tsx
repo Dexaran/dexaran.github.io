@@ -2,17 +2,17 @@ import React, { ComponentProps } from "react";
 import { Info } from "./Info";
 import { Swap } from "./Swap";
 import { ChevronDown } from "./ChevronDown";
-import { TestToken } from "./TestToken";
 import { Close } from "./Close";
 import { Success } from "./Success";
+import { Search } from "./Search";
 
 enum IconName {
   "info" = "info",
   "swap" = "swap",
   "chevronDown" = "chevronDown",
-  "testToken" = "testToken",
   "close" = "close",
   "success" = "success",
+  "search" = "search",
 }
 
 type IconNameType = keyof typeof IconName;
@@ -23,9 +23,9 @@ const icons: {
   [IconName.info]: Info,
   [IconName.swap]: Swap,
   [IconName.chevronDown]: ChevronDown,
-  [IconName.testToken]: TestToken,
   [IconName.close]: Close,
   [IconName.success]: Success,
+  [IconName.search]: Search,
 };
 
 export const ConverterIcons = ({

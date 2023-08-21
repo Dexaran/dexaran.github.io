@@ -18,6 +18,8 @@ export const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d
 
 export const manrope = Manrope({ subsets: ["latin"] });
 
+export const supportedChainIds = [1, 10, 56, 137, 820];
+
 export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [amountToConvert, setAmountToConvert] = useState("");
@@ -30,7 +32,7 @@ export default function Home() {
   const { chain, chains } = useNetwork();
 
   const isNetworkSupported = useMemo(() => {
-    if (chain && chain.id === 820) {
+    if (chain?.id && supportedChainIds.includes(chain.id)) {
       return true;
     }
 

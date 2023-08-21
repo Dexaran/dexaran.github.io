@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./SelectTokent.module.scss";
 import { ConverterIcons } from "../ConverterIcons";
 import { useAccount, useNetwork, useToken } from "wagmi";
 import Checkbox from "../Checkbox/Checkbox";
 import tokens from "./tokens.json";
-import { isAddress } from "viem";
+import { Address, isAddress } from "viem";
+import { List } from "react-virtualized";
+
+const listHeight = 460;
+const rowHeight = 60;
+const rowWidth = 438;
 
 interface Props {
   amountToConvert: any;
@@ -15,6 +20,29 @@ interface Props {
   tokenBalanceERC20: any;
   tokenBalanceERC223: any;
 }
+type Token = {
+  contract: Address;
+  symbol: string;
+  logo: string;
+  decimals: number;
+  markets: number[];
+};
+const loadChainTokens = async (chainId: number): Promise<Token[]> => {
+  switch (chainId) {
+    case 1:
+      return (await import("../../../public/tokens/eth.json")).default as Token[];
+    case 10:
+      return (await import("../../../public/tokens/op.json")).default as Token[];
+    case 56:
+      return (await import("../../../public/tokens/bsc.json")).default as Token[];
+    case 137:
+      return (await import("../../../public/tokens/polygon.json")).default as Token[];
+    case 820:
+      return (await import("../../../public/tokens/clo.json")).default as Token[];
+    default:
+      return Promise.resolve([]);
+  }
+};
 
 export default function SelectTokent({
   amountToConvert,
@@ -27,13 +55,37 @@ export default function SelectTokent({
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomToken, setIsCustomToken] = useState(false);
   const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [chainTokens, setChainTokens] = useState([] as Token[]);
+  const [filteredTokens, setFilteredTokens] = useState(chainTokens);
+
+  const filterTokensWithSearch = useCallback(() => {
+    return chainTokens.filter((token) =>
+      token.symbol.toLowerCase().startsWith(searchText.toLowerCase()),
+    );
+  }, [chainTokens, searchText]);
+
+  useEffect(() => {
+    if (!searchText) {
+      return setFilteredTokens(chainTokens);
+    }
+
+    setFilteredTokens(filterTokensWithSearch());
+  }, [chainTokens, filterTokensWithSearch, searchText]);
 
   const { chain } = useNetwork();
-  const { address, isConnected } = useAccount();
 
-  const chainTokens = tokens.map((item) => item[chain?.id || "820"]).filter((item) => !!item);
-  const defaultTokenAddress = chainTokens[0]?.token_address;
-  const selectedToken = chainTokens.find((token) => token.token_address === tokenAddress);
+  const defaultTokenAddress = chainTokens[0]?.contract;
+  const selectedToken = chainTokens.find((token) => token.contract === tokenAddress);
+
+  useEffect(() => {
+    (async () => {
+      if (chain?.id) {
+        const tokens = await loadChainTokens(chain.id);
+        setChainTokens(tokens || []);
+      }
+    })();
+  }, [chain?.id]);
 
   const {
     data: tokenData,
@@ -60,6 +112,30 @@ export default function SelectTokent({
       setTokenAddressERC20(customTokenAddress);
     }
   }, [customTokenAddress, setTokenAddressERC20]);
+
+  const closeModalHandler = () => {
+    setSearchText("");
+    setIsOpen(false);
+  };
+
+  const renderRow = ({ index, key, style }) => {
+    const token = filteredTokens[index];
+    return (
+      <div className={styles.row} key={key} style={style}>
+        <div
+          key={token.contract}
+          className={styles.network}
+          onClick={() => {
+            setTokenAddressERC20(token.contract);
+            closeModalHandler();
+          }}
+        >
+          <img src={token.logo} width="32px" height="32px" alt={token.symbol} />
+          <span>{token.symbol}</span>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className={styles.container}>
@@ -150,41 +226,55 @@ export default function SelectTokent({
             <button className={styles.pickTokenButton} onClick={() => setIsOpen(true)}>
               <span className={styles.tokenName}>
                 <img
-                  src={selectedToken?.imgUri}
+                  src={selectedToken?.logo}
                   width="24px"
                   height="24px"
-                  alt={tokenData?.name || selectedToken?.original_name}
+                  alt={tokenData?.name || selectedToken?.symbol}
                 />
-                {tokenData?.name || selectedToken?.original_name}
+                {tokenData?.name || selectedToken?.symbol}
               </span>
               <ConverterIcons name="chevronDown" fill="#C3D8D5" />
             </button>
           </div>
           <div className={styles.helperText}>
-            Balance: {tokenBalanceERC20?.formatted || 0}{" "}
-            {tokenData?.name || selectedToken?.original_name} (ERC-20) |{" "}
-            {tokenBalanceERC223?.formatted || 0} {tokenData?.name || selectedToken?.original_name}{" "}
-            (ERC-223)
+            Balance: {tokenBalanceERC20?.formatted || 0} {tokenData?.name || selectedToken?.symbol}{" "}
+            (ERC-20) | {tokenBalanceERC223?.formatted || 0}{" "}
+            {tokenData?.name || selectedToken?.symbol} (ERC-223)
           </div>
         </>
       )}
-
-      <Modal title="Select a token to convert" handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-        <div className={styles.networksContainer}>
-          {chainTokens.map((token) => (
-            <div
-              key={token.token_address}
-              className={styles.network}
-              onClick={() => {
-                setTokenAddressERC20(token.token_address);
-                setIsOpen(false);
+      <Modal
+        title="Select a token to convert"
+        handleClose={closeModalHandler}
+        isOpen={isOpen}
+        id="select-token"
+      >
+        <div className={styles.tokenSearchContainer}>
+          <div className={styles.amountInputWrapper}>
+            <input
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
               }}
-            >
-              <img src={token.imgUri} width="32px" height="32px" alt={token.original_name} />
-              <span>{token.original_name}</span>
-            </div>
-          ))}
+              placeholder="Name or address"
+              className={styles.amountInput}
+              type="text"
+            />
+            <ConverterIcons name="search" className={styles.tokenSearchSearchIcon} />
+          </div>
         </div>
+
+        <List
+          width={rowWidth}
+          height={listHeight}
+          rowHeight={rowHeight}
+          rowRenderer={renderRow}
+          rowCount={filteredTokens.length}
+          overscanRowCount={3}
+          style={{
+            paddingBottom: "20px",
+          }}
+        />
       </Modal>
     </div>
   );
