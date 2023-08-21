@@ -80,10 +80,8 @@ export default function SelectTokent({
 
   useEffect(() => {
     (async () => {
-      if (chain?.id) {
-        const tokens = await loadChainTokens(chain.id);
-        setChainTokens(tokens || []);
-      }
+      const tokens = await loadChainTokens(chain?.id || 1);
+      setChainTokens(tokens || []);
     })();
   }, [chain?.id]);
 
