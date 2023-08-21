@@ -5,6 +5,8 @@ import { ChevronDown } from "./ChevronDown";
 import { Close } from "./Close";
 import { Success } from "./Success";
 import { Search } from "./Search";
+import { Copy } from "./Copy";
+import { Github } from "./Github";
 
 enum IconName {
   "info" = "info",
@@ -13,6 +15,8 @@ enum IconName {
   "close" = "close",
   "success" = "success",
   "search" = "search",
+  "copy" = "copy",
+  "github" = "github",
 }
 
 type IconNameType = keyof typeof IconName;
@@ -26,6 +30,8 @@ const icons: {
   [IconName.close]: Close,
   [IconName.success]: Success,
   [IconName.search]: Search,
+  [IconName.copy]: Copy,
+  [IconName.github]: Github,
 };
 
 export const ConverterIcons = ({

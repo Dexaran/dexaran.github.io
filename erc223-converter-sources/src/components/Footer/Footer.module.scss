@@ -1,0 +1,170 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.footer {
+  font-size: 14px;
+  line-height: 24px;
+  background-color: colors.$background-primary;
+  border-top: 1px solid colors.$border-primary;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    pointer-events: auto;
+    color: colors.$text-primary;
+    transition-duration: 0.2s;
+
+    &:hover {
+      color: colors.$palette-green;
+    }
+  }
+
+  // @include media.for-large-desktop {
+  //   padding: 20px;
+  //   font-size: 18px;
+  //   line-height: 32px;
+  // }
+}
+
+.footerFirstPart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0px;
+}
+.audits {
+  color: colors.$text-secondary;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  div {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  img {
+    width: 32px;
+    border-radius: 100%;
+  }
+}
+
+.footerSecondPart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0px;
+  border-top: 1px solid colors.$border-primary;
+
+  .licence {
+    text-align: center;
+    pointer-events: none;
+  }
+}
+
+
+.donationWrapper {
+  display: flex;
+}
+.footerLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+
+  @include media.for-large-desktop {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;  
+    gap: 4px;
+  }
+}
+
+.githubButton {
+  position: relative;
+  background-color: transparent;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+  border-radius: 8px;
+  color: colors.$text-primary;
+  height: 32px;
+  padding-left: 20px;
+  padding-right: 16px;
+  border: 1px solid colors.$palette-green;
+
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.addressRow {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.donation {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 10px 32px 10px 20px;
+  background-color: colors.$background-secondary;
+  gap: 8px;
+  border: 1px solid colors.$border-primary;
+  cursor: pointer;
+  transition-duration: 0.2s;
+
+  img {
+    width: 58px;
+  }
+
+  &:hover {
+    border-color: colors.$palette-green;
+    .donationAddress {
+      color: colors.$palette-green;
+    }
+    svg {
+      color: colors.$palette-green;
+    }
+  }
+}
+
+.donationLabel {
+  color: colors.$text-secondary;
+  display: flex;
+}
+
+.donationAddress {
+  transition-duration: 0.2s;
+  color: colors.$text-primary;
+}
+
+.donationText {
+  display: grid;
+  gap: 4px;
+}
+
+.copyAddressForDonationsButton {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  width: 24px;
+  height: 24px;
+
+  svg {
+    color: colors.$text-secondary;
+    transition-duration: 0.2s;
+  }
+}

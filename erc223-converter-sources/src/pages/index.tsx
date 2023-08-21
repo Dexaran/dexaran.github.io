@@ -13,6 +13,7 @@ import { ConvertToERC223, ConvertToERC20 } from "@/components/ConvertButton/Conv
 import { ConnectWallet } from "@/components/ConnectWallet/ConnectWallet";
 import { DebugBlock } from "@/components/DebugBlock/DebugBlock";
 import { PrimaryButton } from "@/components/Button/Button";
+import { Footer } from "@/components/Footer/Footer";
 
 export const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 
@@ -75,84 +76,87 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={clsx(styles.main, manrope.className)}>
-        <div className={styles.contentBlock}>
-          <div className={styles.contentBlockHeader}>
-            <h1 className={styles.h1}>Ethereum Token Converter</h1>
-            <p className={styles.description}>
-              This is a token converter that converts ERC-20 tokens to ERC-223. It can also convert
-              ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more about the
-              conversion process <a href="#">here.</a>
-            </p>
-          </div>
-          <ChangeNetwork />
-          <div className={styles.converter}>
-            <div className={styles.infoLabel}>
-              <span className={styles.infoIcon}>
-                <ConverterIcons name="info" size="32px" />
-              </span>
-              <p className={styles.infoText}>
-                You are converting your ERC-20 token to ERC-223 token
+        <div className={styles.contentBlockContainer}>
+          <div className={styles.contentBlock}>
+            <div className={styles.contentBlockHeader}>
+              <h1 className={styles.h1}>Ethereum Token Converter</h1>
+              <p className={styles.description}>
+                This is a token converter that converts ERC-20 tokens to ERC-223. It can also
+                convert ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more
+                about the conversion process <a href="#">here.</a>
               </p>
             </div>
-            <div className={styles.fromLabel}>
-              <span>From</span>
-              <span>{toERC223 ? "ERC-20" : "ERC-223"}</span>
-            </div>
-            <div className={styles.switchButtonWrapper}>
-              <button
-                className={`${styles.switchButton} ${toERC223 ? "" : styles.rotated}`}
-                onClick={() => setToERC223(!toERC223)}
-              >
-                <ConverterIcons name="swap" fill="#FDFFFC" />
-              </button>
-            </div>
-            <div className={styles.toLabel}>
-              <span>To</span>
-              <span>{toERC223 ? "ERC-223" : "ERC-20"}</span>
-            </div>
-            {isConnected && !isNetworkSupported && (
-              <div className={styles.notSupported}>
-                Converter for {chain?.name} is not supported yet
-                <PrimaryButton onClick={() => switchNetwork?.(820)}>
-                  Change to callisto
-                </PrimaryButton>
+            <ChangeNetwork />
+            <div className={styles.converter}>
+              <div className={styles.infoLabel}>
+                <span className={styles.infoIcon}>
+                  <ConverterIcons name="info" size="32px" />
+                </span>
+                <p className={styles.infoText}>
+                  You are converting your ERC-20 token to ERC-223 token
+                </p>
               </div>
-            )}
-            {(isNetworkSupported || !isConnected) && (
-              <div className={styles.converterFieldsWrapper}>
-                <SelectTokent
-                  amountToConvert={amountToConvert}
-                  setAmountToConvert={setAmountToConvert}
-                  tokenAddress={tokenAddressERC20}
-                  setTokenAddressERC20={setTokenAddressERC20}
-                  tokenBalanceERC20={tokenBalanceERC20}
-                  tokenBalanceERC223={tokenBalanceERC223}
-                />
+              <div className={styles.fromLabel}>
+                <span>From</span>
+                <span>{toERC223 ? "ERC-20" : "ERC-223"}</span>
               </div>
-            )}
-            {isConnected && isNetworkSupported && (
-              <>
-                {toERC223 ? (
-                  <ConvertToERC223
+              <div className={styles.switchButtonWrapper}>
+                <button
+                  className={`${styles.switchButton} ${toERC223 ? "" : styles.rotated}`}
+                  onClick={() => setToERC223(!toERC223)}
+                >
+                  <ConverterIcons name="swap" fill="#FDFFFC" />
+                </button>
+              </div>
+              <div className={styles.toLabel}>
+                <span>To</span>
+                <span>{toERC223 ? "ERC-223" : "ERC-20"}</span>
+              </div>
+              {isConnected && !isNetworkSupported && (
+                <div className={styles.notSupported}>
+                  Converter for {chain?.name} is not supported yet
+                  <PrimaryButton onClick={() => switchNetwork?.(820)}>
+                    Change to callisto
+                  </PrimaryButton>
+                </div>
+              )}
+              {(isNetworkSupported || !isConnected) && (
+                <div className={styles.converterFieldsWrapper}>
+                  <SelectTokent
                     amountToConvert={amountToConvert}
-                    tokenAddressERC20={tokenAddressERC20}
-                    tokenAddressERC223={tokenAddressERC223}
+                    setAmountToConvert={setAmountToConvert}
+                    tokenAddress={tokenAddressERC20}
+                    setTokenAddressERC20={setTokenAddressERC20}
                     tokenBalanceERC20={tokenBalanceERC20}
-                  />
-                ) : (
-                  <ConvertToERC20
-                    amountToConvert={amountToConvert}
-                    tokenAddressERC20={tokenAddressERC20}
-                    tokenAddressERC223={tokenAddressERC223}
                     tokenBalanceERC223={tokenBalanceERC223}
                   />
-                )}
-              </>
-            )}
-            {!isConnected && <ConnectWallet />}
+                </div>
+              )}
+              {isConnected && isNetworkSupported && (
+                <>
+                  {toERC223 ? (
+                    <ConvertToERC223
+                      amountToConvert={amountToConvert}
+                      tokenAddressERC20={tokenAddressERC20}
+                      tokenAddressERC223={tokenAddressERC223}
+                      tokenBalanceERC20={tokenBalanceERC20}
+                    />
+                  ) : (
+                    <ConvertToERC20
+                      amountToConvert={amountToConvert}
+                      tokenAddressERC20={tokenAddressERC20}
+                      tokenAddressERC223={tokenAddressERC223}
+                      tokenBalanceERC223={tokenBalanceERC223}
+                    />
+                  )}
+                </>
+              )}
+              {!isConnected && <ConnectWallet />}
+            </div>
+            {/* <DebugBlock /> */}
           </div>
-          {/* <DebugBlock /> */}
         </div>
+        <Footer />
       </main>
     </>
   );
