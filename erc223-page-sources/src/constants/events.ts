@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] EIP editors decided there is no necessity to place a warning on ERC-20 regarding the loss of $201M tokens and related insecurity of the standard. Security concern was raised by Dexaran",
+    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257",
+    date: "25.08.2023",
+  },
+  {
     title: "[github] Comment on github discussion related to ERC-20 losses of funds",
     url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/3575#issuecomment-1693316451",
     date: "25.08.2023",
