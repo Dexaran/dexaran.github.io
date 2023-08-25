@@ -20,6 +20,10 @@
   background-color: colors.$background-secondary;
   margin: 40px auto;
   border: 1px solid colors.$border-primary;
+
+  @include media.for-mobile {
+    margin: 0px auto;
+  }
 }
 
 .h1 {
@@ -28,6 +32,13 @@
   line-height: 56px;
   color: colors.$text-primary;
   margin-bottom: 12px;
+
+  @include media.for-mobile {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 38px;
+  }
 }
 
 .description {
@@ -42,16 +53,28 @@
       text-decoration: underline;
     }
   }
+  @include media.for-mobile {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
 }
 
 .contentBlockHeader {
   padding: 32px 40px;
   text-align: center;
   border-bottom: 1px solid colors.$border-primary;
+  @include media.for-mobile {
+    padding: 20px;
+  }
 }
 
 .converter {
   padding: 40px;
+  @include media.for-mobile {
+    padding: 20px;
+  }
 }
 
 .infoLabel {
@@ -62,19 +85,35 @@
   background: var(--blue-bcg, #202f47);
   border: 1px solid colors.$palette-blue;
   padding: 8px 20px;
-}
 
-.infoIcon {
-  width: 32px;
-  height: 32px;
-  color: colors.$palette-blue;
-}
+  p {
+    color: colors.$text-primary;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 28px;  
+  }
+  svg {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    color: colors.$palette-blue;  
+  }
 
-.infoText {
-  color: colors.$text-primary;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 28px;
+  @include media.for-mobile {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    p {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+    }
+  }
 }
 
 .switchButtonWrapper {
@@ -102,6 +141,14 @@
 
   &:hover {
     border-color: colors.$text-secondary;
+  }
+
+  @include media.for-mobile {
+    width: 40px;
+    height: 40px;
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);  
+  
   }
 }
 .rotated {

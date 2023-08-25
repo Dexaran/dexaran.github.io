@@ -132,3 +132,13 @@
   line-height: 28px;
   color: colors.$text-primary;
 }
+
+.waitingDecryptBlock {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid colors.$palette-green;
+  background: colors.$background-green;
+  color: colors.$text-primary;
+}

@@ -6,9 +6,9 @@ import { useAccount, useNetwork, useToken } from "wagmi";
 import Checkbox from "../Checkbox/Checkbox";
 import tokens from "./tokens.json";
 import { Address, isAddress } from "viem";
-import { List } from "react-virtualized";
+import { List, AutoSizer } from "react-virtualized";
 
-const listHeight = 460;
+const listHeight = 380;
 const rowHeight = 60;
 const rowWidth = 438;
 
@@ -262,17 +262,24 @@ export default function SelectTokent({
           </div>
         </div>
 
-        <List
-          width={rowWidth}
-          height={listHeight}
-          rowHeight={rowHeight}
-          rowRenderer={renderRow}
-          rowCount={filteredTokens.length}
-          overscanRowCount={3}
-          style={{
-            paddingBottom: "20px",
+        <AutoSizer disableHeight>
+          {({ width }) => {
+            console.log("🚀 ~ width:", width)
+            return (
+              <List
+                width={width - 2}
+                height={listHeight}
+                rowHeight={rowHeight}
+                rowRenderer={renderRow}
+                rowCount={filteredTokens.length}
+                overscanRowCount={3}
+                style={{
+                  paddingBottom: "20px",
+                }}
+              />
+            );
           }}
-        />
+        </AutoSizer>
       </Modal>
     </div>
   );

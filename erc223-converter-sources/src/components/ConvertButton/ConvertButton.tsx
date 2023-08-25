@@ -156,6 +156,20 @@ export const ConvertToERC223 = ({
           {amountToConvert ? "Convert to ERC-223" : "Enter amount"}
         </PrimaryButton>
       )}
+      {!!approving && !!allowanceData?.hash && (
+        <div className={styles.waitingApproveTxBlock}>
+          <p>
+            Waiting for approval. Tx:
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://explorer.callisto.network/tx/${allowanceData.hash}`}
+            >
+              {renderShortHash(allowanceData.hash, 10)}
+            </a>
+          </p>
+        </div>
+      )}
       <SuccessfullModal
         isOpen={isSuccessfullModalOpen}
         handleClose={() => {

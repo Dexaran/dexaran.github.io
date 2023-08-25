@@ -1,3 +1,4 @@
+import React from "react"
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import { useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
@@ -89,10 +90,8 @@ export default function Home() {
             <ChangeNetwork />
             <div className={styles.converter}>
               <div className={styles.infoLabel}>
-                <span className={styles.infoIcon}>
-                  <ConverterIcons name="info" size="32px" />
-                </span>
-                <p className={styles.infoText}>
+                <ConverterIcons name="info" />
+                <p>
                   You are converting your ERC-20 token to ERC-223 token
                 </p>
               </div>

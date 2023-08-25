@@ -5,10 +5,25 @@
   font-size: 14px;
   line-height: 24px;
   background-color: colors.$background-primary;
-  border-top: 1px solid colors.$border-primary;
-  padding: 0px 20px;
+  border-top: colors.$border-primary;
+  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  & > div {
+    width: 33%;
+  }
+
+  .licence {
+    text-align: center;
+    pointer-events: none;
+    @include media.for-mobile {
+      text-align: start;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  }
 
   a {
     pointer-events: auto;
@@ -20,54 +35,32 @@
     }
   }
 
-  // @include media.for-large-desktop {
-  //   padding: 20px;
-  //   font-size: 18px;
-  //   line-height: 32px;
-  // }
-}
-
-.footerFirstPart {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0px;
-}
-.audits {
-  color: colors.$text-secondary;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  div {
-    margin-top: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 12px;
+  @include media.for-large-desktop {
+    padding: 20px;
+    font-size: 18px;
+    line-height: 32px;
   }
-  img {
-    width: 32px;
-    border-radius: 100%;
+
+  @include media.for-mobile {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 40px;
+    & > div {
+      width: 100%;
+    }
   }
+
 }
-
-.footerSecondPart {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 0px;
-  border-top: 1px solid colors.$border-primary;
-
-  .licence {
-    text-align: center;
-    pointer-events: none;
-  }
-}
-
 
 .donationWrapper {
   display: flex;
+  @include media.for-mobile {
+    overflow-x: hidden;
+  }
 }
+
+
 .footerLinks {
   display: flex;
   flex-direction: row;
@@ -75,39 +68,24 @@
   align-items: center;
   gap: 20px;
 
+
   @include media.for-large-desktop {
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;  
     gap: 4px;
   }
-}
-
-.githubButton {
-  position: relative;
-  background-color: transparent;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; 
-  border-radius: 8px;
-  color: colors.$text-primary;
-  height: 32px;
-  padding-left: 20px;
-  padding-right: 16px;
-  border: 1px solid colors.$palette-green;
-
-  display: flex;
-  align-items: center;
-  svg {
-    margin-right: 4px;
+  @include media.for-mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;  
+    gap: 8px;
+    a {
+      width: 100%;
+    }
   }
 
-  &:hover {
-    cursor: pointer;
-  }
 }
-
 
 .addressRow {
   display: flex;
@@ -118,17 +96,13 @@
 .donation {
   display: flex;
   align-items: center;
+  padding: 8px;
   border-radius: 100px;
-  padding: 10px 32px 10px 20px;
   background-color: colors.$background-secondary;
   gap: 8px;
-  border: 1px solid colors.$border-primary;
+  border: 1px solid transparent;
   cursor: pointer;
   transition-duration: 0.2s;
-
-  img {
-    width: 58px;
-  }
 
   &:hover {
     border-color: colors.$palette-green;
@@ -139,11 +113,47 @@
       color: colors.$palette-green;
     }
   }
+
+  img {
+    width: 32px;
+  }
+
+  @include media.for-large-desktop {
+    padding: 10px 32px 10px 20px;
+    img {
+      width: 58px;
+    }
+  }
+  @include media.for-mobile {
+    border-radius: 0px;
+    padding: 12px 16px;
+    width: 100%;
+    img {
+      display: none;
+    }
+  }
 }
 
 .donationLabel {
   color: colors.$text-secondary;
-  display: flex;
+  display: block;
+  white-space: nowrap;
+  @include media.for-large-desktop {
+    display: none;
+  }
+  @include media.for-mobile {
+    display: none;
+  }
+}
+.donationLabelLarge {
+  color: colors.$text-secondary;
+  display: none;
+  @include media.for-large-desktop {
+    display: block;
+  }
+  @include media.for-mobile {
+    display: block;
+  }
 }
 
 .donationAddress {
@@ -166,5 +176,36 @@
   svg {
     color: colors.$text-secondary;
     transition-duration: 0.2s;
+  }
+}
+
+.githubButton {
+  position: relative;
+  background-color: transparent;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+  border-radius: 8px;
+  color: colors.$text-primary;
+  height: 32px;
+  padding-left: 20px;
+  padding-right: 16px;
+  border: 1px solid colors.$palette-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include media.for-mobile {
+    border-radius: 8px;
+
   }
 }

@@ -13,6 +13,9 @@
   overflow: hidden;
   z-index: 999;
   padding: 40px 20px 20px;
+  @include media.for-mobile {
+    padding: 16px;
+  }
 }
 
 .modalContent {
@@ -46,6 +49,10 @@
     width: auto;
     gap: 0px;
     padding: 12px;
+  }
+
+  @include media.for-mobile {
+    padding: 12px 16px;
   }
 }
 .modalHeaderTitle {

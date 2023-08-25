@@ -28,6 +28,10 @@
   display: grid;
   grid-template-columns: 5fr 3fr;
   margin-bottom: 4px;
+  @include media.for-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 .converterCustomFields {
   display: flex;
@@ -119,6 +123,9 @@
   display: flex;
   padding: 40px;
   padding-bottom: 20px;
+  @include media.for-mobile {
+    padding: 16px;
+  }
 }
 
 .tokenSearchSearchIcon {

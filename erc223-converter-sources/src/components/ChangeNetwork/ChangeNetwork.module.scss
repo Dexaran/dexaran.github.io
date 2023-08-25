@@ -6,6 +6,11 @@
   border-bottom: 1px solid colors.$border-primary;
   display: flex;
   gap: 20px;
+  @include media.for-mobile {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px
+  }
 }
 
 .pickNetworkButton {
@@ -21,6 +26,9 @@
   div {
     display: flex;
   }
+  @include media.for-mobile {
+    height: 48px;
+  }
 }
 .disconnectWalletButton {
   cursor: pointer;
@@ -32,6 +40,9 @@
   outline: 0;
   border: 1px solid colors.$border-primary;
   width: 100%;
+  @include media.for-mobile {
+    height: 48px;
+  }
 }
 
 .tokenName {
@@ -47,6 +58,10 @@
   flex-direction: column;
   // gap: 20px
   padding: 20px 0px;
+
+  @include media.for-mobile {
+    padding: 16px 0px;
+  }
 }
 .network {
   display: flex;
@@ -64,5 +79,9 @@
     font-style: normal;
     font-weight: 600;
     line-height: 28px; /* 175% */
+  }
+
+  @include media.for-mobile {
+    padding: 14px 16px;
   }
 }
