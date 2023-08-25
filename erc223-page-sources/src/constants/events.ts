@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] Comment on github discussion related to ERC-20 losses of funds",
+    url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/3575#issuecomment-1693316451",
+    date: "25.08.2023",
+  },
+  {
     title: "All ERC Devs call record abailable at airgram, passcode FT6H",
     url: "https://app.airgram.io/7065496599555735553/share/2befaf46428f11eebaf70a2cbd030b4d?from=A91fc19caf6ac11eda1a80a2cbd030b4d-7065496599555735553",
     date: "24.08.2023",
