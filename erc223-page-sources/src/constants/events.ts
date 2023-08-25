@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "ERC-223 presentation at All ERC Devs call",
+    url: "https://github.com/ercref/AllERCDevs/issues/9",
+    date: "24.08.2023",
+  },
+  {
     title: "ERC-223 is moved to 'Last Call' status",
     url: "https://github.com/ethereum/EIPs/pull/7483#pullrequestreview-1585680567",
     date: "19.08.2023",
