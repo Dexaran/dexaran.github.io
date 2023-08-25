@@ -2,6 +2,11 @@ import {IRecentEvent} from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "Ethereum Foundation rejected 'ERC-223 ecosystem campaign' application for Small Grants",
+    url: "https://twitter.com/Dexaran/status/1695161174189281350",
+    date: "25.08.2023",
+  },
+  {
     title: "[github] EIP editors decided there is no necessity to place a warning on ERC-20 regarding the loss of $201M tokens and related insecurity of the standard. Security concern was raised by Dexaran",
     url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257",
     date: "25.08.2023",
