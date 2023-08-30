@@ -4,6 +4,7 @@ import { useSnackbar } from "@/providers/SnackbarProvider";
 import { ConverterIcons } from "../ConverterIcons";
 import TokensEth from "../../../public/tokens/eth.json";
 import { basePath } from "@/constants/build-config/isProd";
+import { renderShortAddress } from "@/utils/renderAddress";
 
 const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
 
@@ -29,6 +30,9 @@ export const Footer = () => {
             <div className={styles.addressRow}>
               <span className={styles.donationLabel}>Donations appreciated:</span>
               <span className={styles.donationAddress}>{ADDRESS_FOR_DONATION}</span>
+              <span className={styles.donationAddressMobile}>
+                {renderShortAddress(ADDRESS_FOR_DONATION, 14)}
+              </span>
               <div className={styles.copyAddressForDonationsButton}>
                 <svg
                   width="24"
@@ -59,7 +63,11 @@ export const Footer = () => {
         <a target="_blank" href="https://audits.callisto.network/">
           Audits Callisto Network
         </a>
-        <a className={styles.githubButton} target="_blank" href="https://github.com/Dexaran/dexaran.github.io">
+        <a
+          className={styles.githubButton}
+          target="_blank"
+          href="https://github.com/Dexaran/dexaran.github.io"
+        >
           <ConverterIcons name="github" size={16} />
           Github
         </a>

@@ -73,6 +73,45 @@ export default function SuccessfullModal({
   );
 }
 
+const ConvertToERC223Button = ({
+  amountToConvert,
+  tokenAddressERC20,
+  handleSuccessfullTx,
+}: {
+  amountToConvert: any;
+  tokenAddressERC20: any;
+  handleSuccessfullTx: any;
+}) => {
+  const { config, data: configData } = usePrepareContractWrite({
+    address: CLO_CONVERTER_CONTRACT_ADDRESS,
+    abi: TokenConverterABI,
+    functionName: "convertERC20toERC223",
+    args: [tokenAddressERC20, parseEther(amountToConvert)],
+  });
+
+  const {
+    write: writeConvert,
+    isLoading: isWriteConvertLoading,
+    data: writeConvertData,
+  } = useContractWrite(config);
+
+  useEffect(() => {
+    if (writeConvertData?.hash) {
+      handleSuccessfullTx(writeConvertData?.hash);
+    }
+  }, [writeConvertData?.hash]);
+
+  return (
+    <PrimaryButton
+      disabled={!amountToConvert}
+      onClick={writeConvert}
+      isLoading={isWriteConvertLoading}
+    >
+      Convert to ERC-223
+    </PrimaryButton>
+  );
+};
+
 export const ConvertToERC223 = ({
   amountToConvert,
   tokenBalanceERC20,
@@ -85,6 +124,7 @@ export const ConvertToERC223 = ({
   tokenAddressERC223: any;
 }) => {
   const [isSuccessfullModalOpen, setIsSuccessfullModalOpen] = useState(false);
+  const [txHash, setTxHash] = useState(null as null | string);
   const { address } = useAccount();
 
   const { data: readData } = useContractRead({
@@ -116,46 +156,30 @@ export const ConvertToERC223 = ({
     hash: allowanceData?.hash,
   });
 
-  const { config, data: configData } = usePrepareContractWrite({
-    address: CLO_CONVERTER_CONTRACT_ADDRESS,
-    abi: TokenConverterABI,
-    functionName: "convertERC20toERC223",
-    args: [tokenAddressERC20, parseEther(amountToConvert)],
-  });
-
-  const {
-    write: writeConvert,
-    isLoading: isWriteConvertLoading,
-    data: writeConvertData,
-  } = useContractWrite(config);
-  const { data: convertTxData, isLoading: convertLoading } = useWaitForTransaction({
-    hash: writeConvertData?.hash,
-  });
-
-  useEffect(() => {
-    if (writeConvertData?.hash) {
-      setIsSuccessfullModalOpen(true);
-    }
-  }, [writeConvertData?.hash]);
-
   return (
     <div className={styles.actionButtonWrapper}>
+      {!amountToConvert && <PrimaryButton disabled>Enter amount</PrimaryButton>}
       {!isEnoughBalance && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
-      {isEnoughBalance &&
+      {amountToConvert &&
+        isEnoughBalance &&
         (!readData || (readData && +amountToConvert > +formatEther(readData as any))) && (
           <PrimaryButton onClick={writeTokenApprove} isLoading={approving}>
             Approve test tokens
           </PrimaryButton>
         )}
-      {isEnoughBalance && readData && +amountToConvert <= +formatEther(readData as any) && (
-        <PrimaryButton
-          disabled={!amountToConvert}
-          onClick={writeConvert}
-          isLoading={isWriteConvertLoading}
-        >
-          {amountToConvert ? "Convert to ERC-223" : "Enter amount"}
-        </PrimaryButton>
-      )}
+      {amountToConvert &&
+        isEnoughBalance &&
+        readData &&
+        +amountToConvert <= +formatEther(readData as any) && (
+          <ConvertToERC223Button
+            amountToConvert={amountToConvert}
+            tokenAddressERC20={tokenAddressERC20}
+            handleSuccessfullTx={(tx: string) => {
+              setIsSuccessfullModalOpen(true);
+              setTxHash(tx);
+            }}
+          />
+        )}
       {!!approving && !!allowanceData?.hash && (
         <div className={styles.waitingApproveTxBlock}>
           <p>
@@ -174,8 +198,9 @@ export const ConvertToERC223 = ({
         isOpen={isSuccessfullModalOpen}
         handleClose={() => {
           setIsSuccessfullModalOpen(false);
+          setTxHash(null);
         }}
-        txHash={writeConvertData?.hash}
+        txHash={txHash}
         toERC223={true}
         contractAddress={tokenAddressERC223}
       />

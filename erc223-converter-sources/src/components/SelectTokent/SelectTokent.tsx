@@ -264,7 +264,6 @@ export default function SelectTokent({
 
         <AutoSizer disableHeight>
           {({ width }) => {
-            console.log("🚀 ~ width:", width)
             return (
               <List
                 width={width - 2}
