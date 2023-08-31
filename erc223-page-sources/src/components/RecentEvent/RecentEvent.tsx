@@ -10,6 +10,7 @@ interface Props {
     title: string;
   }[];
   date: string;
+  color?: string;
   isHighlighted: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -20,6 +21,7 @@ export default function RecentEvent({
   urls,
   title,
   date,
+  color = "#50c878",
   isHighlighted,
   onMouseEnter,
   onMouseLeave,
@@ -32,6 +34,7 @@ export default function RecentEvent({
           className={`${styles.recentEventMultipleLinks} ${
             isHighlighted ? styles.highlighted : ""
           }`}
+          style={{ "--event-color": color } as any}
           onClick={() => setIsOpen(!isOpen)}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
@@ -93,6 +96,7 @@ export default function RecentEvent({
     <a
       target="_blank"
       className={`${styles.recentEvent} ${isHighlighted ? styles.highlighted : ""}`}
+      style={{ "--event-color": color } as any}
       href={url}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

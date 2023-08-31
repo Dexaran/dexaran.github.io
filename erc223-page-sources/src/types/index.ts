@@ -14,6 +14,7 @@ export type IRecentEvent = {
   }[];
   date: string;
   id?: string;
+  color?: string;
 };
 
 export type IResourceTab = "articles" | "erc223" | "dev-sources";

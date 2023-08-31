@@ -270,7 +270,7 @@ export default function Home() {
             />
             <div className={styles.eventsTabContent}>
               <Column title="📅 Events timeline (Total: 68 publications)">
-                {events.map(({ url, urls, title, date, id }) => {
+                {events.map(({ url, urls, title, date, id, color }) => {
                   return (
                     <RecentEvent
                       key={title}
@@ -278,6 +278,7 @@ export default function Home() {
                       urls={urls}
                       title={title}
                       date={date}
+                      color={color}
                       isHighlighted={!!eventId && eventId === id}
                       onMouseEnter={() => {
                         setEventId(id || null);

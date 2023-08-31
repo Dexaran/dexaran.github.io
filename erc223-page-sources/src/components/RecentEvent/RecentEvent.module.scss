@@ -13,16 +13,16 @@
 
   &:hover {
     background-color: #323531;
-    border: 1px solid colors.$palette-green;
+    border: 1px solid var(--event-color);
 
     .arrow {
-      color: colors.$palette-green;
+      color: var(--event-color);
       transform: rotate(-45deg);
     }
 
     .title {
-      color: colors.$palette-green;
-      text-shadow: 0 0 16px rgba(43, 231, 106, 0.8);
+      color: var(--event-color);
+      text-shadow: 0 0 12px var(--event-color);
     }
   }
 }
@@ -46,7 +46,8 @@
 }
 
 .title {
-  color: colors.$palette-green;
+  color: var(--event-color);
+  
   font-size: 16px;
   line-height: 28px;
   font-weight: 600;
@@ -82,15 +83,15 @@
   &:hover {
     cursor: pointer;
     background-color: #323531;
-    border: 1px solid colors.$palette-green;
+    border: 1px solid var(--event-color);
 
     .chevron {
-      color: colors.$palette-green;
+      color: var(--event-color);
     }
 
     .title {
-      color: colors.$palette-green;
-      text-shadow: 0 0 16px rgba(43, 231, 106, 0.8);
+      color: var(--event-color);
+      text-shadow: 0 0 12px var(--event-color);
     }
   }
 }
@@ -130,7 +131,7 @@
 }
 
 .urlTitle {
-  color: colors.$palette-green;
+  color: var(--event-color);
   font-size: 16px;
   line-height: 28px;
   font-weight: 600;
@@ -153,11 +154,11 @@
     background-color: #323531;
 
     .urlArrow {
-      color: colors.$palette-green;
+      color: var(--event-color);
       transform: rotate(-45deg);
     }
     .urlTitle {
-      text-shadow: 0 0 16px rgba(43, 231, 106, 0.8);
+      text-shadow: 0 0 12px var(--event-color);
     }
   }
 }
