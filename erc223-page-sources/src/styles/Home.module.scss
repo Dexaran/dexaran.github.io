@@ -258,11 +258,10 @@
   align-items: center;
   gap: 20px;
 
-
   @include media.for-large-desktop {
     flex-direction: column;
     align-items: flex-end;
-    justify-content: center;  
+    justify-content: center;
     gap: 4px;
   }
 }
