@@ -2,6 +2,18 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[r/ethereum] A user lost $240K worth of CRO on 6.09.2023",
+    url: "https://www.reddit.com/r/ethereum/comments/16bqvj8/4_hours_ago_240k_worth_of_cro_were_deposited_to/",
+    date: "6.09.2023",
+    color: "#64DC84",
+  },
+  {
+    title: "[github] ERC-223 is assigned 'final' status.",
+    url: "https://github.com/ethereum/EIPs/pull/7660",
+    date: "6.09.2023",
+    color: "#64DC84",
+  },
+  {
     title: "Ethereum Foundation rejected 'ERC-223 ecosystem campaign' application for Small Grants",
     url: "https://twitter.com/Dexaran/status/1695161174189281350",
     date: "25.08.2023",
