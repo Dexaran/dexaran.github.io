@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import { useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
@@ -10,13 +10,16 @@ import { useSwitchNetwork } from "wagmi";
 import { ConverterIcons } from "@/components/ConverterIcons";
 import ChangeNetwork from "@/components/ChangeNetwork/ChangeNetwork";
 import SelectTokent from "@/components/SelectTokent/SelectTokent";
-import { ConvertToERC223, ConvertToERC20 } from "@/components/ConvertButton/ConvertButton";
 import { ConnectWallet } from "@/components/ConnectWallet/ConnectWallet";
 import { DebugBlock } from "@/components/DebugBlock/DebugBlock";
 import { PrimaryButton } from "@/components/Button/Button";
 import { Footer } from "@/components/Footer/Footer";
+import { ConvertToERC223 } from "@/components/ConvertButton/ConvertToERC223";
+import { ConvertToERC20 } from "@/components/ConvertButton/ConvertToERC20";
 
 export const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
+const ERC20_URL = "https://eips.ethereum.org/EIPS/eip-20";
+const ERC223_URL = "https://eips.ethereum.org/EIPS/eip-223";
 
 export const manrope = Manrope({ subsets: ["latin"] });
 
@@ -27,6 +30,7 @@ export default function Home() {
   const [amountToConvert, setAmountToConvert] = useState("");
   const [toERC223, setToERC223] = useState(true);
   const [tokenAddressERC20, setTokenAddressERC20] = useState();
+  const [defaultChainId, setDefaultChainId] = useState(1);
 
   const { address, isConnected } = useAccount();
 
@@ -87,13 +91,35 @@ export default function Home() {
                 about the conversion process <a href="#">here.</a>
               </p>
             </div>
-            <ChangeNetwork />
+            <ChangeNetwork defaultChainId={defaultChainId} setDefaultChainId={setDefaultChainId} />
             <div className={styles.converter}>
               <div className={styles.infoLabel}>
                 <ConverterIcons name="info" />
-                <p>
-                  You are converting your ERC-20 token to ERC-223 token
-                </p>
+                {toERC223 ? (
+                  <p>
+                    You are converting your{" "}
+                    <a target="_blank" href={ERC20_URL}>
+                      ERC-20
+                    </a>{" "}
+                    token to{" "}
+                    <a target="_blank" href={ERC223_URL}>
+                      ERC-223
+                    </a>{" "}
+                    token
+                  </p>
+                ) : (
+                  <p>
+                    You are converting your{" "}
+                    <a target="_blank" href={ERC223_URL}>
+                      ERC-223
+                    </a>{" "}
+                    token to{" "}
+                    <a target="_blank" href={ERC20_URL}>
+                      ERC-20
+                    </a>{" "}
+                    token
+                  </p>
+                )}
               </div>
               <div className={styles.fromLabel}>
                 <span>From</span>
@@ -122,6 +148,7 @@ export default function Home() {
               {(isNetworkSupported || !isConnected) && (
                 <div className={styles.converterFieldsWrapper}>
                   <SelectTokent
+                    defaultChainId={defaultChainId}
                     amountToConvert={amountToConvert}
                     setAmountToConvert={setAmountToConvert}
                     tokenAddress={tokenAddressERC20}
@@ -152,7 +179,7 @@ export default function Home() {
               )}
               {!isConnected && <ConnectWallet />}
             </div>
-            {/* <DebugBlock /> */}
+            <DebugBlock />
           </div>
         </div>
         <Footer />

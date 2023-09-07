@@ -138,7 +138,7 @@ export const ConnectWallet = () => {
                   />
                 </div>
                 <PrimaryButton onClick={importKeystoreFileHandler} isLoading={isUnlockingKeystore}>
-                  Import Keystore file
+                  Unlock
                 </PrimaryButton>
                 {isUnlockingKeystore && (
                   <div className={styles.waitingDecryptBlock}>

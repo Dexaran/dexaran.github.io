@@ -7,6 +7,7 @@ import { Success } from "./Success";
 import { Search } from "./Search";
 import { Copy } from "./Copy";
 import { Github } from "./Github";
+import { Report } from "./Report";
 
 enum IconName {
   "info" = "info",
@@ -17,6 +18,7 @@ enum IconName {
   "search" = "search",
   "copy" = "copy",
   "github" = "github",
+  "report" = "report"
 }
 
 type IconNameType = keyof typeof IconName;
@@ -32,6 +34,7 @@ const icons: {
   [IconName.search]: Search,
   [IconName.copy]: Copy,
   [IconName.github]: Github,
+  [IconName.report]: Report,
 };
 
 export const ConverterIcons = ({

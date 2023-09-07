@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./ChangeNetwork.module.scss";
 import { ConverterIcons } from "../ConverterIcons";
-import { Network, NetworksConfigs } from "./networks";
-import { useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
+import { NetworksConfigs } from "./networks";
+import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
+import { useWeb3Modal } from "@web3modal/react";
 
 interface Props {
   title: string;
@@ -18,13 +19,21 @@ interface Props {
   onMouseLeave: () => void;
 }
 
-export default function ChangeNetwork({}: any) {
+export default function ChangeNetwork({
+  defaultChainId,
+  setDefaultChainId,
+}: {
+  defaultChainId: number;
+  setDefaultChainId: any;
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const { chain, chains } = useNetwork();
+  const { chain } = useNetwork();
   const { disconnect } = useDisconnect();
+  const { isConnected } = useAccount();
+  const { open } = useWeb3Modal();
 
   const selectedNetwork = Object.values(NetworksConfigs).find(
-    (network) => network.chainId === chain?.id,
+    (network) => network.chainId === (chain?.id || defaultChainId),
   );
   const { switchNetwork } = useSwitchNetwork();
 
@@ -41,14 +50,20 @@ export default function ChangeNetwork({}: any) {
           <ConverterIcons name="chevronDown" fill="#C3D8D5" />
         </div>
       </button>
-      <button
-        className={styles.disconnectWalletButton}
-        onClick={() => {
-          disconnect();
-        }}
-      >
-        <span className={styles.tokenName}>Disconnect wallet</span>
-      </button>
+      {isConnected ? (
+        <button
+          className={styles.disconnectWalletButton}
+          onClick={() => {
+            disconnect();
+          }}
+        >
+          <span className={styles.tokenName}>Disconnect wallet</span>
+        </button>
+      ) : (
+        <button className={styles.disconnectWalletButton} onClick={open}>
+          <span className={styles.tokenName}>Connect wallet</span>
+        </button>
+      )}
       <Modal title="Select a network" handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <div className={styles.networksContainer}>
           {Object.values(NetworksConfigs).map((network) => (
@@ -57,6 +72,7 @@ export default function ChangeNetwork({}: any) {
               className={styles.network}
               onClick={() => {
                 switchNetwork?.(network.chainId);
+                setDefaultChainId(network.chainId);
                 setIsOpen(false);
               }}
             >

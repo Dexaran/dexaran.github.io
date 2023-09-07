@@ -92,6 +92,14 @@
     font-weight: 600;
     line-height: 28px;  
   }
+  a {
+    color: colors.$text-primary;
+    text-decoration: underline;
+    &:hover {
+      color: colors.$palette-green;
+    }
+  }
+
   svg {
     width: 32px;
     height: 32px;

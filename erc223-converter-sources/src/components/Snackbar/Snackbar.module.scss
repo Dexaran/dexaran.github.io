@@ -40,6 +40,30 @@
   }
 }
 
+.error {
+  background: colors.$snackbar-red;
+  border: 1px solid colors.$palette-red;
+  color: colors.$palette-red;
+}
+
+.success {
+  // background: $snackbar-green;
+  // border: 1px solid $palette-green;
+  // color: $palette-green;
+}
+
+.info {
+  // background: $snackbar-blue;
+  // border: 1px solid $palette-blue;
+  // color: $palette-blue;
+}
+
+.warning {
+  // background: $snackbar-orange;
+  // border: 1px solid $palette-orange;
+  // color: $palette-orange;
+}
+
 .iconWrapper {
   //width: 44px;
   //height: 44px;

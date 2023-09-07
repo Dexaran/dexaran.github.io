@@ -12,14 +12,6 @@ const listHeight = 380;
 const rowHeight = 60;
 const rowWidth = 438;
 
-interface Props {
-  amountToConvert: any;
-  setAmountToConvert: any;
-  tokenAddress: any;
-  setTokenAddressERC20: any;
-  tokenBalanceERC20: any;
-  tokenBalanceERC223: any;
-}
 type Token = {
   contract: Address;
   symbol: string;
@@ -45,13 +37,22 @@ const loadChainTokens = async (chainId: number): Promise<Token[]> => {
 };
 
 export default function SelectTokent({
+  defaultChainId,
   amountToConvert,
   setAmountToConvert,
   tokenAddress,
   setTokenAddressERC20,
   tokenBalanceERC20,
   tokenBalanceERC223,
-}: Props) {
+}: {
+  amountToConvert: any;
+  setAmountToConvert: any;
+  tokenAddress: any;
+  setTokenAddressERC20: any;
+  tokenBalanceERC20: any;
+  tokenBalanceERC223: any;
+  defaultChainId: number;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomToken, setIsCustomToken] = useState(false);
   const [customTokenAddress, setCustomTokenAddress] = useState("");
@@ -80,10 +81,10 @@ export default function SelectTokent({
 
   useEffect(() => {
     (async () => {
-      const tokens = await loadChainTokens(chain?.id || 1);
+      const tokens = await loadChainTokens(chain?.id || defaultChainId);
       setChainTokens(tokens || []);
     })();
-  }, [chain?.id]);
+  }, [chain?.id, defaultChainId]);
 
   const {
     data: tokenData,
@@ -149,7 +150,7 @@ export default function SelectTokent({
       </div>
       {isCustomToken ? (
         <>
-          <div className={styles.converterFieldsLabel}>Contract address</div>
+          <div className={styles.converterFieldsLabel}>Contract address (ERC20)</div>
           <div className={styles.converterCustomFields}>
             <div className={styles.amountInputWrapper}>
               <input
@@ -157,7 +158,7 @@ export default function SelectTokent({
                 onChange={(e) => {
                   setCustomTokenAddress(e.target.value);
                 }}
-                placeholder="Contract address"
+                placeholder="Contract address (ERC20)"
                 className={styles.amountInput}
                 type="text"
               />

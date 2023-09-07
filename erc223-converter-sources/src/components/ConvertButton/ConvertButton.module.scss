@@ -5,7 +5,7 @@
   margin-top: 20px;
 }
 
-.successfullModalContainer {
+.txModalContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,14 +13,14 @@
   padding: 40px;
 }
 
-.successfullModalTitle {
+.txModalTitle {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 34px; /* 170% */
 }
 
-.successfullModalDescription {
+.txModalDescription {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -29,7 +29,7 @@
   margin-top: 8px;
 }
 
-.successfullModalTx {
+.txModalTx {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -42,15 +42,15 @@
   font-weight: 600;
   line-height: 28px; /* 175% */
 
-  span {
-    cursor: copy;
-    text-decoration: underline;
-  }
-  span:hover {
+  a {
     color: colors.$palette-green;
+    cursor: pointer;
+  }
+  a:hover {
+    text-decoration: underline; 
   }
 }
-.successfullModalContract {
+.txModalContract {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -63,12 +63,12 @@
   font-weight: 600;
   line-height: 28px; /* 175% */
 
-  span {
-    cursor: copy;
-    text-decoration: underline;
-  }
-  span:hover {
+  a {
     color: colors.$palette-green;
+    cursor: pointer;
+  }
+  a:hover {
+    text-decoration: underline; 
   }
 }
 

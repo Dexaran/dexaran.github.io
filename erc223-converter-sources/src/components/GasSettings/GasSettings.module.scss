@@ -1,0 +1,66 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+
+.gasSettingsContainer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  border-top: 1px solid colors.$border-primary;
+  padding-top: 16px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.converterFieldsLabel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  color: colors.$text-primary;
+  margin-bottom: 4px;
+}
+
+.converterCustomFields {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.amountInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.amountInput {
+  padding: 10px 55px 10px 20px;
+  border: 1px solid colors.$border-primary;
+  width: 100%;
+  background-color: colors.$background-primary;
+  outline: 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: colors.$text-primary;
+}
+
+.networkFee {
+  display: flex;
+  justify-content: space-between;
+  color: colors.$text-primary;
+  margin: 20px 0px;
+
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+  }
+  span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+}
