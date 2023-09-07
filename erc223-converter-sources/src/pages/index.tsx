@@ -12,7 +12,7 @@ import { ERC223 } from "@/pages-partials/ERC223/ERC223";
 export const manrope = Manrope({ subsets: ["latin"] });
 
 export default function Home() {
-  const [tab, setTab] = useState("howItWorks" as TabType);
+  const [tab, setTab] = useState("converter" as TabType);
 
   return (
     <>
