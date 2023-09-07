@@ -7,11 +7,11 @@ import ERC223ABI from "../../constants/abi/erc223.json";
 import { parseEther, parseGwei, parseUnits } from "viem";
 import { PrimaryButton } from "../Button/Button";
 import { useSnackbar } from "@/providers/SnackbarProvider";
-import { CLO_CONVERTER_CONTRACT_ADDRESS } from "@/pages";
 import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
 import { getNetworkExplorerTxUrl } from "../ChangeNetwork/networks";
 import { renderShortHash } from "@/utils/renderAddress";
+import { CLO_CONVERTER_CONTRACT_ADDRESS } from "../../pages-partials/Converter";
 
 export const ConvertToERC20 = ({
   amountToConvert,

@@ -12,7 +12,7 @@ export const Footer = () => {
   const { showMessage } = useSnackbar();
 
   return (
-    <footer className={styles.footer}>
+    <div className={styles.footer}>
       <div className={styles.donationWrapper}>
         <div
           onClick={async () => {
@@ -72,6 +72,6 @@ export const Footer = () => {
           Github
         </a>
       </div>
-    </footer>
+    </div>
   );
 };

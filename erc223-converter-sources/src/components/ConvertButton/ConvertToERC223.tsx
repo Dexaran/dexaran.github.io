@@ -13,11 +13,11 @@ import ERC20ABI from "../../constants/abi/erc20.json";
 import { formatEther, parseEther, parseGwei, parseUnits } from "viem";
 import { PrimaryButton } from "../Button/Button";
 import { renderShortHash } from "@/utils/renderAddress";
-import { CLO_CONVERTER_CONTRACT_ADDRESS } from "@/pages";
 import { GasSettings } from "../GasSettings/GasSettings";
 import { getNetworkExplorerTxUrl } from "../ChangeNetwork/networks";
 import TxModal from "./TxModal";
 import { useSnackbar } from "@/providers/SnackbarProvider";
+import { CLO_CONVERTER_CONTRACT_ADDRESS } from "../../pages-partials/Converter";
 
 const ToERC223ApproveButton = ({
   amountToConvert,
