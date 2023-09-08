@@ -6,7 +6,7 @@ name: GitHub Pages deploy
 on:
   push:
     paths:
-      - erc223-converter-sources/**
+      - token-converter-sources/**
     branches: [master]
 concurrency:
   group: ci-${{ github.ref }}
@@ -23,15 +23,15 @@ jobs:
           node-version: '16.x'
 
       - name: Installing my packages
-        run: cd erc223-converter-sources && npm install
+        run: cd token-converter-sources && npm install
 
       - name: Build my App
-        run: cd erc223-converter-sources && npm run build && npm run export
+        run: cd token-converter-sources && npm run build && npm run export
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           GITHUB_TOKEN: ${{ secrets.token }}
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: erc223-converter-sources/out # The folder the action should deploy.
-          target-folder: erc223-converter
+          FOLDER: token-converter-sources/out # The folder the action should deploy.
+          target-folder: token-converter
