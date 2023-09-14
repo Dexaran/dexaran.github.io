@@ -23,46 +23,6 @@
   overflow: hidden;
 }
 
-.footer {
-  font-size: 14px;
-  line-height: 24px;
-  background-color: colors.$background-primary;
-  border-top: colors.$border-primary;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  & > div {
-    width: 33%;
-  }
-
-  .licence {
-    text-align: center;
-    pointer-events: none;
-  }
-
-  a {
-    pointer-events: auto;
-    color: colors.$text-primary;
-    transition-duration: 0.2s;
-
-    &:hover {
-      color: colors.$palette-green;
-    }
-  }
-
-  @include media.for-large-desktop {
-    padding: 20px;
-    font-size: 18px;
-    line-height: 32px;
-  }
-}
-
-.donationWrapper {
-  display: flex;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -128,6 +88,23 @@
       max-width: 1000px;
     }
   }
+  @include media.for-mobile {
+    h1 {
+      font-size: 28px;
+      line-height: 38px;
+    }
+    h2 {
+      font-size: 18px;
+      line-height: 32px;
+      padding: 0px 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 32px; 
+      padding: 0px 20px;
+    }
+  }
+
 }
 
 .tab {
@@ -147,6 +124,15 @@
   &.active {
     flex: 0.664;
   }
+
+  @include media.for-mobile {
+    display: none;
+    &.active {
+      display: flex;
+      flex: 1;
+    }  
+  }
+
 }
 
 .resources {
@@ -165,6 +151,9 @@
     padding: 0 30px;
     gap: 30px;
   }
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .eventsTabContent {
@@ -172,6 +161,9 @@
 
   flex: 1;
   overflow-y: auto;
+  @include media.for-mobile {
+    padding: 0px;
+  }
 }
 
 .bgImage {
@@ -190,6 +182,9 @@
   @include media.for-ultra-large-desktop {
     left: -25%;
   }
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .rightImage {
@@ -200,6 +195,11 @@
   @include media.for-ultra-large-desktop {
     right: -25%;
   }
+  @include media.for-mobile {
+    right: -50%;
+    width: 150%;
+    height: auto;
+  }
 }
 
 .resourceTabs {
@@ -207,14 +207,26 @@
   grid-template-columns: 1fr 1fr 1fr;
   border: 1px solid colors.$border-primary;
   margin: 0 20px;
+  @include media.for-mobile {
+    margin: 0px;
+  }
 }
 
 .inactiveContent {
-  display: flex;
+  display: none;
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
   max-height: 100vh;
+
+  &.active {
+    display: flex;
+  }
+
+  @include media.for-mobile {
+    max-height: none;
+    display: flex;
+  }
 }
 
 .resourceTabButton {
@@ -239,6 +251,12 @@
     cursor: pointer;
     background-color: #323531;
   }
+
+  @include media.for-mobile {
+    font-size: 14px;
+    line-height: 24px;
+    height: 48px;
+  }
 }
 
 .inactiveTabColumn {
@@ -249,97 +267,43 @@
   gap: 10px;
   margin: 10px 20px 0;
   padding-right: 1px;
-}
 
-.footerLinks {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
-
-  @include media.for-large-desktop {
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 4px;
+  @include media.for-mobile {
+    margin: 16px;
   }
 }
 
-.addressRow {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.donation {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  border-radius: 100px;
-  background-color: colors.$background-secondary;
-  gap: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition-duration: 0.2s;
-
-  &:hover {
-    border-color: colors.$palette-green;
-    .donationAddress {
-      color: colors.$palette-green;
-    }
-    svg {
-      color: colors.$palette-green;
-    }
-  }
-
-  img {
-    width: 32px;
-  }
-
-  @include media.for-large-desktop {
-    padding: 10px 32px 10px 20px;
-    img {
-      width: 58px;
-    }
-  }
-}
-
-.donationLabel {
-  color: colors.$text-secondary;
-  display: block;
-  white-space: nowrap;
-  @include media.for-large-desktop {
-    display: none;
-  }
-}
-.donationLabelLarge {
-  color: colors.$text-secondary;
+.mobileTabs {
   display: none;
-  @include media.for-large-desktop {
-    display: block;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid colors.$border-primary;
+  margin: 16px;
+  margin-top: 0px;
+
+  @include media.for-mobile {
+    display: grid;
   }
 }
-
-.donationAddress {
-  transition-duration: 0.2s;
-  color: colors.$text-primary;
-}
-
-.donationText {
-  display: grid;
-  gap: 4px;
-}
-
-.copyAddressForDonationsButton {
-  background: transparent;
-  padding: 0;
+.mobileTabButton {
+  background-color: colors.$background-primary;
   border: 0;
-  width: 24px;
-  height: 24px;
+  padding: 0;
+  height: 60px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  color: colors.$text-primary;
 
-  svg {
-    color: colors.$text-secondary;
-    transition-duration: 0.2s;
+  &:not(:last-child) {
+    border-right: 1px solid colors.$border-primary;
+  }
+
+  &.active {
+    background-color: colors.$background-secondary;
+  }
+
+  &:hover:not(.active) {
+    cursor: pointer;
+    background-color: #323531;
   }
 }
