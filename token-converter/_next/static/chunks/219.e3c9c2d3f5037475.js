@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[219],{3219:function(s){s.exports=JSON.parse('[{"contract":"0x9e3549954138E52C230aCB92A9358C3842ABEb41","symbol":"TEST","logo":"https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png","decimals":18,"markets":[]}]')}}]);
