@@ -9,9 +9,8 @@ import { PrimaryButton } from "../Button/Button";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
-import { getNetworkExplorerTxUrl } from "../ChangeNetwork/networks";
 import { renderShortHash } from "@/utils/renderAddress";
-import { CLO_CONVERTER_CONTRACT_ADDRESS } from "../../pages-partials/Converter";
+import { getConverterContract, getNetworkExplorerTxUrl } from "@/utils/networks";
 
 export const ConvertToERC20 = ({
   amountToConvert,
@@ -52,7 +51,7 @@ export const ConvertToERC20 = ({
     address: tokenAddressERC223,
     abi: ERC223ABI,
     functionName: "transfer",
-    args: [CLO_CONVERTER_CONTRACT_ADDRESS, parseEther(amountToConvert)],
+    args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
     gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
     gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
   });
@@ -99,7 +98,7 @@ export const ConvertToERC20 = ({
             address={tokenAddressERC20}
             abi={ERC20ABI}
             functionName="approve"
-            args={[CLO_CONVERTER_CONTRACT_ADDRESS, parseEther(amountToConvert)]}
+            args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
           />
           <PrimaryButton
             disabled={!amountToConvert}

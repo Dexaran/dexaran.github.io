@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./Footer.module.scss";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { ConverterIcons } from "../ConverterIcons";
-import TokensEth from "../../../public/tokens/eth.json";
 import { basePath } from "@/constants/build-config/isProd";
 import { renderShortAddress } from "@/utils/renderAddress";
 

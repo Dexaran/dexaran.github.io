@@ -14,10 +14,9 @@ import { formatEther, parseEther, parseGwei, parseUnits } from "viem";
 import { PrimaryButton } from "../Button/Button";
 import { renderShortHash } from "@/utils/renderAddress";
 import { GasSettings } from "../GasSettings/GasSettings";
-import { getNetworkExplorerTxUrl } from "../ChangeNetwork/networks";
 import TxModal from "./TxModal";
 import { useSnackbar } from "@/providers/SnackbarProvider";
-import { CLO_CONVERTER_CONTRACT_ADDRESS } from "../../pages-partials/Converter";
+import { getConverterContract, getNetworkExplorerTxUrl } from "@/utils/networks";
 
 const ToERC223ApproveButton = ({
   amountToConvert,
@@ -35,7 +34,7 @@ const ToERC223ApproveButton = ({
       address: tokenAddressERC20,
       abi: ERC20ABI,
       functionName: "approve",
-      args: [CLO_CONVERTER_CONTRACT_ADDRESS, parseEther(amountToConvert)],
+      args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
       gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
       gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
     } as any,
@@ -64,7 +63,7 @@ const ToERC223ApproveButton = ({
         address={tokenAddressERC20}
         abi={ERC20ABI}
         functionName="approve"
-        args={[CLO_CONVERTER_CONTRACT_ADDRESS, parseEther(amountToConvert)]}
+        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
       />
       <PrimaryButton onClick={handleTokenApprove} isLoading={approving}>
         Approve test tokens
@@ -100,13 +99,14 @@ const ToERC223ConvertButton = ({
 }) => {
   const [gasPrice, setGasPrice] = useState(null as null | string);
   const [gasLimit, setGasLimit] = useState(null as null | string);
+  const { chain } = useNetwork();
 
   const {
     writeAsync: writeConvert,
     isLoading: isWriteConvertLoading,
     data,
   } = useContractWrite<typeof TokenConverterABI, "convertERC20toERC223", any>({
-    address: CLO_CONVERTER_CONTRACT_ADDRESS,
+    address: getConverterContract(chain?.id),
     abi: TokenConverterABI,
     functionName: "convertERC20toERC223",
     args: [tokenAddressERC20, parseEther(amountToConvert)],
@@ -136,7 +136,7 @@ const ToERC223ConvertButton = ({
         setGasPrice={setGasPrice}
         gasLimit={gasLimit}
         setGasLimit={setGasLimit}
-        address={CLO_CONVERTER_CONTRACT_ADDRESS}
+        address={getConverterContract(chain?.id)}
         abi={TokenConverterABI}
         functionName="convertERC20toERC223"
         args={[tokenAddressERC20, parseEther(amountToConvert)]}
@@ -232,12 +232,12 @@ export const ConvertToERC223 = ({
 }) => {
   const [waitingTxHash, setWaitingTxHash] = useState(null as null | string);
   const { address } = useAccount();
-
+  const { chain } = useNetwork();
   const { data: readData } = useContractRead({
     address: tokenAddressERC20,
     abi: ERC20ABI,
     functionName: "allowance",
-    args: [address, CLO_CONVERTER_CONTRACT_ADDRESS],
+    args: [address, getConverterContract(chain?.id)],
     watch: true,
   });
 

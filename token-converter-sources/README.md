@@ -1,38 +1,109 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 style="text-align: center">Token converter ERC-20 <=> ERC-223</h1>
 
-## Getting Started
+<h2>Get started</h2>
 
-First, run the development server:
+To run development server:
 
-```bash
+- Install project dependencies
+```` 
+npm install 
+````
+
+- Run development server:
+
+````
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+````
+
+App will be available on the [localhost:3000](localhost:3000)
+
+<h2>Add new Network</h2>
+
+1. Open file  `src/constants/networks.ts`
+2. Add new object to **NetworksConfigs** 
+```
+{
+  name: string;
+  icon: string;
+  chainId: number;
+  explorerTx: string;
+  explorerToken: string;
+  converterContract: string;
+  chainConfig: Chain;
+}
+```
+The `chainConfig` field is of type Chain from the `viem` library.
+Read more: https://viem.sh/docs/clients/chains.html#chains
+
+For most networks chainConfig - can simply be imported from `wagmi/chains`
+
+**Example (Eth)**: 
+
+```
+import { mainnet } from "wagmi/chains";
+
+...
+
+mainnet: {
+  name: "Ethereum mainnet",
+  icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png",
+  chainId: 1,
+  explorerTx: "https://etherscan.io/tx/{tx}",
+  explorerToken: "https://etherscan.io/token/{contract}",
+  converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+  chainConfig: mainnet,
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**For each of the added networks, we need to add a list of tokens.**
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<h2>Add | Edit Tokens lists</h2>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. **Open** (or create) file `src/constants/tokens/$CHAIN_ID.json` where `$CHAIN_ID` is **ChainId** of the network for which you want to add the token configuration.
+2. **Add** new Object to array with following required fields:
+```
+{
+  contract: string,
+  symbol: string,
+  logo: string,
+  decimals: number,
+}
+```
+**Example**: 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+{
+  "contract": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+  "symbol": "USDT",
+  "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
+  "decimals": 18,
+},
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<h2>Edit content</h2>
 
-## Learn More
+To change texts on `How it works` and `ERC-223` tabs you need **Open** file `/src/constants/content.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+All other texts can be changed directly in the source code using search.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<h2>Deployment</h2>
 
-## Deploy on Vercel
+To deploy changes simply push changes to master branch. Any push to master branch
+will trigger github action, that will build app and push it to `public` branch. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Github Action configuration stored under following path: `.github/workflows/converter.js.yml`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If there are any problems with deployment, check following repository settings: 
+
+- Settings > Pages > Build and deployment:
+
+    - Source should be "Deploy from branch"
+    - Branch should be "public"
+    
+
+- Settings > Actions > General > Workflow permissions
+
+    - Check that "Allow Github Actions to create and approve pull requests" checkbox is enabled 
+    
+If settings are okay but there are still some issues with deployment, please contact developer to investigate the issue.

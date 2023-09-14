@@ -4,8 +4,8 @@ import { PrimaryButton } from "../Button/Button";
 import Modal from "../Modal";
 import { ConverterIcons } from "../ConverterIcons";
 import { renderShortAddress, renderShortHash } from "@/utils/renderAddress";
-import { getNetworkExplorerTokenUrl, getNetworkExplorerTxUrl } from "../ChangeNetwork/networks";
 import { useNetwork } from "wagmi";
+import { getNetworkExplorerTokenUrl, getNetworkExplorerTxUrl } from "@/utils/networks";
 
 export default function TxModal({
   isOpen,

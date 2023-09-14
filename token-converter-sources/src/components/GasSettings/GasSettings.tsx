@@ -30,7 +30,7 @@ export const GasSettings = ({
   const { connector: activeConnector } = useAccount();
   const { data: feeData } = useFeeData();
 
-  const defaultGasPrice = formatGwei(feeData.gasPrice);
+  const defaultGasPrice = feeData?.gasPrice ? formatGwei(feeData.gasPrice) : "0";
 
   useEffect(() => {
     (async () => {

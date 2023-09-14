@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./ChangeNetwork.module.scss";
 import { ConverterIcons } from "../ConverterIcons";
-import { NetworksConfigs } from "./networks";
+import { NetworksConfigs } from "../../constants/networks";
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 

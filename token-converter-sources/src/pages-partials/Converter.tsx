@@ -13,14 +13,12 @@ import { DebugBlock } from "@/components/DebugBlock/DebugBlock";
 import { PrimaryButton } from "@/components/Button/Button";
 import { ConvertToERC223 } from "@/components/ConvertButton/ConvertToERC223";
 import { ConvertToERC20 } from "@/components/ConvertButton/ConvertToERC20";
+import { getConverterContract, supportedChainIds } from "@/utils/networks";
 
-export const CLO_CONVERTER_CONTRACT_ADDRESS = "0xc676e76573267cc2E053BE8637Ba71d6BA321195";
 const ERC20_URL = "https://eips.ethereum.org/EIPS/eip-20";
 const ERC223_URL = "https://eips.ethereum.org/EIPS/eip-223";
 
 export const manrope = Manrope({ subsets: ["latin"] });
-
-export const supportedChainIds = [1, 10, 56, 137, 820];
 
 export const Converter = () => {
   const [hasMounted, setHasMounted] = useState(false);
@@ -49,7 +47,7 @@ export const Converter = () => {
   });
 
   const { data: tokenAddressERC223 } = useContractRead({
-    address: CLO_CONVERTER_CONTRACT_ADDRESS,
+    address: getConverterContract(chain?.id),
     abi: TokenConverterABI,
     functionName: "getWrapperFor",
     args: [tokenAddressERC20],
@@ -141,6 +139,7 @@ export const Converter = () => {
               setTokenAddressERC20={setTokenAddressERC20}
               tokenBalanceERC20={tokenBalanceERC20}
               tokenBalanceERC223={tokenBalanceERC223}
+              toERC223={toERC223}
             />
           </div>
         )}

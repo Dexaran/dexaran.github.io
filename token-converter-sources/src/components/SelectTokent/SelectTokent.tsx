@@ -2,15 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./SelectTokent.module.scss";
 import { ConverterIcons } from "../ConverterIcons";
-import { useAccount, useNetwork, useToken } from "wagmi";
+import { useNetwork, useToken } from "wagmi";
 import Checkbox from "../Checkbox/Checkbox";
-import tokens from "./tokens.json";
 import { Address, isAddress } from "viem";
 import { List, AutoSizer } from "react-virtualized";
 
 const listHeight = 380;
 const rowHeight = 60;
-const rowWidth = 438;
 
 type Token = {
   contract: Address;
@@ -19,20 +17,18 @@ type Token = {
   decimals: number;
   markets: number[];
 };
+
 const loadChainTokens = async (chainId: number): Promise<Token[]> => {
-  switch (chainId) {
-    case 1:
-      return (await import("../../../public/tokens/eth.json")).default as Token[];
-    case 10:
-      return (await import("../../../public/tokens/op.json")).default as Token[];
-    case 56:
-      return (await import("../../../public/tokens/bsc.json")).default as Token[];
-    case 137:
-      return (await import("../../../public/tokens/polygon.json")).default as Token[];
-    case 820:
-      return (await import("../../../public/tokens/clo.json")).default as Token[];
-    default:
+  if (!chainId) return Promise.resolve([]);
+  try {
+    const chainTokens = (await import(`../../constants/tokens/${chainId}.json`)).default as Token[];
+    if (chainTokens?.length) {
+      return chainTokens;
+    } else {
       return Promise.resolve([]);
+    }
+  } catch (error) {
+    return Promise.resolve([]);
   }
 };
 
@@ -44,6 +40,7 @@ export default function SelectTokent({
   setTokenAddressERC20,
   tokenBalanceERC20,
   tokenBalanceERC223,
+  toERC223,
 }: {
   amountToConvert: any;
   setAmountToConvert: any;
@@ -52,6 +49,7 @@ export default function SelectTokent({
   tokenBalanceERC20: any;
   tokenBalanceERC223: any;
   defaultChainId: number;
+  toERC223: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomToken, setIsCustomToken] = useState(false);
@@ -187,8 +185,10 @@ export default function SelectTokent({
               {isCustomTokenAddressValid ? (
                 <button
                   onClick={() => {
-                    // TODO: check direction
-                    setAmountToConvert(tokenBalanceERC20?.formatted || "");
+                    setAmountToConvert(
+                      (toERC223 ? tokenBalanceERC20?.formatted : tokenBalanceERC223?.formatted) ||
+                        "",
+                    );
                   }}
                   className={styles.maxButton}
                 >
@@ -214,8 +214,9 @@ export default function SelectTokent({
               />
               <button
                 onClick={() => {
-                  // TODO: check direction
-                  setAmountToConvert(tokenBalanceERC20?.formatted || "");
+                  setAmountToConvert(
+                    (toERC223 ? tokenBalanceERC20?.formatted : tokenBalanceERC223?.formatted) || "",
+                  );
                 }}
                 className={styles.maxButton}
               >

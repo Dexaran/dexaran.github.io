@@ -26,11 +26,9 @@ export default function Home() {
         <Header tab={tab} setTab={setTab} />
         <div className={styles.contentBlockContainer}>
           <div className={styles.contentBlock}>
-            {/* TODO */}
             {tab === "converter" ? <Converter /> : null}
             {tab === "howItWorks" ? <HowItWorks /> : null}
             {tab === "ERC223" ? <ERC223 /> : null}
-            
           </div>
         </div>
         <Footer />
