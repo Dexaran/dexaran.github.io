@@ -26,6 +26,7 @@ export const Converter = () => {
   const [toERC223, setToERC223] = useState(true);
   const [tokenAddressERC20, setTokenAddressERC20] = useState();
   const [defaultChainId, setDefaultChainId] = useState(1);
+  const [isChangeNetworkOpen, setIsChangeNetworkOpen] = useState(false);
 
   const { address, isConnected } = useAccount();
 
@@ -77,7 +78,12 @@ export const Converter = () => {
           conversion process <a href="#">here.</a>
         </p>
       </div>
-      <ChangeNetwork defaultChainId={defaultChainId} setDefaultChainId={setDefaultChainId} />
+      <ChangeNetwork
+        isOpen={isChangeNetworkOpen}
+        setIsOpen={setIsChangeNetworkOpen}
+        defaultChainId={defaultChainId}
+        setDefaultChainId={setDefaultChainId}
+      />
       <div className={styles.converter}>
         <div className={styles.infoLabel}>
           <ConverterIcons name="info" />
@@ -126,7 +132,7 @@ export const Converter = () => {
         {isConnected && !isNetworkSupported && (
           <div className={styles.notSupported}>
             Converter for {chain?.name} is not supported yet
-            <PrimaryButton onClick={() => switchNetwork?.(820)}>Change to callisto</PrimaryButton>
+            <PrimaryButton onClick={() => setIsChangeNetworkOpen(true)}>Switch network</PrimaryButton>
           </div>
         )}
         {(isNetworkSupported || !isConnected) && (

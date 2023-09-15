@@ -70,7 +70,7 @@ export const GasSettings = ({
             }}
             placeholder="Gas Price"
             className={styles.amountInput}
-            type="text"
+            type="number"
           />
         </div>
         <div className={styles.inputContainer}>
@@ -82,7 +82,7 @@ export const GasSettings = ({
             }}
             placeholder="Gas Limit"
             className={styles.amountInput}
-            type="text"
+            type="number"
           />
         </div>
       </div>

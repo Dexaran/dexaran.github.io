@@ -22,11 +22,14 @@ interface Props {
 export default function ChangeNetwork({
   defaultChainId,
   setDefaultChainId,
+  isOpen,
+  setIsOpen,
 }: {
   defaultChainId: number;
   setDefaultChainId: any;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect();
   const { isConnected } = useAccount();
@@ -37,16 +40,24 @@ export default function ChangeNetwork({
   );
   const { switchNetwork } = useSwitchNetwork();
 
-  if (!selectedNetwork) return null;
   return (
     <div className={styles.container}>
       <button className={styles.pickNetworkButton} onClick={() => setIsOpen(true)}>
         <span className={styles.tokenName}>Network</span>
         <div>
-          <span className={styles.tokenName}>
-            <img src={selectedNetwork.icon} width="24px" height="24px" alt={selectedNetwork.name} />
-            {selectedNetwork.name}
-          </span>
+          {selectedNetwork ? (
+            <span className={styles.tokenName}>
+              <img
+                src={selectedNetwork.icon}
+                width="24px"
+                height="24px"
+                alt={selectedNetwork.name}
+              />
+              {selectedNetwork.name}
+            </span>
+          ) : (
+            <span className={styles.tokenName}>Select networks</span>
+          )}
           <ConverterIcons name="chevronDown" fill="#C3D8D5" />
         </div>
       </button>

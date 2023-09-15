@@ -29,7 +29,7 @@ const ToERC223ApproveButton = ({
   const [gasLimit, setGasLimit] = useState(null as null | string);
   const { chain } = useNetwork();
 
-  const { writeAsync: writeTokenApprove, data } = useContractWrite<typeof ERC20ABI, "approve", any>(
+  const { writeAsync: writeTokenApprove, data, isLoading } = useContractWrite<typeof ERC20ABI, "approve", any>(
     {
       address: tokenAddressERC20,
       abi: ERC20ABI,
@@ -65,7 +65,7 @@ const ToERC223ApproveButton = ({
         functionName="approve"
         args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
       />
-      <PrimaryButton onClick={handleTokenApprove} isLoading={approving}>
+      <PrimaryButton onClick={handleTokenApprove} isLoading={isLoading || approving}>
         Approve test tokens
       </PrimaryButton>
       {!!approving && !!data?.hash && (
