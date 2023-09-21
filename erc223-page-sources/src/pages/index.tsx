@@ -26,17 +26,17 @@ const inactiveResourceTabs: Array<{
     key: "articles",
     title: "Articles",
     tooltipText: "The most important articles written by the author of ERC-223 are pinned",
-    mobileTooltipText: "The most important articles written by the author of ERC-223 are pinned"
+    mobileTooltipText: "The most important articles written by the author of ERC-223 are pinned",
   },
   {
     key: "erc223",
     title: "ERC-223",
-    mobileTooltipText: "The most important links"
+    mobileTooltipText: "The most important links",
   },
   {
     key: "dev-sources",
     title: "Dev res.",
-    mobileTooltipText: "Tutorials, guidelines, examples"
+    mobileTooltipText: "Tutorials, guidelines, examples",
   },
 ];
 
@@ -62,7 +62,8 @@ const EIP223Description = (
   </>
 );
 
-const EventsDescription = "The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead.";
+const EventsDescription =
+  "The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead.";
 
 const mobileTabs: Array<{
   key: number;
@@ -72,15 +73,14 @@ const mobileTabs: Array<{
   {
     key: 0,
     title: "EIP-223",
-    description: EIP223Description
+    description: EIP223Description,
   },
   {
     key: 1,
     title: "Events",
-    description: EventsDescription
+    description: EventsDescription,
   },
 ];
-
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
@@ -96,8 +96,12 @@ export default function Home() {
           name="description"
           content="ERC-223 articles, events and development sources aggregator"
         />
-        {/* <meta name="viewport" content="width=1280,initial-scale=1" /> */}
+        <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
         <meta name="keywords" content="ERC-223 ethereum token standard" />
+        <meta
+          name="google-site-verification"
+          content="KJvg15RW1iBMdz400nnEWMh7MGfMQZe19ytp_3QHBWs"
+        />
 
         <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
@@ -230,7 +234,7 @@ export default function Home() {
             )}
             <div className={clsx(styles.inactiveContent, activeTab === 1 && styles.active)}>
               <div className={styles.resourceTabs}>
-                {inactiveResourceTabs.map(({ key, title, tooltipText, mobileTooltipText}) => {
+                {inactiveResourceTabs.map(({ key, title, tooltipText, mobileTooltipText }) => {
                   return (
                     <button
                       className={clsx(
