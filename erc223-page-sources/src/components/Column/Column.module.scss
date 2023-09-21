@@ -7,6 +7,10 @@
   flex: 1;
   overflow-y: auto;
   max-height: 100vh;
+
+  @include media.for-mobile {
+    max-height: none;
+  }
 }
 
 .title {
@@ -22,15 +26,26 @@
     line-height: 34px;
     margin-bottom: 3px;
   }
+  @include media.for-mobile {
+    font-size: 14px;
+    line-height: 24px; 
+  }
 }
 
 .columnHeader {
   padding: 16px 20px;
   background-color: colors.$background-secondary;
   margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 
   @include media.for-large-desktop {
     padding: 24px 30px;
+    margin-bottom: 16px;
+  }
+  @include media.for-mobile {
+    padding: 12px 16px;
     margin-bottom: 16px;
   }
 }
@@ -43,24 +58,6 @@
   svg {
     color: colors.$text-secondary;
   }
-}
-.tooltip {
-  max-width: 480px;
-  background-color: colors.$background-secondary;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid colors.$text-primary;
-}
-.tooltipArrow {
-  background-color: colors.$background-secondary;
-  border-right: 1px solid colors.$text-primary;
-  border-bottom: 1px solid colors.$text-primary;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  bottom: 4px;
-  left: calc(50% - 8px);
-  transform: rotate(45deg);
 }
 
 .description {
@@ -87,5 +84,9 @@
   padding-bottom: 20px;
   @include media.for-large-desktop {
     gap: 16px;
+  }
+  @include media.for-mobile {
+    overflow-x: hidden;
+    padding: 0 16px;
   }
 }

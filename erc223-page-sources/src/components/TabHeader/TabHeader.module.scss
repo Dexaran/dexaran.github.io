@@ -9,6 +9,9 @@
   @include media.for-large-desktop {
     padding: 30px;
   }
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .tabTitle {

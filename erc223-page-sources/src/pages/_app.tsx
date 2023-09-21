@@ -9,7 +9,7 @@ const manrope = Manrope({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SnackbarProvider>
-      <div className={clsx(manrope.className, "wrapper")}>
+      <div className={clsx(manrope.className, "wrapper")} id="wrapper">
         <Component {...pageProps} />
       </div>
     </SnackbarProvider>
