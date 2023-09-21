@@ -51,6 +51,7 @@ export default function Home() {
         />
         <meta name="viewport" content="width=1280,initial-scale=1" />
         <meta name="keywords" content="ERC-223 ethereum token standard" />
+        <meta name="google-site-verification" content="KJvg15RW1iBMdz400nnEWMh7MGfMQZe19ytp_3QHBWs" />
 
         <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
