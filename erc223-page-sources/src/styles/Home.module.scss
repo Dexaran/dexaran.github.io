@@ -237,13 +237,14 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 28px;
-  color: colors.$text-primary;
+  color: colors.$text-secondary;
 
   &:not(:last-child) {
     border-right: 1px solid colors.$border-primary;
   }
 
   &.active {
+    color: colors.$text-primary;
     background-color: colors.$background-secondary;
   }
 
@@ -253,16 +254,26 @@
   }
 
   @include media.for-mobile {
-    font-size: 14px;
-    line-height: 24px;
     height: 48px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    padding-left: 16px;
   }
+
+  position: relative;
+  div {
+    position: absolute;
+    right: 8px;
+    top: calc(50% - 12px)
+  }  
 }
 
 .inactiveTabColumn {
   display: flex;
   flex-direction: column;
-  //border: 1px solid colors.$border-primary;
   overflow-y: auto;
   gap: 10px;
   margin: 10px 20px 0;
@@ -292,13 +303,13 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 28px;
-  color: colors.$text-primary;
-
+  color: colors.$text-secondary;
   &:not(:last-child) {
     border-right: 1px solid colors.$border-primary;
   }
 
   &.active {
+    color: colors.$text-primary;
     background-color: colors.$background-secondary;
   }
 
@@ -306,4 +317,11 @@
     cursor: pointer;
     background-color: #323531;
   }
+
+  position: relative;
+  div {
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 12px)
+  }  
 }

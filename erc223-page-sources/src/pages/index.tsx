@@ -14,49 +14,82 @@ import { IResourceTab } from "../types";
 import { basePath } from "../constants/build-config/isProd";
 import { useSnackbar } from "../providers/SnackbarProvider";
 import { Footer } from "@/components/Footer/Footer";
+import { MobileToolTip } from "@/components/Tooltip/Tooltip";
 
 const inactiveResourceTabs: Array<{
   key: IResourceTab;
   title: string;
+  tooltipText?: string;
+  mobileTooltipText?: string;
 }> = [
   {
     key: "articles",
     title: "Articles",
+    tooltipText: "The most important articles written by the author of ERC-223 are pinned",
+    mobileTooltipText: "The most important articles written by the author of ERC-223 are pinned"
   },
   {
     key: "erc223",
     title: "ERC-223",
+    mobileTooltipText: "The most important links"
   },
   {
     key: "dev-sources",
-    title: "Dev. sources",
+    title: "Dev res.",
+    mobileTooltipText: "Tutorials, guidelines, examples"
   },
 ];
+
+const EIP223Description = (
+  <>
+    This page will be aggregating the updates and resources related to the adoption and development
+    of{" "}
+    <a href="https://eips.ethereum.org/EIPS/eip-223" target="_blank" rel="noopener noreferrer">
+      ERC-223
+    </a>{" "}
+    standard. If you wish to contribute to the development - you can write guidelines, articles,
+    code templates or spread the word about our efforts. Your content can get listed at this page
+    too! You can navigate to{" "}
+    <a
+      href="https://github.com/Dexaran/dexaran.github.io/issues"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      https://github.com/Dexaran/dexaran.github.io/issues
+    </a>{" "}
+    and open a new issue. Describe your content and it will be listed at this page in the next
+    update.
+  </>
+);
+
+const EventsDescription = "The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead.";
+
 const mobileTabs: Array<{
   key: number;
   title: string;
+  description: string | React.ReactNode;
 }> = [
   {
     key: 0,
     title: "EIP-223",
+    description: EIP223Description
   },
   {
     key: 1,
     title: "Events",
+    description: EventsDescription
   },
 ];
 
-const addressForDonation = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeResource, setActiveResource] = useState<IResourceTab>("articles");
 
-  const { showMessage } = useSnackbar();
   const [eventId, setEventId] = useState(null as null | string);
 
   return (
-    <div className={styles.page}>
+    <div className={clsx(styles.page)}>
       <Head>
         <title>ERC-223</title>
         <meta
@@ -122,7 +155,7 @@ export default function Home() {
       <main className={styles.main}>
         <div>
           <div className={styles.mobileTabs}>
-            {mobileTabs.map(({ key, title }) => {
+            {mobileTabs.map(({ key, title, description }) => {
               return (
                 <button
                   className={clsx(styles.mobileTabButton, activeTab === key && styles.active)}
@@ -130,6 +163,7 @@ export default function Home() {
                   onClick={() => setActiveTab(key)}
                 >
                   {title}
+                  <MobileToolTip>{description}</MobileToolTip>
                 </button>
               );
             })}
@@ -141,31 +175,7 @@ export default function Home() {
               isActive={activeTab === 0}
               arrowDirection="right"
               title="EIP-223"
-              description={
-                <>
-                  This page will be aggregating the updates and resources related to the adoption
-                  and development of{" "}
-                  <a
-                    href="https://eips.ethereum.org/EIPS/eip-223"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    ERC-223
-                  </a>{" "}
-                  standard. If you wish to contribute to the development - you can write guidelines,
-                  articles, code templates or spread the word about our efforts. Your content can
-                  get listed at this page too! You can navigate to{" "}
-                  <a
-                    href="https://github.com/Dexaran/dexaran.github.io/issues"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://github.com/Dexaran/dexaran.github.io/issues
-                  </a>{" "}
-                  and open a new issue. Describe your content and it will be listed at this page in
-                  the next update.
-                </>
-              }
+              description={EIP223Description}
               handleClick={() => setActiveTab(0)}
             />
             {activeTab === 0 && (
@@ -220,7 +230,7 @@ export default function Home() {
             )}
             <div className={clsx(styles.inactiveContent, activeTab === 1 && styles.active)}>
               <div className={styles.resourceTabs}>
-                {inactiveResourceTabs.map(({ key, title }) => {
+                {inactiveResourceTabs.map(({ key, title, tooltipText, mobileTooltipText}) => {
                   return (
                     <button
                       className={clsx(
@@ -233,6 +243,9 @@ export default function Home() {
                       }}
                     >
                       {title}
+                      {mobileTooltipText ? (
+                        <MobileToolTip>{mobileTooltipText}</MobileToolTip>
+                      ) : null}
                     </button>
                   );
                 })}
@@ -290,7 +303,7 @@ export default function Home() {
           <div className={clsx(styles.tab, activeTab === 1 && styles.active)}>
             <TabHeader
               title="Events"
-              description="The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead."
+              description={EventsDescription}
               arrowDirection="left"
               isActive={activeTab === 1}
               handleClick={() => setActiveTab(1)}

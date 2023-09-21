@@ -37,7 +37,8 @@
   background-color: colors.$background-secondary;
   margin-bottom: 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 
   @include media.for-large-desktop {
     padding: 24px 30px;
@@ -57,24 +58,6 @@
   svg {
     color: colors.$text-secondary;
   }
-}
-.tooltip {
-  max-width: 480px;
-  background-color: colors.$background-secondary;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid colors.$text-primary;
-}
-.tooltipArrow {
-  background-color: colors.$background-secondary;
-  border-right: 1px solid colors.$text-primary;
-  border-bottom: 1px solid colors.$text-primary;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  bottom: 4px;
-  left: calc(50% - 8px);
-  transform: rotate(45deg);
 }
 
 .description {
