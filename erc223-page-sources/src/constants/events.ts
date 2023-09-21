@@ -49,6 +49,7 @@ export const events: IRecentEvent[] = [
     title: "ERC-223 is moved to 'Last Call' status",
     url: "https://github.com/ethereum/EIPs/pull/7483#pullrequestreview-1585680567",
     date: "19.08.2023",
+    color: "#9E9E9E",
   },
   {
     title: "[Callisto] Dex223 vs Soy.Finance ERC-223 compatible exchange description",
