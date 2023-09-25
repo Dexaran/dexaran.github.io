@@ -16,56 +16,139 @@
 
 @keyframes glow-main {
   0% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   6% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   15% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #44ffa6, 0 0 40px #44ffa6, 0 0 50px #44ffa6, 0 0 60px #44ffa6, 0 0 70px #44ffa6, 0 0 90px #44ffa6;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 30px #44ffa6,
+      0 0 40px #44ffa6,
+      0 0 50px #44ffa6,
+      0 0 60px #44ffa6,
+      0 0 70px #44ffa6,
+      0 0 90px #44ffa6;
   }
-  
+
   70% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #44ffa6, 0 0 40px #44ffa6, 0 0 50px #44ffa6, 0 0 60px #44ffa6, 0 0 70px #44ffa6, 0 0 90px #44ffa6;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 30px #44ffa6,
+      0 0 40px #44ffa6,
+      0 0 50px #44ffa6,
+      0 0 60px #44ffa6,
+      0 0 70px #44ffa6,
+      0 0 90px #44ffa6;
   }
-  
+
   90% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   100% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
 }
 
 @keyframes glow-subtitles {
   0% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   6% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   15% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #44ffa6, 0 0 40px #44ffa6, 0 0 50px #44ffa6, 0 0 60px #44ffa6, 0 0 70px #44ffa6, 0 0 90px #44ffa6;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 30px #44ffa6,
+      0 0 40px #44ffa6,
+      0 0 50px #44ffa6,
+      0 0 60px #44ffa6,
+      0 0 70px #44ffa6,
+      0 0 90px #44ffa6;
   }
-  
+
   20% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #44ffa6, 0 0 40px #44ffa6, 0 0 50px #44ffa6, 0 0 60px #44ffa6, 0 0 70px #44ffa6, 0 0 90px #44ffa6;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 30px #44ffa6,
+      0 0 40px #44ffa6,
+      0 0 50px #44ffa6,
+      0 0 60px #44ffa6,
+      0 0 70px #44ffa6,
+      0 0 90px #44ffa6;
   }
-  
+
   25% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
-  
+
   100% {
-    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6, 0 0 0px #44ffa6;
+    text-shadow:
+      0 0 0px #fff,
+      0 0 0px #fff,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6,
+      0 0 0px #44ffa6;
   }
 }
-
 
 @keyframes glow-header-bg {
   0% {

@@ -1,54 +1,68 @@
-import React, {useContext, useState, createContext, useEffect, ReactChildren, PropsWithChildren} from "react";
+import React, {
+  useContext,
+  useState,
+  createContext,
+  useEffect,
+  ReactChildren,
+  PropsWithChildren,
+} from "react";
 import Snackbar from "../components/Snackbar";
 
 interface SnackbarContextInterface {
-  showMessage: (message: string, severity?: "success" | "error" | "info" | "warning", duration?: number) => void
+  showMessage: (
+    message: string,
+    severity?: "success" | "error" | "info" | "warning",
+    duration?: number,
+  ) => void;
 }
 
 const SnackbarContext = createContext<SnackbarContextInterface>({
-  showMessage: () => null
+  showMessage: () => null,
 });
 
 export const SnackbarProvider = ({ children }: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [duration, setDuration] = useState(4000);
-  const [severity, setSeverity] = useState<"success" | "error" | "info" | "warning">("success"); /** error | warning | info */
+  const [severity, setSeverity] = useState<"success" | "error" | "info" | "warning">(
+    "success",
+  ); /** error | warning | info */
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const showMessage = (message: string, severity: "success" | "error" | "info" | "warning" = "success", duration: number = 4000) => {
+  const showMessage = (
+    message: string,
+    severity: "success" | "error" | "info" | "warning" = "success",
+    duration: number = 4000,
+  ) => {
     setMessage(message);
     setSeverity(severity);
     setDuration(duration);
     setOpen(true);
   };
 
-  useEffect(
-    () => {
-      const t = setTimeout(
-        () => {
-          setOpen(false);
-        },
-        duration
-      );
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setOpen(false);
+    }, duration);
 
-      return () => {
-        clearTimeout(t);
-      };
-    },
+    return () => {
+      clearTimeout(t);
+    };
+  }, [open, duration]);
 
-    [open, duration]
+  return (
+    <SnackbarContext.Provider
+      value={{
+        showMessage,
+      }}
+    >
+      {children}
+      {open && <Snackbar message={message} severity={severity} handleClose={handleClose} />}
+    </SnackbarContext.Provider>
   );
-
-  return <SnackbarContext.Provider value={{
-    showMessage
-  }}>
-    {children}
-    {open && <Snackbar message={message} severity={severity} handleClose={handleClose} />}
-  </SnackbarContext.Provider>;
 };
 
 export const useSnackbar = () => {

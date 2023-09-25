@@ -114,14 +114,15 @@ To add new Event Record:
 
 ````
 {
-  title: string,
-  date: string,
-  url: string,
+  title: string;
+  date: string;
+  url: string;
   urls?: {
-    title: string,
-    url: string,  
-  }[],
-  id: string
+    title: string;
+    url: string;  
+  }[];
+  id: string;
+  color?: string;
 }
 ````
 
@@ -160,7 +161,21 @@ Event may contain several links, in this case you need to fill in the **urls** f
 }
 ````
 
+**Related events**:
 If you want to highlight related events you can add them **id** field.
+
+**Event color**:
+If you want to change default event color you can add to them **color** field.
+
+````
+{
+  title: "Ethereum Foundation rejected 'ERC-223 ecosystem campaign' application for Small Grants",
+  url: "https://twitter.com/Dexaran/status/1695161174189281350",
+  date: "25.08.2023",
+  color: "#64DC84",
+}
+````
+
 
 New card will appear in events list.
 

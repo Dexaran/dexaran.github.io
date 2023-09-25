@@ -9,6 +9,9 @@
   @include media.for-large-desktop {
     padding: 30px;
   }
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .tabTitle {
@@ -89,7 +92,7 @@
   }
 
   &[disabled] {
-    color: #5F625F;
+    color: #5f625f;
     pointer-events: none;
   }
 }

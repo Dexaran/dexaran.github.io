@@ -3,9 +3,7 @@ import styles from "./Collapse.module.scss";
 import clsx from "clsx";
 
 export default function Collapse({ children, open, style }: any) {
-  const [height, setHeight] = useState<number | undefined>(open
-    ? undefined
-    : 0);
+  const [height, setHeight] = useState<number | undefined>(open ? undefined : 0);
 
   const isOpen = useRef<boolean>(open);
 
@@ -14,69 +12,56 @@ export default function Collapse({ children, open, style }: any) {
   const ref = useRef<HTMLDivElement | null>(null);
   const isChildrenChangeRef = useRef<boolean>(false);
 
-  useEffect(
-    () => {
-      if (open) {
-        setHeight(ref.current?.getBoundingClientRect().height);
-        setTimeout(
-          () => {
-            setOverflow(true);
-          },
-          200
-        );
-      } else {
-        setOverflow(false);
-        setHeight(0);
-      }
-    },
-    [open]
-  );
+  useEffect(() => {
+    if (open) {
+      setHeight(ref.current?.getBoundingClientRect().height);
+      setTimeout(() => {
+        setOverflow(true);
+      }, 200);
+    } else {
+      setOverflow(false);
+      setHeight(0);
+    }
+  }, [open]);
 
-  useEffect(
-    () => {
-      isOpen.current = open;
-    },
-    [open]
-  );
+  useEffect(() => {
+    isOpen.current = open;
+  }, [open]);
 
-  useEffect(
-    () => {
-      if (ref.current) {
-        const ro = new ResizeObserver((entries) => {
-          if (!isOpen.current) {
-            return;
-          }
+  useEffect(() => {
+    if (ref.current) {
+      const ro = new ResizeObserver((entries) => {
+        if (!isOpen.current) {
+          return;
+        }
 
-          isChildrenChangeRef.current = true;
-          for (let entry of entries) {
-            setHeight(entry.contentRect.height);
-          }
-          setTimeout(
-            () => {
-              isChildrenChangeRef.current = false;
-            },
-            200
-          );
-        });
+        isChildrenChangeRef.current = true;
+        for (let entry of entries) {
+          setHeight(entry.contentRect.height);
+        }
+        setTimeout(() => {
+          isChildrenChangeRef.current = false;
+        }, 200);
+      });
 
-        ro.observe(ref.current);
+      ro.observe(ref.current);
 
-        return () => {
-          ro.disconnect();
-        };
-      }
-    },
-    [ref]
-  );
+      return () => {
+        ro.disconnect();
+      };
+    }
+  }, [ref]);
 
-  return <div className={
-    clsx(
-      styles.collapse,
-      overflow && styles.overflow,
-      Boolean(isChildrenChangeRef.current) && styles.noTransition
-    )} style={{ height, ...(style || {}) }}>
-    <div ref={ref}>
-      {children}
+  return (
+    <div
+      className={clsx(
+        styles.collapse,
+        overflow && styles.overflow,
+        Boolean(isChildrenChangeRef.current) && styles.noTransition,
+      )}
+      style={{ height, ...(style || {}) }}
+    >
+      <div ref={ref}>{children}</div>
     </div>
-  </div>;
+  );
 }
