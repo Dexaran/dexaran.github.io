@@ -2,6 +2,18 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[r/ethereum] A user lost $240K worth of CRO on 6.09.2023",
+    url: "https://www.reddit.com/r/ethereum/comments/16bqvj8/4_hours_ago_240k_worth_of_cro_were_deposited_to/",
+    date: "6.09.2023",
+    color: "#64DC84",
+  },
+  {
+    title: "[github] ERC-223 is assigned 'final' status.",
+    url: "https://github.com/ethereum/EIPs/pull/7660",
+    date: "6.09.2023",
+    color: "#64DC84",
+  },
+  {
     title: "Ethereum Foundation rejected 'ERC-223 ecosystem campaign' application for Small Grants",
     url: "https://twitter.com/Dexaran/status/1695161174189281350",
     date: "25.08.2023",
@@ -21,7 +33,7 @@ export const events: IRecentEvent[] = [
     color: "#64DC84",
   },
   {
-    title: "All ERC Devs call record abailable at airgram, passcode FT6H",
+    title: "All ERC Devs call record available at airgram, passcode FT6H",
     url: "https://app.airgram.io/7065496599555735553/share/2befaf46428f11eebaf70a2cbd030b4d?from=A91fc19caf6ac11eda1a80a2cbd030b4d-7065496599555735553",
     date: "24.08.2023",
     id: "AllERCDevs",
@@ -37,6 +49,7 @@ export const events: IRecentEvent[] = [
     title: "ERC-223 is moved to 'Last Call' status",
     url: "https://github.com/ethereum/EIPs/pull/7483#pullrequestreview-1585680567",
     date: "19.08.2023",
+    color: "#9E9E9E",
   },
   {
     title: "[Callisto] Dex223 vs Soy.Finance ERC-223 compatible exchange description",
