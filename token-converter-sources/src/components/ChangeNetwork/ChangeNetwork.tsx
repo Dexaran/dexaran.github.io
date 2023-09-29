@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Modal from "@/components/Modal";
+import Modal from "@/components/atoms/Modal";
 import styles from "./ChangeNetwork.module.scss";
-import { ConverterIcons } from "../ConverterIcons";
+import { Icons } from "../atoms/Icons";
 import { NetworksConfigs } from "../../constants/networks";
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
@@ -58,7 +58,7 @@ export default function ChangeNetwork({
           ) : (
             <span className={styles.tokenName}>Select networks</span>
           )}
-          <ConverterIcons name="chevronDown" fill="#C3D8D5" />
+          <Icons name="chevronDown" fill="#C3D8D5" />
         </div>
       </button>
       {isConnected ? (

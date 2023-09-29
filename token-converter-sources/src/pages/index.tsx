@@ -8,11 +8,14 @@ import { Converter } from "@/pages-partials/Converter";
 import { Header, TabType } from "@/components/Header/Header";
 import { HowItWorks } from "@/pages-partials/HowItWorks/HowItWorks";
 import { ERC223 } from "@/pages-partials/ERC223/ERC223";
+import { AddressBalance } from "@/pages-partials/AddressBalance/AddressBalance";
 
 export const manrope = Manrope({ subsets: ["latin"] });
 
 export default function Home() {
-  const [tab, setTab] = useState("converter" as TabType);
+  const [tab, setTab] = useState("addressBalance" as TabType);
+  const [defaultChainId, setDefaultChainId] = useState(1);
+  const [isChangeNetworkOpen, setIsChangeNetworkOpen] = useState(false);
 
   return (
     <>
@@ -23,12 +26,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={clsx(styles.main, manrope.className)}>
-        <Header tab={tab} setTab={setTab} />
+        <Header
+          tab={tab}
+          setTab={setTab}
+          defaultChainId={defaultChainId}
+          setDefaultChainId={setDefaultChainId}
+          isChangeNetworkOpen={isChangeNetworkOpen}
+          setIsChangeNetworkOpen={setIsChangeNetworkOpen}
+        />
         <div className={styles.contentBlockContainer}>
           <div className={styles.contentBlock}>
-            {tab === "converter" ? <Converter /> : null}
+            {tab === "converter" ? (
+              <Converter
+                defaultChainId={defaultChainId}
+                setIsChangeNetworkOpen={setIsChangeNetworkOpen}
+              />
+            ) : null}
             {tab === "howItWorks" ? <HowItWorks /> : null}
             {tab === "ERC223" ? <ERC223 /> : null}
+            {tab === "addressBalance" ? <AddressBalance defaultChainId={defaultChainId} /> : null}
           </div>
         </div>
         <Footer />
