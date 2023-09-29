@@ -11,7 +11,7 @@ import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import ERC20ABI from "../../constants/abi/erc20.json";
 
 import { formatEther, parseEther, parseGwei, parseUnits } from "viem";
-import { PrimaryButton } from "../Button/Button";
+import { PrimaryButton } from "../atoms/Button/Button";
 import { renderShortHash } from "@/utils/renderAddress";
 import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
@@ -55,7 +55,7 @@ const ToERC223ApproveButton = ({
 
   return (
     <>
-      <GasSettings
+      {/* <GasSettings
         gasPrice={gasPrice}
         setGasPrice={setGasPrice}
         gasLimit={gasLimit}
@@ -64,7 +64,7 @@ const ToERC223ApproveButton = ({
         abi={ERC20ABI}
         functionName="approve"
         args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
-      />
+      /> */}
       <PrimaryButton onClick={handleTokenApprove} isLoading={isLoading || approving}>
         Approve test tokens
       </PrimaryButton>
@@ -249,9 +249,23 @@ export const ConvertToERC223 = ({
     return +tokenBalanceERC20.formatted >= +amountToConvert;
   }, [amountToConvert, tokenBalanceERC20?.formatted]);
 
+  const [gasPrice, setGasPrice] = useState(null as null | string);
+  const [gasLimit, setGasLimit] = useState(null as null | string);
+
   return (
     <>
       <div className={styles.actionButtonWrapper}>
+      <GasSettings
+        gasPrice={gasPrice}
+        setGasPrice={setGasPrice}
+        gasLimit={gasLimit}
+        setGasLimit={setGasLimit}
+        address={tokenAddressERC20}
+        abi={ERC20ABI}
+        functionName="approve"
+        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
+      />
+
         {!amountToConvert && <PrimaryButton disabled>Enter amount</PrimaryButton>}
         {!isEnoughBalance && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
         {amountToConvert &&

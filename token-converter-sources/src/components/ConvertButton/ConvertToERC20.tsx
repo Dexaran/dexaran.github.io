@@ -5,7 +5,7 @@ import ERC20ABI from "../../constants/abi/erc20.json";
 import ERC223ABI from "../../constants/abi/erc223.json";
 
 import { parseEther, parseGwei, parseUnits } from "viem";
-import { PrimaryButton } from "../Button/Button";
+import { PrimaryButton } from "../atoms/Button/Button";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
@@ -87,19 +87,19 @@ export const ConvertToERC20 = ({
 
   return (
     <div className={styles.actionButtonWrapper}>
+      <GasSettings
+        gasPrice={gasPrice}
+        setGasPrice={setGasPrice}
+        gasLimit={gasLimit}
+        setGasLimit={setGasLimit}
+        address={tokenAddressERC20}
+        abi={ERC20ABI}
+        functionName="approve"
+        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
+      />
       {!isEnoughBalance223 && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
       {isEnoughBalance223 && (
         <>
-          <GasSettings
-            gasPrice={gasPrice}
-            setGasPrice={setGasPrice}
-            gasLimit={gasLimit}
-            setGasLimit={setGasLimit}
-            address={tokenAddressERC20}
-            abi={ERC20ABI}
-            functionName="approve"
-            args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
-          />
           <PrimaryButton
             disabled={!amountToConvert}
             isLoading={isWriteConvertLoading || txIsLoading}

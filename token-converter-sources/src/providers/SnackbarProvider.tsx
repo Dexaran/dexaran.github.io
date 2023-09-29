@@ -6,7 +6,7 @@ import React, {
   ReactChildren,
   PropsWithChildren,
 } from "react";
-import Snackbar from "../components/Snackbar";
+import Snackbar from "../components/atoms/Snackbar";
 
 interface SnackbarContextInterface {
   showMessage: (

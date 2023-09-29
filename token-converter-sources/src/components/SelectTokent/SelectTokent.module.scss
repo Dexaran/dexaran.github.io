@@ -104,37 +104,6 @@
   line-height: 16px;
   color: colors.$text-secondary;
 }
-.balance {
-  margin-top: 8px;
-  display: flex;
-  justify-content: flex-end;
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 4px;
-  }
-  span {
-    text-align: right;
-    font-size: 14px;
-    line-height: 20px; 
-    color: colors.$text-secondary;  
-  }
-}
-.address {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
-  span {
-    text-align: right;
-    font-size: 14px;
-    line-height: 20px; 
-    color: colors.$text-secondary;  
-  }
-  .addressTitle {
-    margin-right: 4px;
-  }
-}
 
 .networksContainer {
   width: 100%;

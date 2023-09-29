@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./ConvertButton.module.scss";
-import { PrimaryButton } from "../Button/Button";
-import Modal from "../Modal";
-import { ConverterIcons } from "../ConverterIcons";
+import { PrimaryButton } from "../atoms/Button/Button";
+import Modal from "../atoms/Modal";
+import { Icons } from "../atoms/Icons";
 import { renderShortAddress, renderShortHash } from "@/utils/renderAddress";
 import { useNetwork } from "wagmi";
 import { getNetworkExplorerTokenUrl, getNetworkExplorerTxUrl } from "@/utils/networks";
@@ -31,7 +31,7 @@ export default function TxModal({
       <div className={styles.txModalContainer}>
         {status === "error" ? (
           <>
-            <ConverterIcons name="report" size="120px" />
+            <Icons name="report" size="120px" />
             <p className={styles.txModalTitle}>An error occurred while converting</p>
             <p className={styles.txModalDescription}>Try to convert tokens later.</p>
             {error?.message ? (
@@ -59,7 +59,7 @@ export default function TxModal({
           </>
         ) : (
           <>
-            <ConverterIcons name="success" size="120px" />
+            <Icons name="success" size="120px" />
             <p className={styles.txModalTitle}>{`Tokens successfully converted to ${
               toERC223 ? "ERC-223" : "ERC-20"
             }`}</p>

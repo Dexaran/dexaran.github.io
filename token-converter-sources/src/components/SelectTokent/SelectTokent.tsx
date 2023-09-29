@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Modal from "@/components/Modal";
+import Modal from "@/components/atoms/Modal";
 import styles from "./SelectTokent.module.scss";
-import { ConverterIcons } from "../ConverterIcons";
+import { Icons } from "../atoms/Icons";
 import { useAccount, useNetwork, useToken } from "wagmi";
-import Checkbox from "../Checkbox/Checkbox";
+import Checkbox from "../atoms/Checkbox/Checkbox";
 import { Address, isAddress } from "viem";
 import { List, AutoSizer } from "react-virtualized";
-import { renderShortAddress } from "@/utils/renderAddress";
+import Balance from "../Balance/Balance";
 
 const listHeight = 380;
 const rowHeight = 60;
 
-type Token = {
+export type Token = {
   contract: Address;
   symbol: string;
   logo: string;
@@ -19,7 +19,7 @@ type Token = {
   markets: number[];
 };
 
-const loadChainTokens = async (chainId: number): Promise<Token[]> => {
+export const loadChainTokens = async (chainId: number): Promise<Token[]> => {
   if (!chainId) return Promise.resolve([]);
   try {
     const chainTokens = (await import(`../../constants/tokens/${chainId}.json`)).default as Token[];
@@ -37,7 +37,8 @@ export default function SelectTokent({
   defaultChainId,
   amountToConvert,
   setAmountToConvert,
-  tokenAddress,
+  tokenAddressERC20,
+  tokenAddressERC223,
   setTokenAddressERC20,
   tokenBalanceERC20,
   tokenBalanceERC223,
@@ -45,7 +46,8 @@ export default function SelectTokent({
 }: {
   amountToConvert: any;
   setAmountToConvert: any;
-  tokenAddress: any;
+  tokenAddressERC20: any;
+  tokenAddressERC223: any;
   setTokenAddressERC20: any;
   tokenBalanceERC20: any;
   tokenBalanceERC223: any;
@@ -77,7 +79,7 @@ export default function SelectTokent({
   const { address } = useAccount();
 
   const defaultTokenAddress = chainTokens[0]?.contract;
-  const selectedToken = chainTokens.find((token) => token.contract === tokenAddress);
+  const selectedToken = chainTokens.find((token) => token.contract === tokenAddressERC20);
 
   useEffect(() => {
     (async () => {
@@ -91,7 +93,7 @@ export default function SelectTokent({
     isError,
     isLoading,
   } = useToken({
-    address: tokenAddress,
+    address: tokenAddressERC20,
   });
 
   useEffect(() => {
@@ -136,31 +138,6 @@ export default function SelectTokent({
     );
   };
 
-  const renderBalance = () => {
-    return (
-      <>
-        <div className={styles.balance}>
-          <span>Balance:</span>
-          <div>
-            <span>
-              {tokenBalanceERC20?.formatted || 0} {tokenData?.name} (ERC-20)
-            </span>
-            <span>
-              {tokenBalanceERC223?.formatted || 0} {tokenData?.name} (ERC-223)
-            </span>
-          </div>
-        </div>
-        {address ? (
-          <div className={styles.address}>
-            <span className={styles.addressTitle}>Your address:</span>
-            <span>{`${renderShortAddress(address, 6)}`}</span>
-          </div>
-        ) : null}
-
-      </>
-    );
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.customContractAddressWrapper}>
@@ -189,7 +166,18 @@ export default function SelectTokent({
               />
             </div>
           </div>
-          {isCustomTokenAddressValid ? <>{renderBalance()}</> : (
+          {isCustomTokenAddressValid ? (
+            <>
+              <Balance
+                tokenAddressERC20={tokenAddressERC20}
+                tokenAddressERC223={tokenAddressERC223}
+                tokenBalanceERC20={tokenBalanceERC20}
+                tokenBalanceERC223={tokenBalanceERC223}
+                logo={selectedToken?.logo}
+              />
+              <div style={{ height: "16px" }} />
+            </>
+          ) : (
             <div className={styles.helperText}>Address is not valid</div>
           )}
           <div className={styles.converterFieldsLabel}>Number of tokens</div>
@@ -255,10 +243,16 @@ export default function SelectTokent({
                 />
                 {tokenData?.name || selectedToken?.symbol}
               </span>
-              <ConverterIcons name="chevronDown" fill="#C3D8D5" />
+              <Icons name="chevronDown" fill="#C3D8D5" />
             </button>
           </div>
-          {renderBalance()}
+          <Balance
+            tokenAddressERC20={tokenAddressERC20}
+            tokenAddressERC223={tokenAddressERC223}
+            tokenBalanceERC20={tokenBalanceERC20}
+            tokenBalanceERC223={tokenBalanceERC223}
+            logo={selectedToken?.logo}
+          />
         </>
       )}
       <Modal
@@ -278,7 +272,7 @@ export default function SelectTokent({
               className={styles.amountInput}
               type="text"
             />
-            <ConverterIcons name="search" className={styles.tokenSearchSearchIcon} />
+            <Icons name="search" className={styles.tokenSearchSearchIcon} />
           </div>
         </div>
 

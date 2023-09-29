@@ -28,6 +28,11 @@ a {
   color: colors.$text-secondary;
 }
 
+button, 
+input {
+  font-family: inherit;
+}
+
 h1,
 h2,
 h3,

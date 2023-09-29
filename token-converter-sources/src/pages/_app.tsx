@@ -8,13 +8,14 @@ import { publicProvider } from "wagmi/providers/public";
 import { SnackbarProvider } from "../providers/SnackbarProvider";
 import { chains } from "@/utils/networks";
 
-const { publicClient } = configureChains(chains, [w3mProvider({ projectId }), publicProvider()]);
+export const { publicClient } = configureChains(chains, [w3mProvider({ projectId }), publicProvider()]);
 
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: w3mConnectors({ projectId, chains }),
   publicClient,
 });
+
 
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 

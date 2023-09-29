@@ -2,12 +2,12 @@ import React, { useRef, useState } from "react";
 import Wallet, { thirdparty } from "ethereumjs-wallet";
 import { useWeb3Modal } from "@web3modal/react";
 import styles from "./ConnectWallet.module.scss";
-import Modal from "../Modal";
+import Modal from "../atoms/Modal";
 import { privateKeyToAccount } from "viem/accounts";
 import { createWalletClient, http, publicActions } from "viem";
 import { MockConnector } from "wagmi/connectors/mock";
 import { useConnect } from "wagmi";
-import { PrimaryButton, SecondaryButton } from "../Button/Button";
+import { PrimaryButton, SecondaryButton } from "../atoms/Button/Button";
 import { NetworksConfigs } from "@/constants/networks";
 
 /* These needs to be changed further due to the new async library */

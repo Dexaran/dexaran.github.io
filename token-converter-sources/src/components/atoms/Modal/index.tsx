@@ -3,7 +3,7 @@ import ReactPortal from "./ReactPortal";
 import styles from "./Modal.module.scss";
 import clsx from "clsx";
 import { manrope } from "@/pages";
-import { ConverterIcons } from "../ConverterIcons";
+import { Icons } from "../Icons";
 
 export const Modal = ({
   children,
@@ -42,7 +42,7 @@ export const Modal = ({
             >
               <span className={styles.modalHeaderTitle}>{title}</span>
               <div className={styles.modalHeaderClose} onClick={handleClose}>
-                <ConverterIcons name="close" fill="#C3D8D5" />
+                <Icons name="close" fill="#C3D8D5" />
               </div>
             </div>
 
