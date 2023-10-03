@@ -1,0 +1,37 @@
+{
+  "name": "erc233-converter-sources",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
+    "@ethersproject/wallet": "^5.7.0",
+    "@types/node": "20.4.5",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
+    "clsx": "^2.0.0",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "ethereumjs-wallet": "1.0.2",
+    "ethers": "^6.7.0",
+    "next": "13.4.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-virtualized": "^9.22.5",
+    "sass": "^1.64.2",
+    "typescript": "5.1.6",
+    "viem": "^1.10.7",
+    "wagmi": "^1.4.1"
+  },
+  "devDependencies": {
+    "prettier": "3.0.2"
+  }
+}
