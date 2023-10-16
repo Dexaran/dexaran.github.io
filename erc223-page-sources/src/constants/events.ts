@@ -2,6 +2,12 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] EIP moderator proposed the removal of the optional 'standard' function from ERC-223 standard.",
+    url: "https://github.com/ethereum/EIPs/pull/7856#issuecomment-1764921020",
+    date: "16.10.2023",
+    color: "#64DC84",
+  },
+  {
     title: "[r/ethereum] A user lost $240K worth of CRO on 6.09.2023",
     url: "https://www.reddit.com/r/ethereum/comments/16bqvj8/4_hours_ago_240k_worth_of_cro_were_deposited_to/",
     date: "6.09.2023",
