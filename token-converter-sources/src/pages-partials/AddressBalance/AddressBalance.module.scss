@@ -4,8 +4,15 @@
 
 .addTokens {
   padding: 40px;
+  @include media.for-mobile {
+    padding: 16px;
+    padding-bottom: 24px;
+  }
 }
 
+.walletAddressInput {
+  margin-bottom: 20px;
+}
 .converterFieldsLabel {
   font-size: 16px;
   font-weight: 600;
@@ -19,11 +26,13 @@
 }
 .amountInputWrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .input {
-  padding: 10px 55px 10px 20px;
+  padding: 10px 20px 10px 20px;
   border: 1px solid colors.$border-primary;
   width: 100%;
   background-color: colors.$background-primary;
@@ -48,6 +57,9 @@
 .addTokenContainer {
   display: flex;
   gap: 20px;
+  @include media.for-mobile {
+    gap: 16px;
+  }
 }
 
 .addTokenButton {
@@ -60,9 +72,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  cursor: pointer;
+  box-shadow: 0px 4px 8px 0px rgba(80, 200, 120, 0.32);
+  
   svg {
     color: colors.$background-primary;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    background-color: #787b78;
   }
 }
 
@@ -76,16 +95,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   svg {
     color: colors.$text-secondary;
+  }
+
+  @include media.for-mobile {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
   }
 }
 
 .actionButton {
   background-color: colors.$background-primary;
 }
-
 
 .tokensList {
   display: flex;
@@ -94,6 +119,10 @@
   padding-bottom: 12px;
   border-top: 1px solid colors.$border-primary;
 
+  @include media.for-mobile {
+    padding: 16px;
+    padding-top: 24px;
+  }
 }
 
 .tokensListHeader {
@@ -107,7 +136,16 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
-    line-height: 36px;
+    line-height: 36px;  
+  }
+
+  @include media.for-mobile {
+    h3 {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+    }
   }
 }
 
@@ -123,6 +161,9 @@
     font-weight: 600;
     line-height: 28px;
   }
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .tableToken {
@@ -132,9 +173,7 @@
 .tableERC223 {}
 .tableAction {}
 
-.list {
-  padding-left: 40px;
-  padding-right: calc(40px - 14px);
+.styledScrollbar {
   &::-webkit-scrollbar {
     width: 14px;
     height: 14px;
@@ -157,6 +196,15 @@
   }
 }
 
+.list {
+  padding-left: 40px;
+  padding-right: calc(40px - 14px);
+  @include media.for-mobile {
+    padding-left: 16px;
+    padding-right: calc(16px - 14px);
+  }
+}
+
 .listItem {
   padding-bottom: 12px;
 }
@@ -171,12 +219,19 @@
   color: colors.$text-primary;
   background-color: colors.$background-primary;
   border-radius: 8px;
+
+  @include media.for-mobile {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 
 .tokenCardToken {
   display: flex;
   align-items: center;
   width: 160px;
+  padding-left: 20px;
   // background-color: red;
 
   img {
@@ -187,6 +242,9 @@
     font-style: normal;
     font-weight: 600;
     line-height: 28px; /* 175% */
+  }
+  &.isCustom {
+    padding-left: 0px;
   }
 }
 
@@ -208,6 +266,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  color: colors.$text-secondary;
 
   a {
     font-size: 16px;
@@ -220,4 +279,62 @@
     cursor: pointer;
     color: colors.$text-secondary;
   }
+}
+
+.searchInputWrapper {
+ position: relative;
+}
+
+.searchInput {
+	&:focus {
+		+ {
+			.searchAutocomplete {
+        display: flex;
+			}
+		}
+	}
+
+}
+
+.searchAutocomplete {
+  position: absolute;
+  background-color: colors.$background-secondary;
+  z-index: 100;
+  width: 100%;
+  top: 100%;
+  display: none;
+  border: 1px solid colors.$border-primary;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 200px;
+  &:hover {
+    display: flex;
+  }
+}
+
+.searchAutocompleteItem {
+  color: colors.$text-primary;
+  padding: 8px 20px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; 
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: colors.$background-primary;
+  }
+}
+
+.invalidAddressError {
+  margin-top: 4px;
+  color: colors.$palette-red;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
 }

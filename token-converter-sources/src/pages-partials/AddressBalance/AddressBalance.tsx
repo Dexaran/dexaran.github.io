@@ -1,88 +1,25 @@
-import React from "react";
+import React, { useCallback } from "react";
 import homeStyles from "../../styles/Home.module.scss";
-import { Address, useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
-import { useEffect, useMemo, useState } from "react";
+import { useAccount, useContractRead, useNetwork, useToken } from "wagmi";
+import { useEffect, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./AddressBalance.module.scss";
 import { List, AutoSizer } from "react-virtualized";
 import { Token, loadChainTokens } from "@/components/SelectTokent/SelectTokent";
-import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
-import { getConverterContract, getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { useCustomTokens } from "./useCustomTokens";
+import { TokenCard } from "./TokenCard";
 import clsx from "clsx";
+import { isAddress } from "viem";
 import TokenConverterABI from "../../constants/abi/tokenConverter.json";
+import { getConverterContract } from "@/utils/networks";
+import { fetchToken } from '@wagmi/core'
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const listHeight = 380;
+const listHeightMobile = 500;
 const rowHeight = 100;
-
-const TokenCard = ({
-  address,
-  token,
-  showMessage,
-  chainId,
-}: {
-  address: Address;
-  token: Token;
-  showMessage: (message: string) => void;
-  chainId: number;
-}) => {
-  const tokenAddressERC20 = token.contract;
-  const { data: tokenAddressERC223 } = useContractRead({
-    address: getConverterContract(chainId),
-    abi: TokenConverterABI,
-    functionName: "getWrapperFor",
-    args: [tokenAddressERC20],
-  });
-
-  const { data: tokenBalanceERC20, isLoading: isERC20Loading } = useBalance({
-    address,
-    token: tokenAddressERC20,
-  });
-  console.log("🚀 ~ isERC20Loading:", isERC20Loading)
-
-  const { data: tokenBalanceERC223 } = useBalance({
-    address,
-    token: tokenAddressERC223 as any,
-  });
-
-  return (
-    <div className={styles.tokenCard}>
-      <div className={styles.tokenCardToken}>
-        <Icons name="drag" fill="#787B78" size={20} />
-        <img src={token.logo} width="44px" height="44px" alt={token.symbol} />
-        <span>{token.symbol}</span>
-      </div>
-      <div className={styles.tokenCardBalance}>
-        <span>
-          {isERC20Loading ? "Loading.." : `${tokenBalanceERC20?.formatted || 0} ${token.symbol}`}
-        </span>
-        <span className={styles.tokenCardBalanceContract}>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href={getNetworkExplorerTokenUrl(chainId, token.contract)}
-          >{`${renderShortAddress(token.contract)}`}</a>
-
-          <Icons
-            name="copy"
-            onClick={async () => {
-              await navigator.clipboard.writeText(token.contract);
-              showMessage("ERC-20 Token address copied");
-            }}
-          />
-        </span>
-      </div>
-      <div className={styles.tokenCardBalance}>
-        <span>{`${0} ${token.symbol}`}</span>
-        {/* <span>{renderShortAddress(token.contract)}</span> */}
-        <span>—</span>
-      </div>
-      <button className={clsx(styles.updateButton, styles.actionButton)}>
-        <Icons name="add" />
-      </button>
-    </div>
-  );
-};
+const rowHeightMobile = 241;
 
 export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) => {
   const { address, isConnected } = useAccount();
@@ -90,6 +27,104 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
   const [walletAddress, setWalletAddress] = useState("");
   const [tokenNameOrAddress, setTokenNameOrAddress] = useState("");
   const [chainTokens, setChainTokens] = useState([] as Token[]);
+  const [searchTokens, setSearchTokens] = useState(chainTokens);
+
+  const isValidTokenAddress = isAddress(tokenNameOrAddress);
+  const isValidWalletAddress = isAddress(walletAddress);
+
+  const filterTokensWithSearch = useCallback(() => {
+    return chainTokens.filter(
+      (token) =>
+        token.symbol.toLowerCase().startsWith(tokenNameOrAddress.toLowerCase()) ||
+        token.contract.toLowerCase() === tokenNameOrAddress.toLowerCase(),
+    );
+  }, [chainTokens, tokenNameOrAddress]);
+
+  useEffect(() => {
+    if (!tokenNameOrAddress) {
+      return setSearchTokens(chainTokens);
+    }
+
+    setSearchTokens(filterTokensWithSearch());
+  }, [chainTokens, filterTokensWithSearch, tokenNameOrAddress]);
+
+  const { customTokens, addCustomToken, removeCustomToken } = useCustomTokens(
+    chain?.id || defaultChainId,
+  );
+
+  const { data: tokenNameOrAddressERC20 } = useContractRead({
+    address: getConverterContract(chain?.id || defaultChainId),
+    abi: TokenConverterABI,
+    functionName: "getOriginFor",
+    args: [tokenNameOrAddress],
+  });
+
+  const { data: tokenNameOrAddressERC223 } = useContractRead({
+    address: getConverterContract(chain?.id || defaultChainId),
+    abi: TokenConverterABI,
+    functionName: "getWrapperFor",
+    args: [tokenNameOrAddress],
+  });
+
+  const addTokenFromAddressHandler = async () => {
+    if (!tokenNameOrAddress || !isValidTokenAddress) return;
+
+    // 1. Is that the default token (is in our configs)?
+    const defaultToken = chainTokens.find(
+      (token) => token.contract.toLowerCase() === tokenNameOrAddress.toLowerCase(),
+    );
+    if (defaultToken) {
+      addCustomToken(defaultToken);
+      setTokenNameOrAddress("");
+      return;
+    }
+    // 2. This is a ERC20 contract for an token that is deployed in a converter?
+    if (
+      tokenNameOrAddressERC223 &&
+      tokenNameOrAddressERC223 !== "0x0000000000000000000000000000000000000000"
+    ) {
+      const tokenData = await fetchToken({
+        address: tokenNameOrAddress as any,
+        chainId: chain?.id || defaultChainId,
+      })
+      addCustomToken({
+        contract: tokenData.address,
+        decimals: tokenData.decimals,
+        symbol: tokenData.symbol,
+      });
+      setTokenNameOrAddress("");
+      return;
+    }
+    // 3. This is a ERC223 contract for an token that is deployed in a converter?
+    if (
+      tokenNameOrAddressERC20 &&
+      tokenNameOrAddressERC20 !== "0x0000000000000000000000000000000000000000"
+    ) {
+      const tokenData = await fetchToken({
+        address: tokenNameOrAddressERC20 as any,
+        chainId: chain?.id || defaultChainId,
+      })
+      addCustomToken({
+        contract: tokenData.address,
+        decimals: tokenData.decimals,
+        symbol: tokenData.symbol,
+      });
+      setTokenNameOrAddress("");
+      return;
+    }
+    // 4. Ok, its normal ERC20 contract
+    const tokenData = await fetchToken({
+      address: tokenNameOrAddress as any,
+      chainId: chain?.id || defaultChainId,
+    })
+    addCustomToken({
+      contract: tokenData.address,
+      decimals: tokenData.decimals,
+      symbol: tokenData.symbol,
+    });
+    setTokenNameOrAddress("");
+    return;
+  };
 
   useEffect(() => {
     setWalletAddress(address || "");
@@ -104,9 +139,15 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
 
   const { showMessage } = useSnackbar();
 
+  const allTokens = [
+    ...customTokens,
+    ...chainTokens.filter((token) => !customTokens.map((t) => t.contract).includes(token.contract)),
+  ];
+  const isMobile = useIsMobile();
+
   const renderRow = ({ index, key, style }) => {
-    const token = chainTokens[index];
-  
+    const token = allTokens[index];
+
     return (
       <div className={styles.listItem} key={key} style={style}>
         <TokenCard
@@ -114,6 +155,14 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
           showMessage={showMessage}
           chainId={chain?.id}
           address={walletAddress as any}
+          isCustom={index < customTokens.length}
+          addHandler={(t) => {
+            addCustomToken(t);
+          }}
+          removeHandler={(t) => {
+            removeCustomToken(t);
+          }}
+          isMobile={isMobile}
         />
       </div>
     );
@@ -129,7 +178,7 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
       </div>
       <div className={styles.addTokens}>
         <div className={styles.converterFieldsLabel}>Wallet address</div>
-        <div className={styles.amountInputWrapper}>
+        <div className={clsx(styles.amountInputWrapper, styles.walletAddressInput)}>
           <input
             value={walletAddress}
             onChange={(e) => {
@@ -139,21 +188,56 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
             className={styles.input}
             type="text"
           />
+          {!isValidWalletAddress ? (
+            <span className={styles.invalidAddressError}>Invalid wallet address</span>
+          ) : null}
         </div>
         <div className={styles.converterFieldsLabel}>Token name or address</div>
         <div className={styles.addTokenContainer}>
-          <div className={styles.amountInputWrapper}>
+          <div className={clsx(styles.amountInputWrapper, styles.searchInputWrapper)}>
             <input
               value={tokenNameOrAddress}
               onChange={(e) => {
                 setTokenNameOrAddress(e.target.value);
               }}
               placeholder="Token name or address"
-              className={styles.input}
+              className={clsx(styles.input, styles.searchInput)}
               type="text"
             />
+            {tokenNameOrAddress ? (
+              <>
+                {!searchTokens?.length && !isValidTokenAddress ? (
+                  <span className={styles.invalidAddressError}>
+                    Invalid token address, verify address matches wallet network
+                  </span>
+                ) : null}
+              </>
+            ) : null}
+            {searchTokens?.length ? (
+              <div className={clsx(styles.searchAutocomplete, styles.styledScrollbar)}>
+                {searchTokens.slice(0, 10).map((token) => {
+                  return (
+                    <div
+                      key={token.contract}
+                      className={styles.searchAutocompleteItem}
+                      onClick={() => {
+                        addCustomToken(token);
+                        setTokenNameOrAddress("");
+                      }}
+                    >
+                      <img src={token.logo} width="32px" height="32px" alt={token.symbol} />
+                      <span>{token.symbol}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
-          <button className={styles.addTokenButton}>
+          <button
+            className={styles.addTokenButton}
+            onClick={addTokenFromAddressHandler}
+            disabled={tokenNameOrAddress && !isValidTokenAddress}
+          >
             <Icons name="add" />
           </button>
         </div>
@@ -177,12 +261,12 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
           return (
             <List
               width={width - 2}
-              height={listHeight}
-              rowHeight={rowHeight}
+              height={isMobile ? listHeightMobile : listHeight}
+              rowHeight={isMobile ? rowHeightMobile : rowHeight}
               rowRenderer={renderRow}
-              rowCount={chainTokens.length}
+              rowCount={allTokens.length}
               overscanRowCount={3}
-              className={styles.list}
+              className={clsx(styles.list, styles.styledScrollbar)}
               style={{
                 paddingBottom: "20px",
               }}

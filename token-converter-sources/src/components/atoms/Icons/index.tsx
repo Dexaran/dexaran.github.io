@@ -13,11 +13,18 @@ import { Logout } from "./Logout";
 import { Drag } from "./Drag";
 import { Add } from "./Add";
 import { Update } from "./Update";
+import { Delete } from "./Delete";
+import { Menu } from "./Menu";
+import { FAQ } from "./FAQ";
+import { ERC223 } from "./ERC223";
+import { ViewAddress } from "./ViewAddress";
+import { Swap2 } from "./Swap2";
 
 enum IconName {
   "add" = "add",
   "info" = "info",
   "swap" = "swap",
+  "swap2" = "swap2",
   "chevronDown" = "chevronDown",
   "close" = "close",
   "success" = "success",
@@ -29,6 +36,11 @@ enum IconName {
   "logout" = "logout",
   "drag" = "drag",
   "update" = "update",
+  "delete" = "delete",
+  "menu" = "menu",
+  "faq" = "faq",
+  "erc223" = "erc223",
+  "viewAddress" = "viewAddress",
 }
 
 type IconNameType = keyof typeof IconName;
@@ -39,6 +51,7 @@ const icons: {
   [IconName.add]: Add,
   [IconName.info]: Info,
   [IconName.swap]: Swap,
+  [IconName.swap2]: Swap2,
   [IconName.chevronDown]: ChevronDown,
   [IconName.close]: Close,
   [IconName.success]: Success,
@@ -50,6 +63,11 @@ const icons: {
   [IconName.logout]: Logout,
   [IconName.drag]: Drag,
   [IconName.update]: Update,
+  [IconName.delete]: Delete,
+  [IconName.menu]: Menu,
+  [IconName.faq]: FAQ,
+  [IconName.erc223]: ERC223,
+  [IconName.viewAddress]: ViewAddress,
 };
 
 export const Icons = ({
