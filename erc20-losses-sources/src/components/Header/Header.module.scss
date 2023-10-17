@@ -1,0 +1,122 @@
+@use "src/styles/colors";
+@use "src/styles/media";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 44px 0 40px;
+  gap: 12px;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  h1 {
+    font-size: 38px;
+    line-height: 56px;
+    font-weight: 600;
+    color: colors.$text-primary;
+    max-width: 840px;
+
+    animation: glow-main 70s infinite ease-in-out;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 600;
+    text-align: center;
+    color: colors.$text-secondary;
+    max-width: 840px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: colors.$text-secondary;
+    font-size: 18px;
+    line-height: 32px;
+    max-width: 840px;
+  }
+
+  a {
+    color: colors.$palette-green;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include media.for-large-desktop {
+    h1 {
+      font-size: 68px;
+      line-height: 80px;
+      max-width: 1000px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      line-height: 38px;
+      margin-bottom: 20px;
+      max-width: 1000px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 34px;
+      max-width: 1000px;
+    }
+  }
+  @include media.for-mobile {
+    h1 {
+      font-size: 28px;
+      line-height: 38px;
+    }
+    h2 {
+      font-size: 18px;
+      line-height: 32px;
+      padding: 0px 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 32px; 
+      padding: 0px 20px;
+    }
+  }
+
+}
+
+.bgImage {
+  animation: glow-header-bg 5s infinite ease-in-out;
+  position: absolute;
+  height: 600px;
+  top: 0px;
+  pointer-events: none;
+}
+
+.leftImage {
+  left: -30%;
+  @include media.for-large-desktop {
+    left: -10%;
+  }
+  @include media.for-ultra-large-desktop {
+    left: -5%;
+  }
+  @include media.for-mobile {
+    display: none;
+  }
+}
+
+.rightImage {
+  right: -30%;
+  @include media.for-large-desktop {
+    right: -10%;
+  }
+  @include media.for-ultra-large-desktop {
+    right: -5%;
+  }
+  @include media.for-mobile {
+    right: -50%;
+    width: 150%;
+    height: auto;
+  }
+}
