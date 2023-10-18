@@ -358,6 +358,12 @@ export const events: IRecentEvent[] = [
     date: "17.06.2022",
   },
   {
+    title:
+      "[etherscan] Comment on Etherscan pointing at a user losing all ERC-20 tokens to a contract unhandled transfer",
+    url: "https://etherscan.io/address/0xb8c77482e45f1f44de1745f52c74426c631bdd52#comment-5661234847",
+    date: "27.12.2021",
+  },
+  {
     title: "[ETH reddit] Breaking changes to ERC-223 standard announcement",
     url: "https://www.reddit.com/r/ethereum/comments/pq1l6y/breaking_change_to_erc223_token_standard/",
     date: "17.09.2021",
