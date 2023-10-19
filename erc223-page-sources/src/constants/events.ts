@@ -33,9 +33,18 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
+      "[github] Dexaran is starting the creation of a process of final EIP modifications upon security vulnerability disclosures",
+    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257#issuecomment-1693740271",
+    date: "25.08.2023",
+    id: "AllERCDevs257",
+    color: "#64DC84",
+  },
+  {
+    title:
       "[github] EIP editors decided there is no necessity to place a warning on ERC-20 regarding the loss of $201M tokens and related insecurity of the standard. Security concern was raised by Dexaran",
     url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257",
     date: "25.08.2023",
+    id: "AllERCDevs257",
     color: "#64DC84",
   },
   {
