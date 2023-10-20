@@ -22,6 +22,8 @@ import { Swap2 } from "./Swap2";
 import { Warning } from "./Warning";
 import { Calendar } from "./Calendar";
 import { Calculate } from "./Calculate";
+import { Download } from "./Download";
+import { OpenLink } from "./OpenLink";
 
 enum IconName {
   "add" = "add",
@@ -47,6 +49,8 @@ enum IconName {
   "warning" = "warning",
   "calendar" = "calendar",
   "calculate" = "calculate",
+  "download" = "download",
+  "openLink" = "openLink",
 }
 
 type IconNameType = keyof typeof IconName;
@@ -77,6 +81,8 @@ const icons: {
   [IconName.warning]: Warning,
   [IconName.calendar]: Calendar,
   [IconName.calculate]: Calculate,
+  [IconName.download]: Download,
+  [IconName.openLink]: OpenLink,
 };
 
 export const Icons = ({

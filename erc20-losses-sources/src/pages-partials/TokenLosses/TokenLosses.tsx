@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import homeStyles from "../../styles/Home.module.scss";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_13_10_2023.json"
+import PrecalculatedResult from "@/constants/lost_tokens_result_13_10_2023.json";
+// import PrecalculatedResult from "@/constants/erc20_losses.json";
 
 /* local imports */
 import { tokens, contracts } from "./const";
@@ -10,8 +11,19 @@ import { Blockchain } from "./web3";
 import { numberWithCommas } from "./utils";
 import clsx from "clsx";
 import { numericFormatter } from "react-number-format";
-import { PrimaryButton, SecondaryButton, WhiteButton, WhiteSecondaryButton } from "@/components/atoms/Button/Button";
+import {
+  PrimaryButton,
+  SecondaryButton,
+  WhiteButton,
+  WhiteSecondaryButton,
+} from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
+import { getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { renderShortAddress } from "@/utils/renderAddress";
+import { useSnackbar } from "@/providers/SnackbarProvider";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { ResultItem } from "./ResultItem";
+import { MobileResultItem } from "./MobileResultItem";
 /* globals */
 const CHAIN = "eth"; // eth or bsc or polygon
 const web3 = new Blockchain(CHAIN);
@@ -148,7 +160,7 @@ function Button() {
       processSate.setResults(resultsArray);
 
       processSate.setResultsStr(resStr);
-      processSate.setResultSum(`$${numberWithCommas(wholeSum)}`);
+      processSate.setResultSum(wholeSum);
       processSate.setResultTokenNumber(++counter);
     }
 
@@ -182,109 +194,71 @@ function Button() {
   );
 }
 
-const ProcessContext: any = createContext(null);
+const CalculationProgress = () => {
+  const processSate: any = useContext(ProcessContext);
+  const chainTokens = processSate.tokensList.split("\n");
+  const [progress, setProgress] = useState(100);
+  console.log("🚀 ~ CalculationProgress ~ progress:", progress)
 
-
-const ResultItem = ({ item, index }: { item: any; index: number }) => {
-  const [isOpen, setIsOpen] = useState(false); // index < 3
-  const [isDetailsShow, setDetailsShow] = useState(false);
+  useEffect(() => {
+    setProgress((processSate.resultsList.length / chainTokens.length) * 100);
+  }, [chainTokens.length, processSate.resultsList.length]);
 
   return (
-    <div className={styles.resultItem}>
-      <div className={styles.resultItemHeader} onClick={() => setIsOpen(!isOpen)}>
-        <div className={styles.resultItemHeaderName}>
-          <Icons name="erc223" />
-          {item.ticker}
-        </div>
-        <div className={styles.resultItemHeaderLosses}>
-          <p>
-            {/* TODO: edit CLI script */}
-            {`Total losses: ${numericFormatter(`${(item as any).amount}`, {
-              decimalSeparator: ".",
-              thousandSeparator: ",",
-              decimalScale: 2,
-              suffix: ` ${item.ticker} `,
-            })}`}
-          </p>
-          <span className={styles.resultItemHeaderLossesUsd}>{`(${numericFormatter(
-            `${item.asDollar}`,
-            {
-              decimalSeparator: ".",
-              thousandSeparator: ",",
-              decimalScale: 2,
-              prefix: `$`,
-            },
-          )})`}</span>
-          <Icons name="chevronDown" className={clsx(styles.chevron, isOpen && styles.open)} />
-        </div>
+    <div className={clsx(styles.calculationProgress, progress >= 100 && styles.hide)}>
+      <div className={styles.progressContainer}>
+        <div className={styles.progressBar} style={{ width: `${progress}%` }} />
       </div>
-      <Collapse open={isOpen} style={{ width: "100%" }}>
-        <div className={styles.itemDetailsHeader}>
-          <p>Contracts</p>
-          <p>{`Losses, ${item.ticker}`}</p>
-          <p>Losses, $</p>
-        </div>
-        {item.records.slice(0, 3).map((record) => {
-          return (
-            <div key={record.contract} className={styles.itemDetailsRow}>
-              <p>{record.contract}</p>
-              <p>
-                {numericFormatter(`${record.roundedAmount}.00`, {
-                  decimalSeparator: ".",
-                  thousandSeparator: ",",
-                  decimalScale: 2,
-                  suffix: ` ${item.ticker} `,
-                })}
-              </p>
-              <p>
-                {numericFormatter(`${record.dollarValue}`, {
-                  decimalSeparator: ".",
-                  thousandSeparator: ",",
-                  decimalScale: 2,
-                  prefix: `$`,
-                })}
-              </p>
-            </div>
-          );
-        })}
-        <Collapse open={isDetailsShow} style={{ width: "100%" }}>
-          {item.records.slice(3, item.records.length).map((record) => {
-            return (
-              <div key={record.contract} className={styles.itemDetailsRow}>
-                <p>{record.contract}</p>
-                <p>
-                  {numericFormatter(`${record.roundedAmount}.00`, {
-                    decimalSeparator: ".",
-                    thousandSeparator: ",",
-                    decimalScale: 2,
-                    suffix: ` ${item.ticker} `,
-                  })}
-                </p>
-                <p>
-                  {numericFormatter(`${record.dollarValue}`, {
-                    decimalSeparator: ".",
-                    thousandSeparator: ",",
-                    decimalScale: 2,
-                    prefix: `$`,
-                  })}
-                </p>
-              </div>
-            );
-          })}
-        </Collapse>
-        {item.records.length > 3 && (
-          <WhiteSecondaryButton onClick={() => setDetailsShow(!isDetailsShow)}>
-            {isDetailsShow ? "Collapse details" : "Expand details"}
-            <Icons
-              name="chevronDown"
-              className={clsx(styles.chevron, isDetailsShow && styles.open)}
-            />
-          </WhiteSecondaryButton>
-        )}
-      </Collapse>
+      <p>{`Calculating ${processSate.resultsList.length}/${chainTokens.length}`}</p>
     </div>
   );
 };
+
+const ProcessContext: any = createContext(null);
+
+const downloadResult = (data: any) => {
+  // Function to convert the object to a JSON string
+  const convertObjectToJSON = () => {
+    return JSON.stringify(
+      data,
+      (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
+      2,
+    );
+  };
+
+  // Function to create a Blob from the JSON string
+  const createBlob = () => {
+    const json = convertObjectToJSON();
+    return new Blob([json], { type: "application/json" });
+  };
+
+  // Function to create a download link and trigger a click event
+  const downloadJSON = () => {
+    const blob = createBlob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "erc20_losses.json"; // You can set the desired filename here
+    a.click();
+    URL.revokeObjectURL(url); // Clean up resources
+  };
+
+  downloadJSON();
+};
+
+// TODO
+const PrecalculatedResultWithAmount = PrecalculatedResult.map((item) => {
+  return {
+    ...item,
+    amount: item.records.reduce((acc, record) => acc + record.roundedAmount, 0),
+  };
+});
+
+const PrecalculatedResultSum = PrecalculatedResultWithAmount.reduce(
+  (acc, item) => acc + item.asDollar,
+  0,
+);
+const PrecalculatedResultTokenNumber = PrecalculatedResultWithAmount.length;
 
 export const TokenLosses = () => {
   const contractsStr = contracts[CHAIN].join("\n");
@@ -293,15 +267,16 @@ export const TokenLosses = () => {
   const [contractsList, setContractcs] = useState(contractsStr);
   const [tokensList, setTokens] = useState(tokensStr);
   const [resultsListStr, setResultsStr] = useState("");
-  const [resultsList, setResults] = useState(PrecalculatedResult);
-  const [resultSum, setResultSum] = useState("$ 00.00");
-  const [resultTokenNumber, setResultTokenNumber] = useState(0);
+  const [resultsList, setResults] = useState(PrecalculatedResultWithAmount);
+  const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
+  const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
   const [dateString, setDateString] = useState(new Date().toDateString());
   const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
 
   const contextObject = {
     tokensList,
     contractsList,
+    resultsList,
     resultsListStr,
     setResultsStr,
     setResults,
@@ -311,6 +286,8 @@ export const TokenLosses = () => {
     buttonState,
     setButtonState,
   };
+
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -349,6 +326,7 @@ export const TokenLosses = () => {
         </div>
         <ProcessContext.Provider value={contextObject}>
           <Button />
+          <CalculationProgress />
         </ProcessContext.Provider>
       </div>
       <div className={styles.resultBlock}>
@@ -369,6 +347,14 @@ export const TokenLosses = () => {
           </div>
         </div>
 
+        <div className={styles.download}>
+          <p>You can download the results in JSON:</p>
+          <SecondaryButton onClick={() => downloadResult(resultsList)}>
+            <Icons name="download" size="20px" />
+            Download JSON
+          </SecondaryButton>
+        </div>
+
         <div className={styles.totalLosses}>
           <div className={styles.totalLossesText}>
             <Icons name="warning" />
@@ -379,14 +365,23 @@ export const TokenLosses = () => {
               decimalSeparator: ".",
               thousandSeparator: ",",
               decimalScale: 2,
+              prefix: `$`,
             })}
           </p>
         </div>
-        <div className={styles.result}>
-          {resultsList.map((item, index) => {
-            return <ResultItem key={item.tokenAddress} item={item} index={index} />;
-          })}
-        </div>
+        {isMobile ? (
+          <div className={styles.result}>
+            {resultsList.map((item, index) => {
+              return <MobileResultItem key={item.tokenAddress} item={item} index={index} />;
+            })}
+          </div>
+        ) : (
+          <div className={styles.result}>
+            {resultsList.map((item, index) => {
+              return <ResultItem key={item.tokenAddress} item={item} index={index} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );
