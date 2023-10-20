@@ -25,7 +25,7 @@
     "lodash.compact": "^3.0.1",
     "lodash.debounce": "^4.0.8",
     "lodash.uniq": "^4.5.0",
-    "next": "13.4.12",
+    "next": "13.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-swipeable": "^7.0.1",

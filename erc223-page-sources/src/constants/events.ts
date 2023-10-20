@@ -2,6 +2,18 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] Dev discussion regarding ERC-223 vs ERC-777 vs ERC-1363 implementations",
+    url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/2620#issuecomment-1769509345",
+    date: "18.10.2023",
+    color: "#64DC84",
+  },
+    {
+    title: "[github] EIP moderator proposed the removal of the optional 'standard' function from ERC-223 standard.",
+    url: "https://github.com/ethereum/EIPs/pull/7856#issuecomment-1764921020",
+    date: "16.10.2023",
+    color: "#64DC84",
+  },
+  {
     title: "[r/ethereum] A user lost $240K worth of CRO on 6.09.2023",
     url: "https://www.reddit.com/r/ethereum/comments/16bqvj8/4_hours_ago_240k_worth_of_cro_were_deposited_to/",
     date: "6.09.2023",
@@ -21,9 +33,18 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
+      "[github] Dexaran is starting the creation of a process of final EIP modifications upon security vulnerability disclosures",
+    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257#issuecomment-1693740271",
+    date: "25.08.2023",
+    id: "AllERCDevs257",
+    color: "#64DC84",
+  },
+  {
+    title:
       "[github] EIP editors decided there is no necessity to place a warning on ERC-20 regarding the loss of $201M tokens and related insecurity of the standard. Security concern was raised by Dexaran",
     url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257",
     date: "25.08.2023",
+    id: "AllERCDevs257",
     color: "#64DC84",
   },
   {
@@ -350,6 +371,12 @@ export const events: IRecentEvent[] = [
     title: "[github] ERC-223 & ERC-20 Compatible Decentralized Exchange is created",
     url: "https://github.com/SoyFinance/smart-contracts/tree/938e74f8af23445de7741c6b93e2e9b5d588374f",
     date: "17.06.2022",
+  },
+  {
+    title:
+      "[etherscan] Comment on Etherscan pointing at a user losing all ERC-20 tokens to a contract unhandled transfer",
+    url: "https://etherscan.io/address/0xb8c77482e45f1f44de1745f52c74426c631bdd52#comment-5661234847",
+    date: "27.12.2021",
   },
   {
     title: "[ETH reddit] Breaking changes to ERC-223 standard announcement",
