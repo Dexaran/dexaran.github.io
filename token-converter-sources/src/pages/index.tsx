@@ -13,7 +13,7 @@ import { AddressBalance } from "@/pages-partials/AddressBalance/AddressBalance";
 export const manrope = Manrope({ subsets: ["latin"] });
 
 export default function Home() {
-  const [tab, setTab] = useState("addressBalance" as TabType);
+  const [tab, setTab] = useState("converter" as TabType);
   const [defaultChainId, setDefaultChainId] = useState(1);
   const [isChangeNetworkOpen, setIsChangeNetworkOpen] = useState(false);
 
@@ -48,6 +48,7 @@ export default function Home() {
           </div>
         </div>
         <Footer />
+        <div id="drawer-root" />
       </div>
     </>
   );

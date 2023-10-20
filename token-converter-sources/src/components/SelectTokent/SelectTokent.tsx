@@ -14,9 +14,9 @@ const rowHeight = 60;
 export type Token = {
   contract: Address;
   symbol: string;
-  logo: string;
+  logo?: string;
   decimals: number;
-  markets: number[];
+  markets?: number[];
 };
 
 export const loadChainTokens = async (chainId: number): Promise<Token[]> => {
@@ -62,8 +62,10 @@ export default function SelectTokent({
   const [filteredTokens, setFilteredTokens] = useState(chainTokens);
 
   const filterTokensWithSearch = useCallback(() => {
-    return chainTokens.filter((token) =>
-      token.symbol.toLowerCase().startsWith(searchText.toLowerCase()),
+    return chainTokens.filter(
+      (token) =>
+        token.symbol.toLowerCase().startsWith(searchText.toLowerCase()) ||
+        token.contract.toLowerCase() === searchText.toLowerCase(),
     );
   }, [chainTokens, searchText]);
 

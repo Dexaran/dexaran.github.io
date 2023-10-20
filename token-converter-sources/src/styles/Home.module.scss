@@ -52,6 +52,11 @@
     width: 40px;
     white-space: nowrap;
   }
+  @include media.for-mobile {
+    span {
+      letter-spacing: -11px;
+    }
+  }
 }
 
 .description {

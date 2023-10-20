@@ -8,6 +8,9 @@
   width: 100%;
   background-color: colors.$background-primary;
   border-bottom: 1px solid colors.$border-primary;
+  @include media.for-mobile {
+    border: none;
+  }
 }
 .headerTabs {
   display: flex;
@@ -15,14 +18,23 @@
   width: 100%;
   height: 60px;
   max-width: 680px;
+  @include media.for-mobile {
+    display: none;
+  }
 }
 
 .headerSettings {
   display: flex;
+  align-items: center;
   color: colors.$text-primary;  
   gap: 12px;
   padding-right: 20px;
   position: relative;
+  @include media.for-mobile {
+    width: 100%;
+    padding: 8px 16px;
+    padding-right: 8px;
+  }
 }
 
 .tab {
@@ -110,32 +122,30 @@
   }
 
   @include media.for-mobile {
-    height: 48px;
+    width: fit-content;
+    height: 32px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    .shortWalletAddress {
+      display: none;
+    }
   }
 }
 
-.networksContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  // gap: 20px
-  padding: 20px 0px;
-
-  @include media.for-mobile {
-    padding: 16px 0px;
-  }
-}
 .network {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 40px;
+  padding: 8px 20px;
   cursor: pointer;
   &:hover {
     background-color: #323531;
   }
 
   span {
+    white-space: nowrap;  
     color: colors.$text-primary;
     font-size: 16px;
     font-style: normal;
@@ -160,6 +170,19 @@
   top: calc(100% + 24px);
   border: 1px solid colors.$border-primary;
   background-color:  colors.$background-secondary;
+}
+.walletNetworksMenu {
+  position: absolute;
+  z-index: 100;
+  right: 210px;
+  top: calc(100% + 24px);
+  border: 1px solid colors.$border-primary;
+  background-color:  colors.$background-secondary;
+  @include media.for-mobile {
+    right: 20px;
+    left: 20px;
+
+  }
 }
 
 .walletAddress {
@@ -220,4 +243,130 @@
   &:hover {
     background-color:  colors.$background-primary;
   }
+}
+
+.menuButtonWrapper {
+  display: none;
+  @include media.for-mobile {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+.menuButton {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  background: transparent;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  position: relative;
+  // margin-right: -12px;
+  display: none;
+  cursor: pointer;
+  color: colors.$text-secondary;
+  justify-content: center;
+  align-items: center;
+
+  @include media.for-mobile {
+    display: flex;
+  }
+}
+
+.menuWrapper {
+  background-color: colors.$background-secondary;
+  height: 100%;
+}
+
+.menuContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 16px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  color: colors.$text-primary;
+  padding: 10px 16px;
+  padding-left: 12px;
+  border-left: 4px solid colors.$background-secondary;
+  gap: 12px;
+
+  span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px; /* 175% */
+  }
+
+  &.active {
+    background-color: colors.$background-primary;
+    color: colors.$palette-green;
+    border-color: colors.$palette-green;
+  }
+}
+
+// Custom node 
+.customNodeModal {
+  padding: 40px;
+}
+
+
+.fieldsLabel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  color: colors.$text-primary;
+  margin-bottom: 4px;
+}
+.amountInputWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid colors.$border-primary;
+  width: 100%;
+  background-color: colors.$background-primary;
+  outline: 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: colors.$text-primary;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Basic styles for the select element */
+.select {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Style the select element's options */
+.select option {
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
 }
