@@ -4,7 +4,7 @@ import { rpcMap, ERC20, ethRpcArray } from './const'
 import { numberWithCommas } from "./utils";
 
 // how many concurrent requests to make - different node may limit number of incoming requests - so 20 is a good compromise
-const asyncProcsNumber = 10  // with 50 there were some errors in requests
+const asyncProcsNumber = 5  // with 50 there were some errors in requests
 const chain = 'eth' // NOTE: if chain will be changed by user - should update it according
 
 export class Blockchain {
@@ -124,23 +124,21 @@ export class Blockchain {
         // iterate contracts
         let token = tokens[0];
 
-
-
-        const arrayLength = tokens.length - 1;
+        const arrayLength = tokens.length;
         for (const address of contractList) {
             counter++
             promises.push(this.getBalanceOf(token, address))
             // process batch of async requests
-            if (counter % asyncProcsNumber === 0) {
-                const idx = counter / asyncProcsNumber >> 0;
-                if (idx > arrayLength) {
-                    balances.push(...await Promise.all(promises));
-                    promises = [];
-                    counter = 0;
-                    token = tokens[0];
-                } else {
-                    token = tokens[idx];
-                }
+
+            const idx = counter % arrayLength;
+            token = tokens[idx];
+
+            if (counter % (asyncProcsNumber * arrayLength) === 0) {
+                balances.push(...await Promise.all(promises));
+                promises = [];
+                // console.log(`reset counter: ${counter}`);
+                counter = 0;
+                // token = tokens[0];
             }
         }
         if (promises.length) {
