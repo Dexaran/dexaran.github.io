@@ -1354,12 +1354,12 @@ export const ethRpcArray = [
     'https://eth.meowrpc.com', // 0:40
     'https://rpc.mevblocker.io', // 0:40
     'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
-    'https://eth.drpc.org', // 0:40
+    // 'https://eth.drpc.org', // 0:40
     'https://eth-rpc.gateway.pokt.network',  // 1:10
     // 'https://eth.llamarpc.com', // 1:50
     'https://ethereum.publicnode.com', // 1:57
 
-    'https://eth.api.onfinality.io/public', // bad
+    // 'https://eth.api.onfinality.io/public', // bad
     'https://eth-mainnet.public.blastapi.io', // bad
     // 'https://rpc.payload.de', // bad
     // 'https://1rpc.io/eth', // 1:06 (with errors)
