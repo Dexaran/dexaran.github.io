@@ -2,12 +2,6 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
-    title: "[article] Approval-related ERC-20 expoit on Uniswap",
-    url: "https://blockworks.co.in/uniswap-users-warned/",
-    date: "27.10.2023",
-    color: "#64DC84",
-  },
-  {
     title: "[github] Dev discussion regarding ERC-223 vs ERC-777 vs ERC-1363 implementations",
     url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/2620#issuecomment-1769509345",
     date: "18.10.2023",
