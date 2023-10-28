@@ -1369,8 +1369,6 @@ export const ethRpcArray = [
     'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
     'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
     'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
-    'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
-    'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
     'https://eth.drpc.org', // 0:40  // disabled
     'https://eth.drpc.org', // 0:40  // disabled
     'https://eth.drpc.org', // 0:40  // disabled
@@ -1383,14 +1381,13 @@ export const ethRpcArray = [
 
     'https://eth-mainnet.public.blastapi.io', // bad
     'https://eth-mainnet.public.blastapi.io', // bad
-    'https://eth-mainnet.public.blastapi.io', // bad
     'https://rpc.payload.de', // bad // disabled
-    'https://1rpc.io/eth', // 1:06 (with errors) // disabled
     'https://rpc.ankr.com/eth', // bad // disabled
     'https://core.gashawk.io/rpc', // timeout // disabled
     'https://api.securerpc.com/v1', // bad // disabled
     'https://cloudflare-eth.com' // bad // disabled
 
+    // 'https://1rpc.io/eth', // 1:06 (with errors) // disabled
     // 'https://rpc.eth.gateway.fm',    // bad // disabled x2
     // 'https://api.zmok.io/mainnet/oaen6dy8ff6hju9k',  // bad // disabled x2
     // 'https://uk.rpc.blxrbdn.com',    // bad // disabled x2
