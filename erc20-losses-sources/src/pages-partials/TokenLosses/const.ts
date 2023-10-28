@@ -1379,10 +1379,10 @@ export const ethRpcArray = [
     'https://eth-mainnet.public.blastapi.io', // bad
     'https://eth-mainnet.public.blastapi.io', // bad
     'https://rpc.payload.de', // bad // disabled
-    'https://rpc.ankr.com/eth', // bad // disabled
+    // 'https://rpc.ankr.com/eth', // bad // disabled
     'https://core.gashawk.io/rpc', // timeout // disabled
     'https://api.securerpc.com/v1', // bad // disabled
-    'https://cloudflare-eth.com' // bad // disabled
+    // 'https://cloudflare-eth.com' // bad // disabled
 
     // 'https://1rpc.io/eth', // 1:06 (with errors) // disabled
     // 'https://rpc.eth.gateway.fm',    // bad // disabled x2
