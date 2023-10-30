@@ -198,7 +198,6 @@ const CalculationProgress = () => {
   const processSate: any = useContext(ProcessContext);
   const chainTokens = processSate.tokensList.split("\n");
   const [progress, setProgress] = useState(100);
-  console.log("🚀 ~ CalculationProgress ~ progress:", progress)
 
   useEffect(() => {
     setProgress((processSate.resultsList.length / chainTokens.length) * 100);
