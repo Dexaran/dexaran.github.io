@@ -1352,28 +1352,47 @@ export const rpcMap = new Map([
 
 export const ethRpcArray = [
     'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://eth.meowrpc.com', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
+    'https://rpc.mevblocker.io', // 0:40
     'https://rpc.mevblocker.io', // 0:40
     'https://ethereum.blockpi.network/v1/rpc/public', // 0:40
-    // 'https://eth.drpc.org', // 0:40
+    'https://eth.drpc.org', // 0:40  // disabled
+    'https://eth.drpc.org', // 0:40  // disabled
+    'https://eth.drpc.org', // 0:40  // disabled
     'https://eth-rpc.gateway.pokt.network',  // 1:10
-    // 'https://eth.llamarpc.com', // 1:50
+    'https://eth-rpc.gateway.pokt.network',  // 1:10
+    'https://eth.llamarpc.com', // 1:50 // disabled
+    'https://eth.llamarpc.com', // 1:50 // disabled
+    'https://ethereum.publicnode.com', // 1:57
     'https://ethereum.publicnode.com', // 1:57
 
-    // 'https://eth.api.onfinality.io/public', // bad
     'https://eth-mainnet.public.blastapi.io', // bad
-    // 'https://rpc.payload.de', // bad
-    // 'https://1rpc.io/eth', // 1:06 (with errors)
-    // 'https://eth-mainnet-public.unifra.io', // bad
-    // 'https://rpc.ankr.com/eth', // bad
-    // 'https://core.gashawk.io/rpc', // timeout
-    // 'https://api.securerpc.com/v1', // bad
-    // 'https://virginia.rpc.blxrbdn.com',  // bad
-    // 'https://uk.rpc.blxrbdn.com',    // bad
-    // 'https://singapore.rpc.blxrbdn.com', // bad
-    // 'https://mainnet.gateway.tenderly.co', // bad
-    // 'https://rpc.eth.gateway.fm',    // bad
-    // 'https://api.zmok.io/mainnet/oaen6dy8ff6hju9k',  // bad
-    // 'https://cloudflare-eth.com' // bad
+    'https://eth-mainnet.public.blastapi.io', // bad
+    'https://rpc.payload.de', // bad // disabled
+    // 'https://rpc.ankr.com/eth', // bad // disabled
+    'https://core.gashawk.io/rpc', // timeout // disabled
+    'https://api.securerpc.com/v1', // bad // disabled
+    // 'https://cloudflare-eth.com' // bad // disabled
+
+    // 'https://1rpc.io/eth', // 1:06 (with errors) // disabled
+    // 'https://rpc.eth.gateway.fm',    // bad // disabled x2
+    // 'https://api.zmok.io/mainnet/oaen6dy8ff6hju9k',  // bad // disabled x2
+    // 'https://uk.rpc.blxrbdn.com',    // bad // disabled x2
+    // 'https://virginia.rpc.blxrbdn.com',  // bad // disabled x2
+    // 'https://singapore.rpc.blxrbdn.com', // bad // disabled x2
+    // 'https://eth.api.onfinality.io/public', // bad // disabled x2
+    // 'https://eth-mainnet-public.unifra.io', // bad // disabled x2
+    // 'https://mainnet.gateway.tenderly.co', // bad // disabled x2
 ]
 
 // export const ERC20
