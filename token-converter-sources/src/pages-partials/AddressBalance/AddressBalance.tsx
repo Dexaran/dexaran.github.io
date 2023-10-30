@@ -173,7 +173,7 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
       <div className={homeStyles.contentBlockHeader}>
         <h1 className={homeStyles.h1}>View address tokens</h1>
         <p className={homeStyles.description}>
-          {`Here, you have the power to explore tokens for any address you desire. But that's not all — we give you the freedom to curate your own list of favorite tokens for easy tracking. Discover, customize, and stay in control.`}
+          {`You can view ERC-20 & ERC-223 token balances of any address here. For every ERC-20 token there is a ERC-223 version. You can 'pin' tokens to make them display at the top of the list. You can also add a token by typing its name or copy&paste its address to the "Token name or address" input and clicking the + button - this will add the token to the top of the list. You can start / stop loading balances by clicking the load button. Token balances from the top of the list are loaded first. This page reads token balances directly from token contracts.`}
         </p>
       </div>
       <div className={styles.addTokens}>

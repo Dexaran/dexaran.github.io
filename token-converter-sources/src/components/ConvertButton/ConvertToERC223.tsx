@@ -21,24 +21,28 @@ import { getConverterContract, getNetworkExplorerTxUrl } from "@/utils/networks"
 const ToERC223ApproveButton = ({
   amountToConvert,
   tokenAddressERC20,
+  gasPrice,
+  gasLimit,
 }: {
   amountToConvert: any;
   tokenAddressERC20: any;
+  gasPrice: null | string;
+  gasLimit: null | string;
 }) => {
-  const [gasPrice, setGasPrice] = useState(null as null | string);
-  const [gasLimit, setGasLimit] = useState(null as null | string);
   const { chain } = useNetwork();
 
-  const { writeAsync: writeTokenApprove, data, isLoading } = useContractWrite<typeof ERC20ABI, "approve", any>(
-    {
-      address: tokenAddressERC20,
-      abi: ERC20ABI,
-      functionName: "approve",
-      args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
-      gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
-      gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
-    } as any,
-  );
+  const {
+    writeAsync: writeTokenApprove,
+    data,
+    isLoading,
+  } = useContractWrite<typeof ERC20ABI, "approve", any>({
+    address: tokenAddressERC20,
+    abi: ERC20ABI,
+    functionName: "approve",
+    args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
+    gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
+    gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
+  } as any);
 
   const { showMessage } = useSnackbar();
   const handleTokenApprove = async () => {
@@ -55,18 +59,8 @@ const ToERC223ApproveButton = ({
 
   return (
     <>
-      {/* <GasSettings
-        gasPrice={gasPrice}
-        setGasPrice={setGasPrice}
-        gasLimit={gasLimit}
-        setGasLimit={setGasLimit}
-        address={tokenAddressERC20}
-        abi={ERC20ABI}
-        functionName="approve"
-        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
-      /> */}
       <PrimaryButton onClick={handleTokenApprove} isLoading={isLoading || approving}>
-        Approve test tokens
+        Approve tokens
       </PrimaryButton>
       {!!approving && !!data?.hash && (
         <div className={styles.waitingApproveTxBlock}>
@@ -101,14 +95,21 @@ const ToERC223ConvertButton = ({
   const [gasLimit, setGasLimit] = useState(null as null | string);
   const { chain } = useNetwork();
 
+  const { data: isWrapper } = useContractRead({
+    address: getConverterContract(chain?.id),
+    abi: TokenConverterABI,
+    functionName: "isWrapper",
+    args: [tokenAddressERC20],
+  });
+
   const {
     writeAsync: writeConvert,
     isLoading: isWriteConvertLoading,
     data,
-  } = useContractWrite<typeof TokenConverterABI, "convertERC20toERC223", any>({
+  } = useContractWrite<typeof TokenConverterABI, "wrapERC20toERC223", any>({
     address: getConverterContract(chain?.id),
     abi: TokenConverterABI,
-    functionName: "convertERC20toERC223",
+    functionName: isWrapper ? "unwrapERC20toERC223" : "wrapERC20toERC223",
     args: [tokenAddressERC20, parseEther(amountToConvert)],
     gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
     gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
@@ -138,7 +139,7 @@ const ToERC223ConvertButton = ({
         setGasLimit={setGasLimit}
         address={getConverterContract(chain?.id)}
         abi={TokenConverterABI}
-        functionName="convertERC20toERC223"
+        functionName={isWrapper ? "unwrapERC20toERC223" : "wrapERC20toERC223"}
         args={[tokenAddressERC20, parseEther(amountToConvert)]}
       />
       <PrimaryButton
@@ -152,7 +153,7 @@ const ToERC223ConvertButton = ({
   );
 };
 
-const Test = ({
+const TxInfo = ({
   txHash,
   contractAddress,
   handleCloseModal,
@@ -233,7 +234,7 @@ export const ConvertToERC223 = ({
   const [waitingTxHash, setWaitingTxHash] = useState(null as null | string);
   const { address } = useAccount();
   const { chain } = useNetwork();
-  const { data: readData } = useContractRead({
+  const { data: allowanceAmount } = useContractRead({
     address: tokenAddressERC20,
     abi: ERC20ABI,
     functionName: "allowance",
@@ -249,50 +250,65 @@ export const ConvertToERC223 = ({
     return +tokenBalanceERC20.formatted >= +amountToConvert;
   }, [amountToConvert, tokenBalanceERC20?.formatted]);
 
+  // Approve Gas settings
   const [gasPrice, setGasPrice] = useState(null as null | string);
   const [gasLimit, setGasLimit] = useState(null as null | string);
 
+  const showConvertButton =
+    amountToConvert &&
+    isEnoughBalance &&
+    allowanceAmount &&
+    +amountToConvert <= +formatEther(allowanceAmount as any);
+
+  const renderActionButton = () => {
+    if (!amountToConvert) {
+      return <PrimaryButton disabled>Enter amount</PrimaryButton>;
+    } else if (!isEnoughBalance) {
+      return <PrimaryButton disabled>Insufficient amount</PrimaryButton>;
+    } else if (
+      !allowanceAmount ||
+      (allowanceAmount && +amountToConvert > +formatEther(allowanceAmount as any))
+    ) {
+      return (
+        <ToERC223ApproveButton
+          amountToConvert={amountToConvert}
+          tokenAddressERC20={tokenAddressERC20}
+          gasPrice={gasPrice}
+          gasLimit={gasLimit}
+        />
+      );
+    } else {
+      return (
+        <ToERC223ConvertButton
+          amountToConvert={amountToConvert}
+          tokenAddressERC20={tokenAddressERC20}
+          handleCreateTx={(txHash) => {
+            setWaitingTxHash(txHash);
+          }}
+          isLoading={!!waitingTxHash}
+        />
+      );
+    }
+  };
   return (
     <>
       <div className={styles.actionButtonWrapper}>
-      <GasSettings
-        gasPrice={gasPrice}
-        setGasPrice={setGasPrice}
-        gasLimit={gasLimit}
-        setGasLimit={setGasLimit}
-        address={tokenAddressERC20}
-        abi={ERC20ABI}
-        functionName="approve"
-        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
-      />
-
-        {!amountToConvert && <PrimaryButton disabled>Enter amount</PrimaryButton>}
-        {!isEnoughBalance && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
-        {amountToConvert &&
-          isEnoughBalance &&
-          (!readData || (readData && +amountToConvert > +formatEther(readData as any))) && (
-            <>
-              <ToERC223ApproveButton
-                amountToConvert={amountToConvert}
-                tokenAddressERC20={tokenAddressERC20}
-              />
-            </>
-          )}
-        {amountToConvert &&
-          isEnoughBalance &&
-          readData &&
-          +amountToConvert <= +formatEther(readData as any) && (
-            <ToERC223ConvertButton
-              amountToConvert={amountToConvert}
-              tokenAddressERC20={tokenAddressERC20}
-              handleCreateTx={(txHash) => {
-                setWaitingTxHash(txHash);
-              }}
-              isLoading={!!waitingTxHash}
-            />
-          )}
+        {/* Approve Gas settings */}
+        {!showConvertButton && (
+          <GasSettings
+            gasPrice={gasPrice}
+            setGasPrice={setGasPrice}
+            gasLimit={gasLimit}
+            setGasLimit={setGasLimit}
+            address={tokenAddressERC20}
+            abi={ERC20ABI}
+            functionName="approve"
+            args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
+          />
+        )}
+        {renderActionButton()}
         {waitingTxHash ? (
-          <Test
+          <TxInfo
             txHash={waitingTxHash}
             contractAddress={tokenAddressERC223}
             handleCloseModal={() => {

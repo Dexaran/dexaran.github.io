@@ -93,8 +93,8 @@ export const ConvertToERC20 = ({
         gasLimit={gasLimit}
         setGasLimit={setGasLimit}
         address={tokenAddressERC20}
-        abi={ERC20ABI}
-        functionName="approve"
+        abi={ERC223ABI}
+        functionName="transfer"
         args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
       />
       {!isEnoughBalance223 && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
