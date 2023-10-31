@@ -47,7 +47,8 @@ export class Blockchain {
         // getting price from 3rd party API - may have limits on number of requests
         let priceObj = {
             price: 0,
-            USD: 0
+            USD: 0,
+            logo: "",
         };
 
         if (validToken) {
@@ -78,7 +79,8 @@ export class Blockchain {
             ticker,
             valid: validToken,
             decimals: Number(decimals) || 18,
-            price: priceObj['price'] ?? priceObj['USD'] ?? 0
+            price: priceObj['price'] ?? priceObj['USD'] ?? 0,
+            logo: priceObj.logo
         }
     }
 
@@ -224,6 +226,7 @@ export class Blockchain {
             ticker: tokenObject.ticker,
             decimals: tokenObject.decimals,
             price: tokenObject.price,
+            logo: tokenObject.logo,
             records: results
         }
     }

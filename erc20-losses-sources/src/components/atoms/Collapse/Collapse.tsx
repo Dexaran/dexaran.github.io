@@ -61,7 +61,7 @@ export default function Collapse({ children, open, style }: any) {
       )}
       style={{ height, ...(style || {}) }}
     >
-      <div ref={ref}>{children}</div>
+      <div ref={ref}>{open ? children : null}</div>
     </div>
   );
 }

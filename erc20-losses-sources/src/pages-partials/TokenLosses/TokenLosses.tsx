@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useRef, useState } from "r
 import homeStyles from "../../styles/Home.module.scss";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_13_10_2023.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023.json";
 // import PrecalculatedResult from "@/constants/erc20_losses.json";
 
 /* local imports */
@@ -198,7 +198,6 @@ const CalculationProgress = () => {
   const processSate: any = useContext(ProcessContext);
   const chainTokens = processSate.tokensList.split("\n");
   const [progress, setProgress] = useState(100);
-  console.log("🚀 ~ CalculationProgress ~ progress:", progress)
 
   useEffect(() => {
     setProgress((processSate.resultsList.length / chainTokens.length) * 100);

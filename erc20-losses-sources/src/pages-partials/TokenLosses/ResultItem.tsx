@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
 import clsx from "clsx";
@@ -10,17 +10,85 @@ import Collapse from "@/components/atoms/Collapse";
 import { getNetworkExplorerTokenUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
+import { Blockchain } from "./web3";
+
+const CHAIN = "eth"; // eth or bsc or polygon
+const web3 = new Blockchain(CHAIN);
+
+const getTokenName = async (address:string) =>{
+  const tokenInfo = await web3.getTokenInfo(address);
+  return tokenInfo.ticker;
+}
+
+const ItemContract = ({
+  contract,
+  roundedAmount,
+  ticker,
+  dollarValue,
+}: {
+  contract: string;
+  roundedAmount: any;
+  ticker: string;
+  dollarValue: any;
+}) => {
+  const { showMessage } = useSnackbar();
+  const [contractName, setContractName] = useState();
+  useEffect(() => {
+    (async () => {
+
+      const name = await getTokenName(contract);
+      setContractName(name);
+    })();
+  }, [contract]);
+
+
+  return (
+    <div key={contract} className={styles.itemDetailsRow}>
+      <p>{contractName || "—"}</p>
+      <p className={styles.tokenCardBalanceContract}>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={getNetworkExplorerTokenUrl(1, contract)}
+        >{`${renderShortAddress(contract, 13)}`}</a>
+        <Icons
+          name="copy"
+          onClick={async () => {
+            await navigator.clipboard.writeText(contract);
+            showMessage("ERC-223 Token address copied");
+          }}
+        />{" "}
+      </p>
+
+      <p>
+        {numericFormatter(`${roundedAmount}.00`, {
+          decimalSeparator: ".",
+          thousandSeparator: ",",
+          decimalScale: 2,
+          suffix: ` ${ticker} `,
+        })}
+      </p>
+      <p>
+        {numericFormatter(`${dollarValue}`, {
+          decimalSeparator: ".",
+          thousandSeparator: ",",
+          decimalScale: 2,
+          prefix: `$`,
+        })}
+      </p>
+    </div>
+  );
+};
 
 export const ResultItem = ({ item, index }: { item: any; index: number }) => {
   const [isOpen, setIsOpen] = useState(false); // index < 3
   const [isDetailsShow, setDetailsShow] = useState(false);
-  const { showMessage } = useSnackbar();
 
   return (
     <div className={styles.resultItem}>
       <div className={styles.resultItemHeader} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.resultItemHeaderName}>
-          {/* <Icons name="erc223" /> */}
+          {item.logo ? <img src={item.logo} width="32px" height="32px" alt={item.ticker} /> : null}
           {item.ticker}
           <a
             target="_blank"
@@ -68,79 +136,25 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
         </div>
         {item.records.slice(0, 3).map((record) => {
           return (
-            <div key={record.contract} className={styles.itemDetailsRow}>
-              <p>—</p>
-              <p className={styles.tokenCardBalanceContract}>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={getNetworkExplorerTokenUrl(1, record.contract)}
-                >{`${renderShortAddress(record.contract, 13)}`}</a>
-                <Icons
-                  name="copy"
-                  onClick={async () => {
-                    await navigator.clipboard.writeText(record.contract);
-                    showMessage("ERC-223 Token address copied");
-                  }}
-                />{" "}
-              </p>
-
-              <p>
-                {numericFormatter(`${record.roundedAmount}.00`, {
-                  decimalSeparator: ".",
-                  thousandSeparator: ",",
-                  decimalScale: 2,
-                  suffix: ` ${item.ticker} `,
-                })}
-              </p>
-              <p>
-                {numericFormatter(`${record.dollarValue}`, {
-                  decimalSeparator: ".",
-                  thousandSeparator: ",",
-                  decimalScale: 2,
-                  prefix: `$`,
-                })}
-              </p>
-            </div>
+            <ItemContract
+              key={record.contract}
+              contract={record.contract}
+              dollarValue={record.dollarValue}
+              roundedAmount={record.roundedAmount}
+              ticker={item.ticker}
+            />
           );
         })}
         <Collapse open={isDetailsShow} style={{ width: "100%" }}>
           {item.records.slice(3, item.records.length).map((record) => {
             return (
-              <div key={record.contract} className={styles.itemDetailsRow}>
-                <p>—</p>
-                <p className={styles.tokenCardBalanceContract}>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={getNetworkExplorerTokenUrl(1, record.contract)}
-                  >{`${renderShortAddress(record.contract, 13)}`}</a>
-                  <Icons
-                    name="copy"
-                    onClick={async () => {
-                      await navigator.clipboard.writeText(record.contract);
-                      showMessage("ERC-223 Token address copied");
-                    }}
-                  />{" "}
-                </p>
-
-                <p>
-                  {numericFormatter(`${record.roundedAmount}.00`, {
-                    decimalSeparator: ".",
-                    thousandSeparator: ",",
-                    decimalScale: 2,
-                    suffix: ` ${item.ticker} `,
-                  })}
-                </p>
-                <p>
-                  {numericFormatter(`${record.dollarValue}`, {
-                    decimalSeparator: ".",
-                    thousandSeparator: ",",
-                    decimalScale: 2,
-                    prefix: `$`,
-                  })}
-                </p>
-              </div>
+              <ItemContract
+                key={record.contract}
+                contract={record.contract}
+                dollarValue={record.dollarValue}
+                roundedAmount={record.roundedAmount}
+                ticker={item.ticker}
+              />
             );
           })}
         </Collapse>
