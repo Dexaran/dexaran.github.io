@@ -7,7 +7,7 @@ export const events: IRecentEvent[] = [
     date: "18.10.2023",
     color: "#64DC84",
   },
-    {
+  {
     title: "[github] EIP moderator proposed the removal of the optional 'standard' function from ERC-223 standard.",
     url: "https://github.com/ethereum/EIPs/pull/7856#issuecomment-1764921020",
     date: "16.10.2023",
