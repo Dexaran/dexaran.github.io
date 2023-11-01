@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023_upd2.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023_upd3.json";
 
 /* local imports */
 import { tokens, contracts } from "./const";
