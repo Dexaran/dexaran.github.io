@@ -20,7 +20,7 @@ export const Header = () => {
         <h1>ERC-20 Losses Calculator</h1>
         <h2>
           ERC-20 token standard contains a security flaw in its transferring workflow. As the result
-          a user can lose his funds.
+          a user can lose their funds.
         </h2>
         <h3>The problem</h3>
         <p>
