@@ -40,28 +40,6 @@
     "amount": 224091267519
   },
   {
-    "tokenAddress": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
-    "ticker": "STG",
-    "decimals": 18,
-    "price": 0.49247971131385443,
-    "records": [
-      {
-        "amount": "2900000000000000000000",
-        "roundedAmount": 2900,
-        "dollarValue": "1,428.19",
-        "contract": "0x940a2db1b7008b6c776d4faaca729d6d4a4aa551"
-      },
-      {
-        "amount": "30744016830000000000",
-        "roundedAmount": 30,
-        "dollarValue": "14.77",
-        "contract": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
-      }
-    ],
-    "asDollar": 72816591.28467713,
-    "amount": 147857037
-  },
-  {
     "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
     "ticker": "USDT",
     "decimals": 6,
@@ -23028,6 +23006,28 @@
     ],
     "asDollar": 4.352664696191431,
     "amount": 1000
+  },
+  {
+    "tokenAddress": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+    "ticker": "STG",
+    "decimals": 18,
+    "price": 0.49247971131385443,
+    "records": [
+      {
+        "amount": "2900000000000000000000",
+        "roundedAmount": 2900,
+        "dollarValue": "1,428.19",
+        "contract": "0x940a2db1b7008b6c776d4faaca729d6d4a4aa551"
+      },
+      {
+        "amount": "30744016830000000000",
+        "roundedAmount": 30,
+        "dollarValue": "14.77",
+        "contract": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
+      }
+    ],
+    "asDollar": 1442,
+    "amount": 2930
   },
   {
     "tokenAddress": "0x7A41e0517a5ecA4FdbC7FbebA4D4c47B9fF6DC63",
