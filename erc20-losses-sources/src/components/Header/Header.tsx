@@ -23,6 +23,7 @@ export const Header = () => {
           a user can lose their funds.
         </h2>
         <h3>The problem</h3>
+        <br></br>
         <p>
           {`ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
         </p>
