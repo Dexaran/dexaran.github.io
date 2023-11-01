@@ -7,6 +7,7 @@ import {
   useContractWrite,
   useNetwork,
   usePrepareContractWrite,
+  usePublicClient,
 } from "wagmi";
 import { privateKeyToAccount } from "viem/accounts";
 import { createWalletClient, http, parseEther, publicActions } from "viem";
@@ -15,6 +16,7 @@ import testTokenABI from "../../constants/abi/test-token.json";
 import { useWeb3Modal } from "@web3modal/react";
 import { supportedChainIds } from "@/utils/networks";
 import { NetworksConfigs } from "@/constants/networks";
+import ERC223ABI from "../../constants/abi/erc223.json";
 
 const TEST_WALLET_PK = "0x667b7fdbb728769abe46c01d71465a213342cddeb5b1d9162ca0676c6a3f659a";
 const TEST_TOKEN_ERC20_ADDRESS: Address = "0x9e3549954138E52C230aCB92A9358C3842ABEb41";

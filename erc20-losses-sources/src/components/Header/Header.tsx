@@ -9,28 +9,62 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        {/* <div className={styles.leftHeader}>
+        <div className={styles.leftHeader}>
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-1.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-2.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-3.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-4.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-5.png`} alt="" />
-        </div> */}
+        </div>
 
-        <h1>Losses calculator</h1>
-        <h2>Lorem ipsum dolor sit amet consectetur. Et vel blandit enim sed porta.</h2>
+        <h1>ERC-20 Losses Calculator</h1>
+        <h2>
+          ERC-20 token standard contains a security flaw in its transferring workflow. As the result
+          a user can lose his funds.
+        </h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Ut suspendisse morbi tellus nulla sodales volutpat
-          lorem malesuada placerat. Varius enim in massa commodo. Amet vivamus nulla augue viverra
-          diam duis maecenas morbi vivamus. Aliquet et gravida nulla nulla nunc. Convallis
-          vestibulum phasellus eu ipsum.
+          {`The problem - ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
         </p>
-        {/* <div className={styles.rightHeader}>
+        <p>
+          You can find a full description of the problem in{" "}
+          <a
+            href="https://dexaran820.medium.com/known-problems-of-erc20-token-standard-e98887b9532c"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            this article
+          </a>{" "}
+          or in{" "}
+          <a
+            href="https://github.com/Dexaran/EIPs/blob/patch-1/EIPS/eip-7544.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            EIP-7544
+          </a>
+          .
+        </p>
+        <p>
+          What this script does? - For each token contract address in a left input the script
+          calculates how much of this token is permanently stuck in all the addresses from the right
+          input. NOTE: It can take few hours to go through thousands of tokens from the default list
+        </p>
+        <p>
+          Found a problem with the script? - Report it{" "}
+          <a
+            href="https://github.com/Dexaran/dexaran.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
+        </p>
+        <div className={styles.rightHeader}>
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-1.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-2.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-3.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-4.png`} alt="" />
-        </div> */}
+        </div>
       </div>
     </header>
   );

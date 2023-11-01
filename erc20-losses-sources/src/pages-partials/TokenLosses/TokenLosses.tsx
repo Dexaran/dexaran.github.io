@@ -2,8 +2,7 @@ import React, { createContext, useContext, useEffect, useRef, useState } from "r
 import homeStyles from "../../styles/Home.module.scss";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_13_10_2023.json";
-// import PrecalculatedResult from "@/constants/erc20_losses.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023_upd2.json";
 
 /* local imports */
 import { tokens, contracts } from "./const";
@@ -198,14 +197,18 @@ const CalculationProgress = () => {
   const processSate: any = useContext(ProcessContext);
   const chainTokens = processSate.tokensList.split("\n");
   const [progress, setProgress] = useState(100);
-  console.log("🚀 ~ CalculationProgress ~ progress:", progress)
 
   useEffect(() => {
     setProgress((processSate.resultsList.length / chainTokens.length) * 100);
   }, [chainTokens.length, processSate.resultsList.length]);
 
   return (
-    <div className={clsx(styles.calculationProgress, progress >= 100 && styles.hide)}>
+    <div
+      className={clsx(
+        styles.calculationProgress,
+        (progress >= 100 || progress === 0) && styles.hide,
+      )}
+    >
       <div className={styles.progressContainer}>
         <div className={styles.progressBar} style={{ width: `${progress}%` }} />
       </div>
@@ -264,7 +267,7 @@ export const TokenLosses = () => {
   const contractsStr = contracts[CHAIN].join("\n");
   const tokensStr = tokens[CHAIN].join("\n");
 
-  const [contractsList, setContractcs] = useState(contractsStr);
+  const [contractsList, setContracts] = useState(contractsStr);
   const [tokensList, setTokens] = useState(tokensStr);
   const [resultsListStr, setResultsStr] = useState("");
   const [resultsList, setResults] = useState(PrecalculatedResultWithAmount);
@@ -273,6 +276,18 @@ export const TokenLosses = () => {
   const [dateString, setDateString] = useState(new Date().toDateString());
   const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
 
+  const clearResults = () => {
+    setResults([]);
+    setResultSum(0);
+  }
+  const updateContractsHandler = (contracts: string) => {
+    setContracts(contracts);
+    clearResults();
+  };
+  const updateTokensListHandler = (tokens: string) => {
+    setTokens(tokens);
+    clearResults();
+  };
   const contextObject = {
     tokensList,
     contractsList,
@@ -306,7 +321,7 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={tokensList}
               onChange={(event) =>
-                timeoutInput(setTokens, event.target.value, "tokensList", setButtonState)
+                timeoutInput(updateTokensListHandler, event.target.value, "tokensList", setButtonState)
               }
             ></textarea>
           </div>
@@ -319,7 +334,7 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={contractsList}
               onChange={(event) =>
-                timeoutInput(setContractcs, event.target.value, "contractsList", setButtonState)
+                timeoutInput(updateTokensListHandler, event.target.value, "contractsList", setButtonState)
               }
             ></textarea>
           </div>

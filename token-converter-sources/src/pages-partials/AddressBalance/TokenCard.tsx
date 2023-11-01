@@ -32,21 +32,27 @@ export const TokenCard = ({
   isMobile: boolean;
 }) => {
   const tokenAddressERC20 = token.contract;
-  const { data: tokenAddressERC223 } = useContractRead({
+
+  const { data: tokenBalanceERC20, isLoading: isERC20Loading } = useBalance({
+    address: tokenAddressERC20 ? address : (undefined as any),
+    token: tokenAddressERC20,
+  });
+
+  const { data: tokenAddressERC223Data } = useContractRead({
     address: getConverterContract(chainId),
     abi: TokenConverterABI,
     functionName: "getWrapperFor",
     args: [tokenAddressERC20],
   });
-
-  const { data: tokenBalanceERC20, isLoading: isERC20Loading } = useBalance({
-    address,
-    token: tokenAddressERC20,
-  });
+  const tokenAddressERC223: Address =
+    tokenAddressERC223Data?.[0] === "0x0000000000000000000000000000000000000000"
+      ? undefined
+      : tokenAddressERC223Data?.[0];
 
   const { data: tokenBalanceERC223, isLoading: isERC223Loading } = useBalance({
-    address,
-    token: tokenAddressERC223 as any,
+    address: tokenAddressERC223 ? address : (undefined as any),
+    token: tokenAddressERC223,
+    watch: true,
   });
 
   if (isMobile) {

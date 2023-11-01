@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.scss";
-import { useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
+import { Address, useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
 import TokenConverterABI from "../constants/abi/tokenConverter.json";
 import { useEffect, useMemo, useState } from "react";
 import { Manrope } from "next/font/google";
@@ -30,7 +30,9 @@ export const Converter = ({
   const [hasMounted, setHasMounted] = useState(false);
   const [amountToConvert, setAmountToConvert] = useState("");
   const [toERC223, setToERC223] = useState(true);
-  const [tokenAddressERC20, setTokenAddressERC20] = useState();
+  const [isCustomToken, setIsCustomToken] = useState(false);
+  const [tokenAddressERC20, setTokenAddressERC20] = useState(undefined as Address | undefined);
+  const [tokenAddressERC223, setTokenAddressERC223] = useState(undefined as Address | undefined);
 
   const { address, isConnected } = useAccount();
   const { chain, chains } = useNetwork();
@@ -44,21 +46,14 @@ export const Converter = ({
   }, [chain]);
 
   const { data: tokenBalanceERC20 } = useBalance({
-    address,
+    address: tokenAddressERC20 ? address : undefined as any,
     token: tokenAddressERC20,
     watch: true,
   });
 
-  const { data: tokenAddressERC223 } = useContractRead({
-    address: getConverterContract(chain?.id),
-    abi: TokenConverterABI,
-    functionName: "getWrapperFor",
-    args: [tokenAddressERC20],
-  });
-
   const { data: tokenBalanceERC223 } = useBalance({
-    address,
-    token: tokenAddressERC223 as any,
+    address: tokenAddressERC223 ? address : undefined as any,
+    token: tokenAddressERC223,
     watch: true,
   });
 
@@ -123,6 +118,7 @@ export const Converter = ({
           <button
             className={`${styles.switchButton} ${toERC223 ? "" : styles.rotated}`}
             onClick={() => setToERC223(!toERC223)}
+            disabled={isCustomToken}
           >
             <Icons name="swap" fill="#FDFFFC" />
           </button>
@@ -148,9 +144,13 @@ export const Converter = ({
               tokenAddressERC20={tokenAddressERC20}
               tokenAddressERC223={tokenAddressERC223}
               setTokenAddressERC20={setTokenAddressERC20}
+              setTokenAddressERC223={setTokenAddressERC223}
               tokenBalanceERC20={tokenBalanceERC20}
               tokenBalanceERC223={tokenBalanceERC223}
               toERC223={toERC223}
+              setToERC223={setToERC223}
+              isCustomToken={isCustomToken}
+              setIsCustomToken={setIsCustomToken}
             />
           </div>
         )}

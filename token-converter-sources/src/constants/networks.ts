@@ -18,7 +18,7 @@ export const NetworksConfigs: {
     chainId: 1,
     explorerTx: "https://etherscan.io/tx/{tx}",
     explorerToken: "https://etherscan.io/token/{contract}",
-    converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+    converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
     chainConfig: mainnet,
   },
   optimism: {
@@ -27,7 +27,7 @@ export const NetworksConfigs: {
     chainId: 10,
     explorerTx: "https://optimistic.etherscan.io/tx/{tx}",
     explorerToken: "https://optimistic.etherscan.io/token/{contract}",
-    converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+    converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
     chainConfig: optimism,
   },
   polygon: {
@@ -36,7 +36,7 @@ export const NetworksConfigs: {
     chainId: 137,
     explorerTx: "https://polygonscan.com/tx/{tx}",
     explorerToken: "https://polygonscan.com/token/{contract}",
-    converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+    converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
     chainConfig: polygon,
   },
   bsc: {
@@ -45,7 +45,7 @@ export const NetworksConfigs: {
     chainId: 56,
     explorerTx: "https://bscscan.com/tx/{tx}",
     explorerToken: "https://bscscan.com/token/{contract}",
-    converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+    converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
     chainConfig: bsc,
   },
   callisto: {
@@ -54,7 +54,7 @@ export const NetworksConfigs: {
     chainId: 820,
     explorerTx: "https://explorer.callisto.network/tx/{tx}",
     explorerToken: "https://explorer.callisto.network/token/{contract}",
-    converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
+    converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
     chainConfig: {
       id: 820,
       name: "Callisto Network",
