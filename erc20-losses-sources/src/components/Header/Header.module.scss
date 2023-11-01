@@ -20,6 +20,18 @@
   max-width: 1004px;
   width: 100%;
 
+  p {
+    color: colors.$text-secondary;
+    font-size: 18px;
+    line-height: 32px;
+    margin-top: 4px;
+  }
+
+  a {
+    color: colors.$palette-green;
+    text-decoration: underline;
+  }
+
   h1 {
     font-size: 38px;
     line-height: 56px;
@@ -38,18 +50,13 @@
     color: colors.$text-secondary;
     margin-bottom: 24px;
   }
-
-  p {
-    color: colors.$text-secondary;
+  h3 {
+    color: colors.$text-primary;
     font-size: 18px;
     line-height: 32px;
-    padding-bottom: 16px;
+    padding-top: 16px;
   }
 
-  a {
-    color: colors.$palette-green;
-    text-decoration: underline;
-  }
 
   // @include media.for-large-desktop {
   //   max-width: 1000px;
@@ -81,6 +88,12 @@
       line-height: 32px;
       padding: 0px 20px;
     }
+    h3 {
+      font-size: 18px;
+      line-height: 32px; 
+      padding: 0px 20px;
+      padding-top: 16px;
+    }
     p {
       font-size: 18px;
       line-height: 32px; 
@@ -100,8 +113,15 @@
   width: max-content;
   max-width: 100%;
   background-color: black;
-
 }
+
+.screenshot {
+  object-fit: contain;
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid colors.$border-primary
+}
+
 .leftHeader {
   position: absolute;
   top: 0px;

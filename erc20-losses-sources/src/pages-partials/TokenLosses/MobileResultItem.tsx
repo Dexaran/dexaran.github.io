@@ -7,7 +7,7 @@ import {
   WhiteSecondaryButton,
 } from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
-import { getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 
@@ -25,7 +25,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
           <a
             target="_blank"
             rel="noreferrer"
-            href={getNetworkExplorerTokenUrl(1, item.tokenAddress)}
+            href={getNetworkExplorerAddressUrl(1, item.tokenAddress)}
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -69,7 +69,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href={getNetworkExplorerTokenUrl(1, record.contract)}
+                    href={getNetworkExplorerAddressUrl(1, record.contract)}
                   >{`${renderShortAddress(record.contract, 7)}`}</a>
                   <Icons
                     name="copy"
@@ -119,7 +119,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
                     <a
                       target="_blank"
                       rel="noreferrer"
-                      href={getNetworkExplorerTokenUrl(1, record.contract)}
+                      href={getNetworkExplorerAddressUrl(1, record.contract)}
                     >{`${renderShortAddress(record.contract, 7)}`}</a>
                     <Icons
                       name="copy"
