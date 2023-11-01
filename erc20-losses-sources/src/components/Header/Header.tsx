@@ -55,18 +55,16 @@ export const Header = () => {
         <p>
           Report it{" "}
           <a
-            href="https://github.com/Dexaran/dexaran.github.io"
+            href="https://github.com/Dexaran/dexaran.github.io/issues/new"
             target="_blank"
             rel="noopener noreferrer"
           >
             here
           </a>
         </p>
-        <h3>Lorem</h3>
+        <h3>How these tokens are lost?</h3>
         <p>
-          LOREM For each token contract address in a left input the script calculates how much of
-          this token is permanently stuck in all the addresses from the right input. NOTE: It can
-          take few hours to go through thousands of tokens from the default list
+          Most often, users mistakenly send tokens to a contract that is not intended to operate with tokens, for example, to the contract address of the token itself. Such a contract cannot send tokens, it is not intended to hold tokens at all, it is intended to be the token. However, this is just the tip of the iceberg and it is easy to calculate how many tokens were lost this way (which is exactly what this script does). In fact, every deposit of tokens to a contract that does not allow sending tokens out and was performed using the "transfer()" function results in the loss of tokens, but calculation of the total loss amount would require an analysis of all transactions in the entire history of Ethereum.
         </p>
         <img
           className={styles.screenshot}
