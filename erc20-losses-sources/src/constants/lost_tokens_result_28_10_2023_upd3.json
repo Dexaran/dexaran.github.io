@@ -46,12 +46,6 @@
     "price": 0.49247971131385443,
     "records": [
       {
-        "amount": "147854107042198762032159373",
-        "roundedAmount": 147854107,
-        "dollarValue": "72,815,147.93",
-        "contract": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"
-      },
-      {
         "amount": "2900000000000000000000",
         "roundedAmount": 2900,
         "dollarValue": "1,428.19",
