@@ -1398,7 +1398,7 @@ export const ethRpcArray = [
 
 
 
-export const excludedMap    = new Map([
+export const excludedMap = new Map([
     ['0xaaa9214f675316182eaa21c85f0ca99160cc3aaa', ['0xaaa9214f675316182eaa21c85f0ca99160cc3aaa']], // QUANX
     ['0xac3e018457b222d93114458476f3e3416abbe38f', ['0xac3e018457b222d93114458476f3e3416abbe38f']], // strxETH
     ['0xde4EE8057785A7e8e800Db58F9784845A5C2Cbd6', ['0xde4EE8057785A7e8e800Db58F9784845A5C2Cbd6']], // DEXE
