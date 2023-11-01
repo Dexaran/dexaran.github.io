@@ -8,6 +8,7 @@ export const NetworksConfigs: {
     chainId: number;
     explorerTx: string;
     explorerToken: string;
+    explorerAddress: string;
     converterContract: string;
     chainConfig: Chain;
   };
@@ -18,6 +19,7 @@ export const NetworksConfigs: {
     chainId: 1,
     explorerTx: "https://etherscan.io/tx/{tx}",
     explorerToken: "https://etherscan.io/token/{contract}",
+    explorerAddress: "https://etherscan.io/address/{contract}",
     converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
     chainConfig: mainnet,
   },
@@ -27,6 +29,7 @@ export const NetworksConfigs: {
     chainId: 10,
     explorerTx: "https://optimistic.etherscan.io/tx/{tx}",
     explorerToken: "https://optimistic.etherscan.io/token/{contract}",
+    explorerAddress: "https://optimistic.etherscan.io/address/{contract}",
     converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
     chainConfig: optimism,
   },
@@ -36,6 +39,7 @@ export const NetworksConfigs: {
     chainId: 137,
     explorerTx: "https://polygonscan.com/tx/{tx}",
     explorerToken: "https://polygonscan.com/token/{contract}",
+    explorerAddress: "https://polygonscan.com/address/{contract}",
     converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
     chainConfig: polygon,
   },
@@ -45,6 +49,7 @@ export const NetworksConfigs: {
     chainId: 56,
     explorerTx: "https://bscscan.com/tx/{tx}",
     explorerToken: "https://bscscan.com/token/{contract}",
+    explorerAddress: "https://bscscan.com/address/{contract}",
     converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
     chainConfig: bsc,
   },

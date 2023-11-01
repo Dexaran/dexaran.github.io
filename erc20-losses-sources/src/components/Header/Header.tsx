@@ -22,8 +22,9 @@ export const Header = () => {
           ERC-20 token standard contains a security flaw in its transferring workflow. As the result
           a user can lose his funds.
         </h2>
+        <h3>The problem</h3>
         <p>
-          {`The problem - ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
+          {`ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
         </p>
         <p>
           You can find a full description of the problem in{" "}
@@ -44,13 +45,15 @@ export const Header = () => {
           </a>
           .
         </p>
+        <h3>What this script does?</h3>
         <p>
-          What this script does? - For each token contract address in a left input the script
-          calculates how much of this token is permanently stuck in all the addresses from the right
-          input. NOTE: It can take few hours to go through thousands of tokens from the default list
+          For each token contract address in a left input the script calculates how much of this
+          token is permanently stuck in all the addresses from the right input. NOTE: It can take
+          few hours to go through thousands of tokens from the default list
         </p>
+        <h3>Found a problem with the script?</h3>
         <p>
-          Found a problem with the script? - Report it{" "}
+          Report it{" "}
           <a
             href="https://github.com/Dexaran/dexaran.github.io"
             target="_blank"
@@ -59,6 +62,18 @@ export const Header = () => {
             here
           </a>
         </p>
+        <h3>Lorem</h3>
+        <p>
+          LOREM For each token contract address in a left input the script calculates how much of
+          this token is permanently stuck in all the addresses from the right input. NOTE: It can
+          take few hours to go through thousands of tokens from the default list
+        </p>
+        <img
+          className={styles.screenshot}
+          src={`${basePath}/lost-tokens-etherscan.png`}
+          alt="lost-tokens-etherscan"
+        />
+
         <div className={styles.rightHeader}>
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-1.png`} alt="" />
           <img className={clsx(styles.headerImage)} src={`${basePath}/right-header-2.png`} alt="" />

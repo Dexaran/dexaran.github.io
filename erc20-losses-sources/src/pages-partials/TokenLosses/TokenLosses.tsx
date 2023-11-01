@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
-import homeStyles from "../../styles/Home.module.scss";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
 import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023_upd2.json";
@@ -11,15 +10,9 @@ import { numberWithCommas } from "./utils";
 import clsx from "clsx";
 import { numericFormatter } from "react-number-format";
 import {
-  PrimaryButton,
   SecondaryButton,
   WhiteButton,
-  WhiteSecondaryButton,
 } from "@/components/atoms/Button/Button";
-import Collapse from "@/components/atoms/Collapse";
-import { getNetworkExplorerTokenUrl } from "@/utils/networks";
-import { renderShortAddress } from "@/utils/renderAddress";
-import { useSnackbar } from "@/providers/SnackbarProvider";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { ResultItem } from "./ResultItem";
 import { MobileResultItem } from "./MobileResultItem";

@@ -7,7 +7,7 @@ import {
   WhiteSecondaryButton,
 } from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
-import { getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { Blockchain } from "./web3";
@@ -49,7 +49,7 @@ const ItemContract = ({
         <a
           target="_blank"
           rel="noreferrer"
-          href={getNetworkExplorerTokenUrl(1, contract)}
+          href={getNetworkExplorerAddressUrl(1, contract)}
         >{`${renderShortAddress(contract, 13)}`}</a>
         <Icons
           name="copy"
@@ -93,7 +93,7 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
           <a
             target="_blank"
             rel="noreferrer"
-            href={getNetworkExplorerTokenUrl(1, item.tokenAddress)}
+            href={getNetworkExplorerAddressUrl(1, item.tokenAddress)}
             onClick={(e) => {
               e.stopPropagation();
             }}

@@ -13,6 +13,12 @@ export const getNetworkExplorerTokenUrl = (chainId: number, contractAddress: str
   return networkConfig.explorerToken.replace("{contract}", contractAddress);
 }
 
+export const getNetworkExplorerAddressUrl = (chainId: number, contractAddress: string) => {
+  const networkConfig = Object.values(NetworksConfigs).find(config => config.chainId === chainId);
+  if(!networkConfig || !contractAddress) return "#";
+  return networkConfig.explorerAddress.replace("{contract}", contractAddress);
+}
+
 export const getConverterContract = (chainId: number) => {
   const networkConfig = Object.values(NetworksConfigs).find(config => config.chainId === chainId);
   return networkConfig?.converterContract as Address;
