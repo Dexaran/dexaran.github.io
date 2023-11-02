@@ -359,7 +359,7 @@ export const TokenLosses = () => {
         <div className={styles.totalLosses}>
           <div className={styles.totalLossesText}>
             <Icons name="warning" />
-            Total lost of ERC-20 tokens
+            Total amount of lost ERC-20 tokens
           </div>
           <p>
             {numericFormatter(`${resultSum}`, {

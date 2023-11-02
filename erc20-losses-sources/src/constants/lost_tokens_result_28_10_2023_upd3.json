@@ -40,34 +40,6 @@
     "amount": 224091267519
   },
   {
-    "tokenAddress": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
-    "ticker": "STG",
-    "decimals": 18,
-    "price": 0.49247971131385443,
-    "records": [
-      {
-        "amount": "147854107042198762032159373",
-        "roundedAmount": 147854107,
-        "dollarValue": "72,815,147.93",
-        "contract": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"
-      },
-      {
-        "amount": "2900000000000000000000",
-        "roundedAmount": 2900,
-        "dollarValue": "1,428.19",
-        "contract": "0x940a2db1b7008b6c776d4faaca729d6d4a4aa551"
-      },
-      {
-        "amount": "30744016830000000000",
-        "roundedAmount": 30,
-        "dollarValue": "14.77",
-        "contract": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
-      }
-    ],
-    "asDollar": 72816591.28467713,
-    "amount": 147857037
-  },
-  {
     "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
     "ticker": "USDT",
     "decimals": 6,
@@ -3120,22 +3092,6 @@
     ],
     "asDollar": 1544486.859881221,
     "amount": 1544458
-  },
-  {
-    "tokenAddress": "0xa499648fd0e80fd911972bbeb069e4c20e68bf22",
-    "ticker": "uJENNY",
-    "decimals": 18,
-    "price": 0.2495147103006117,
-    "records": [
-      {
-        "amount": "5000652933126131892111646",
-        "roundedAmount": 5000652,
-        "dollarValue": "1,247,736.23",
-        "contract": "0xa499648fd0e80fd911972bbeb069e4c20e68bf22"
-      }
-    ],
-    "asDollar": 1247736.4679228708,
-    "amount": 5000652
   },
   {
     "tokenAddress": "0xb705268213d593b8fd88d3fdeff93aff5cbdcfae",
@@ -23020,20 +22976,26 @@
     "amount": 7440
   },
   {
-    "tokenAddress": "0xb3319f5d18bc0d84dd1b4825dcde5d5f7266d407",
-    "ticker": "cZRX",
-    "decimals": 8,
-    "price": 0.004352664696191431,
+    "tokenAddress": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+    "ticker": "STG",
+    "decimals": 18,
+    "price": 0.49247971131385443,
     "records": [
       {
-        "amount": "100000000000",
-        "roundedAmount": 1000,
-        "dollarValue": "4.35",
-        "contract": "0xb3319f5d18bc0d84dd1b4825dcde5d5f7266d407"
+        "amount": "2900000000000000000000",
+        "roundedAmount": 2900,
+        "dollarValue": "1,428.19",
+        "contract": "0x940a2db1b7008b6c776d4faaca729d6d4a4aa551"
+      },
+      {
+        "amount": "30744016830000000000",
+        "roundedAmount": 30,
+        "dollarValue": "14.77",
+        "contract": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
       }
     ],
-    "asDollar": 4.352664696191431,
-    "amount": 1000
+    "asDollar": 1442,
+    "amount": 2930
   },
   {
     "tokenAddress": "0x7A41e0517a5ecA4FdbC7FbebA4D4c47B9fF6DC63",
