@@ -394,6 +394,23 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  &.exclude {
+    p {
+      color: colors.$text-placeholder;
+    }
+    p:nth-child(4) {
+      justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    a {
+      color: colors.$text-placeholder;
+    }
+    svg {
+      color: colors.$text-placeholder;
+    }
+  }
 }
 
 
