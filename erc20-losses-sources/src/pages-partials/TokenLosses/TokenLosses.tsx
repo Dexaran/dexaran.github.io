@@ -327,7 +327,7 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={contractsList}
               onChange={(event) =>
-                timeoutInput(updateTokensListHandler, event.target.value, "contractsList", setButtonState)
+                timeoutInput(updateContractsHandler, event.target.value, "contractsList", setButtonState)
               }
             ></textarea>
           </div>
