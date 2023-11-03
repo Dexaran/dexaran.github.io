@@ -9,6 +9,7 @@ import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { Blockchain } from "./web3";
+import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
 
 const CHAIN = "eth"; // eth or bsc or polygon
 const web3 = new Blockchain(CHAIN);
@@ -72,7 +73,9 @@ const ItemContract = ({
           decimalScale: 2,
           prefix: `$`,
         })}
-        {exclude && <Icons name="info" />}
+        {exclude && (
+          <ToolTip text="Stuck tokens are found in the examined contract address but it is known that in this particular case their presence is intentional. Therefore they are not lost due to ERC-20 transferring flaw and were excluded from the calculation of losses." />
+        )}
       </p>
     </div>
   );
@@ -101,10 +104,8 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
         </div>
         <div className={styles.resultItemHeaderLosses}>
           <p>
-            {/* TODO: edit CLI script */}
             {`Total losses: ${numericFormatter(
               `${(item as any).amount}`,
-              // `${item.records.reduce((acc, record) => acc + record.roundedAmount, 0)}`,
               {
                 decimalSeparator: ".",
                 thousandSeparator: ",",

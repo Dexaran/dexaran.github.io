@@ -10,6 +10,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.25.0",
     "@ethersproject/providers": "^5.7.2",
     "@ethersproject/wallet": "^5.7.0",
     "@types/node": "20.4.5",

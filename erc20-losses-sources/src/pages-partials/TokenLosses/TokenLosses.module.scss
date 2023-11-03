@@ -308,7 +308,10 @@
   }
   a:hover {
     color: colors.$palette-red;
+  }
 
+  @include media.for-mobile {
+    margin-bottom: 8px;
   }
 }
 
@@ -535,6 +538,30 @@
     }
   }
 
-
+  &.exclude {
+    p {
+      color: colors.$text-placeholder;
+    }
+    div {
+      p:nth-child(1) {
+        color: colors.$text-placeholder;
+      }
+    }
+  
+    div:nth-child(4) {
+      p {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  
+    a {
+      color: colors.$text-placeholder;
+    }
+    svg {
+      color: colors.$text-placeholder;
+    }
+  }
 
 }
