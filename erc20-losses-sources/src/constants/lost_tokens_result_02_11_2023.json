@@ -637,8 +637,7 @@
         "amount": "47222399382945",
         "roundedAmount": 47222399,
         "dollarValue": "47,228,851.13",
-        "contract": "0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9",
-        "exclude": true
+        "contract": "0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9"
       },
       {
         "amount": "613005865306",
@@ -2197,8 +2196,7 @@
         "amount": "43002894349074",
         "roundedAmount": 43002894,
         "dollarValue": "43,002,976.44",
-        "contract": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
-        "exclude": true
+        "contract": "0x39aa39c021dfbae8fac545936693ac917d5e7563"
       },
       {
         "amount": "632297000000",
@@ -3274,8 +3272,7 @@
         "amount": "58499534709802799246727989",
         "roundedAmount": 58499534,
         "dollarValue": "58,518,851.22",
-        "contract": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643",
-        "exclude": true
+        "contract": "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643"
       },
       {
         "amount": "693034751654862536276411",
@@ -3597,8 +3594,7 @@
         "amount": "42481655081998341999972598",
         "roundedAmount": 42481655,
         "dollarValue": "17,169,651.28",
-        "contract": "0xfd09cf7cfffa9932e33668311c4777cb9db3c9be",
-        "exclude": true
+        "contract": "0xfd09cf7cfffa9932e33668311c4777cb9db3c9be"
       },
       {
         "amount": "1121877607315562467493125",
@@ -5192,8 +5188,7 @@
         "amount": "22906653253779785397723749",
         "roundedAmount": 22906653,
         "dollarValue": "28,265,847.94",
-        "contract": "0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272",
-        "exclude": true
+        "contract": "0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272"
       },
       {
         "amount": "113855997089972529095033",
@@ -5940,8 +5935,7 @@
         "amount": "146852249462552823307663228",
         "roundedAmount": 146852249,
         "dollarValue": "31,619,378.92",
-        "contract": "0x6c8c6b02e7b2be14d4fa6022dfd6d75921d90e4e",
-        "exclude": true
+        "contract": "0x6c8c6b02e7b2be14d4fa6022dfd6d75921d90e4e"
       },
       {
         "amount": "414586946016182230581113",
@@ -7336,8 +7330,7 @@
         "amount": "495854831864483919731333774",
         "roundedAmount": 495854831,
         "dollarValue": "7,575,949.36",
-        "contract": "0x4f81c790581b240a5c948afd173620ecc8c71c8d",
-        "exclude": true
+        "contract": "0x4f81c790581b240a5c948afd173620ecc8c71c8d"
       },
       {
         "amount": "2395250000000000000000000",
@@ -10528,7 +10521,7 @@
         "roundedAmount": 1265594096,
         "dollarValue": "1,612,366,878.30",
         "contract": "0x80fB784B7eD66730e8b1DBd9820aFD29931aab03",
-        "exclude": true
+        "exclude": false
       },
       {
         "amount": "1978000000000000000000",
@@ -26708,7 +26701,7 @@
         "roundedAmount": 7960350,
         "dollarValue": "166,689,729",
         "contract": "0x622dFfCc4e83C64ba959530A5a5580687a57581b",
-        "exclude": true
+        "exclude": false
       }
     ],
     "asDollar": 0,
