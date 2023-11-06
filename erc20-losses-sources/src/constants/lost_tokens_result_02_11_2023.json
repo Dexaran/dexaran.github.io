@@ -51,7 +51,8 @@
         "amount": "147750994271862585471980980",
         "roundedAmount": 147750994,
         "dollarValue": "70,508,056.13",
-        "contract": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"
+        "contract": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+        "exclude": true
       },
       {
         "amount": "2900000000000000000000",
