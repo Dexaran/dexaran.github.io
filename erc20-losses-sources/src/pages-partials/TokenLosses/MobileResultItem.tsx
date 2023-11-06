@@ -10,6 +10,7 @@ import Collapse from "@/components/atoms/Collapse";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
+import { MobileToolTip } from "@/components/atoms/Tooltip/Tooltip";
 
 export const MobileResultItem = ({ item, index }: { item: any; index: number }) => {
   const [isOpen, setIsOpen] = useState(false); // index < 3
@@ -20,7 +21,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
     <div className={styles.resultItem}>
       <div className={styles.resultItemHeader} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.resultItemHeaderName}>
-          {/* <Icons name="erc223" /> */}
+          {item.logo ? <img src={item.logo} width="32px" height="32px" alt={item.ticker} /> : null}
           {item.ticker}
           <a
             target="_blank"
@@ -58,7 +59,10 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
       <Collapse open={isOpen} style={{ width: "100%", marginTop: "12px" }}>
         {item.records.slice(0, 3).map((record) => {
           return (
-            <div key={record.contract} className={styles.itemDetailsRowMobile}>
+            <div
+              key={record.contract}
+              className={clsx(styles.itemDetailsRowMobile, record.exclude && styles.exclude)}
+            >
               <div>
                 <p>Name</p>
                 <p>—</p>
@@ -100,6 +104,9 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
                     decimalScale: 2,
                     prefix: `$`,
                   })}
+                  {record.exclude && (
+                    <MobileToolTip>{`Stuck tokens are found in the examined contract address but it is known that in this particular case their presence is intentional. Therefore they are not lost due to ERC-20 transferring flaw and were excluded from the calculation of losses.`}</MobileToolTip>
+                  )}
                 </p>
               </div>
             </div>

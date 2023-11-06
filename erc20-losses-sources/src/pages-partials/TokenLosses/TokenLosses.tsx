@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_28_10_2023_upd3.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_02_11_2023.json";
 
 /* local imports */
 import { tokens, contracts } from "./const";
@@ -243,18 +243,11 @@ const downloadResult = (data: any) => {
 };
 
 // TODO
-const PrecalculatedResultWithAmount = PrecalculatedResult.map((item) => {
-  return {
-    ...item,
-    amount: item.records.reduce((acc, record) => acc + record.roundedAmount, 0),
-  };
-});
-
-const PrecalculatedResultSum = PrecalculatedResultWithAmount.reduce(
+const PrecalculatedResultSum = PrecalculatedResult.reduce(
   (acc, item) => acc + item.asDollar,
   0,
 );
-const PrecalculatedResultTokenNumber = PrecalculatedResultWithAmount.length;
+const PrecalculatedResultTokenNumber = PrecalculatedResult.length;
 
 export const TokenLosses = () => {
   const contractsStr = contracts[CHAIN].join("\n");
@@ -263,7 +256,7 @@ export const TokenLosses = () => {
   const [contractsList, setContracts] = useState(contractsStr);
   const [tokensList, setTokens] = useState(tokensStr);
   const [resultsListStr, setResultsStr] = useState("");
-  const [resultsList, setResults] = useState(PrecalculatedResultWithAmount);
+  const [resultsList, setResults] = useState(PrecalculatedResult);
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
   const [dateString, setDateString] = useState(new Date().toDateString());
@@ -327,7 +320,7 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={contractsList}
               onChange={(event) =>
-                timeoutInput(updateTokensListHandler, event.target.value, "contractsList", setButtonState)
+                timeoutInput(updateContractsHandler, event.target.value, "contractsList", setButtonState)
               }
             ></textarea>
           </div>

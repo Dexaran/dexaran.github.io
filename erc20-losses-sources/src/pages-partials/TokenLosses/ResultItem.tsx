@@ -3,54 +3,52 @@ import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
 import clsx from "clsx";
 import { numericFormatter } from "react-number-format";
-import {
-  WhiteSecondaryButton,
-} from "@/components/atoms/Button/Button";
+import { WhiteSecondaryButton } from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { Blockchain } from "./web3";
+import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
 
 const CHAIN = "eth"; // eth or bsc or polygon
 const web3 = new Blockchain(CHAIN);
 
-const getTokenName = async (address:string) =>{
+const getTokenName = async (address: string) => {
   const tokenInfo = await web3.getTokenInfo(address);
   return tokenInfo.ticker;
-}
+};
 
 const ItemContract = ({
   contract,
   roundedAmount,
   ticker,
   dollarValue,
+  exclude,
 }: {
   contract: string;
   roundedAmount: any;
   ticker: string;
   dollarValue: any;
+  exclude: boolean;
 }) => {
   const { showMessage } = useSnackbar();
   const [contractName, setContractName] = useState();
   useEffect(() => {
     (async () => {
-
       const name = await getTokenName(contract);
       setContractName(name);
     })();
   }, [contract]);
 
-
   return (
-    <div key={contract} className={styles.itemDetailsRow}>
+    <div key={contract} className={clsx(styles.itemDetailsRow, exclude && styles.exclude)}>
       <p>{contractName || "—"}</p>
       <p className={styles.tokenCardBalanceContract}>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href={getNetworkExplorerAddressUrl(1, contract)}
-        >{`${renderShortAddress(contract, 13)}`}</a>
+        {exclude && <Icons name="warning" />}
+        <a target="_blank" rel="noreferrer" href={getNetworkExplorerAddressUrl(1, contract)}>
+          {`${renderShortAddress(contract, 13)}`}
+        </a>
         <Icons
           name="copy"
           onClick={async () => {
@@ -75,6 +73,9 @@ const ItemContract = ({
           decimalScale: 2,
           prefix: `$`,
         })}
+        {exclude && (
+          <ToolTip text="Stuck tokens are found in the examined contract address but it is known that in this particular case their presence is intentional. Therefore they are not lost due to ERC-20 transferring flaw and were excluded from the calculation of losses." />
+        )}
       </p>
     </div>
   );
@@ -103,10 +104,8 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
         </div>
         <div className={styles.resultItemHeaderLosses}>
           <p>
-            {/* TODO: edit CLI script */}
             {`Total losses: ${numericFormatter(
               `${(item as any).amount}`,
-              // `${item.records.reduce((acc, record) => acc + record.roundedAmount, 0)}`,
               {
                 decimalSeparator: ".",
                 thousandSeparator: ",",
@@ -142,6 +141,7 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
               dollarValue={record.dollarValue}
               roundedAmount={record.roundedAmount}
               ticker={item.ticker}
+              exclude={record.exclude}
             />
           );
         })}
@@ -154,6 +154,7 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
                 dollarValue={record.dollarValue}
                 roundedAmount={record.roundedAmount}
                 ticker={item.ticker}
+                exclude={record.exclude}
               />
             );
           })}
