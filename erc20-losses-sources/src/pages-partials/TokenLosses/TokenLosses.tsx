@@ -6,13 +6,10 @@ import PrecalculatedResult from "@/constants/lost_tokens_result_02_11_2023.json"
 /* local imports */
 import { tokens, contracts } from "./const";
 import { Blockchain } from "./web3";
-import { numberWithCommas } from "./utils";
+import { handleExclusions, numberWithCommas } from "./utils";
 import clsx from "clsx";
 import { numericFormatter } from "react-number-format";
-import {
-  SecondaryButton,
-  WhiteButton,
-} from "@/components/atoms/Button/Button";
+import { SecondaryButton, WhiteButton } from "@/components/atoms/Button/Button";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { ResultItem } from "./ResultItem";
 import { MobileResultItem } from "./MobileResultItem";
@@ -130,7 +127,6 @@ function Button() {
 
     const resultsArray: any[] = [];
     let wholeSum = 0;
-    let resStr = "";
     let counter = 0;
 
     for (const tokenAddress of chainTokens) {
@@ -140,7 +136,6 @@ function Button() {
       const res = await web3.processOneToken(contractListArray, tokenAddress);
 
       const formatted: FormattedResult = formatTokenResult(res);
-      resStr += formatted.resStr + "\n";
 
       wholeSum += formatted.asDollar;
       resultsArray.push({
@@ -149,10 +144,9 @@ function Button() {
         amount: formatted.amount,
       });
       // TODO
-      processSate.setResults(resultsArray);
-
-      processSate.setResultsStr(resStr);
-      processSate.setResultSum(wholeSum);
+      const preparedResult = handleExclusions(resultsArray);
+      processSate.setResults(preparedResult);
+      processSate.setResultSum(preparedResult.reduce((acc, item) => acc + item.asDollar, 0));
       processSate.setResultTokenNumber(++counter);
     }
 
@@ -161,15 +155,7 @@ function Button() {
     resultsArray.sort(function (a, b) {
       return b.asDollar - a.asDollar;
     });
-    // TODO
-    processSate.setResults(resultsArray);
-
-    resStr = "";
-    for (const res of resultsArray) {
-      const formatted = formatTokenResult(res);
-      resStr += formatted.resStr + "\n";
-      processSate.setResultsStr(resStr);
-    }
+    processSate.setResults(handleExclusions(resultsArray));
 
     interruptFlag.current = false;
     processSate.setButtonState({ state: 1, text: START_TEXT });
@@ -242,12 +228,9 @@ const downloadResult = (data: any) => {
   downloadJSON();
 };
 
-// TODO
-const PrecalculatedResultSum = PrecalculatedResult.reduce(
-  (acc, item) => acc + item.asDollar,
-  0,
-);
-const PrecalculatedResultTokenNumber = PrecalculatedResult.length;
+const preparedResult = handleExclusions(PrecalculatedResult);
+const PrecalculatedResultSum = preparedResult.reduce((acc, item) => acc + item.asDollar, 0);
+const PrecalculatedResultTokenNumber = preparedResult.length;
 
 export const TokenLosses = () => {
   const contractsStr = contracts[CHAIN].join("\n");
@@ -255,8 +238,7 @@ export const TokenLosses = () => {
 
   const [contractsList, setContracts] = useState(contractsStr);
   const [tokensList, setTokens] = useState(tokensStr);
-  const [resultsListStr, setResultsStr] = useState("");
-  const [resultsList, setResults] = useState(PrecalculatedResult);
+  const [resultsList, setResults] = useState(preparedResult);
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
   const [dateString, setDateString] = useState(new Date().toDateString());
@@ -265,7 +247,7 @@ export const TokenLosses = () => {
   const clearResults = () => {
     setResults([]);
     setResultSum(0);
-  }
+  };
   const updateContractsHandler = (contracts: string) => {
     setContracts(contracts);
     clearResults();
@@ -278,8 +260,6 @@ export const TokenLosses = () => {
     tokensList,
     contractsList,
     resultsList,
-    resultsListStr,
-    setResultsStr,
     setResults,
     setResultSum,
     setResultTokenNumber,
@@ -307,7 +287,12 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={tokensList}
               onChange={(event) =>
-                timeoutInput(updateTokensListHandler, event.target.value, "tokensList", setButtonState)
+                timeoutInput(
+                  updateTokensListHandler,
+                  event.target.value,
+                  "tokensList",
+                  setButtonState,
+                )
               }
             ></textarea>
           </div>
@@ -320,7 +305,12 @@ export const TokenLosses = () => {
               disabled={buttonState.state === 2}
               value={contractsList}
               onChange={(event) =>
-                timeoutInput(updateContractsHandler, event.target.value, "contractsList", setButtonState)
+                timeoutInput(
+                  updateContractsHandler,
+                  event.target.value,
+                  "contractsList",
+                  setButtonState,
+                )
               }
             ></textarea>
           </div>
