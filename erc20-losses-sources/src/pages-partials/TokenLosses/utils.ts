@@ -1,3 +1,5 @@
+import { excludedMap } from "./const"
+
 /**
  * Formats a number with commas (e.g. 123,234,660.12)
  *
@@ -13,3 +15,42 @@ export function numberWithCommas(x: number) {
     }
     return parts.join(".")
 }
+
+export const handleExclusions = (result: any) =>
+  result.map((token) => {
+    if (excludedMap.has(token.tokenAddress)) {
+      const excluded: string[] = excludedMap.get(token.tokenAddress) || [];
+      if (excluded.length < 1) {
+        return token;
+      }
+      const records = token.records.map((record) => {
+        if (excluded.includes(record.contract)) {
+          console.log("🚀 ~ records ~ record:", record);
+
+          return {
+            ...record,
+            exclude: true,
+          };
+        } else {
+          return record;
+        }
+      });
+      const amount = records.reduce((acc, record) => {
+        if (record.exclude) {
+          return acc;
+        } else {
+          return acc + record.roundedAmount;
+        }
+      }, 0);
+      const asDollar = amount * token.price;
+
+      return {
+        ...token,
+        records,
+        asDollar,
+        amount,
+      };
+    } else {
+      return token;
+    }
+  });
