@@ -2,11 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Modal from "@/components/atoms/Modal";
 import styles from "./SelectTokent.module.scss";
 import { Icons } from "../atoms/Icons";
-import {
-  useNetwork,
-  usePublicClient,
-  useToken,
-} from "wagmi";
+import { useNetwork, usePublicClient, useToken } from "wagmi";
 import Checkbox from "../atoms/Checkbox/Checkbox";
 import { Address, isAddress } from "viem";
 import { List, AutoSizer } from "react-virtualized";
@@ -93,7 +89,7 @@ export default function SelectTokent({
     [tokenAddressERC20, tokenAddressERC223].includes(token.contract),
   );
 
-const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
+  const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
   const updateTokenAddress = useCallback(
     async (address: Address) => {
       const tokenStandard = await publicClient
@@ -115,12 +111,14 @@ const converterContractAddress = getConverterContract(chain?.id || defaultChainI
       setToERC223(!isERC223Token);
       if (isERC223Token) {
         setTokenAddressERC223(address);
-        const erc20AddressResult = await publicClient.readContract({
-          address: converterContractAddress,
-          abi: TokenConverterABI,
-          functionName: isWrapper ? "getOriginFor" : "getWrapperFor",
-          args: [address],
-        }).catch(() => undefined);
+        const erc20AddressResult = await publicClient
+          .readContract({
+            address: converterContractAddress,
+            abi: TokenConverterABI,
+            functionName: isWrapper ? "getERC20OriginFor" : "getERC20WrapperFor",
+            args: [address],
+          })
+          .catch(() => undefined);
         const erc20Address: Address =
           erc20AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
             ? undefined
@@ -132,7 +130,7 @@ const converterContractAddress = getConverterContract(chain?.id || defaultChainI
           .readContract({
             address: converterContractAddress,
             abi: TokenConverterABI,
-            functionName: isWrapper ? "getOriginFor" : "getWrapperFor",
+            functionName: isWrapper ? "getERC223OriginFor" : "getERC223WrapperFor",
             args: [address],
           })
           .catch(() => undefined);
