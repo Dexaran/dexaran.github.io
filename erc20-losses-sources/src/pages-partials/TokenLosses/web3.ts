@@ -1,6 +1,6 @@
 import { Web3 } from 'web3'
 
-import { rpcMap, ERC20, ERC20n, ethRpcArray, excludedMap } from './const'
+import { rpcMap, ERC20, ERC20n, ethRpcArray } from './const'
 import { numberWithCommas } from "./utils";
 
 const chain = 'eth' // NOTE: if chain will be changed by user - should update it according
@@ -338,14 +338,14 @@ export class Blockchain {
         const results = await this.findBalances(localList, tokenObject);
 
         // mark excluded results
-        if (excludedMap.has(tokenAddress)) {
-            const excluded: string[] = excludedMap.get(tokenAddress) || [];
-            for (let item of results) {
-                if (excluded.includes(item.contract)) {
-                    item.exclude = true;
-                }
-            }
-        }
+        // if (excludedMap.has(tokenAddress)) {
+        //     const excluded: string[] = excludedMap.get(tokenAddress) || [];
+        //     for (let item of results) {
+        //         if (excluded.includes(item.contract)) {
+        //             item.exclude = true;
+        //         }
+        //     }
+        // }
 
         return {
             tokenAddress,
@@ -356,4 +356,17 @@ export class Blockchain {
             records: results
         }
     }
+
+
+    loadExcludes(): Map<string, string[]> {
+        const res = new Map();
+        const excludesArray = require('@/excludes.json');
+        for (let item of excludesArray) {
+            const key = item[0].toLowerCase();
+            const values = item[1].map((val: string) => val.toLowerCase());
+            res.set(key, values);
+        }
+        return res;
+    }
+
 }
