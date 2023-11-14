@@ -25,8 +25,6 @@ export const handleExclusions = (result: any, excludedMap: any) =>
       }
       const records = token.records.map((record) => {
         if (excluded.includes(record.contract.toLowerCase())) {
-          console.log("🚀 ~ records ~ record:", record);
-
           return {
             ...record,
             exclude: true,
