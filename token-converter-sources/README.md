@@ -50,7 +50,7 @@ mainnet: {
   chainId: 1,
   explorerTx: "https://etherscan.io/tx/{tx}",
   explorerToken: "https://etherscan.io/token/{contract}",
-  converterContract: "0xD26cF4d1b7A268f6081674924AcdaD3dbb501889",
+  converterContract: "0xc68AD4DDCB3C9cAd52852E6dF7102b77c32865A5",
   chainConfig: mainnet,
 }
 ```

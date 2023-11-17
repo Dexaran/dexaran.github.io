@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_02_11_2023.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_07_11_2023.json";
 
 /* local imports */
 import { tokens, contracts } from "./const";
@@ -18,6 +18,8 @@ const CHAIN = "eth"; // eth or bsc or polygon
 const web3 = new Blockchain(CHAIN);
 const timeoutMap: Map<string, NodeJS.Timeout> = new Map();
 type FormattedResult = { resStr: string; asDollar: number; amount: number };
+const excludedMap = web3.loadExcludes();
+const EXCLUDES = true; // turn ON using of exceptions/exclusions
 
 const START_TEXT = "Start search";
 
@@ -144,7 +146,7 @@ function Button() {
         amount: formatted.amount,
       });
       // TODO
-      const preparedResult = handleExclusions(resultsArray);
+      const preparedResult = handleExclusions(resultsArray, excludedMap);
       processSate.setResults(preparedResult);
       processSate.setResultSum(preparedResult.reduce((acc, item) => acc + item.asDollar, 0));
       processSate.setResultTokenNumber(++counter);
@@ -152,10 +154,13 @@ function Button() {
 
     processSate.setDateString(new Date().toDateString());
 
-    resultsArray.sort(function (a, b) {
+    const processedResult = handleExclusions(resultsArray, excludedMap);
+
+    processedResult.sort(function (a, b) {
       return b.asDollar - a.asDollar;
     });
-    processSate.setResults(handleExclusions(resultsArray));
+
+    processSate.setResults(processedResult);
 
     interruptFlag.current = false;
     processSate.setButtonState({ state: 1, text: START_TEXT });
@@ -228,7 +233,28 @@ const downloadResult = (data: any) => {
   downloadJSON();
 };
 
-const preparedResult = handleExclusions(PrecalculatedResult);
+// TODO turn on/off exclusions
+// if (EXCLUDES) {
+//   // mark excluded results
+//   for (const res of PrecalculatedResult) {
+//     const tokenAddress = res.tokenAddress.toLowerCase();
+//     if (excludedMap.has(tokenAddress)) {
+//       const excluded = excludedMap.get(tokenAddress);
+//       for (let item of res.records) {
+//         if (excluded?.includes(item.contract.toLowerCase())) {
+//           item.exclude = true;
+//         }
+//       }
+//     }
+//   }
+// }
+
+const preparedResult = handleExclusions(PrecalculatedResult, excludedMap);
+
+preparedResult.sort(function (a, b) {
+  return b.asDollar - a.asDollar;
+});
+
 const PrecalculatedResultSum = preparedResult.reduce((acc, item) => acc + item.asDollar, 0);
 const PrecalculatedResultTokenNumber = preparedResult.length;
 
