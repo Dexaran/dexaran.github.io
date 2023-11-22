@@ -1,4 +1,4 @@
-<h1 style="text-align: center">Token converter ERC-20 <=> ERC-223</h1>
+<h1 style="text-align: center">ERC-20 Losses Calculator</h1>
 
 <h2>Get started</h2>
 
@@ -15,84 +15,34 @@ npm install
 npm run dev
 ````
 
-App will be available on the [localhost:3000](localhost:3000)
+App will be available on the [localhost:3001](localhost:3001)
 
-<h2>Add new Network</h2>
+<h2>Add Tokens</h2>
+1. Open file `src/constants/tokens.json`
+2. Add add a new token contract address
 
-1. Open file  `src/constants/networks.ts`
-2. Add new object to **NetworksConfigs** 
-```
-{
-  name: string;
-  icon: string;
-  chainId: number;
-  explorerTx: string;
-  explorerToken: string;
-  converterContract: string;
-  chainConfig: Chain;
-}
-```
-The `chainConfig` field is of type Chain from the `viem` library.
-Read more: https://viem.sh/docs/clients/chains.html#chains
+<h2>Add Contracts</h2>
+1. Open file `src/constants/contracts.json`
+2. Add add a new contract address
 
-For most networks chainConfig - can simply be imported from `wagmi/chains`
-
-**Example (Eth)**: 
-
-```
-import { mainnet } from "wagmi/chains";
-
-...
-
-mainnet: {
-  name: "Ethereum mainnet",
-  icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png",
-  chainId: 1,
-  explorerTx: "https://etherscan.io/tx/{tx}",
-  explorerToken: "https://etherscan.io/token/{contract}",
-  converterContract: "0xc676e76573267cc2E053BE8637Ba71d6BA321195",
-  chainConfig: mainnet,
-}
-```
-
-**For each of the added networks, we need to add a list of tokens.**
-
-<h2>Add | Edit Tokens lists</h2>
-
-1. **Open** (or create) file `src/constants/tokens/$CHAIN_ID.json` where `$CHAIN_ID` is **ChainId** of the network for which you want to add the token configuration.
-2. **Add** new Object to array with following required fields:
-```
-{
-  contract: string,
-  symbol: string,
-  logo: string,
-  decimals: number,
-}
-```
+<h2>Add exclusions</h2>
+1. Open file  `src/constants/excludes.json`
+2. Add add a new exclusion entry
 **Example**: 
-
 ```
-{
-  "contract": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
-  "symbol": "USDT",
-  "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
-  "decimals": 18,
-},
+  ["0xaaa9214f675316182eaa21c85f0ca99160cc3aaa", ["0xaaa9214f675316182eaa21c85f0ca99160cc3aaa"]],
 ```
-
-<h2>Edit content</h2>
-
-To change texts on `How it works` and `ERC-223` tabs you need **Open** file `/src/constants/content.ts`.
-
-All other texts can be changed directly in the source code using search.
-
+**Exclusion entry format**
+```
+  ["TOKEN_CONTRACT_ADDRESS", ["CONTRACT_ADDRESS1","CONTRACT_ADDRESS2","CONTRACT_ADDRESS3", ...]],
+```
 
 <h2>Deployment</h2>
 
 To deploy changes simply push changes to master branch. Any push to master branch
 will trigger github action, that will build app and push it to `public` branch. 
 
-Github Action configuration stored under following path: `.github/workflows/converter.js.yml`
+Github Action configuration stored under following path: `.github/workflows/erc20-losses.js.yml`
 
 If there are any problems with deployment, check following repository settings: 
 
