@@ -360,7 +360,7 @@ export class Blockchain {
 
     loadExcludes(): Map<string, string[]> {
         const res = new Map();
-        const excludesArray = require('@/excludes.json');
+        const excludesArray = require('@/constants/excludes.json');
         for (let item of excludesArray) {
             const key = item[0].toLowerCase();
             const values = item[1].map((val: string) => val.toLowerCase());
