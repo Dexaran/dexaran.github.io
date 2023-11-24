@@ -18,7 +18,7 @@ export const NetworksConfigs: {
     chainId: 1,
     explorerTx: "https://etherscan.io/tx/{tx}",
     explorerToken: "https://etherscan.io/token/{contract}",
-    converterContract: "0xf0ddb84596C9B52981C2bFf35c8B21d2b8FEd64c",
+    converterContract: "0x1e9d6cba29e4aa4a9e2587b19d3f0e68de9b6552",
     chainConfig: mainnet,
   },
   optimism: {
