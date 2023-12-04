@@ -2,6 +2,11 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "[github] Poloniex hacker lost $2,500,000 worth fo ERC-20 tokens to a security flaw of the standard that I described in 2017",
+    url: "https://gist.github.com/Dexaran/9bd90c1885b4818573368ad02b784125",
+    date: "11.11.2023",
+    color: "#64DC84",
+  },{
     title: "[github] Dev discussion regarding ERC-223 vs ERC-777 vs ERC-1363 implementations",
     url: "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/2620#issuecomment-1769509345",
     date: "18.10.2023",
