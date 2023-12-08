@@ -2,10 +2,10 @@ import { IArticle } from "../types";
 
 export const devResources: IArticle[] = [
   {
-    title: "You can be the first one here!",
+    title: "ERC-223 token creation guideline",
     description:
-      "If you can produce any content related to ERC-223 and you want it to be shared here - you can request it via dexaran.github.io repo or at EthereumCommonwealth ERC-223 ecosystem",
-    url: "https://github.com/EthereumCommonwealth/ERC-223-ecosystem",
+      "Medium article describing the process of creating a ERC-223 token",
+    url: "https://medium.com/@dexaran820/how-to-create-a-erc-223-token-47704a9123d6",
     image: "call-to-action.png",
   },
 ];
