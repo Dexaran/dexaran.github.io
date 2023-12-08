@@ -11,34 +11,6 @@ import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { useSwipeable } from "react-swipeable";
 import Drawer from "../atoms/Drawer/Drawer";
-import { createWalletClient, http, publicActions } from "viem";
-import { projectId } from "../../constants/config/projectId";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-import { mainnet, bsc, optimism, polygon } from "wagmi/chains";
-import { WalletConnectLegacyConnector } from '@wagmi/core/connectors/walletConnectLegacy'
-
-const callistoCUSTOM = {
-  id: 820,
-  name: "Callisto Network",
-  network: "callisto",
-  nativeCurrency: {
-    decimals: 18,
-    name: "Callisto",
-    symbol: "CLO",
-  },
-  rpcUrls: {
-    public: { http: ["https://rpc.callisto.network/"] },
-    default: { http: ["https://rpc.callisto.network/"] },
-  },
-  blockExplorers: {
-    default: { name: "CallistoScan", url: "https://explorer.callisto.network" },
-  },
-  contracts: {
-    multicall3: {
-      address: "0xA8873640557a928016bFaf8d5D8B98f042A479C9" as any,
-    },
-  },
-};
 
 enum Tabs {
   "converter" = "converter",
@@ -160,33 +132,6 @@ export const Header = ({
     },
   });
 
-  const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
-  const customNodeHandler = () => {
-
-    // const walletClient = createWalletClient({
-    //   // account,
-    //   chain: NetworksConfigs.callisto.chainConfig,
-    //   transport: http(),
-    // }).extend(publicActions);
-
-    // const connector = new MockConnector({
-    //   options: {
-    //     walletClient: walletClient,
-    //   },
-    // });
-    // connect({ chainId: 820, connector });
-
-    const connector = new WalletConnectConnector({
-      chains: [mainnet, bsc, optimism, polygon],
-      options: {
-        projectId,
-      },
-    });
-
-    connect({ connector, chainId: 56 });
-
-    return;
-  };
   //
   return (
     <>

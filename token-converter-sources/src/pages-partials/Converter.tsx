@@ -14,6 +14,8 @@ import { PrimaryButton } from "@/components/atoms/Button/Button";
 import { ConvertToERC223 } from "@/components/ConvertButton/ConvertToERC223";
 import { ConvertToERC20 } from "@/components/ConvertButton/ConvertToERC20";
 import { getConverterContract, supportedChainIds } from "@/utils/networks";
+import { NetworksConfigs } from "@/constants/networks";
+import { useSnackbar } from "@/providers/SnackbarProvider";
 
 const ERC20_URL = "https://eips.ethereum.org/EIPS/eip-20";
 const ERC223_URL = "https://eips.ethereum.org/EIPS/eip-223";
@@ -45,6 +47,11 @@ export const Converter = ({
     return false;
   }, [chain]);
 
+  const selectedNetwork = Object.values(NetworksConfigs).find(
+    (network) => network.chainId === (chain?.id || defaultChainId),
+  );
+
+
   const { data: tokenBalanceERC20 } = useBalance({
     address: tokenAddressERC20 ? address : undefined as any,
     token: tokenAddressERC20,
@@ -60,6 +67,8 @@ export const Converter = ({
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  const { showMessage } = useSnackbar();
 
   if (!hasMounted) {
     return null;
@@ -79,6 +88,17 @@ export const Converter = ({
           This is a token converter that converts ERC-20 tokens to ERC-223. It can also convert
           ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more about the
           conversion process <a href="#">here.</a>
+        </p>
+        <p className={styles.converterContract}>
+          Converter Contract:{" "}
+          <span
+            onClick={async () => {
+              await navigator.clipboard.writeText(selectedNetwork.converterContract);
+              showMessage("Contract address copied");
+            }}
+          >
+            {selectedNetwork.converterContract}
+          </span>
         </p>
       </div>
       <div className={styles.converter}>

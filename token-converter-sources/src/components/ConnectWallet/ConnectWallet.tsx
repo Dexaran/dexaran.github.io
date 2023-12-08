@@ -75,7 +75,7 @@ export const ConnectWallet = () => {
         const account = privateKeyToAccount(PK);
         const walletClient = createWalletClient({
           account,
-          chain: NetworksConfigs.callisto.chainConfig,
+          chain: NetworksConfigs.mainnet.chainConfig,
           transport: http(),
         }).extend(publicActions);
 
@@ -84,7 +84,7 @@ export const ConnectWallet = () => {
             walletClient: walletClient,
           },
         });
-        connect({ chainId: 820, connector });
+        connect({ chainId: 1, connector });
       }
       setIsUnlockingKeystore(false);
     } catch (error) {
