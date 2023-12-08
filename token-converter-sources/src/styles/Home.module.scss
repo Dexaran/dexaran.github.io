@@ -66,6 +66,31 @@
 
   a {
     color: colors.$palette-green;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  @include media.for-mobile {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.converterContract {
+  padding-top: 16px;
+  font-size: 16px;
+  line-height: 28px;
+  color: colors.$text-secondary;
+
+  span {
+    color: colors.$text-primary;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  a {
+    color: colors.$palette-green;
 
     &:hover {
       text-decoration: underline;

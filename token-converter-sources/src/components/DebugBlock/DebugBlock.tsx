@@ -28,7 +28,7 @@ const TestKeystore = () => {
   const account = privateKeyToAccount(TEST_WALLET_PK);
   const walletClient = createWalletClient({
     account,
-    chain: NetworksConfigs.callisto.chainConfig,
+    chain: NetworksConfigs.mainnet.chainConfig,
     transport: http(),
   }).extend(publicActions);
 
