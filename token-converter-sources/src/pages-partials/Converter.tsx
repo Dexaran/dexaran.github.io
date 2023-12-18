@@ -93,11 +93,11 @@ export const Converter = ({
           Converter Contract:{" "}
           <span
             onClick={async () => {
-              await navigator.clipboard.writeText(selectedNetwork.converterContract);
+              await navigator.clipboard.writeText(selectedNetwork?.converterContract);
               showMessage("Contract address copied");
             }}
           >
-            {selectedNetwork.converterContract}
+            {selectedNetwork?.converterContract}
           </span>
         </p>
       </div>

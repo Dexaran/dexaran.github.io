@@ -13,7 +13,7 @@ export const NetworksConfigs: {
   };
 } = {
   mainnet: {
-    name: "Ethereum mainnet",
+    name: "Ethereum",
     icon: "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png",
     chainId: 1,
     explorerTx: "https://etherscan.io/tx/{tx}",

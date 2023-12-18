@@ -179,7 +179,7 @@ export const Header = ({
               <Icons
                 name="chevronDown"
                 fill="#C3D8D5"
-                className={clsx(isNetworksMenuOpen && styles.open)}
+                className={clsx(isNetworksMenuOpen && styles.open, styles.chevronDown)}
               />
             </button>
             {isConnected ? (
