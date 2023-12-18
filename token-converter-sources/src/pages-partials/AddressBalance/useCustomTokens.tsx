@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Token } from "@/components/SelectTokent/SelectTokent";
 import uniq from "lodash.uniq";
 import compact from "lodash.compact";
 import { getData, storeData } from "@/utils/local-storage.util";
+import { Token } from "./token.type";
 
 export const useCustomTokens = (chainId: number) => {
   const STORAGE_KEY = `customTokens.${chainId}`;
@@ -14,7 +14,20 @@ export const useCustomTokens = (chainId: number) => {
   const addCustomToken = (token: Token) =>
     updateCustomTokens(uniq(compact([...customTokens, token])));
   const removeCustomToken = (token: Token) =>
-    updateCustomTokens(uniq(compact(customTokens.filter((t) => t.contract !== token.contract))));
+    updateCustomTokens(
+      uniq(
+        compact(
+          customTokens.filter((t) => {
+            if (!!t.tokenAddressERC20 && !!token.tokenAddressERC20) {
+              return t.tokenAddressERC20 !== token.tokenAddressERC20;
+            } else if (!!t.tokenAddressERC223 && !!token.tokenAddressERC223) {
+              return t.tokenAddressERC223 !== token.tokenAddressERC223;
+            }
+            return true;
+          }),
+        ),
+      ),
+    );
 
   useEffect(() => {
     const savedCustomTokens = getData(STORAGE_KEY);

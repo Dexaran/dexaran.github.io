@@ -16,7 +16,7 @@ import { basePath } from "@/constants/build-config/isProd";
 const listHeight = 380;
 const rowHeight = 60;
 
-export type Token = {
+export type ChainToken = {
   contract: Address;
   symbol: string;
   logo?: string;
@@ -24,10 +24,10 @@ export type Token = {
   markets?: number[];
 };
 
-export const loadChainTokens = async (chainId: number): Promise<Token[]> => {
+export const loadChainTokens = async (chainId: number): Promise<ChainToken[]> => {
   if (!chainId) return Promise.resolve([]);
   try {
-    const chainTokens = (await import(`../../constants/tokens/${chainId}.json`)).default as Token[];
+    const chainTokens = (await import(`../../constants/tokens/${chainId}.json`)).default as ChainToken[];
     if (chainTokens?.length) {
       return chainTokens;
     } else {
@@ -70,7 +70,7 @@ export default function SelectTokent({
   const [isOpen, setIsOpen] = useState(false);
   const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [searchText, setSearchText] = useState("");
-  const [chainTokens, setChainTokens] = useState([] as Token[]);
+  const [chainTokens, setChainTokens] = useState([] as ChainToken[]);
   const [filteredTokens, setFilteredTokens] = useState(chainTokens);
 
   const { chain } = useNetwork();
@@ -92,6 +92,7 @@ export default function SelectTokent({
   const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
   const updateTokenAddress = useCallback(
     async (address: Address) => {
+      // Read token standard
       const tokenStandard = await publicClient
         .readContract({
           address: address,
@@ -99,7 +100,10 @@ export default function SelectTokent({
           functionName: "standard",
         })
         .catch(() => "");
+      // Check if it is ERC223 token
       const isERC223Token = tokenStandard === "erc223" || tokenStandard === "223";
+      setToERC223(!isERC223Token);
+      // Check if it is wrapper token
       const isWrapper = await publicClient
         .readContract({
           address: converterContractAddress,
@@ -108,9 +112,9 @@ export default function SelectTokent({
           args: [address],
         })
         .catch(() => false);
-      setToERC223(!isERC223Token);
       if (isERC223Token) {
         setTokenAddressERC223(address);
+        // Try to get ERC20 address
         const erc20AddressResult = await publicClient
           .readContract({
             address: converterContractAddress,
@@ -126,6 +130,7 @@ export default function SelectTokent({
         setTokenAddressERC20(erc20Address);
       } else {
         setTokenAddressERC20(address);
+        // Try to get ERC223 address
         const erc223AddressResult = await publicClient
           .readContract({
             address: converterContractAddress,

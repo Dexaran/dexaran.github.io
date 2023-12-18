@@ -1,20 +1,23 @@
 import React, { useCallback } from "react";
 import homeStyles from "../../styles/Home.module.scss";
-import { useAccount, useContractRead, useNetwork, useToken } from "wagmi";
+import { useAccount, useNetwork, usePublicClient } from "wagmi";
 import { useEffect, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./AddressBalance.module.scss";
 import { List, AutoSizer } from "react-virtualized";
-import { Token, loadChainTokens } from "@/components/SelectTokent/SelectTokent";
+import { ChainToken, loadChainTokens } from "@/components/SelectTokent/SelectTokent";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { useCustomTokens } from "./useCustomTokens";
 import { TokenCard } from "./TokenCard";
 import clsx from "clsx";
-import { isAddress } from "viem";
+import { Address, isAddress } from "viem";
 import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import { getConverterContract } from "@/utils/networks";
-import { fetchToken } from '@wagmi/core'
+import { fetchToken } from "@wagmi/core";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import ERC223ABI from "../../constants/abi/erc223.json";
+import { Token } from "./token.type";
+import compact from "lodash.compact";
 
 const listHeight = 380;
 const listHeightMobile = 500;
@@ -22,11 +25,11 @@ const rowHeight = 100;
 const rowHeightMobile = 241;
 
 export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) => {
-  const { address, isConnected } = useAccount();
-  const { chain, chains } = useNetwork();
+  const { address } = useAccount();
+  const { chain } = useNetwork();
   const [walletAddress, setWalletAddress] = useState("");
   const [tokenNameOrAddress, setTokenNameOrAddress] = useState("");
-  const [chainTokens, setChainTokens] = useState([] as Token[]);
+  const [chainTokens, setChainTokens] = useState([] as ChainToken[]);
   const [searchTokens, setSearchTokens] = useState(chainTokens);
 
   const isValidTokenAddress = isAddress(tokenNameOrAddress);
@@ -52,78 +55,114 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
     chain?.id || defaultChainId,
   );
 
-  const { data: tokenNameOrAddressERC20 } = useContractRead({
-    address: getConverterContract(chain?.id || defaultChainId),
-    abi: TokenConverterABI,
-    functionName: "getOriginFor",
-    args: [tokenNameOrAddress],
-  });
+  const publicClient = usePublicClient({ chainId: chain?.id || defaultChainId });
+  const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
+  const addCustomTokenAddress = useCallback(
+    async (address: Address) => {
+      //  Is that the default token (is in our configs)?
+      const defaultToken = chainTokens.find(
+        (token) => token.contract.toLowerCase() === address.toLowerCase(),
+      );
+      if (defaultToken) {
+        const test = {
+          tokenAddressERC20: defaultToken.contract,
+          symbol: defaultToken.symbol,
+          markets: defaultToken.markets,
+          decimals: defaultToken.decimals,
+          logo: defaultToken.logo,
+        }
+        console.log("🚀 ~ test:", test)
+        addCustomToken({
+          tokenAddressERC20: defaultToken.contract,
+          symbol: defaultToken.symbol,
+          markets: defaultToken.markets,
+          decimals: defaultToken.decimals,
+          logo: defaultToken.logo,
+        });
+        setTokenNameOrAddress("");
+        return;
+      }
 
-  const { data: tokenNameOrAddressERC223 } = useContractRead({
-    address: getConverterContract(chain?.id || defaultChainId),
-    abi: TokenConverterABI,
-    functionName: "getWrapperFor",
-    args: [tokenNameOrAddress],
-  });
+      // Read token standard
+      const tokenStandard = await publicClient
+        .readContract({
+          address: address,
+          abi: ERC223ABI,
+          functionName: "standard",
+        })
+        .catch(() => "");
+      // Check if it is ERC223 token
+      const isERC223Token = tokenStandard === "erc223" || tokenStandard === "223";
+      // Check if it is wrapper token
+      const isWrapper = await publicClient
+        .readContract({
+          address: converterContractAddress,
+          abi: TokenConverterABI,
+          functionName: "isWrapper",
+          args: [address],
+        })
+        .catch(() => false);
+      let tokenAddressERC20 = undefined as undefined | string;
+      let tokenAddressERC223 = undefined as undefined | string;
+
+      if (isERC223Token) {
+        tokenAddressERC223 = address;
+        // Try to get ERC20 address
+        const erc20AddressResult = await publicClient
+          .readContract({
+            address: converterContractAddress,
+            abi: TokenConverterABI,
+            functionName: isWrapper ? "getERC20OriginFor" : "getERC20WrapperFor",
+            args: [address],
+          })
+          .catch(() => undefined);
+        const erc20Address: Address =
+          erc20AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
+            ? undefined
+            : erc20AddressResult?.[0];
+        tokenAddressERC20 = erc20Address;
+      } else {
+        tokenAddressERC20 = address;
+        // Try to get ERC223 address
+        const erc223AddressResult = await publicClient
+          .readContract({
+            address: converterContractAddress,
+            abi: TokenConverterABI,
+            functionName: isWrapper ? "getERC223OriginFor" : "getERC223WrapperFor",
+            args: [address],
+          })
+          .catch(() => undefined);
+        const erc223Address: Address =
+          erc223AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
+            ? undefined
+            : erc223AddressResult?.[0];
+        tokenAddressERC223 = erc223Address;
+      }
+      const tokenData = await fetchToken({
+        address: address,
+        chainId: chain?.id || defaultChainId,
+      });
+      addCustomToken({
+        tokenAddressERC20: tokenAddressERC20 as any,
+        tokenAddressERC223: tokenAddressERC223 as any,
+        decimals: tokenData.decimals,
+        symbol: tokenData.symbol,
+      });
+      setTokenNameOrAddress("");
+    },
+    [
+      publicClient,
+      converterContractAddress,
+      addCustomToken,
+      defaultChainId,
+      chain?.id,
+      chainTokens,
+    ],
+  );
 
   const addTokenFromAddressHandler = async () => {
     if (!tokenNameOrAddress || !isValidTokenAddress) return;
-
-    // 1. Is that the default token (is in our configs)?
-    const defaultToken = chainTokens.find(
-      (token) => token.contract.toLowerCase() === tokenNameOrAddress.toLowerCase(),
-    );
-    if (defaultToken) {
-      addCustomToken(defaultToken);
-      setTokenNameOrAddress("");
-      return;
-    }
-    // 2. This is a ERC20 contract for an token that is deployed in a converter?
-    if (
-      tokenNameOrAddressERC223 &&
-      tokenNameOrAddressERC223 !== "0x0000000000000000000000000000000000000000"
-    ) {
-      const tokenData = await fetchToken({
-        address: tokenNameOrAddress as any,
-        chainId: chain?.id || defaultChainId,
-      })
-      addCustomToken({
-        contract: tokenData.address,
-        decimals: tokenData.decimals,
-        symbol: tokenData.symbol,
-      });
-      setTokenNameOrAddress("");
-      return;
-    }
-    // 3. This is a ERC223 contract for an token that is deployed in a converter?
-    if (
-      tokenNameOrAddressERC20 &&
-      tokenNameOrAddressERC20 !== "0x0000000000000000000000000000000000000000"
-    ) {
-      const tokenData = await fetchToken({
-        address: tokenNameOrAddressERC20 as any,
-        chainId: chain?.id || defaultChainId,
-      })
-      addCustomToken({
-        contract: tokenData.address,
-        decimals: tokenData.decimals,
-        symbol: tokenData.symbol,
-      });
-      setTokenNameOrAddress("");
-      return;
-    }
-    // 4. Ok, its normal ERC20 contract
-    const tokenData = await fetchToken({
-      address: tokenNameOrAddress as any,
-      chainId: chain?.id || defaultChainId,
-    })
-    addCustomToken({
-      contract: tokenData.address,
-      decimals: tokenData.decimals,
-      symbol: tokenData.symbol,
-    });
-    setTokenNameOrAddress("");
-    return;
+    await addCustomTokenAddress(tokenNameOrAddress as any);
   };
 
   useEffect(() => {
@@ -139,9 +178,17 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
 
   const { showMessage } = useSnackbar();
 
-  const allTokens = [
+  const allTokens: Token[] = [
     ...customTokens,
-    ...chainTokens.filter((token) => !customTokens.map((t) => t.contract).includes(token.contract)),
+    ...chainTokens
+      // filter by ERC20 address
+      .filter(
+        (token) => !compact(customTokens.map((t) => t.tokenAddressERC20)).includes(token.contract),
+      )
+      .map(({ contract, ...token }) => ({
+        tokenAddressERC20: contract,
+        ...token,
+      }))
   ];
   const isMobile = useIsMobile();
 
@@ -153,7 +200,7 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
         <TokenCard
           token={token}
           showMessage={showMessage}
-          chainId={chain?.id}
+          chainId={chain?.id || defaultChainId}
           address={walletAddress as any}
           isCustom={index < customTokens.length}
           addHandler={(t) => {
@@ -188,7 +235,7 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
             className={styles.input}
             type="text"
           />
-          {!isValidWalletAddress ? (
+          {walletAddress && !isValidWalletAddress ? (
             <span className={styles.invalidAddressError}>Invalid wallet address</span>
           ) : null}
         </div>
@@ -215,13 +262,13 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
             ) : null}
             {searchTokens?.length ? (
               <div className={clsx(styles.searchAutocomplete, styles.styledScrollbar)}>
-                {searchTokens.slice(0, 10).map((token) => {
+                {searchTokens.slice(0, 10).map(({ contract, ...token }) => {
                   return (
                     <div
-                      key={token.contract}
+                      key={contract}
                       className={styles.searchAutocompleteItem}
                       onClick={() => {
-                        addCustomToken(token);
+                        addCustomToken({ ...token, tokenAddressERC20: contract });
                         setTokenNameOrAddress("");
                       }}
                     >
