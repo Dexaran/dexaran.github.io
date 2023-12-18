@@ -5,7 +5,7 @@ import { getData, storeData } from "@/utils/local-storage.util";
 import { Token } from "./token.type";
 
 export const useCustomTokens = (chainId: number) => {
-  const STORAGE_KEY = `customTokens.${chainId}`;
+  const STORAGE_KEY = `customTokensV2.${chainId}`;
   const [customTokens, setCustomTokens] = useState([] as Token[]);
   const updateCustomTokens = (tokens: Token[]) => {
     setCustomTokens(tokens);
