@@ -64,12 +64,14 @@
   line-height: 28px;
   color: colors.$text-secondary;
 
-  a {
+  a, span {
     color: colors.$palette-green;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
+
   @include media.for-mobile {
     font-size: 14px;
     font-style: normal;

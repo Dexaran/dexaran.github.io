@@ -11,6 +11,7 @@ import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { useSwipeable } from "react-swipeable";
 import Drawer from "../atoms/Drawer/Drawer";
+import Link from "next/link";
 
 enum Tabs {
   "converter" = "converter",
@@ -32,6 +33,13 @@ const TabIcons = {
   [Tabs.howItWorks]: "faq",
   [Tabs.ERC223]: "erc223",
   [Tabs.addressBalance]: "viewAddress",
+};
+
+const TabUrls = {
+  [Tabs.converter]: "/",
+  [Tabs.howItWorks]: "/how-it-works",
+  [Tabs.ERC223]: "/erc-223",
+  [Tabs.addressBalance]: "/address-tokens",
 };
 
 const CustomNode = () => {
@@ -91,14 +99,12 @@ const CustomNode = () => {
 
 export const Header = ({
   tab: activeTab,
-  setTab,
   defaultChainId,
   setDefaultChainId,
   isChangeNetworkOpen,
   setIsChangeNetworkOpen,
 }: {
   tab: TabType;
-  setTab: (tab: TabType) => void;
   defaultChainId: number;
   setDefaultChainId: (chainId: number) => void;
   isChangeNetworkOpen: boolean;
@@ -132,18 +138,15 @@ export const Header = ({
     },
   });
 
-  //
   return (
     <>
       <div className={styles.header}>
         <div className={styles.headerTabs}>
           {Object.keys(Tabs).map((tab: TabType) => (
-            <div
+            <Link
               key={tab}
+              href={TabUrls[tab]}
               className={clsx(styles.tab, activeTab === tab && styles.active)}
-              onClick={() => {
-                setTab(tab);
-              }}
             >
               <span>{TabTitles[tab]}</span>
               <div
@@ -152,7 +155,7 @@ export const Header = ({
                   activeTab === tab && styles.headerActiveUnderline,
                 )}
               />
-            </div>
+            </Link>
           ))}
         </div>
         {isClientSide ? (
@@ -277,17 +280,17 @@ export const Header = ({
         <div {...handlers} className={styles.menuWrapper}>
           <div className={styles.menuContent}>
             {Object.keys(Tabs).map((tab: TabType) => (
-              <div
+              <Link
+                href={TabUrls[tab]}
                 key={tab}
                 className={clsx(styles.menuItem, activeTab === tab && styles.active)}
                 onClick={() => {
-                  setTab(tab);
                   setMenuOpen(false);
                 }}
               >
                 <Icons name={TabIcons[tab] as any} />
                 <span>{TabTitles[tab]}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
