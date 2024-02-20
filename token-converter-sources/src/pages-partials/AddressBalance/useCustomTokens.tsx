@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import uniq from "lodash.uniq";
-import uniqBy from "lodash.uniqBy";
+import uniqBy from "lodash.uniqby";
 import compact from "lodash.compact";
 import { getData, storeData } from "@/utils/local-storage.util";
 import { Token } from "./token.type";
