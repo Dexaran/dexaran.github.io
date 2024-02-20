@@ -22,6 +22,7 @@ export type ChainToken = {
   logo?: string;
   decimals: number;
   markets?: number[];
+  isErc223?: boolean;
 };
 
 export const loadChainTokens = async (chainId: number): Promise<ChainToken[]> => {

@@ -64,14 +64,6 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
         (token) => token.contract.toLowerCase() === address.toLowerCase(),
       );
       if (defaultToken) {
-        const test = {
-          tokenAddressERC20: defaultToken.contract,
-          symbol: defaultToken.symbol,
-          markets: defaultToken.markets,
-          decimals: defaultToken.decimals,
-          logo: defaultToken.logo,
-        }
-        console.log("🚀 ~ test:", test)
         addCustomToken({
           tokenAddressERC20: defaultToken.contract,
           symbol: defaultToken.symbol,
@@ -185,10 +177,10 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
       .filter(
         (token) => !compact(customTokens.map((t) => t.tokenAddressERC20)).includes(token.contract),
       )
-      .map(({ contract, ...token }) => ({
-        tokenAddressERC20: contract,
+      .map(({ contract, isErc223, ...token }) => ({
+        [isErc223 ? "tokenAddressERC223" : "tokenAddressERC20"]: contract,
         ...token,
-      }))
+      })),
   ];
   const isMobile = useIsMobile();
 

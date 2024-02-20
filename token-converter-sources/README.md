@@ -67,6 +67,7 @@ mainnet: {
   symbol: string,
   logo: string,
   decimals: number,
+  isErc223: boolean,
 }
 ```
 **Example**: 
