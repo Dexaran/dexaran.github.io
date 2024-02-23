@@ -22,6 +22,7 @@ export type ChainToken = {
   logo?: string;
   decimals: number;
   markets?: number[];
+  isErc223?: boolean;
 };
 
 export const loadChainTokens = async (chainId: number): Promise<ChainToken[]> => {
@@ -271,9 +272,10 @@ export default function SelectTokent({
               />
               <div style={{ height: "16px" }} />
             </>
-          ) : (
-            <div className={styles.helperText}>Address is not valid</div>
-          )}
+          ) : null}
+          <div className={styles.validationError}>
+            {!isCustomTokenAddressValid && customTokenAddress ? "Address is not valid" : null}
+          </div>
           <div className={styles.converterFieldsLabel}>Number of tokens</div>
           <div className={styles.converterCustomFields}>
             <div className={styles.amountInputWrapper}>

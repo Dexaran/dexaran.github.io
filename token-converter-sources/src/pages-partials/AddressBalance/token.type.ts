@@ -7,5 +7,6 @@ export type Token = {
   logo?: string;
   decimals: number;
   markets?: number[];
+  isErc223?: boolean;
 };
 

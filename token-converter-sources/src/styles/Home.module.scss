@@ -16,6 +16,7 @@
   align-items: center;
 }
 .contentBlock {
+  width: 100%;
   max-width: 680px;
   background-color: colors.$background-secondary;
   margin: 40px auto;
@@ -64,12 +65,14 @@
   line-height: 28px;
   color: colors.$text-secondary;
 
-  a {
+  a, span {
     color: colors.$palette-green;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
+
   @include media.for-mobile {
     font-size: 14px;
     font-style: normal;

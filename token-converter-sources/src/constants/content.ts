@@ -26,10 +26,10 @@ export const Content = {
       },
     ],
   },
-  erc223: {
-    title: "ERC-223",
-    description:
-      "Converting tokens from the ERC-20 standard to the ERC-223 standard opens up new possibilities for enhanced security and functionality. This process allows you to transition your tokens to a more advanced standard that aligns with modern security principles and provides improved error handling capabilities. Let's explore how this conversion works step by step.",
-    steps: [],
-  },
+  // erc223: {
+  //   title: "ERC-223",
+  //   description:
+  //     "Converting tokens from the ERC-20 standard to the ERC-223 standard opens up new possibilities for enhanced security and functionality. This process allows you to transition your tokens to a more advanced standard that aligns with modern security principles and provides improved error handling capabilities. Let's explore how this conversion works step by step.",
+  //   steps: [],
+  // },
 };

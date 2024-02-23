@@ -98,11 +98,13 @@
   align-items: center;
 }
 
-.helperText {
-  text-align: right;
+.validationError {
+  text-align: left;
   font-size: 12px;
   line-height: 16px;
-  color: colors.$text-secondary;
+  color: colors.$palette-red;
+  margin-bottom: 4px;
+  min-height: 16px;
 }
 
 .networksContainer {

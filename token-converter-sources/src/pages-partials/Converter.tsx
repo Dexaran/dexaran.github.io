@@ -1,21 +1,19 @@
 import React from "react";
 import styles from "../styles/Home.module.scss";
 import { Address, useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
-import TokenConverterABI from "../constants/abi/tokenConverter.json";
 import { useEffect, useMemo, useState } from "react";
 import { Manrope } from "next/font/google";
-import { useSwitchNetwork } from "wagmi";
 import { Icons } from "@/components/atoms/Icons";
-import ChangeNetwork from "@/components/ChangeNetwork/ChangeNetwork";
 import SelectTokent from "@/components/SelectTokent/SelectTokent";
 import { ConnectWallet } from "@/components/ConnectWallet/ConnectWallet";
 import { DebugBlock } from "@/components/DebugBlock/DebugBlock";
 import { PrimaryButton } from "@/components/atoms/Button/Button";
 import { ConvertToERC223 } from "@/components/ConvertButton/ConvertToERC223";
 import { ConvertToERC20 } from "@/components/ConvertButton/ConvertToERC20";
-import { getConverterContract, supportedChainIds } from "@/utils/networks";
+import { supportedChainIds } from "@/utils/networks";
 import { NetworksConfigs } from "@/constants/networks";
 import { useSnackbar } from "@/providers/SnackbarProvider";
+import Link from "next/link";
 
 const ERC20_URL = "https://eips.ethereum.org/EIPS/eip-20";
 const ERC223_URL = "https://eips.ethereum.org/EIPS/eip-223";
@@ -86,8 +84,8 @@ export const Converter = ({
         </h1>
         <p className={styles.description}>
           This is a token converter that converts ERC-20 tokens to ERC-223. It can also convert
-          ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more about the
-          conversion process <a href="#">here.</a>
+          ERC-223 tokens back to ERC-20 at any time. No fees are charged. Read more about the{" "}
+          <Link href="/how-it-works">conversion process</Link>.
         </p>
         <p className={styles.converterContract}>
           Converter Contract:{" "}

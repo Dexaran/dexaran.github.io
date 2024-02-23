@@ -1,5 +1,13 @@
 [
   {
+    "contract": "0xcCe968120e6Ded56F32fbfe5A2Ec06CBF1e7c8ED",
+    "symbol": "D223",
+    "logo": "https://www.dex223.io/images/tokens/D223.svg",
+    "decimals": 18,
+    "markets": [],
+    "isErc223": true
+  },
+  {
     "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     "symbol": "USDT",
     "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
