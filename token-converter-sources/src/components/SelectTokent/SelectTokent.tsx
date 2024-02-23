@@ -273,9 +273,9 @@ export default function SelectTokent({
               <div style={{ height: "16px" }} />
             </>
           ) : null}
-          {!isCustomTokenAddressValid && customTokenAddress ? (
-            <div className={styles.validationError}>Address is not valid</div>
-          ) : null}
+          <div className={styles.validationError}>
+            {!isCustomTokenAddressValid && customTokenAddress ? "Address is not valid" : null}
+          </div>
           <div className={styles.converterFieldsLabel}>Number of tokens</div>
           <div className={styles.converterCustomFields}>
             <div className={styles.amountInputWrapper}>
