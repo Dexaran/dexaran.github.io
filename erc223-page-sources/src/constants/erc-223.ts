@@ -23,13 +23,13 @@ export const erc223: IArticle[] = [
   {
     title: "EIP-7417: Token Converter",
     description: "Formal specification of the contract that makes standards interoperable",
-    url: "https://github.com/Dexaran/EIPs/blob/patch-7/EIPS/eip-7417.md",
+    url: "https://eips.ethereum.org/EIPS/eip-7417",
     image: "ethereum-magicians-223.png",
   },
   {
     title: "Token Converter source code",
     description: "Formal specification of the contract that makes standards interoperable",
-    url: "https://github.com/Dexaran/EIPs/blob/patch-7/EIPS/eip-7417.md",
+    url: "https://github.com/Dexaran/TokenStandardConverter/tree/main",
     image: "converter-source.png",
   },
 ];
