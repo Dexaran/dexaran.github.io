@@ -1,5 +1,5 @@
 import { Chain } from "wagmi";
-import { mainnet, bsc, optimism, polygon, arbitrum } from "wagmi/chains";
+import { mainnet, bsc, optimism, polygon, arbitrum, sepolia } from "wagmi/chains";
 
 export const NetworksConfigs: {
   [networkName: string]: {
@@ -78,4 +78,14 @@ export const NetworksConfigs: {
       },
     },
   },
+  sepolia: {
+    name: "Sepolia",
+    icon: "https://res.cloudinary.com/practicaldev/image/fetch/s--_dX1np3j--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ah1kd81caer88dtqzd56.png",
+    chainId: 11155111,
+    explorerTx: "https://sepolia.io/tx/{tx}",
+    explorerToken: "https://sepolia.io/token/{contract}",
+    converterContract: "0x258e392a314034eb093706254960f26a90696d4c",
+    chainConfig: sepolia,
+  },
+
 };
