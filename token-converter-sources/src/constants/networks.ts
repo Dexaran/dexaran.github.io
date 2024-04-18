@@ -54,7 +54,7 @@ export const NetworksConfigs: {
     chainId: 820,
     explorerTx: "https://explorer.callisto.network/tx/{tx}",
     explorerToken: "https://explorer.callisto.network/token/{contract}",
-    converterContract: "0xf0ddb84596C9B52981C2bFf35c8B21d2b8FEd64c",
+    converterContract: "0x5714E07b52FCF05EeBE586815062a049D786C3DB",
     chainConfig: {
       id: 820,
       name: "Callisto Network",
