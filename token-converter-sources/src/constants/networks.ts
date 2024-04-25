@@ -1,5 +1,5 @@
 import { Chain } from "wagmi";
-import { mainnet, bsc, optimism, polygon, arbitrum } from "wagmi/chains";
+import { mainnet, bsc, optimism, polygon, arbitrum, sepolia } from "wagmi/chains";
 
 export const NetworksConfigs: {
   [networkName: string]: {
@@ -54,7 +54,7 @@ export const NetworksConfigs: {
     chainId: 820,
     explorerTx: "https://explorer.callisto.network/tx/{tx}",
     explorerToken: "https://explorer.callisto.network/token/{contract}",
-    converterContract: "0xf0ddb84596C9B52981C2bFf35c8B21d2b8FEd64c",
+    converterContract: "0x5714E07b52FCF05EeBE586815062a049D786C3DB",
     chainConfig: {
       id: 820,
       name: "Callisto Network",
@@ -78,4 +78,14 @@ export const NetworksConfigs: {
       },
     },
   },
+  sepolia: {
+    name: "Sepolia",
+    icon: "https://res.cloudinary.com/practicaldev/image/fetch/s--_dX1np3j--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ah1kd81caer88dtqzd56.png",
+    chainId: 11155111,
+    explorerTx: "https://sepolia.etherscan.io/tx/{tx}",
+    explorerToken: "https://sepolia.etherscan.io/token/{contract}",
+    converterContract: "0x258e392a314034eb093706254960f26a90696d4c",
+    chainConfig: sepolia,
+  },
+
 };

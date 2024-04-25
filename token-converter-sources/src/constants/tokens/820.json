@@ -1,7 +1,13 @@
 [
   {
-    "contract": "0x9e3549954138E52C230aCB92A9358C3842ABEb41",
-    "symbol": "TEST",
+    "contract": "0x98b925eCc32cE2B8b7458ff4bd489052E58e3Cd9",
+    "symbol": "ccDTA",
+    "decimals": 18,
+    "markets": []
+  },
+  {
+    "contract": "0x0684F8A7cC01aD4a253Df7d55340688F8173d520",
+    "symbol": "ccDTB",
     "decimals": 18,
     "markets": []
   },
