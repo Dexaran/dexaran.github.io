@@ -110,6 +110,9 @@ export class Blockchain {
                 console.error(e);
             }
 
+            if (ticker === 'VEN') ticker = 'VET';
+            if (ticker === 'GTO') ticker = 'GFT';
+
             if (priceObj.price === 0) {
                 try {
                     const req = (await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${ticker}&tsyms=USD`));
