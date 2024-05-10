@@ -1,5 +1,5 @@
-// const path = require("path");
 const { Web3 } = require("web3");
+const BigNumber = require("bignumber.js");
 
 const { ERC20, ERC20n, rpcMap, ethRpcArray } = require("./const");
 
@@ -39,12 +39,12 @@ function parseAddress(web3, address) {
  * @param {number} x - The number to be formatted.
  * @return {string} The formatted number as a string.
  */
-function numberWithCommas(x) {
+function numberWithCommas(x, places = 2) {
   if (x < 0.000001) return "0.00";
   const parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   if (parts.length > 1) {
-    parts[1] = parts[1].substring(0, 2);
+    parts[1] = parts[1].substring(0, places);
   }
   return parts.join(".");
 }
@@ -360,7 +360,12 @@ async function findBalances(web3, contractList, tokenObject) {
   // format acquired balances
   for (let i = 0; i < balances.length; i++) {
     if (balances[i].balance > 0n) {
-      const amount = Number(balances[i].balance / BigInt(Number(`1e${tokenObject.decimals}`)));
+      const balanceBN = new BigNumber(balances[i].balance.toString());
+      const powerBN = new BigNumber(`1e${tokenObject.decimals}`);
+      const amountBN = balanceBN.div(powerBN);
+      const amount = amountBN.toNumber();
+
+      // const amount = Number(balances[i].balance / BigInt(Number(`1e${tokenObject.decimals}`)))
       const dollarValue = numberWithCommas(amount * tokenObject.price);
       records.push({
         amount: BigInt(balances[i].balance),
@@ -441,31 +446,40 @@ function formatTokenResult(res, exclude = true) {
 
   // normal process
   let sum = 0n;
+  const powerBN = new BigNumber(`1e${res.decimals}`);
 
   // records already sorted by value - formatting output
   for (const record of res.records) {
     let prefix = "";
+    const amountN = typeof record.amount === "string" ? BigInt(record.amount) : record.amount;
     if (record.exclude && exclude) {
       prefix = "[X] ";
     } else {
-      if (typeof record.amount === "string") {
-        sum += BigInt(record.amount);
-      } else {
-        sum += record.amount;
-      }
+      sum += amountN; // BigInt(record.amount);
     }
-    const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(
-      record.roundedAmount,
-    )} ${res.ticker} ( $${record.dollarValue} )`;
+
+    const balanceBN = new BigNumber(record.amount);
+    const amountBN = balanceBN.div(powerBN);
+    const amount = amountBN.toNumber();
+
+    // const amount = Number(balances[i].balance / BigInt(Number(`1e${tokenObject.decimals}`)))
+    const dollarValue = numberWithCommas(amount * res.price);
+
+    // const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(record.roundedAmount)} ${res.ticker} ( $${record.dollarValue} )`
+    const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(amount, 5)} ${
+      res.ticker
+    } ( $${dollarValue} )`;
     localStr += str + "\n";
   }
 
   // increasing sum value
-  const roundedAmount = Number(sum) / Number(`1e${res.decimals}`);
+  const sumBN = new BigNumber(sum.toString());
+  const roundedAmount = sumBN.div(powerBN).toNumber();
   const asDollar = roundedAmount * res.price;
 
   const header = `${res.ticker} [${res.tokenAddress}]: ${numberWithCommas(
     roundedAmount,
+    5,
   )} tokens lost / $${numberWithCommas(asDollar)}`;
   localStr = header + "\n-----------------------------------------------\n" + localStr;
 
@@ -474,7 +488,7 @@ function formatTokenResult(res, exclude = true) {
 
 function loadExcludes() {
   const res = new Map();
-  const excludesArray = require('@/constants/excludes.json');
+  const excludesArray = require("@/constants/excludes.json");
   for (let item of excludesArray) {
     const key = item[0].toLowerCase();
     const values = item[1].map((val) => val.toLowerCase());
@@ -492,5 +506,5 @@ export {
   parseAddress,
   numberWithCommas,
   loadExcludes,
-  checkEthAddress
+  checkEthAddress,
 };
