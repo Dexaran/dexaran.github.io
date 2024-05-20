@@ -12,7 +12,7 @@ import { getConverterContract } from "@/utils/networks";
 import ERC20ABI from "../../constants/abi/erc20.json";
 import ERC223ABI from "../../constants/abi/erc223.json";
 import { basePath } from "@/constants/build-config/isProd";
-
+import { FetchBalanceResult } from "@wagmi/core";
 const listHeight = 380;
 const rowHeight = 60;
 
@@ -60,8 +60,8 @@ export default function SelectTokent({
   tokenAddressERC223: Address | undefined;
   setTokenAddressERC20: (address: Address | undefined) => void;
   setTokenAddressERC223: (address: Address | undefined) => void;
-  tokenBalanceERC20: any;
-  tokenBalanceERC223: any;
+  tokenBalanceERC20: FetchBalanceResult;
+  tokenBalanceERC223: FetchBalanceResult;
   defaultChainId: number;
   toERC223: boolean;
   setToERC223: (boolean) => void;
