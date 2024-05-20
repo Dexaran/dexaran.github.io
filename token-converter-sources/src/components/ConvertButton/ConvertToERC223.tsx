@@ -10,7 +10,7 @@ import {
 import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import ERC20ABI from "../../constants/abi/erc20.json";
 
-import { formatEther, parseEther, parseGwei, parseUnits } from "viem";
+import { parseEther, parseGwei, parseUnits } from "viem";
 import { PrimaryButton } from "../atoms/Button/Button";
 import { renderShortHash } from "@/utils/renderAddress";
 import { GasSettings } from "../GasSettings/GasSettings";
