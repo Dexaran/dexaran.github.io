@@ -1,6 +1,6 @@
 {
   "name": "erc20-losses-sources",
-  "version": "0.1.0",
+  "version": "1.2.2",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
@@ -10,14 +10,16 @@
     "export": "next export"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.25.0",
     "@ethersproject/providers": "^5.7.2",
     "@ethersproject/wallet": "^5.7.0",
+    "@floating-ui/react": "^0.25.0",
     "@types/node": "20.4.5",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "@web3modal/ethereum": "^2.7.1",
     "@web3modal/react": "^2.7.1",
+    "axios": "^1.6.8",
+    "bignumber.js": "^9.1.2",
     "clsx": "^2.0.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",

@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./TokenLosses.module.scss";
-import PrecalculatedResult from "@/constants/lost_tokens_result_24_04_2024.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_30_04_2024.json";
 
 /* local imports */
-import { tokens, contracts } from "./const";
-import { Blockchain } from "./web3";
+import { tokens, contracts, rpcMap } from "./const";
 import { handleExclusions, numberWithCommas } from "./utils";
 import clsx from "clsx";
 import { numericFormatter } from "react-number-format";
@@ -13,13 +12,20 @@ import { SecondaryButton, WhiteButton } from "@/components/atoms/Button/Button";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { ResultItem } from "./ResultItem";
 import { MobileResultItem } from "./MobileResultItem";
+import { checkEthAddress, loadExcludes, processOneToken } from "./functions";
+import Web3 from "web3";
+import axios from "axios";
+
 /* globals */
 const CHAIN = "eth"; // eth or bsc or polygon
-const web3 = new Blockchain(CHAIN);
+export const rpc = rpcMap.get("eth");
 const timeoutMap: Map<string, NodeJS.Timeout> = new Map();
 type FormattedResult = { resStr: string; asDollar: number; amount: number };
-const excludedMap = web3.loadExcludes();
+const excludedMap = loadExcludes();
 const EXCLUDES = true; // turn ON using of exceptions/exclusions
+const API_ETHERSCAN_ENDPOINT = "https://api.dex223.io/v1/etherscan/";
+// can use any of supported chains
+export const web3 = new Web3(rpc);
 
 const START_TEXT = "Start search";
 
@@ -29,7 +35,7 @@ function parseAddress(address: string): string {
 
   for (const l of list) {
     const name = l.trim();
-    if (web3.checkEthAddress(name)) {
+    if (checkEthAddress(web3, name)) {
       result.push(name);
     }
     // TODO list and show invalid (excluded) addresses to user
@@ -41,7 +47,12 @@ function parseAddress(address: string): string {
   return result.join("\n");
 }
 
-function timeoutInput(setter: any, value: string, areaName: string, setButtonState: any) {
+function timeoutInput(
+  setter: any,
+  value: string,
+  areaName: string,
+  setButtonState: any,
+) {
   setter(value);
 
   setButtonState({ state: 0, text: "Checking addresses..." });
@@ -99,7 +110,7 @@ function formatTokenResult(res: any): FormattedResult {
   return { resStr: localStr, asDollar, amount: roundedAmount };
 }
 
-function Button() {
+function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan; }) {
   const processSate: any = useContext(ProcessContext);
   const interruptFlag = useRef(false);
 
@@ -135,7 +146,8 @@ function Button() {
       // if (processSate.stopClicked) break; // stop by button
       if (interruptFlag.current) break; // stop by button
 
-      const res = await web3.processOneToken(contractListArray, tokenAddress);
+      const token = fromEtherscan[tokenAddress.toLowerCase()];
+      const res = await processOneToken(web3, contractListArray, tokenAddress, token);
 
       const formatted: FormattedResult = formatTokenResult(res);
 
@@ -177,7 +189,7 @@ function Button() {
   );
 }
 
-const CalculationProgress = () => {
+const CalculationProgress = ({ isDefaultResult }: { isDefaultResult: boolean }) => {
   const processSate: any = useContext(ProcessContext);
   const chainTokens = processSate.tokensList.split("\n");
   const [progress, setProgress] = useState(100);
@@ -190,7 +202,7 @@ const CalculationProgress = () => {
     <div
       className={clsx(
         styles.calculationProgress,
-        (progress >= 100 || progress === 0) && styles.hide,
+        (isDefaultResult || progress >= 100 || progress === 0) && styles.hide,
       )}
     >
       <div className={styles.progressContainer}>
@@ -234,20 +246,20 @@ const downloadResult = (data: any) => {
 };
 
 // TODO turn on/off exclusions
-// if (EXCLUDES) {
-//   // mark excluded results
-//   for (const res of PrecalculatedResult) {
-//     const tokenAddress = res.tokenAddress.toLowerCase();
-//     if (excludedMap.has(tokenAddress)) {
-//       const excluded = excludedMap.get(tokenAddress);
-//       for (let item of res.records) {
-//         if (excluded?.includes(item.contract.toLowerCase())) {
-//           item.exclude = true;
-//         }
-//       }
-//     }
-//   }
-// }
+if (EXCLUDES) {
+  // mark excluded results
+  for (const res of PrecalculatedResult) {
+    const tokenAddress = res.tokenAddress.toLowerCase();
+    if (excludedMap.has(tokenAddress)) {
+      const excluded = excludedMap.get(tokenAddress);
+      for (let item of res.records) {
+        if (excluded?.includes(item.contract.toLowerCase())) {
+          item.exclude = true;
+        }
+      }
+    }
+  }
+}
 
 const preparedResult = handleExclusions(PrecalculatedResult, excludedMap);
 
@@ -258,21 +270,72 @@ preparedResult.sort(function (a, b) {
 const PrecalculatedResultSum = preparedResult.reduce((acc, item) => acc + item.asDollar, 0);
 const PrecalculatedResultTokenNumber = preparedResult.length;
 
+type EtherscanTokenInfo = {
+  rank: number;
+  name: string;
+  logo?: string;
+  sympol: string;
+  price: number;
+  updated: string;
+}
+type FromEtherscan ={ [address: string]: EtherscanTokenInfo }
+
+const useEtherscan = () => {
+  const [isEtherscanLoading, setIsEtherscanLoading] = useState(true);
+  const [fromEtherscan, setFromEtherscan] = useState({} as FromEtherscan);
+  const [etherscanList, setEtherscanList] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      setIsEtherscanLoading(true);
+      const resultEtherscan = await axios.get(API_ETHERSCAN_ENDPOINT);
+      setFromEtherscan(resultEtherscan.data);
+      let prefix = "";
+      let counter = 0;
+      let etherscanListResult = "";
+      for (const address of Object.keys(resultEtherscan.data)) {
+        // Using the default iterator (could be `map.entries()` instead)
+        etherscanListResult += prefix + address;
+        prefix = "\n";
+        counter++;
+      }
+      setEtherscanList(etherscanListResult);
+
+      console.log(`Contracts found on Etherscan: ${counter}`);
+      setIsEtherscanLoading(false);
+    })();
+  }, [setFromEtherscan, setEtherscanList]);
+
+  return {
+    isEtherscanLoading,
+    fromEtherscan,
+    etherscanList,
+  };
+};
+
 export const TokenLosses = () => {
+  const { isEtherscanLoading, fromEtherscan, etherscanList } = useEtherscan();
   const contractsStr = contracts[CHAIN].join("\n");
-  const tokensStr = tokens[CHAIN].join("\n");
 
   const [contractsList, setContracts] = useState(contractsStr);
-  const [tokensList, setTokens] = useState(tokensStr);
+  const [tokensList, setTokens] = useState("");
   const [resultsList, setResults] = useState(preparedResult);
+  const [isDefaultResult, setIsDefaultResult] = useState(true);
+  
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
   const [dateString, setDateString] = useState(new Date().toDateString());
   const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
 
+  // Update tokens list with etherscan result
+  useEffect(() => {
+    setTokens(etherscanList);
+  }, [etherscanList, setTokens]);
+
   const clearResults = () => {
     setResults([]);
     setResultSum(0);
+    setIsDefaultResult(false)
   };
   const updateContractsHandler = (contracts: string) => {
     setContracts(contracts);
@@ -342,8 +405,8 @@ export const TokenLosses = () => {
           </div>
         </div>
         <ProcessContext.Provider value={contextObject}>
-          <Button />
-          <CalculationProgress />
+          <Button fromEtherscan={fromEtherscan} />
+          <CalculationProgress isDefaultResult={isDefaultResult} />
         </ProcessContext.Provider>
       </div>
       <div className={styles.resultBlock}>

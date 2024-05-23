@@ -8,14 +8,14 @@ import Collapse from "@/components/atoms/Collapse";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 import { useSnackbar } from "@/providers/SnackbarProvider";
-import { Blockchain } from "./web3";
 import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
+import { getTokenInfo } from "./functions";
+import { web3 } from "./TokenLosses";
 
 const CHAIN = "eth"; // eth or bsc or polygon
-const web3 = new Blockchain(CHAIN);
 
-const getTokenName = async (address: string) => {
-  const tokenInfo = await web3.getTokenInfo(address);
+const getTokenName = async (address: string, tokenObject?: any) => {
+  const tokenInfo = await getTokenInfo(web3, address, tokenObject);
   return tokenInfo.ticker;
 };
 
@@ -32,6 +32,7 @@ const ItemContract = ({
   dollarValue: any;
   exclude: boolean;
 }) => {
+
   const { showMessage } = useSnackbar();
   const [contractName, setContractName] = useState();
   useEffect(() => {

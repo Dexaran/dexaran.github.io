@@ -10,21 +10,22 @@ import {
 import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import ERC20ABI from "../../constants/abi/erc20.json";
 
-import { formatEther, parseEther, parseGwei, parseUnits } from "viem";
+import { parseEther, parseGwei, parseUnits } from "viem";
 import { PrimaryButton } from "../atoms/Button/Button";
 import { renderShortHash } from "@/utils/renderAddress";
 import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { getConverterContract, getNetworkExplorerTxUrl } from "@/utils/networks";
+import { FetchBalanceResult } from "@wagmi/core";
 
 const ToERC223ApproveButton = ({
-  amountToConvert,
+  amountToConvertBigInt,
   tokenAddressERC20,
   gasPrice,
   gasLimit,
 }: {
-  amountToConvert: any;
+  amountToConvertBigInt: bigint;
   tokenAddressERC20: any;
   gasPrice: null | string;
   gasLimit: null | string;
@@ -39,7 +40,7 @@ const ToERC223ApproveButton = ({
     address: tokenAddressERC20,
     abi: ERC20ABI,
     functionName: "approve",
-    args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
+    args: [getConverterContract(chain?.id), amountToConvertBigInt],
     gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
     gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
   } as any);
@@ -81,12 +82,12 @@ const ToERC223ApproveButton = ({
 };
 
 const ToERC223ConvertButton = ({
-  amountToConvert,
+  amountToConvertBigInt,
   tokenAddressERC20,
   handleCreateTx,
   isLoading,
 }: {
-  amountToConvert: any;
+  amountToConvertBigInt: bigint;
   tokenAddressERC20: any;
   handleCreateTx: (txHash: string) => void;
   isLoading: boolean;
@@ -110,7 +111,7 @@ const ToERC223ConvertButton = ({
     address: getConverterContract(chain?.id),
     abi: TokenConverterABI,
     functionName: isWrapper ? "unwrapERC20toERC223" : "wrapERC20toERC223",
-    args: [tokenAddressERC20, parseEther(amountToConvert)],
+    args: [tokenAddressERC20, amountToConvertBigInt],
     gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
     gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
   });
@@ -140,10 +141,10 @@ const ToERC223ConvertButton = ({
         address={getConverterContract(chain?.id)}
         abi={TokenConverterABI}
         functionName={isWrapper ? "unwrapERC20toERC223" : "wrapERC20toERC223"}
-        args={[tokenAddressERC20, parseEther(amountToConvert)]}
+        args={[tokenAddressERC20, amountToConvertBigInt]}
       />
       <PrimaryButton
-        disabled={!amountToConvert}
+        disabled={!amountToConvertBigInt}
         onClick={handleConvertToERC223}
         isLoading={isWriteConvertLoading || isLoading}
       >
@@ -226,11 +227,12 @@ export const ConvertToERC223 = ({
   tokenAddressERC20,
   tokenAddressERC223,
 }: {
-  amountToConvert: any;
-  tokenBalanceERC20: any;
+  amountToConvert: string;
+  tokenBalanceERC20: FetchBalanceResult;
   tokenAddressERC20: any;
   tokenAddressERC223: any;
 }) => {
+  const amountToConvertBigInt = parseUnits(amountToConvert, tokenBalanceERC20?.decimals);
   const [waitingTxHash, setWaitingTxHash] = useState(null as null | string);
   const { address } = useAccount();
   const { chain } = useNetwork();
@@ -241,7 +243,7 @@ export const ConvertToERC223 = ({
     args: [address, getConverterContract(chain?.id)],
     watch: true,
   });
-
+  
   const isEnoughBalance = useMemo(() => {
     if (!tokenBalanceERC20?.formatted) {
       return false;
@@ -258,7 +260,7 @@ export const ConvertToERC223 = ({
     amountToConvert &&
     isEnoughBalance &&
     allowanceAmount &&
-    +amountToConvert <= +formatEther(allowanceAmount as any);
+    amountToConvertBigInt <= (allowanceAmount as bigint);
 
   const renderActionButton = () => {
     if (!amountToConvert) {
@@ -267,11 +269,11 @@ export const ConvertToERC223 = ({
       return <PrimaryButton disabled>Insufficient amount</PrimaryButton>;
     } else if (
       !allowanceAmount ||
-      (allowanceAmount && +amountToConvert > +formatEther(allowanceAmount as any))
+      (allowanceAmount && amountToConvertBigInt > (allowanceAmount as bigint))
     ) {
       return (
         <ToERC223ApproveButton
-          amountToConvert={amountToConvert}
+          amountToConvertBigInt={amountToConvertBigInt}
           tokenAddressERC20={tokenAddressERC20}
           gasPrice={gasPrice}
           gasLimit={gasLimit}
@@ -280,7 +282,7 @@ export const ConvertToERC223 = ({
     } else {
       return (
         <ToERC223ConvertButton
-          amountToConvert={amountToConvert}
+          amountToConvertBigInt={amountToConvertBigInt}
           tokenAddressERC20={tokenAddressERC20}
           handleCreateTx={(txHash) => {
             setWaitingTxHash(txHash);

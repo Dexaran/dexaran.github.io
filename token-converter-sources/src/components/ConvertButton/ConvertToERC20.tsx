@@ -11,6 +11,7 @@ import { GasSettings } from "../GasSettings/GasSettings";
 import TxModal from "./TxModal";
 import { renderShortHash } from "@/utils/renderAddress";
 import { getConverterContract, getNetworkExplorerTxUrl } from "@/utils/networks";
+import { FetchBalanceResult } from "@wagmi/core";
 
 export const ConvertToERC20 = ({
   amountToConvert,
@@ -19,10 +20,11 @@ export const ConvertToERC20 = ({
   tokenAddressERC223,
 }: {
   amountToConvert: any;
-  tokenBalanceERC223: any;
+  tokenBalanceERC223: FetchBalanceResult;
   tokenAddressERC20: any;
   tokenAddressERC223: any;
 }) => {
+  const amountToConvertBigInt = parseUnits(amountToConvert, tokenBalanceERC223?.decimals);
   const [gasPrice, setGasPrice] = useState(null as null | string);
   const [gasLimit, setGasLimit] = useState(null as null | string);
   const [isTxModalOpen, setIsTxModalOpen] = useState(false);
@@ -51,7 +53,7 @@ export const ConvertToERC20 = ({
     address: tokenAddressERC223,
     abi: ERC223ABI,
     functionName: "transfer",
-    args: [getConverterContract(chain?.id), parseEther(amountToConvert)],
+    args: [getConverterContract(chain?.id), amountToConvertBigInt],
     gas: gasLimit ? parseUnits(gasLimit, 0) : undefined,
     gasPrice: gasPrice ? parseGwei(gasPrice) : undefined,
   });
@@ -95,7 +97,7 @@ export const ConvertToERC20 = ({
         address={tokenAddressERC20}
         abi={ERC223ABI}
         functionName="transfer"
-        args={[getConverterContract(chain?.id), parseEther(amountToConvert)]}
+        args={[getConverterContract(chain?.id), amountToConvertBigInt]}
       />
       {!isEnoughBalance223 && <PrimaryButton disabled>Insufficient amount</PrimaryButton>}
       {isEnoughBalance223 && (

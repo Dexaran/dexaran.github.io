@@ -1,5 +1,3 @@
-// import { excludedMap } from "./const"
-
 /**
  * Formats a number with commas (e.g. 123,234,660.12)
  *
