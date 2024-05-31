@@ -201,15 +201,12 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
       <div className={styles.tokensList}>
         <div className={styles.tokensListHeader}>
           <h3>List of tokens</h3>
-          <button className={styles.updateButton}>
-            <Icons name="update" />
-          </button>
         </div>
         <div className={styles.tokensListTableHeader}>
           <span className={styles.tableToken}>Token</span>
           <span className={styles.tableERC20}>ERC-20</span>
           <span className={styles.tableERC223}>ERC-223</span>
-          <span className={styles.tableAction}>Action</span>
+          <span className={styles.tableAction}>Remove</span>
         </div>
       </div>
       <AutoSizer disableHeight>

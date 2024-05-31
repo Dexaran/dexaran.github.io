@@ -1,18 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
-import { Address, useBalance, useContractRead } from "wagmi";
+import React from "react";
+import { Address, useBalance } from "wagmi";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./AddressBalance.module.scss";
 import stylesTokenCard from "./TokenCard.module.scss";
 import stylesTokenCardMobile from "./TokenCardMobile.module.scss";
 import { renderShortAddress, roundValue } from "@/utils/renderAddress";
-import { getConverterContract, getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { getNetworkExplorerTokenUrl } from "@/utils/networks";
 import clsx from "clsx";
-import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import { basePath } from "@/constants/build-config/isProd";
 import { Token } from "./token.type";
-import { IIFE } from "@/utils/iife";
-import { getTokenInfo } from "./useCustomTokens";
 
 export const TokenCard = ({
   walletAddress,
@@ -50,13 +47,7 @@ export const TokenCard = ({
     return (
       <div className={stylesTokenCardMobile.tokenCard}>
         <div className={stylesTokenCardMobile.tokenCardHeader}>
-          <div
-            className={clsx(
-              stylesTokenCardMobile.tokenCardToken,
-              isCustom && stylesTokenCardMobile.isCustom,
-            )}
-          >
-            {isCustom ? <Icons name="drag" fill="#787B78" size={20} /> : null}
+          <div className={clsx(stylesTokenCardMobile.tokenCardToken)}>
             <img
               src={token.logo || `${basePath}/token-default.svg`}
               width="44px"
@@ -152,8 +143,7 @@ export const TokenCard = ({
 
   return (
     <div className={stylesTokenCard.tokenCard}>
-      <div className={clsx(stylesTokenCard.tokenCardToken, isCustom && stylesTokenCard.isCustom)}>
-        {isCustom ? <Icons name="drag" fill="#787B78" size={20} /> : null}
+      <div className={clsx(stylesTokenCard.tokenCardToken)}>
         <img
           src={token.logo || `${basePath}/token-default.svg`}
           width="44px"
