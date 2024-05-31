@@ -1,44 +1,44 @@
 [
   {
-    "contract": "0xBC88C16D3adAacCC1f52503C4C972bA9C151F853",
-    "name": "Token A",
-    "decimals": 6,
-    "symbol": "DTA",
+    "contract": "0x7F4C5c87C630b3f8a2265FD76413E7d6C7DEbFB4",
+    "name": "Test Sep 1",
+    "symbol": "TSP1",
+    "decimals": 18,
     "markets": []
   },
   {
-    "contract": "0xb32F7065949Ea3826d6E5936B07E5F1567707588",
-    "name": "Token B",
+    "contract": "0x73a68acd477ABf858fd3b18a9A13d080B781cbE5",
+    "name": "Test Sep 2",
+    "symbol": "TSP2",
     "decimals": 6,
-    "symbol": "DTB",
     "markets": []
   },
   {
-    "contract": "0xA6de6C90f2FFd30B54b830359a9f17Ed44dd63Ac",
-    "name": "USDT",
-    "decimals": 6,
-    "symbol": "USDT",
+    "contract": "0x78B2BebFb31788372F449a8fD7b9BA7B654B03E4",
+    "name": "Test Sep 3",
+    "symbol": "TSP3",
+    "decimals": 0,
     "markets": []
   },
   {
-    "contract": "0x7fc21ceb0c5003576ab5e101eb240c2b822c95d2",
-    "name": "USDC",
-    "decimals": 6,
-    "symbol": "USDC",
+    "contract": "0x4817B28641eec4D43266A3BA3347D6d4b8401Ac3",
+    "name": "Test Sep 4",
+    "symbol": "TSP4",
+    "decimals": 18,
     "markets": []
   },
   {
-    "contract": "0x723FE0A6415A25ec74cF0C4cf33F600F001D1aEc",
-    "name": "Dex223 Token B",
-    "symbol": "TB",
+    "contract": "0x19CE05d621b89cC59c49ebDD36dF9066234963c5",
+    "name": "Test Sep 5",
+    "symbol": "TSP5",
     "markets": [],
-    "decimals": 18
+    "decimals": 10
   },
   {
-    "contract": "0xFd5493FC83CE4FE44c951AA244946Bd652AC0361",
-    "name": "Dex223 Token C",
-    "symbol": "TC",
+    "contract": "0xf886E984F9519641fD6C5F78F1573094c6037365",
+    "name": "Test Sep 6",
+    "symbol": "TSP6",
     "markets": [],
-    "decimals": 18
+    "decimals": 6
   }
 ]

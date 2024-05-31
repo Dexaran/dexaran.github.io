@@ -15,6 +15,7 @@ export default function TxModal({
   contractAddress,
   status,
   error,
+  isAddressLoading,
 }: {
   isOpen: boolean;
   handleClose: any;
@@ -23,6 +24,7 @@ export default function TxModal({
   txHash?: string;
   contractAddress?: string;
   error?: any;
+  isAddressLoading: boolean;
 }) {
   const { chain } = useNetwork();
 
@@ -72,13 +74,17 @@ export default function TxModal({
             </div>
             <div className={styles.txModalContract}>
               <p>{`${toERC223 ? "ERC-223" : "ERC-20"} token contract`}</p>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={getNetworkExplorerTokenUrl(chain?.id, contractAddress)}
-              >
-                {renderShortAddress(contractAddress, 10)}
-              </a>
+              {isAddressLoading || !contractAddress ? (
+                <span>{isAddressLoading ? "Loading. ." : "Loading..."}</span>
+              ) : (
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={getNetworkExplorerTokenUrl(chain?.id, contractAddress)}
+                >
+                  {renderShortAddress(contractAddress, 10)}
+                </a>
+              )}
             </div>
             <PrimaryButton onClick={handleClose} style={{ marginTop: "20px" }}>
               Done

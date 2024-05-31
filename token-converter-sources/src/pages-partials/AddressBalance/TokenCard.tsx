@@ -1,19 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Address, useBalance, useContractRead } from "wagmi";
+import { Address, useBalance } from "wagmi";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./AddressBalance.module.scss";
 import stylesTokenCard from "./TokenCard.module.scss";
 import stylesTokenCardMobile from "./TokenCardMobile.module.scss";
 import { renderShortAddress, roundValue } from "@/utils/renderAddress";
-import { getConverterContract, getNetworkExplorerTokenUrl } from "@/utils/networks";
+import { getNetworkExplorerTokenUrl } from "@/utils/networks";
 import clsx from "clsx";
-import TokenConverterABI from "../../constants/abi/tokenConverter.json";
 import { basePath } from "@/constants/build-config/isProd";
 import { Token } from "./token.type";
 
 export const TokenCard = ({
-  address,
+  walletAddress,
   token,
   showMessage,
   chainId,
@@ -22,7 +21,7 @@ export const TokenCard = ({
   removeHandler,
   isMobile,
 }: {
-  address: Address;
+  walletAddress: Address;
   token: Token;
   showMessage: (message: string) => void;
   chainId: number;
@@ -31,28 +30,24 @@ export const TokenCard = ({
   removeHandler: (token: Token) => void;
   isMobile: boolean;
 }) => {
+  const address0 = token.tokenAddressERC20;
+  const address1 = token.tokenAddressERC223;
+
   const { data: tokenBalanceERC20, isLoading: isERC20Loading } = useBalance({
-    address: token.tokenAddressERC20 ? address : (undefined as any),
-    token: token.tokenAddressERC20,
+    address: address0 ? walletAddress : undefined,
+    token: address0,
   });
 
   const { data: tokenBalanceERC223, isLoading: isERC223Loading } = useBalance({
-    address: token.tokenAddressERC223 ? address : (undefined as any),
-    token: token.tokenAddressERC223,
-    watch: true,
+    address: address1 ? walletAddress : undefined,
+    token: address1,
   });
 
   if (isMobile) {
     return (
       <div className={stylesTokenCardMobile.tokenCard}>
         <div className={stylesTokenCardMobile.tokenCardHeader}>
-          <div
-            className={clsx(
-              stylesTokenCardMobile.tokenCardToken,
-              isCustom && stylesTokenCardMobile.isCustom,
-            )}
-          >
-            {isCustom ? <Icons name="drag" fill="#787B78" size={20} /> : null}
+          <div className={clsx(stylesTokenCardMobile.tokenCardToken)}>
             <img
               src={token.logo || `${basePath}/token-default.svg`}
               width="44px"
@@ -90,18 +85,18 @@ export const TokenCard = ({
               stylesTokenCardMobile.withBorder,
             )}
           >
-            {token.tokenAddressERC20 ? (
+            {address0 ? (
               <>
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href={getNetworkExplorerTokenUrl(chainId, token.tokenAddressERC20)}
-                >{`${renderShortAddress(token.tokenAddressERC20, 13)}`}</a>
+                  href={getNetworkExplorerTokenUrl(chainId, address0)}
+                >{`${renderShortAddress(address0, 13)}`}</a>
 
                 <Icons
                   name="copy"
                   onClick={async () => {
-                    await navigator.clipboard.writeText(token.tokenAddressERC20);
+                    await navigator.clipboard.writeText(address0);
                     showMessage("ERC-20 Token address copied");
                   }}
                 />
@@ -122,17 +117,17 @@ export const TokenCard = ({
             </span>
           </div>
           <span className={stylesTokenCardMobile.tokenCardBalanceContract}>
-            {token.tokenAddressERC223 ? (
+            {address1 ? (
               <>
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href={getNetworkExplorerTokenUrl(chainId, token.tokenAddressERC223 as string)}
-                >{`${renderShortAddress(token.tokenAddressERC223 as string, 13)}`}</a>
+                  href={getNetworkExplorerTokenUrl(chainId, address1 as string)}
+                >{`${renderShortAddress(address1 as string, 13)}`}</a>
                 <Icons
                   name="copy"
                   onClick={async () => {
-                    await navigator.clipboard.writeText(token.tokenAddressERC223 as string);
+                    await navigator.clipboard.writeText(address1 as string);
                     showMessage("ERC-223 Token address copied");
                   }}
                 />
@@ -148,8 +143,7 @@ export const TokenCard = ({
 
   return (
     <div className={stylesTokenCard.tokenCard}>
-      <div className={clsx(stylesTokenCard.tokenCardToken, isCustom && stylesTokenCard.isCustom)}>
-        {isCustom ? <Icons name="drag" fill="#787B78" size={20} /> : null}
+      <div className={clsx(stylesTokenCard.tokenCardToken)}>
         <img
           src={token.logo || `${basePath}/token-default.svg`}
           width="44px"
@@ -165,17 +159,17 @@ export const TokenCard = ({
             : `${roundValue(parseFloat(tokenBalanceERC20?.formatted || "0"))} ${token.symbol}`}
         </span>
         <span className={stylesTokenCard.tokenCardBalanceContract}>
-          {token.tokenAddressERC20 ? (
+          {address0 ? (
             <>
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={getNetworkExplorerTokenUrl(chainId, token.tokenAddressERC20 as string)}
-              >{`${renderShortAddress(token.tokenAddressERC20 as string)}`}</a>
+                href={getNetworkExplorerTokenUrl(chainId, address0 as string)}
+              >{`${renderShortAddress(address0 as string)}`}</a>
               <Icons
                 name="copy"
                 onClick={async () => {
-                  await navigator.clipboard.writeText(token.tokenAddressERC20 as string);
+                  await navigator.clipboard.writeText(address0 as string);
                   showMessage("ERC-20 Token address copied");
                 }}
               />
@@ -192,17 +186,17 @@ export const TokenCard = ({
             : `${roundValue(parseFloat(tokenBalanceERC223?.formatted || "0"))} ${token.symbol}`}
         </span>
         <span className={stylesTokenCard.tokenCardBalanceContract}>
-          {token.tokenAddressERC223 ? (
+          {address1 ? (
             <>
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={getNetworkExplorerTokenUrl(chainId, token.tokenAddressERC223 as string)}
-              >{`${renderShortAddress(token.tokenAddressERC223 as string)}`}</a>
+                href={getNetworkExplorerTokenUrl(chainId, address1 as string)}
+              >{`${renderShortAddress(address1 as string)}`}</a>
               <Icons
                 name="copy"
                 onClick={async () => {
-                  await navigator.clipboard.writeText(token.tokenAddressERC223 as string);
+                  await navigator.clipboard.writeText(address1 as string);
                   showMessage("ERC-223 Token address copied");
                 }}
               />

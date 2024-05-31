@@ -1,23 +1,20 @@
 import React, { useCallback } from "react";
 import homeStyles from "../../styles/Home.module.scss";
-import { useAccount, useNetwork, usePublicClient } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import { useEffect, useState } from "react";
 import { Icons } from "@/components/atoms/Icons";
 import styles from "./AddressBalance.module.scss";
 import { List, AutoSizer } from "react-virtualized";
 import { ChainToken, loadChainTokens } from "@/components/SelectTokent/SelectTokent";
 import { useSnackbar } from "@/providers/SnackbarProvider";
-import { useCustomTokens } from "./useCustomTokens";
+import { getTokenInfo, useCustomTokens } from "./useCustomTokens";
 import { TokenCard } from "./TokenCard";
 import clsx from "clsx";
 import { Address, isAddress } from "viem";
-import TokenConverterABI from "../../constants/abi/tokenConverter.json";
-import { getConverterContract } from "@/utils/networks";
-import { fetchToken } from "@wagmi/core";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import ERC223ABI from "../../constants/abi/erc223.json";
 import { Token } from "./token.type";
 import compact from "lodash.compact";
+import { basePath } from "@/constants/build-config/isProd";
 
 const listHeight = 380;
 const listHeightMobile = 500;
@@ -27,6 +24,7 @@ const rowHeightMobile = 241;
 export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) => {
   const { address } = useAccount();
   const { chain } = useNetwork();
+  const chainId = chain?.id || defaultChainId;
   const [walletAddress, setWalletAddress] = useState("");
   const [tokenNameOrAddress, setTokenNameOrAddress] = useState("");
   const [chainTokens, setChainTokens] = useState([] as ChainToken[]);
@@ -51,105 +49,21 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
     setSearchTokens(filterTokensWithSearch());
   }, [chainTokens, filterTokensWithSearch, tokenNameOrAddress]);
 
-  const { customTokens, addCustomToken, removeCustomToken } = useCustomTokens(
-    chain?.id || defaultChainId,
-  );
+  const { customTokens, addCustomToken, removeCustomToken } = useCustomTokens(chainId);
 
-  const publicClient = usePublicClient({ chainId: chain?.id || defaultChainId });
-  const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
   const addCustomTokenAddress = useCallback(
     async (address: Address) => {
-      //  Is that the default token (is in our configs)?
-      const defaultToken = chainTokens.find(
-        (token) => token.contract.toLowerCase() === address.toLowerCase(),
-      );
-      if (defaultToken) {
-        addCustomToken({
-          tokenAddressERC20: defaultToken.contract,
-          symbol: defaultToken.symbol,
-          markets: defaultToken.markets,
-          decimals: defaultToken.decimals,
-          logo: defaultToken.logo,
-        });
-        setTokenNameOrAddress("");
-        return;
-      }
+      const tokenInfo = await getTokenInfo({ chainId, address });
 
-      // Read token standard
-      const tokenStandard = await publicClient
-        .readContract({
-          address: address,
-          abi: ERC223ABI,
-          functionName: "standard",
-        })
-        .catch(() => "");
-      // Check if it is ERC223 token
-      const isERC223Token = tokenStandard === "erc223" || tokenStandard === "223";
-      // Check if it is wrapper token
-      const isWrapper = await publicClient
-        .readContract({
-          address: converterContractAddress,
-          abi: TokenConverterABI,
-          functionName: "isWrapper",
-          args: [address],
-        })
-        .catch(() => false);
-      let tokenAddressERC20 = undefined as undefined | string;
-      let tokenAddressERC223 = undefined as undefined | string;
-
-      if (isERC223Token) {
-        tokenAddressERC223 = address;
-        // Try to get ERC20 address
-        const erc20AddressResult = await publicClient
-          .readContract({
-            address: converterContractAddress,
-            abi: TokenConverterABI,
-            functionName: isWrapper ? "getERC20OriginFor" : "getERC20WrapperFor",
-            args: [address],
-          })
-          .catch(() => undefined);
-        const erc20Address: Address =
-          erc20AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
-            ? undefined
-            : erc20AddressResult?.[0];
-        tokenAddressERC20 = erc20Address;
-      } else {
-        tokenAddressERC20 = address;
-        // Try to get ERC223 address
-        const erc223AddressResult = await publicClient
-          .readContract({
-            address: converterContractAddress,
-            abi: TokenConverterABI,
-            functionName: isWrapper ? "getERC223OriginFor" : "getERC223WrapperFor",
-            args: [address],
-          })
-          .catch(() => undefined);
-        const erc223Address: Address =
-          erc223AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
-            ? undefined
-            : erc223AddressResult?.[0];
-        tokenAddressERC223 = erc223Address;
-      }
-      const tokenData = await fetchToken({
-        address: address,
-        chainId: chain?.id || defaultChainId,
-      });
       addCustomToken({
-        tokenAddressERC20: tokenAddressERC20 as any,
-        tokenAddressERC223: tokenAddressERC223 as any,
-        decimals: tokenData.decimals,
-        symbol: tokenData.symbol,
+        tokenAddressERC20: tokenInfo.address0,
+        tokenAddressERC223: tokenInfo.address1,
+        decimals: tokenInfo.decimals,
+        symbol: tokenInfo.symbol,
       });
       setTokenNameOrAddress("");
     },
-    [
-      publicClient,
-      converterContractAddress,
-      addCustomToken,
-      defaultChainId,
-      chain?.id,
-      chainTokens,
-    ],
+    [addCustomToken, chainId],
   );
 
   const addTokenFromAddressHandler = async () => {
@@ -163,24 +77,25 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
 
   useEffect(() => {
     (async () => {
-      const tokens = await loadChainTokens(chain?.id || defaultChainId);
+      const tokens = await loadChainTokens(chainId);
       setChainTokens(tokens || []);
     })();
-  }, [chain?.id, defaultChainId]);
+  }, [chainId]);
 
   const { showMessage } = useSnackbar();
 
   const allTokens: Token[] = [
     ...customTokens,
-    ...chainTokens
-      // filter by ERC20 address
-      .filter(
-        (token) => !compact(customTokens.map((t) => t.tokenAddressERC20)).includes(token.contract),
-      )
-      .map(({ contract, isErc223, ...token }) => ({
-        [isErc223 ? "tokenAddressERC223" : "tokenAddressERC20"]: contract,
-        ...token,
-      })),
+    // Disable default tokens
+    // ...chainTokens
+    //   // filter by ERC20 address
+    //   .filter(
+    //     (token) => !compact(customTokens.map((t) => t.tokenAddressERC20)).includes(token.contract),
+    //   )
+    //   .map(({ contract, isErc223, ...token }) => ({
+    //     [isErc223 ? "tokenAddressERC223" : "tokenAddressERC20"]: contract,
+    //     ...token,
+    //   })),
   ];
   const isMobile = useIsMobile();
 
@@ -192,11 +107,11 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
         <TokenCard
           token={token}
           showMessage={showMessage}
-          chainId={chain?.id || defaultChainId}
-          address={walletAddress as any}
+          chainId={chainId}
+          walletAddress={walletAddress as Address}
           isCustom={index < customTokens.length}
           addHandler={(t) => {
-            addCustomToken(t);
+            addCustomTokenAddress(t.tokenAddressERC20 || t.tokenAddressERC223);
           }}
           removeHandler={(t) => {
             removeCustomToken(t);
@@ -259,12 +174,14 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
                     <div
                       key={contract}
                       className={styles.searchAutocompleteItem}
-                      onClick={() => {
-                        addCustomToken({ ...token, tokenAddressERC20: contract });
-                        setTokenNameOrAddress("");
-                      }}
+                      onClick={() => addCustomTokenAddress(contract)}
                     >
-                      <img src={token.logo} width="32px" height="32px" alt={token.symbol} />
+                      <img
+                        src={token.logo || `${basePath}/token-default.svg`}
+                        width="32px"
+                        height="32px"
+                        alt={token.symbol}
+                      />
                       <span>{token.symbol}</span>
                     </div>
                   );
@@ -284,15 +201,12 @@ export const AddressBalance = ({ defaultChainId }: { defaultChainId: number }) =
       <div className={styles.tokensList}>
         <div className={styles.tokensListHeader}>
           <h3>List of tokens</h3>
-          <button className={styles.updateButton}>
-            <Icons name="update" />
-          </button>
         </div>
         <div className={styles.tokensListTableHeader}>
           <span className={styles.tableToken}>Token</span>
           <span className={styles.tableERC20}>ERC-20</span>
           <span className={styles.tableERC223}>ERC-223</span>
-          <span className={styles.tableAction}>Action</span>
+          <span className={styles.tableAction}>Remove</span>
         </div>
       </div>
       <AutoSizer disableHeight>

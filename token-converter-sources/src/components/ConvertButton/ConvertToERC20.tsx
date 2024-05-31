@@ -18,11 +18,13 @@ export const ConvertToERC20 = ({
   tokenBalanceERC223,
   tokenAddressERC20,
   tokenAddressERC223,
+  isAddressLoading,
 }: {
   amountToConvert: any;
   tokenBalanceERC223: FetchBalanceResult;
   tokenAddressERC20: any;
   tokenAddressERC223: any;
+  isAddressLoading: boolean;
 }) => {
   const amountToConvertBigInt = parseUnits(amountToConvert, tokenBalanceERC223?.decimals);
   const [gasPrice, setGasPrice] = useState(null as null | string);
@@ -136,6 +138,7 @@ export const ConvertToERC20 = ({
         status={txModalData.status}
         toERC223={false}
         contractAddress={tokenAddressERC20}
+        isAddressLoading={isAddressLoading}
       />
     </div>
   );

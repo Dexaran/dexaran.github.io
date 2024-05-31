@@ -1,5 +1,5 @@
 import { Chain } from "wagmi";
-import { mainnet, bsc, optimism, polygon, arbitrum, sepolia } from "wagmi/chains";
+import { mainnet, bscTestnet, bsc, optimism, polygon, arbitrum, sepolia } from "wagmi/chains";
 
 export const NetworksConfigs: {
   [networkName: string]: {
@@ -84,8 +84,22 @@ export const NetworksConfigs: {
     chainId: 11155111,
     explorerTx: "https://sepolia.etherscan.io/tx/{tx}",
     explorerToken: "https://sepolia.etherscan.io/token/{contract}",
-    converterContract: "0x258e392a314034eb093706254960f26a90696d4c",
-    chainConfig: sepolia,
+    converterContract: "0x1245c83de3cc16193de8777ed597b677d789ac94",
+    chainConfig: {
+      ...sepolia,
+      rpcUrls: {
+        public: { http: ["https://ethereum-sepolia-rpc.publicnode.com"] },
+        default: { http: ["https://ethereum-sepolia-rpc.publicnode.com"] },
+      },
+    },
   },
-
+  bscTestnet: {
+    name: "Binance Smart Chain Testnet",
+    icon: "https://seeklogo.com/images/B/binance-smart-chain-bsc-logo-9C34053D61-seeklogo.com.png",
+    chainId: 97,
+    explorerTx: "https://testnet.bscscan.com/tx/{tx}",
+    explorerToken: "https://testnet.bscscan.com/token/{contract}",
+    converterContract: "0x1e6951b73f44E7C71B43Dfc1FFA63cA2eab2cEdA",
+    chainConfig: bscTestnet,
+  },
 };

@@ -15,6 +15,7 @@ export default function Balance({
   logo,
   defaultChainId,
   toERC223,
+  isAddressLoading,
 }: {
   tokenAddressERC20: any;
   tokenAddressERC223: any;
@@ -23,6 +24,7 @@ export default function Balance({
   logo?: string;
   defaultChainId: number;
   toERC223: boolean;
+  isAddressLoading: boolean;
 }) {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
@@ -121,6 +123,8 @@ export default function Balance({
                     }}
                   />
                 </>
+              ) : isAddressLoading ? (
+                "Loading..."
               ) : (
                 "not deployed yet"
               )}

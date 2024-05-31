@@ -36,7 +36,7 @@ export const GasSettings = ({
   useEffect(() => {
     (async () => {
       try {
-        const publicClient = createPublicClient({ chainId: chain.id });
+        const publicClient = createPublicClient({ chainId: chain?.id });
         if (publicClient?.estimateContractGas) {
           const gas = await publicClient.estimateContractGas({
             account: walletClient?.account,
