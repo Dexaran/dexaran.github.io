@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "../styles/Home.module.scss";
-import { Address, useAccount, useBalance, useContractRead, useNetwork } from "wagmi";
+import {
+  Address,
+  useAccount,
+  useBalance,
+  useBlockNumber,
+  useContractRead,
+  useNetwork,
+} from "wagmi";
 import { useEffect, useMemo, useState } from "react";
 import { Manrope } from "next/font/google";
 import { Icons } from "@/components/atoms/Icons";
@@ -14,6 +21,8 @@ import { supportedChainIds } from "@/utils/networks";
 import { NetworksConfigs } from "@/constants/networks";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import Link from "next/link";
+import { IIFE } from "@/utils/IIFE";
+import { getTokenInfo } from "./AddressBalance/useCustomTokens";
 
 const ERC20_URL = "https://eips.ethereum.org/EIPS/eip-20";
 const ERC223_URL = "https://eips.ethereum.org/EIPS/eip-223";
@@ -33,9 +42,11 @@ export const Converter = ({
   const [isCustomToken, setIsCustomToken] = useState(false);
   const [tokenAddressERC20, setTokenAddressERC20] = useState(undefined as Address | undefined);
   const [tokenAddressERC223, setTokenAddressERC223] = useState(undefined as Address | undefined);
+  const [isAddressLoading, setIsAddressLoading] = useState(false);
 
   const { address, isConnected } = useAccount();
   const { chain, chains } = useNetwork();
+  const chainId = chain?.id || defaultChainId;
 
   const isNetworkSupported = useMemo(() => {
     if (chain?.id && supportedChainIds.includes(chain.id)) {
@@ -46,21 +57,51 @@ export const Converter = ({
   }, [chain]);
 
   const selectedNetwork = Object.values(NetworksConfigs).find(
-    (network) => network.chainId === (chain?.id || defaultChainId),
+    (network) => network.chainId === chainId,
   );
 
-
   const { data: tokenBalanceERC20 } = useBalance({
-    address: tokenAddressERC20 ? address : undefined as any,
+    address: tokenAddressERC20 ? address : (undefined as any),
     token: tokenAddressERC20,
     watch: true,
   });
 
   const { data: tokenBalanceERC223 } = useBalance({
-    address: tokenAddressERC223 ? address : undefined as any,
+    address: tokenAddressERC223 ? address : (undefined as any),
     token: tokenAddressERC223,
     watch: true,
   });
+
+  // Update token info on block update
+  const { data: block } = useBlockNumber({ watch: true });
+  useEffect(() => {
+    if (
+      !chainId || // ignore if chainId undefined
+      (!tokenAddressERC20 && !tokenAddressERC223) || // ignore if both addresses is undefined
+      (!!tokenAddressERC20 && !!tokenAddressERC223) // ignore if both addresses are already known
+    ) {
+      return;
+    } else {
+      IIFE(async () => {
+        setIsAddressLoading(true);
+        const tokenInfo = await getTokenInfo({
+          chainId,
+          address: tokenAddressERC20 || tokenAddressERC223,
+        });
+        setTokenAddressERC20(tokenInfo.address0);
+        setTokenAddressERC223(tokenInfo.address1);
+        setIsAddressLoading(false);
+      });
+    }
+  }, [
+    chainId,
+    block,
+    tokenAddressERC20,
+    tokenAddressERC223,
+    setTokenAddressERC20,
+    setTokenAddressERC223,
+    setIsAddressLoading,
+  ]);
 
   useEffect(() => {
     setHasMounted(true);
@@ -169,6 +210,7 @@ export const Converter = ({
               setToERC223={setToERC223}
               isCustomToken={isCustomToken}
               setIsCustomToken={setIsCustomToken}
+              isAddressLoading={isAddressLoading}
             />
           </div>
         )}
@@ -180,6 +222,7 @@ export const Converter = ({
                 tokenAddressERC20={tokenAddressERC20}
                 tokenAddressERC223={tokenAddressERC223}
                 tokenBalanceERC20={tokenBalanceERC20}
+                isAddressLoading={isAddressLoading}
               />
             ) : (
               <ConvertToERC20
@@ -187,6 +230,7 @@ export const Converter = ({
                 tokenAddressERC20={tokenAddressERC20}
                 tokenAddressERC223={tokenAddressERC223}
                 tokenBalanceERC223={tokenBalanceERC223}
+                isAddressLoading={isAddressLoading}
               />
             )}
           </>

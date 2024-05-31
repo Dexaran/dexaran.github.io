@@ -85,7 +85,13 @@ export const NetworksConfigs: {
     explorerTx: "https://sepolia.etherscan.io/tx/{tx}",
     explorerToken: "https://sepolia.etherscan.io/token/{contract}",
     converterContract: "0x1245c83de3cc16193de8777ed597b677d789ac94",
-    chainConfig: sepolia,
+    chainConfig: {
+      ...sepolia,
+      rpcUrls: {
+        public: { http: ["https://ethereum-sepolia-rpc.publicnode.com"] },
+        default: { http: ["https://ethereum-sepolia-rpc.publicnode.com"] },
+      },
+    },
   },
   bscTestnet: {
     name: "Binance Smart Chain Testnet",

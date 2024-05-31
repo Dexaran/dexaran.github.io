@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Modal from "@/components/atoms/Modal";
 import styles from "./SelectTokent.module.scss";
 import { Icons } from "../atoms/Icons";
-import { useNetwork, usePublicClient, useToken } from "wagmi";
+import { useBlockNumber, useNetwork, usePublicClient, useToken } from "wagmi";
 import Checkbox from "../atoms/Checkbox/Checkbox";
 import { Address, isAddress } from "viem";
 import { List, AutoSizer } from "react-virtualized";
@@ -13,6 +13,7 @@ import ERC20ABI from "../../constants/abi/erc20.json";
 import ERC223ABI from "../../constants/abi/erc223.json";
 import { basePath } from "@/constants/build-config/isProd";
 import { FetchBalanceResult } from "@wagmi/core";
+import { getTokenInfo } from "@/pages-partials/AddressBalance/useCustomTokens";
 const listHeight = 380;
 const rowHeight = 60;
 
@@ -28,7 +29,8 @@ export type ChainToken = {
 export const loadChainTokens = async (chainId: number): Promise<ChainToken[]> => {
   if (!chainId) return Promise.resolve([]);
   try {
-    const chainTokens = (await import(`../../constants/tokens/${chainId}.json`)).default as ChainToken[];
+    const chainTokens = (await import(`../../constants/tokens/${chainId}.json`))
+      .default as ChainToken[];
     if (chainTokens?.length) {
       return chainTokens;
     } else {
@@ -53,6 +55,7 @@ export default function SelectTokent({
   setToERC223,
   isCustomToken,
   setIsCustomToken,
+  isAddressLoading,
 }: {
   amountToConvert: any;
   setAmountToConvert: any;
@@ -67,6 +70,7 @@ export default function SelectTokent({
   setToERC223: (boolean) => void;
   isCustomToken: boolean;
   setIsCustomToken: (boolean) => void;
+  isAddressLoading: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [customTokenAddress, setCustomTokenAddress] = useState("");
@@ -75,7 +79,7 @@ export default function SelectTokent({
   const [filteredTokens, setFilteredTokens] = useState(chainTokens);
 
   const { chain } = useNetwork();
-  const publicClient = usePublicClient({ chainId: chain?.id || defaultChainId });
+  const chainId = chain?.id || defaultChainId;
 
   const filterTokensWithSearch = useCallback(() => {
     return chainTokens.filter(
@@ -90,70 +94,12 @@ export default function SelectTokent({
     [tokenAddressERC20, tokenAddressERC223].includes(token.contract),
   );
 
-  const converterContractAddress = getConverterContract(chain?.id || defaultChainId);
   const updateTokenAddress = useCallback(
-    async (address: Address) => {
-      // Read token standard
-      const tokenStandard = await publicClient
-        .readContract({
-          address: address,
-          abi: ERC223ABI,
-          functionName: "standard",
-        })
-        .catch(() => "");
-      // Check if it is ERC223 token
-      const isERC223Token = tokenStandard === "erc223" || tokenStandard === "223";
-      setToERC223(!isERC223Token);
-      // Check if it is wrapper token
-      const isWrapper = await publicClient
-        .readContract({
-          address: converterContractAddress,
-          abi: TokenConverterABI,
-          functionName: "isWrapper",
-          args: [address],
-        })
-        .catch(() => false);
-      if (isERC223Token) {
-        setTokenAddressERC223(address);
-        // Try to get ERC20 address
-        const erc20AddressResult = await publicClient
-          .readContract({
-            address: converterContractAddress,
-            abi: TokenConverterABI,
-            functionName: isWrapper ? "getERC20OriginFor" : "getERC20WrapperFor",
-            args: [address],
-          })
-          .catch(() => undefined);
-        const erc20Address: Address =
-          erc20AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
-            ? undefined
-            : erc20AddressResult?.[0];
-        setTokenAddressERC20(erc20Address);
-      } else {
-        setTokenAddressERC20(address);
-        // Try to get ERC223 address
-        const erc223AddressResult = await publicClient
-          .readContract({
-            address: converterContractAddress,
-            abi: TokenConverterABI,
-            functionName: isWrapper ? "getERC223OriginFor" : "getERC223WrapperFor",
-            args: [address],
-          })
-          .catch(() => undefined);
-        const erc223Address: Address =
-          erc223AddressResult?.[0] === "0x0000000000000000000000000000000000000000"
-            ? undefined
-            : erc223AddressResult?.[0];
-        setTokenAddressERC223(erc223Address);
-      }
+    (address: Address) => {
+      setTokenAddressERC20(address);
+      setTokenAddressERC223(undefined);
     },
-    [
-      publicClient,
-      converterContractAddress,
-      setToERC223,
-      setTokenAddressERC20,
-      setTokenAddressERC223,
-    ],
+    [setTokenAddressERC20, setTokenAddressERC223],
   );
 
   useEffect(() => {
@@ -166,10 +112,10 @@ export default function SelectTokent({
 
   useEffect(() => {
     (async () => {
-      const tokens = await loadChainTokens(chain?.id || defaultChainId);
+      const tokens = await loadChainTokens(chainId);
       setChainTokens(tokens || []);
     })();
-  }, [chain?.id, defaultChainId]);
+  }, [chainId]);
 
   const {
     data: tokenData,
@@ -177,23 +123,14 @@ export default function SelectTokent({
     isLoading,
   } = useToken({
     address: tokenAddressERC20 || tokenAddressERC223,
-    chainId: chain?.id || defaultChainId,
+    chainId,
   });
 
   useEffect(() => {
-    if (defaultTokenAddress) {
+    if (!isCustomToken && defaultTokenAddress) {
       updateTokenAddress(defaultTokenAddress);
     }
-  }, [defaultTokenAddress, updateTokenAddress]);
-
-  useEffect(() => {
-    if (!isCustomToken) {
-      if (defaultTokenAddress) {
-        updateTokenAddress(defaultTokenAddress);
-      }
-      setCustomTokenAddress("");
-    }
-  }, [isCustomToken, updateTokenAddress, setCustomTokenAddress, defaultTokenAddress]);
+  }, [isCustomToken, updateTokenAddress, defaultTokenAddress]);
 
   const isCustomTokenAddressValid = isAddress(customTokenAddress);
   useEffect(() => {
@@ -201,6 +138,12 @@ export default function SelectTokent({
       updateTokenAddress(customTokenAddress);
     }
   }, [customTokenAddress, updateTokenAddress, isCustomTokenAddressValid]);
+
+  useEffect(() => {
+    if (isCustomTokenAddressValid) {
+      setToERC223(customTokenAddress === tokenAddressERC20);
+    }
+  }, [isCustomTokenAddressValid, customTokenAddress, tokenAddressERC20, setToERC223]);
 
   const closeModalHandler = () => {
     setSearchText("");
@@ -237,7 +180,10 @@ export default function SelectTokent({
         <Checkbox
           checked={isCustomToken}
           id="customContractAddress"
-          handleChange={() => setIsCustomToken(!isCustomToken)}
+          handleChange={() => {
+            setIsCustomToken(!isCustomToken);
+            setCustomTokenAddress("");
+          }}
         />
         <label className={styles.checkboxLabel} htmlFor="customContractAddress">
           Custom contract address
@@ -269,6 +215,7 @@ export default function SelectTokent({
                 logo={selectedToken?.logo}
                 defaultChainId={defaultChainId}
                 toERC223={toERC223}
+                isAddressLoading={isAddressLoading}
               />
               <div style={{ height: "16px" }} />
             </>
@@ -350,6 +297,7 @@ export default function SelectTokent({
             logo={selectedToken?.logo}
             defaultChainId={defaultChainId}
             toERC223={toERC223}
+            isAddressLoading={isAddressLoading}
           />
         </>
       )}

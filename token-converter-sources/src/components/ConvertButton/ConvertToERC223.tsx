@@ -158,10 +158,12 @@ const TxInfo = ({
   txHash,
   contractAddress,
   handleCloseModal,
+  isAddressLoading,
 }: {
   txHash: string;
   contractAddress?: string;
   handleCloseModal: () => void;
+  isAddressLoading: boolean;
 }) => {
   const [isTxModalOpen, setIsTxModalOpen] = useState(false);
   const [txModalData, setTxModalData] = useState(
@@ -217,6 +219,7 @@ const TxInfo = ({
         status={txModalData.status}
         toERC223={true}
         contractAddress={contractAddress}
+        isAddressLoading={isAddressLoading}
       />
     </>
   );
@@ -226,11 +229,13 @@ export const ConvertToERC223 = ({
   tokenBalanceERC20,
   tokenAddressERC20,
   tokenAddressERC223,
+  isAddressLoading,
 }: {
   amountToConvert: string;
   tokenBalanceERC20: FetchBalanceResult;
   tokenAddressERC20: any;
   tokenAddressERC223: any;
+  isAddressLoading: boolean;
 }) => {
   const amountToConvertBigInt = parseUnits(amountToConvert, tokenBalanceERC20?.decimals);
   const [waitingTxHash, setWaitingTxHash] = useState(null as null | string);
@@ -243,7 +248,7 @@ export const ConvertToERC223 = ({
     args: [address, getConverterContract(chain?.id)],
     watch: true,
   });
-  
+
   const isEnoughBalance = useMemo(() => {
     if (!tokenBalanceERC20?.formatted) {
       return false;
@@ -316,6 +321,7 @@ export const ConvertToERC223 = ({
             handleCloseModal={() => {
               setWaitingTxHash(null);
             }}
+            isAddressLoading={isAddressLoading}
           />
         ) : null}
       </div>
