@@ -84,7 +84,7 @@ export const NetworksConfigs: {
     chainId: 11155111,
     explorerTx: "https://sepolia.etherscan.io/tx/{tx}",
     explorerToken: "https://sepolia.etherscan.io/token/{contract}",
-    converterContract: "0xe831FDB60Dc18c264f1B45cadAFD5f2f2993EE83",
+    converterContract: "0x044845FB22B4258d83a6c24b2fB061AFEba7e5b9",
     chainConfig: {
       ...sepolia,
       rpcUrls: {
@@ -99,7 +99,7 @@ export const NetworksConfigs: {
     chainId: 97,
     explorerTx: "https://testnet.bscscan.com/tx/{tx}",
     explorerToken: "https://testnet.bscscan.com/token/{contract}",
-    converterContract: "0x1e6951b73f44E7C71B43Dfc1FFA63cA2eab2cEdA",
+    converterContract: "0x18EEdef5d3D21C2828Ca8557BeF7210Bfa481bC2",
     chainConfig: bscTestnet,
   },
 };

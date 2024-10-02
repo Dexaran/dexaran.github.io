@@ -120,10 +120,7 @@ export const getTokenInfo = async ({ chainId, address }: { chainId: any; address
         args: [address],
       })
       .then((result) => {
-        return isWrapper ? result : result?.[0];
-      })
-      .then((result) => {
-        return result === "0x0000000000000000000000000000000000000000" ? undefined : result;
+        return result === "0x0000000000000000000000000000000000000000" ? undefined : result as Address;
       })
       .catch(() => undefined);
   } else {
@@ -137,10 +134,7 @@ export const getTokenInfo = async ({ chainId, address }: { chainId: any; address
         args: [address],
       })
       .then((result) => {
-        return isWrapper ? result : result?.[0];
-      })
-      .then((result) => {
-        return result === "0x0000000000000000000000000000000000000000" ? undefined : result;
+        return result === "0x0000000000000000000000000000000000000000" ? undefined : result as Address;
       })
       .catch(() => undefined);
   }
