@@ -17,7 +17,7 @@ export const Header = () => {
           <img className={clsx(styles.headerImage)} src={`${basePath}/left-header-5.png`} alt="" />
         </div>
 
-        <h1>ERC-20 Losses Calculator</h1>
+        <h1>ERC-20 Losses Calculator!</h1>
         <h2>
           ERC-20 token standard contains a security flaw in its transferring workflow. As the result
           a user can lose their funds.
