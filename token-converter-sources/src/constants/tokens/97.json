@@ -14,6 +14,20 @@
     "markets": []
   },
   {
+    "contract": "0x6Af15783242fAD978C90FFCDA0119223BFFeaB53",
+    "name": "Total Test Bsc 1",
+    "decimals": 18,
+    "symbol": "TOB1",
+    "markets": []
+  },
+  {
+    "contract": "0x304dC7BF30692081B0ab96497f8914362316580e",
+    "name": "Total Test Bsc 2",
+    "decimals": 6,
+    "symbol": "TOB2",
+    "markets": []
+  },
+  {
     "contract": "0x0105f185485773c6e6f1a6035CBC8CdaDEC181e9",
     "name": "Test Bsc 1",
     "decimals": 18,
