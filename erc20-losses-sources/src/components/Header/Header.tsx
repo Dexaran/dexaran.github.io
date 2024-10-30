@@ -36,14 +36,6 @@ export const Header = () => {
           >
             this article
           </a>{" "}
-          or in{" "}
-          <a
-            href="https://github.com/Dexaran/EIPs/blob/patch-1/EIPS/eip-7544.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            EIP-7544
-          </a>
           .
         </p>
         <p>
