@@ -35,7 +35,7 @@ export const Header = () => {
             rel="noopener noreferrer"
           >
             this article
-          </a>{" "}
+          </a>
           .
         </p>
         <p>
