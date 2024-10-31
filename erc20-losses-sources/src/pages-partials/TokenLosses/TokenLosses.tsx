@@ -254,7 +254,7 @@ if (EXCLUDES) {
       const excluded = excludedMap.get(tokenAddress);
       for (let item of res.records) {
         if (excluded?.includes(item.contract.toLowerCase())) {
-          item.exclude = true;
+          (item as any).exclude = true;
         }
       }
     }
