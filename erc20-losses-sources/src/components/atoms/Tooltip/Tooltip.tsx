@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import styles from "./Tooltip.module.scss";
 import { useFloating, useHover, useInteractions } from "@floating-ui/react";
+import React, { useState } from "react";
+
 import Modal from "../Modal";
+import styles from "./Tooltip.module.scss";
 
 export const ToolTip = ({ text }: { text: string }) => {
   const [isOpen, setIsOpen] = useState(false);

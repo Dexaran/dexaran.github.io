@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Icons } from "@/components/atoms/Icons";
-import styles from "./TokenLosses.module.scss";
 import clsx from "clsx";
+import React, { useState } from "react";
 import { numericFormatter } from "react-number-format";
-import {
-  WhiteSecondaryButton,
-} from "@/components/atoms/Button/Button";
+
+import { WhiteSecondaryButton } from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
+import { Icons } from "@/components/atoms/Icons";
+import { MobileToolTip } from "@/components/atoms/Tooltip/Tooltip";
+import { useSnackbar } from "@/providers/SnackbarProvider";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
-import { useSnackbar } from "@/providers/SnackbarProvider";
-import { MobileToolTip } from "@/components/atoms/Tooltip/Tooltip";
+
+import styles from "./TokenLosses.module.scss";
 
 export const MobileResultItem = ({ item, index }: { item: any; index: number }) => {
   const [isOpen, setIsOpen] = useState(false); // index < 3
@@ -40,15 +40,12 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
       </div>
       <p>
         {/* TODO: edit CLI script */}
-        {`Total losses: ${numericFormatter(
-          `${(item as any).amount}`,
-          {
-            decimalSeparator: ".",
-            thousandSeparator: ",",
-            decimalScale: 0,
-            suffix: ` ${item.ticker} `,
-          },
-        )}`}
+        {`Total losses: ${numericFormatter(`${(item as any).amount}`, {
+          decimalSeparator: ".",
+          thousandSeparator: ",",
+          decimalScale: 0,
+          suffix: ` ${item.ticker} `,
+        })}`}
       </p>
       <span className={styles.resultItemHeaderLossesUsd}>{`(${numericFormatter(`${item.asDollar}`, {
         decimalSeparator: ".",

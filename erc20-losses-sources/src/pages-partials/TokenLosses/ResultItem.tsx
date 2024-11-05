@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Icons } from "@/components/atoms/Icons";
-import styles from "./TokenLosses.module.scss";
 import clsx from "clsx";
+import React, { useEffect, useState } from "react";
 import { numericFormatter } from "react-number-format";
+
 import { WhiteSecondaryButton } from "@/components/atoms/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
+import { Icons } from "@/components/atoms/Icons";
+import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
+import { useSnackbar } from "@/providers/SnackbarProvider";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
-import { useSnackbar } from "@/providers/SnackbarProvider";
-import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
+
 import { getTokenInfo } from "./functions";
 import { web3 } from "./TokenLosses";
+import styles from "./TokenLosses.module.scss";
 
 const CHAIN = "eth"; // eth or bsc or polygon
 
@@ -32,7 +34,6 @@ const ItemContract = ({
   dollarValue: any;
   exclude: boolean;
 }) => {
-
   const { showMessage } = useSnackbar();
   const [contractName, setContractName] = useState();
   useEffect(() => {
@@ -105,15 +106,12 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
         </div>
         <div className={styles.resultItemHeaderLosses}>
           <p>
-            {`Total losses: ${numericFormatter(
-              `${(item as any).amount}`,
-              {
-                decimalSeparator: ".",
-                thousandSeparator: ",",
-                decimalScale: 0,
-                suffix: ` ${item.ticker} `,
-              },
-            )}`}
+            {`Total losses: ${numericFormatter(`${(item as any).amount}`, {
+              decimalSeparator: ".",
+              thousandSeparator: ",",
+              decimalScale: 0,
+              suffix: ` ${item.ticker} `,
+            })}`}
           </p>
           <span className={styles.resultItemHeaderLossesUsd}>{`(${numericFormatter(
             `${item.asDollar}`,

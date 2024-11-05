@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import styles from "./Footer.module.scss";
-import { useSnackbar } from "@/providers/SnackbarProvider";
-import { Icons } from "../atoms/Icons";
+
 import { basePath } from "@/constants/build-config/isProd";
+import { useSnackbar } from "@/providers/SnackbarProvider";
 import { renderShortAddress } from "@/utils/renderAddress";
+
+import { Icons } from "../atoms/Icons";
+import styles from "./Footer.module.scss";
 
 const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
 

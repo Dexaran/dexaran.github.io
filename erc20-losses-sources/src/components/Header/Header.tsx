@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
-import styles from "./Header.module.scss";
 import clsx from "clsx";
+import React from "react";
+
 import { basePath } from "@/constants/build-config/isProd";
 
+import styles from "./Header.module.scss";
 
 export const Header = () => {
   return (

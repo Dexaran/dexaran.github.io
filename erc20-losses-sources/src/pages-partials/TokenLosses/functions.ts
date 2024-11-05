@@ -127,7 +127,7 @@ async function getTokenInfo(web3, contractAddress, tokenObject) {
   let priceObj = {
     price: 0,
     USD: 0,
-    logo: undefined
+    logo: undefined,
   };
 
   if (validToken) {
@@ -498,13 +498,13 @@ function loadExcludes() {
 }
 
 export {
-  getTokenInfo,
-  getBalanceOf,
-  findBalances,
-  processOneToken,
-  formatTokenResult,
-  parseAddress,
-  numberWithCommas,
-  loadExcludes,
   checkEthAddress,
+  findBalances,
+  formatTokenResult,
+  getBalanceOf,
+  getTokenInfo,
+  loadExcludes,
+  numberWithCommas,
+  parseAddress,
+  processOneToken,
 };

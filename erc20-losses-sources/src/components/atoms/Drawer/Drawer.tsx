@@ -1,8 +1,9 @@
-import React from "react";
 import clsx from "clsx";
-import styles from "./Drawer.module.scss";
-import Portal from "../Portal";
+import React from "react";
 import { useSwipeable } from "react-swipeable";
+
+import Portal from "../Portal";
+import styles from "./Drawer.module.scss";
 
 interface Props {
   isOpen: boolean;

@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import ReactPortal from "./ReactPortal";
-import styles from "./Modal.module.scss";
 import clsx from "clsx";
+import React, { useEffect, useRef } from "react";
+
 import { manrope } from "@/pages";
+
 import { Icons } from "../Icons";
+import styles from "./Modal.module.scss";
+import ReactPortal from "./ReactPortal";
 
 export const Modal = ({
   children,

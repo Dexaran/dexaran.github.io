@@ -1,5 +1,5 @@
 import { Chain } from "wagmi";
-import { mainnet, bsc, optimism, polygon } from "wagmi/chains";
+import { bsc, mainnet, optimism, polygon } from "wagmi/chains";
 
 export const NetworksConfigs: {
   [networkName: string]: {

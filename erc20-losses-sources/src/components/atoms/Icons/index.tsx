@@ -1,29 +1,30 @@
 import React, { ComponentProps } from "react";
-import { Info } from "./Info";
-import { Swap } from "./Swap";
+
+import { Add } from "./Add";
+import { Calculate } from "./Calculate";
+import { Calendar } from "./Calendar";
 import { ChevronDown } from "./ChevronDown";
 import { Close } from "./Close";
-import { Success } from "./Success";
-import { Search } from "./Search";
 import { Copy } from "./Copy";
-import { Github } from "./Github";
-import { Report } from "./Report";
-import { Wallet } from "./Wallet";
-import { Logout } from "./Logout";
-import { Drag } from "./Drag";
-import { Add } from "./Add";
-import { Update } from "./Update";
 import { Delete } from "./Delete";
-import { Menu } from "./Menu";
-import { FAQ } from "./FAQ";
-import { ERC223 } from "./ERC223";
-import { ViewAddress } from "./ViewAddress";
-import { Swap2 } from "./Swap2";
-import { Warning } from "./Warning";
-import { Calendar } from "./Calendar";
-import { Calculate } from "./Calculate";
 import { Download } from "./Download";
+import { Drag } from "./Drag";
+import { ERC223 } from "./ERC223";
+import { FAQ } from "./FAQ";
+import { Github } from "./Github";
+import { Info } from "./Info";
+import { Logout } from "./Logout";
+import { Menu } from "./Menu";
 import { OpenLink } from "./OpenLink";
+import { Report } from "./Report";
+import { Search } from "./Search";
+import { Success } from "./Success";
+import { Swap } from "./Swap";
+import { Swap2 } from "./Swap2";
+import { Update } from "./Update";
+import { ViewAddress } from "./ViewAddress";
+import { Wallet } from "./Wallet";
+import { Warning } from "./Warning";
 
 enum IconName {
   "add" = "add",

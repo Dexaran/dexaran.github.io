@@ -1,21 +1,26 @@
 import "../styles/globals.scss";
+
+import { EthereumClient, w3mConnectors, w3mProvider } from "@web3modal/ethereum";
+import { Web3Modal } from "@web3modal/react";
 import type { AppProps } from "next/app";
 import { Chain, configureChains, createConfig, WagmiConfig } from "wagmi";
-import { Web3Modal } from "@web3modal/react";
-import { EthereumClient, w3mConnectors, w3mProvider } from "@web3modal/ethereum";
-import { projectId } from "../constants/config/projectId";
 import { publicProvider } from "wagmi/providers/public";
-import { SnackbarProvider } from "../providers/SnackbarProvider";
+
 import { chains } from "@/utils/networks";
 
-export const { publicClient } = configureChains(chains, [w3mProvider({ projectId }), publicProvider()]);
+import { projectId } from "../constants/config/projectId";
+import { SnackbarProvider } from "../providers/SnackbarProvider";
+
+export const { publicClient } = configureChains(chains, [
+  w3mProvider({ projectId }),
+  publicProvider(),
+]);
 
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: w3mConnectors({ projectId, chains }),
   publicClient,
 });
-
 
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 

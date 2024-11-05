@@ -1,9 +1,10 @@
+import clsx from "clsx";
 import React, { createRef } from "react";
 import { createPortal } from "react-dom";
-import clsx from "clsx";
+
+import { useCloseWithEscape } from "../../../hooks/useCloseWithEscape";
 import useMountTransition from "../../../hooks/useMountTransition";
 import { useScrollBlockingOnOpen } from "../../../hooks/useScrollBlockingOnOpen";
-import { useCloseWithEscape } from "../../../hooks/useCloseWithEscape";
 
 interface Props {
   root: string;

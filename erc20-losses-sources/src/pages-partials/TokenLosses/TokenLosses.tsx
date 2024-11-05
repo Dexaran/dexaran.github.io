@@ -1,20 +1,21 @@
+import axios from "axios";
+import clsx from "clsx";
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import { numericFormatter } from "react-number-format";
+import Web3 from "web3";
+
+import { SecondaryButton, WhiteButton } from "@/components/atoms/Button/Button";
 import { Icons } from "@/components/atoms/Icons";
-import styles from "./TokenLosses.module.scss";
 import PrecalculatedResult from "@/constants/lost_tokens_result_31_10_2024.json";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* local imports */
-import { tokens, contracts, rpcMap } from "./const";
-import { handleExclusions, numberWithCommas } from "./utils";
-import clsx from "clsx";
-import { numericFormatter } from "react-number-format";
-import { SecondaryButton, WhiteButton } from "@/components/atoms/Button/Button";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { ResultItem } from "./ResultItem";
-import { MobileResultItem } from "./MobileResultItem";
+import { contracts, rpcMap, tokens } from "./const";
 import { checkEthAddress, loadExcludes, processOneToken } from "./functions";
-import Web3 from "web3";
-import axios from "axios";
+import { MobileResultItem } from "./MobileResultItem";
+import { ResultItem } from "./ResultItem";
+import styles from "./TokenLosses.module.scss";
+import { handleExclusions, numberWithCommas } from "./utils";
 
 /* globals */
 const CHAIN = "eth"; // eth or bsc or polygon
@@ -47,12 +48,7 @@ function parseAddress(address: string): string {
   return result.join("\n");
 }
 
-function timeoutInput(
-  setter: any,
-  value: string,
-  areaName: string,
-  setButtonState: any,
-) {
+function timeoutInput(setter: any, value: string, areaName: string, setButtonState: any) {
   setter(value);
 
   setButtonState({ state: 0, text: "Checking addresses..." });
@@ -110,7 +106,7 @@ function formatTokenResult(res: any): FormattedResult {
   return { resStr: localStr, asDollar, amount: roundedAmount };
 }
 
-function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan; }) {
+function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan }) {
   const processSate: any = useContext(ProcessContext);
   const interruptFlag = useRef(false);
 
@@ -277,8 +273,8 @@ type EtherscanTokenInfo = {
   sympol: string;
   price: number;
   updated: string;
-}
-type FromEtherscan ={ [address: string]: EtherscanTokenInfo }
+};
+type FromEtherscan = { [address: string]: EtherscanTokenInfo };
 
 const useEtherscan = () => {
   const [isEtherscanLoading, setIsEtherscanLoading] = useState(true);
@@ -321,7 +317,7 @@ export const TokenLosses = () => {
   const [tokensList, setTokens] = useState("");
   const [resultsList, setResults] = useState(preparedResult);
   const [isDefaultResult, setIsDefaultResult] = useState(true);
-  
+
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
   const [dateString, setDateString] = useState(new Date().toDateString());
@@ -335,7 +331,7 @@ export const TokenLosses = () => {
   const clearResults = () => {
     setResults([]);
     setResultSum(0);
-    setIsDefaultResult(false)
+    setIsDefaultResult(false);
   };
   const updateContractsHandler = (contracts: string) => {
     setContracts(contracts);

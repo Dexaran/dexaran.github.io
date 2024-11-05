@@ -1,4 +1,5 @@
 import React, { ComponentProps } from "react";
+
 import styles from "./Button.module.scss";
 
 type ButtonProps = ComponentProps<"button"> & { isLoading?: boolean };

@@ -1,5 +1,5 @@
-import eth_tokens from "@/constants/tokens.json";
 import eth_contracts from "@/constants/contracts.json";
+import eth_tokens from "@/constants/tokens.json";
 
 export const bsc_tokens = [
   "0xad29abb318791d579433d831ed122afeaf29dcfe", // FTM
