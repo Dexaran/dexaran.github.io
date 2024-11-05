@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Manrope } from "next/font/google";
+import { Goldman } from "next/font/google";
 import Head from "next/head";
 import React, { useState } from "react";
 
@@ -9,7 +9,7 @@ import { TokenLosses } from "@/pages-partials/TokenLosses/TokenLosses";
 
 import styles from "../styles/Home.module.scss";
 
-export const manrope = Manrope({ subsets: ["latin"] });
+export const goldman = Goldman({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={clsx(styles.main, manrope.className)}>
+      <div className={clsx(styles.main, goldman.className)}>
         <Header />
         <div className={styles.contentBlockContainer}>
           <div className={styles.contentBlock}>

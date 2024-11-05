@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import { Manrope } from "next/font/google";
+import { Goldman } from "next/font/google";
 import React from "react";
 
 import styles from "./Snackbar.module.scss";
 import { snackbarIcons } from "./snackbarIcons";
-const manrope = Manrope({ subsets: ["latin"] });
+const goldman = Goldman({ subsets: ["latin"], weight: ["400", "700"] });
 
 type SnackbarSeverity = "error" | "success" | "info" | "warning";
 
@@ -16,7 +16,7 @@ interface Props {
 
 export default function Snackbar({ severity, message, handleClose }: Props) {
   return (
-    <div className={clsx(styles.customSnackbar, styles[severity], manrope.className)}>
+    <div className={clsx(styles.customSnackbar, styles[severity], goldman.className)}>
       <div className={styles.snackbarContainer}>
         <div className={styles.snackbarBlock}>
           <div className={styles.iconWrapper}>{snackbarIcons[severity]}</div>
