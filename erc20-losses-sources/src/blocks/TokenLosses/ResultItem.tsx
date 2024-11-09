@@ -2,24 +2,16 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { numericFormatter } from "react-number-format";
 
-import { WhiteSecondaryButton } from "@/components/atoms/Button/Button";
+import { WhiteSecondaryButton } from "@/components/atoms/buttons/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
 import { Icons } from "@/components/atoms/Icons";
 import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
 import { useSnackbar } from "@/providers/SnackbarProvider";
+import { getTokenName } from "@/utils/calculations.util";
 import { getNetworkExplorerAddressUrl } from "@/utils/networks";
 import { renderShortAddress } from "@/utils/renderAddress";
 
-import { getTokenInfo } from "./functions";
-import { web3 } from "./TokenLosses";
 import styles from "./TokenLosses.module.scss";
-
-const CHAIN = "eth"; // eth or bsc or polygon
-
-const getTokenName = async (address: string, tokenObject?: any) => {
-  const tokenInfo = await getTokenInfo(web3, address, tokenObject);
-  return tokenInfo.ticker;
-};
 
 const ItemContract = ({
   contract,
@@ -83,12 +75,22 @@ const ItemContract = ({
   );
 };
 
+// .resultItem {
+//   padding: 12px 20px;
+// }
+
 export const ResultItem = ({ item, index }: { item: any; index: number }) => {
   const [isOpen, setIsOpen] = useState(false); // index < 3
   const [isDetailsShow, setDetailsShow] = useState(false);
 
   return (
-    <div className={styles.resultItem}>
+    <div
+      className="flex flex-col bg-secondary-bg px-5 rounded-3"
+      style={{
+        boxShadow: "inset 0px 4px 20px #505462",
+      }}
+    >
+      <div className="min-h-[10px]" />
       <div className={styles.resultItemHeader} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.resultItemHeaderName}>
           {item.logo ? <img src={item.logo} width="32px" height="32px" alt={item.ticker} /> : null}
@@ -168,6 +170,7 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
           </WhiteSecondaryButton>
         )}
       </Collapse>
+      <div className="min-h-[10px]" />
     </div>
   );
 };

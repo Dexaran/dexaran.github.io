@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { numericFormatter } from "react-number-format";
 
-import { WhiteSecondaryButton } from "@/components/atoms/Button/Button";
+import { WhiteSecondaryButton } from "@/components/atoms/buttons/Button/Button";
 import Collapse from "@/components/atoms/Collapse";
 import { Icons } from "@/components/atoms/Icons";
 import { MobileToolTip } from "@/components/atoms/Tooltip/Tooltip";
@@ -18,7 +18,13 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
   const { showMessage } = useSnackbar();
 
   return (
-    <div className={styles.resultItem}>
+    <div
+      className="flex flex-col bg-secondary-bg px-5 rounded-3"
+      style={{
+        boxShadow: "inset 0px 4px 20px #505462",
+      }}
+    >
+      <div className="min-h-[12px]" />
       <div className={styles.resultItemHeader} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.resultItemHeaderName}>
           {item.logo ? <img src={item.logo} width="32px" height="32px" alt={item.ticker} /> : null}
@@ -170,6 +176,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
           </WhiteSecondaryButton>
         )}
       </Collapse>
+      <div className="min-h-[12px]" />
     </div>
   );
 };

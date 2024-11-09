@@ -4,7 +4,7 @@ import { basePath } from "@/constants/build-config/isProd";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 import { renderShortAddress } from "@/utils/renderAddress";
 
-import { Icons } from "../atoms/Icons";
+import { Icons } from "../../components/atoms/Icons";
 import styles from "./Footer.module.scss";
 
 const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
@@ -42,7 +42,11 @@ export const Footer = () => {
         </div>
       </div>
       <div className={styles.licence}>
-        <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+        >
           GPLv3
         </a>
       </div>

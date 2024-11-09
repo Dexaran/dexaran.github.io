@@ -3,14 +3,15 @@ import React, { useMemo, useRef } from "react";
 
 import OverlineText from "@/components/atoms/OverlineText";
 import Svg from "@/components/atoms/Svg";
-import { IconName } from "@/components/atoms/Svg/svgIconsMap";
+import { IconName } from "@/constants/IconName";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import styles from "./NeonBlock.module.scss";
 
 interface Props {
   icon: IconName;
-  color: "green" | "blue" | "purple";
+  color: "green" | "blue" | "purple" | "red";
   overlineText: string;
   leftContent: any;
   rightContent?: any;
@@ -18,6 +19,7 @@ interface Props {
   anchor?: string;
   onlyBottom?: boolean;
   noAnimation?: boolean;
+  withoutTopLine?: boolean;
 }
 
 export default function NeonBlock({
@@ -30,7 +32,10 @@ export default function NeonBlock({
   anchor,
   onlyBottom = false,
   noAnimation = false,
+  withoutTopLine = false,
 }: Props) {
+  const isMobile = useIsMobile();
+
   const ref = useRef();
   const entryTopLine = useIntersectionObserver(ref, { threshold: 0 });
   const entryBottomLine = useIntersectionObserver(ref, { threshold: 0.5 });
@@ -53,13 +58,14 @@ export default function NeonBlock({
           styles[color],
           differentColumns && styles.different,
           onlyBottom && styles.onlyBottom,
+          withoutTopLine && styles.withoutTopLine,
         )}
       >
         <div className={clsx(styles.neonLineWrapper, styles.neonTopLineCell)}>
           <div
             className={clsx(
               styles.neonTopLine,
-              (entryTopLine?.isIntersecting || noAnimation) && styles.animate,
+              (entryTopLine?.isIntersecting || noAnimation || isMobile) && styles.animate,
             )}
           />
           {anchor && <span className={styles.anchor} id={anchor} />}
@@ -68,7 +74,8 @@ export default function NeonBlock({
           className={clsx(
             styles.neonLineWrapper,
             styles.neonIconCell,
-            (entryBottomLine?.isIntersecting || isBottomVisible || noAnimation) && styles.animate,
+            (entryBottomLine?.isIntersecting || isBottomVisible || noAnimation || isMobile) &&
+              styles.animate,
           )}
         >
           <div className={styles.neonIcon}>
@@ -82,11 +89,12 @@ export default function NeonBlock({
           <div
             className={clsx(
               styles.neonBottomLine,
-              (entryBottomLine?.isIntersecting || isBottomVisible || noAnimation) && styles.animate,
+              (entryBottomLine?.isIntersecting || isBottomVisible || noAnimation || isMobile) &&
+                styles.animate,
             )}
           />
         </div>
-        <div className={styles.textContent}>{leftContent}</div>
+        <div className={styles.leftContent}>{leftContent}</div>
         <div className={styles.rightContent}>{rightContent}</div>
       </div>
     </div>

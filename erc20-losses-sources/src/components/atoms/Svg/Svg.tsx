@@ -1,6 +1,6 @@
 import React, { SVGProps } from "react";
 
-import { IconName } from "./svgIconsMap";
+import { IconName } from "@/constants/IconName";
 
 interface Props extends SVGProps<SVGSVGElement> {
   iconName: IconName;

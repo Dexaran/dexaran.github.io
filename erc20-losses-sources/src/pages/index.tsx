@@ -1,17 +1,90 @@
 import clsx from "clsx";
-import { Goldman } from "next/font/google";
+import { Goldman, Open_Sans } from "next/font/google";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import Web3 from "web3";
 
-import { Footer } from "@/components/Footer/Footer";
-import { Header } from "@/components/Header/Header";
-import { TokenLosses } from "@/pages-partials/TokenLosses/TokenLosses";
+import {
+  CHAIN,
+  PrecalculatedResultSum,
+  PrecalculatedResultTokenNumber,
+  preparedResult,
+  ProcessContext,
+  START_TEXT,
+  useEtherscan,
+} from "@/utils/calculations.util";
 
-import styles from "../styles/Home.module.scss";
+import { Calculator } from "../blocks/Calculator";
+import { Footer } from "../blocks/Footer";
+import { Header } from "../blocks/Header";
+import { Hero } from "../blocks/Hero";
+import { HowTokensLost } from "../blocks/HowTokensLost";
+import { Problem } from "../blocks/Problem";
+import { contracts } from "../blocks/TokenLosses/const";
+import { TokenLosses } from "../blocks/TokenLosses/TokenLosses";
 
-export const goldman = Goldman({ subsets: ["latin"], weight: ["400", "700"] });
+export const goldman = Goldman({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-goldman",
+});
+export const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-open-sans",
+});
 
 export default function Home() {
+  const { isEtherscanLoading, fromEtherscan, etherscanList } = useEtherscan();
+  const contractsStr = contracts[CHAIN].join("\n");
+
+  const [contractsList, setContracts] = useState(contractsStr);
+  const [tokensList, setTokens] = useState("");
+  const [resultsList, setResults] = useState(preparedResult);
+  const [isDefaultResult, setIsDefaultResult] = useState(true);
+
+  const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
+  const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
+  const [dateString, setDateString] = useState(new Date().toDateString());
+  const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
+
+  // Update tokens list with etherscan result
+  useEffect(() => {
+    setTokens(etherscanList);
+  }, [etherscanList, setTokens]);
+
+  const clearResults = () => {
+    setResults([]);
+    setResultSum(0);
+    setIsDefaultResult(false);
+  };
+  const updateContractsHandler = (contracts: string) => {
+    setContracts(contracts);
+    clearResults();
+  };
+  const updateTokensListHandler = (tokens: string) => {
+    setTokens(tokens);
+    clearResults();
+  };
+  const contextObject = {
+    tokensList,
+    contractsList,
+    resultsList,
+    setResults,
+    resultSum,
+    setResultSum,
+    resultTokenNumber,
+    setResultTokenNumber,
+    dateString,
+    setDateString,
+    buttonState,
+    setButtonState,
+    updateContractsHandler,
+    updateTokensListHandler,
+    isDefaultResult,
+    fromEtherscan,
+  };
+
   return (
     <>
       <Head>
@@ -23,16 +96,24 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={clsx(styles.main, goldman.className)}>
-        <Header />
-        <div className={styles.contentBlockContainer}>
-          <div className={styles.contentBlock}>
-            <TokenLosses />
-          </div>
+      <ProcessContext.Provider value={contextObject}>
+        <div
+          className={clsx(
+            openSans.variable,
+            goldman.variable,
+            "font-openSans flex flex-col min-h-[100svh]",
+          )}
+        >
+          <Header />
+          <Hero />
+          <Problem />
+          <HowTokensLost />
+          <Calculator />
+          <TokenLosses />
+          <Footer />
+          <div id="drawer-root" />
         </div>
-        <Footer />
-        <div id="drawer-root" />
-      </div>
+      </ProcessContext.Provider>
     </>
   );
 }

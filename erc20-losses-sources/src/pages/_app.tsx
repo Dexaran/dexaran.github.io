@@ -1,4 +1,5 @@
-import "../styles/globals.scss";
+import "@/styles/globals.scss";
+import "@/styles/globals.css";
 
 import { EthereumClient, w3mConnectors, w3mProvider } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";

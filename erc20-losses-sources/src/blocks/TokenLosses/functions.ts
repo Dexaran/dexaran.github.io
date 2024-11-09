@@ -1,7 +1,8 @@
-const { Web3 } = require("web3");
-const BigNumber = require("bignumber.js");
+import BigNumber from "bignumber.js";
+import Web3 from "web3";
 
-const { ERC20, ERC20n, rpcMap, ethRpcArray } = require("./const");
+import { ERC20, ERC20n, ethRpcArray, rpcMap } from "./const";
+import { numberWithCommas } from "./utils";
 
 // const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
@@ -31,22 +32,6 @@ function parseAddress(web3, address) {
   }
 
   return result.join("\n");
-}
-
-/**
- * Formats a number with commas (e.g. 123,234,660.12)
- *
- * @param {number} x - The number to be formatted.
- * @return {string} The formatted number as a string.
- */
-function numberWithCommas(x, places = 2) {
-  if (x < 0.000001) return "0.00";
-  const parts = x.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  if (parts.length > 1) {
-    parts[1] = parts[1].substring(0, places);
-  }
-  return parts.join(".");
 }
 
 /**
@@ -466,7 +451,7 @@ function formatTokenResult(res, exclude = true) {
     const dollarValue = numberWithCommas(amount * res.price);
 
     // const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(record.roundedAmount)} ${res.ticker} ( $${record.dollarValue} )`
-    const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(amount, 5)} ${
+    const str = `Contract ${prefix}${record.contract} => ${numberWithCommas(amount)} ${
       res.ticker
     } ( $${dollarValue} )`;
     localStr += str + "\n";
@@ -479,7 +464,6 @@ function formatTokenResult(res, exclude = true) {
 
   const header = `${res.ticker} [${res.tokenAddress}]: ${numberWithCommas(
     roundedAmount,
-    5,
   )} tokens lost / $${numberWithCommas(asDollar)}`;
   localStr = header + "\n-----------------------------------------------\n" + localStr;
 
@@ -504,7 +488,6 @@ export {
   getBalanceOf,
   getTokenInfo,
   loadExcludes,
-  numberWithCommas,
   parseAddress,
   processOneToken,
 };

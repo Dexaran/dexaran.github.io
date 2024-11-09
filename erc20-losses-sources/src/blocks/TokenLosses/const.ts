@@ -225,4 +225,5 @@ export const ERC20n = [
     type: "function",
   },
 ];
+
 // module.exports = { ERC20, rpcMap, tokens, contracts }

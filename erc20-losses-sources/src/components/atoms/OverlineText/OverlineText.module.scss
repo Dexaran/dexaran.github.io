@@ -3,24 +3,24 @@
 @use "src/styles/media";
 
 .overline {
-  @include typography.t-body-20;
+  @include typography.t-body-36;
 
   @include media.for-tablet {
     @include typography.t-body-16;
   }
 
   font-weight: 700;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 
   &.purple {
     color: colors.$palette-purple;
     text-shadow: 0 0 24px #A07EFF, 0 0 24px colors.$palette-purple;
   }
 
-  &.green {
-    color: colors.$palette-green;
-    text-shadow: 0px 0px 24px #35BC66, 0px 0px 24px colors.$palette-green;
-  }
+  // &.green {
+  //   color: colors.$palette-green;
+  //   text-shadow: 0px 0px 24px #35BC66, 0px 0px 24px colors.$palette-green;
+  // }
 
   &.blue {
     color: colors.$palette-blue;

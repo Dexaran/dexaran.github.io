@@ -268,12 +268,6 @@
   }
 }
 
-.result {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
 .resultItem {
   display: flex;
   flex-direction: column;
@@ -445,8 +439,8 @@
   }
 
   &.hide {
-    opacity: 0;
-    // display: none;
+    // opacity: 0;
+    display: none;
   }
 }
 
