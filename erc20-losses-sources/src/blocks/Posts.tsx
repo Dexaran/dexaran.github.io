@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 
 import Svg from "@/components/atoms/Svg";
+import { basePath } from "@/constants/build-config/isProd";
 
 export const GitHubComment = ({
   logo,
@@ -18,7 +19,7 @@ export const GitHubComment = ({
   return (
     <div className="flex gap-[10px]">
       <img
-        src={logo}
+        src={`${basePath}${logo}`}
         alt="photo"
         height={38}
         width={38}
@@ -77,7 +78,7 @@ export const TwitterComment = ({
       <div className="flex justify-between items-start">
         <div className="flex gap-1 items-center">
           <img
-            src={logo}
+            src={`${basePath}${logo}`}
             alt="photo"
             height={48}
             width={48}
@@ -126,7 +127,7 @@ export const RedditPost = ({
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
           <img
-            src={redditLogo}
+            src={`${basePath}${redditLogo}`}
             alt="photo"
             height={48}
             width={48}
@@ -177,7 +178,7 @@ export const RedditComment = ({
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
           <img
-            src={logo}
+            src={`${basePath}${logo}`}
             alt="photo"
             height={48}
             width={48}

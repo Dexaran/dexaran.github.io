@@ -1,5 +1,6 @@
 import React, { SVGProps } from "react";
 
+import { basePath } from "@/constants/build-config/isProd";
 import { IconName } from "@/constants/IconName";
 
 interface Props extends SVGProps<SVGSVGElement> {
@@ -27,7 +28,7 @@ export default function Svg({
       }}
       {...rest}
     >
-      <use xlinkHref={`/${sprite}.svg#${iconName}`} />
+      <use xlinkHref={`${basePath}/${sprite}.svg#${iconName}`} />
     </svg>
   );
 }
