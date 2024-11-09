@@ -143,7 +143,7 @@ export const RedditPost = ({
               <p className="text-[13px] text-[#8BA2AD] text-ellipsis overflow-hidden text-nowrap max-w-[88px] xl:max-w-max">{`Posted by ${nickname}`}</p>
             </div>
             <img
-              src="/reddit-logo.svg"
+              src={`${basePath}/reddit-logo.svg`}
               alt="reddit-logo"
               width={104}
               height={24}
@@ -196,7 +196,7 @@ export const RedditComment = ({
               </p>
             </div>
             <img
-              src="/reddit-logo.svg"
+              src={`${basePath}/reddit-logo.svg`}
               alt="reddit-logo"
               width={104}
               height={24}
@@ -230,7 +230,7 @@ export const BeincryptoPost = () => {
       <div className="flex justify-between gap-4 mt-4">
         <div className="flex gap-2 w-full">
           <img
-            src="/posts/post9.png"
+            src={`${basePath}/posts/post9.png`}
             alt="photo"
             height={33}
             width={33}
@@ -247,7 +247,7 @@ export const BeincryptoPost = () => {
         </div>
         <div className="flex gap-2 w-full">
           <img
-            src="/posts/post8.png"
+            src={`${basePath}/posts/post8.png`}
             alt="photo"
             height={33}
             width={33}
@@ -270,14 +270,14 @@ export const Etherscan = () => {
   return (
     <div className="flex flex-col border border-border-secondary rounded-[12px] overflow-hidden">
       <img
-        src="/posts/etherscan.png"
+        src={`${basePath}/posts/etherscan.png`}
         alt="photo"
         width={580}
         height={398}
         className="hidden xl:block w-full"
       />
       <img
-        src="/posts/etherscan_mobile.png"
+        src={`${basePath}/posts/etherscan_mobile.png`}
         alt="photo"
         width={296}
         height={558}
