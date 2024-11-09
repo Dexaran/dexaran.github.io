@@ -31,6 +31,8 @@ const slides = [
           content={
             <div className="flex flex-col gap-3 text-[16px]">
               <a
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://etherscan.io/address/0xe41d2489571d322189246dafa5ebde1f4699f498#tokentxns"
                 className="text-[#6D8DF4]"
               >
@@ -47,6 +49,8 @@ const slides = [
           }
         />
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://www.reddit.com/r/0xProject/comments/7lpc5n/ive_sent_my_tokens_to_the_zrx_smart_contract/"
           className="text-[12px] xl:text-[16px] mt-2 whitespace-pre-line"
         >
@@ -65,21 +69,31 @@ const slides = [
           content={
             <div className="flex flex-col gap-3 text-[16px]">
               <p className="whitespace-pre-line text-[16px] text-[#B7CAD4]">
-                {`A user just sent 4,800,000 CRO to the address of USDT smart-contract \n`}
+                {`A user just sent 4,800,000 CRO to the address of USDT smart-contract `}
                 <a
-                  href="https://etherscan.io/tx/0x4e3f1853dc4bfeb2a5cd4ebbc79d085 3ad993d5368bed19d8195d64928e11ac2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://etherscan.io/tx/0x4e3f1853dc4bfeb2a5cd4ebbc79d0853ad993d5368bed19d8195d64928e11ac2"
                   className="text-[#6D8DF4]"
                 >
-                  {`https://etherscan.io/tx/
+                  <span className="hidden xl:inline">
+                    {`https://etherscan.io/tx/0x4e3f1853dc4bfeb2a5cd4
+                    ebbc79d0853ad993d5368bed19d8195d64928e11ac2`}
+                  </span>
+                  <span className="xl:hidden">
+                    {`https://etherscan.io/tx/
                   0x4e3f1853dc4bfeb2a5cd
                   4ebbc79d0853ad993d5368
                   bed19d8195d64928e11ac2`}
+                  </span>
                 </a>
               </p>
             </div>
           }
         />
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://www.reddit.com/r/ethereum/comments/16bqvj8/4_hours_ago_240k _worth_of_cro_were_deposited_to/"
           className="text-[12px] xl:text-[16px] mt-2 whitespace-pre-line"
         >
@@ -99,6 +113,8 @@ const slides = [
         </p>
         <BeincryptoPost />
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://beincrypto.com/1-million-usdt-nearly-lost-to-simple-user-error/"
           className="text-[12px] xl:text-[16px] mt-2 whitespace-pre-line"
         >
@@ -121,6 +137,8 @@ const slides = [
           link="https://x.com/realScamSniffer/status/1686761980365832197"
         />
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://x.com/realScamSniffer/status/1686761980365832197"
           className="text-[12px] xl:text-[16px] mt-2 whitespace-pre-line"
         >
@@ -139,6 +157,8 @@ const slides = [
         </p>
         <Etherscan />
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://etherscan.io/address/0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
           className="text-[12px] xl:text-[16px] mt-2 whitespace-pre-line"
         >
@@ -165,8 +185,8 @@ const Slideshow = () => {
     }
 
     if (!isInit) {
-      setIsPlaying(true);
-      setInit(true);
+      // setIsPlaying(true);
+      // setInit(true);
     }
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);

@@ -5,18 +5,22 @@ const HEADER_LINKS = [
   {
     name: "The problem",
     href: "/#problem",
+    isExternal: false,
   },
   {
     name: "How these tokens are lost",
     href: "/#howTokensList",
+    isExternal: false,
   },
   {
     name: "Calculator",
     href: "/#calculator",
+    isExternal: false,
   },
   {
     name: "Report",
-    href: "/#result",
+    href: "https://github.com/Dexaran/dexaran.github.io/issues",
+    isExternal: true,
   },
 ];
 export const Header = () => {
@@ -29,10 +33,12 @@ export const Header = () => {
         backdropFilter: "blur(20px)",
       }}
     >
-      {HEADER_LINKS.map(({ name, href }) => (
+      {HEADER_LINKS.map(({ name, href, isExternal }) => (
         <Link
           key={name}
           href={href}
+          target={isExternal && "_blank"}
+          rel={isExternal && "noopener noreferrer"}
           className="px-4 py-2 text-[18px] leading-[32px] font-semibold text-primary-text duration-200 rounded-[50px] hover:no-underline hover:text-main-primary hover:bg-primary-bg"
         >
           {name}

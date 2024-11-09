@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import { createContext, useEffect, useState } from "react";
 import Web3 from "web3";
 
@@ -202,3 +203,5 @@ export const getTokenName = async (address: string, tokenObject?: any) => {
   const tokenInfo = await getTokenInfo(web3, address, tokenObject);
   return tokenInfo.ticker;
 };
+
+export const formatDate = (date: Date) => dayjs(date).format("DD MMM YYYY");

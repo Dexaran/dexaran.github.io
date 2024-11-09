@@ -40,7 +40,11 @@ const ItemContract = ({
       <p>{contractName || "—"}</p>
       <p className={styles.tokenCardBalanceContract}>
         {exclude && <Icons name="warning" />}
-        <a target="_blank" rel="noreferrer" href={getNetworkExplorerAddressUrl(1, contract)}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={getNetworkExplorerAddressUrl(1, contract)}
+        >
           {`${renderShortAddress(contract, 13)}`}
         </a>
         <Icons
@@ -97,7 +101,7 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
           {item.ticker}
           <a
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             href={getNetworkExplorerAddressUrl(1, item.tokenAddress)}
             onClick={(e) => {
               e.stopPropagation();

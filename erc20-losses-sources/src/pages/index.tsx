@@ -7,6 +7,7 @@ import Web3 from "web3";
 import { basePath } from "@/constants/build-config/isProd";
 import {
   CHAIN,
+  formatDate,
   PrecalculatedResultSum,
   PrecalculatedResultTokenNumber,
   preparedResult,
@@ -46,7 +47,8 @@ export default function Home() {
 
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
-  const [dateString, setDateString] = useState(new Date().toDateString());
+
+  const [dateString, setDateString] = useState(formatDate(new Date()));
   const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
 
   // Update tokens list with etherscan result
