@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "./Collapse.module.scss";
 import clsx from "clsx";
+import React, { useEffect, useRef, useState } from "react";
+
+import styles from "./Collapse.module.scss";
 
 export default function Collapse({ children, open, style }: any) {
   const [height, setHeight] = useState<number | undefined>(open ? undefined : 0);

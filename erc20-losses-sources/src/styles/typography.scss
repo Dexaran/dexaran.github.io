@@ -1,0 +1,122 @@
+@use "colors";
+
+@mixin t-body-12 {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin t-body-14 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin t-body-16 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin t-body-17 {
+  font-size: 17px;
+  line-height: 26px;
+}
+
+@mixin t-body-18 {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin t-body-19 {
+  font-size: 19px;
+  line-height: 30px;
+}
+
+@mixin t-body-20 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+@mixin t-body-24 {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+@mixin t-body-28 {
+  font-size: 28px;
+  line-height: 44px;
+}
+
+@mixin t-body-30 {
+  font-size: 30px;
+  line-height: 44px;
+}
+
+@mixin t-body-36 {
+  font-size: 36px;
+  line-height: 48px;
+}
+
+@mixin t-body-40 {
+  font-size: 40px;
+  line-height: 60px;
+}
+
+@mixin t-body-48 {
+  font-size: 48px;
+  line-height: 64px;
+}
+
+.font-14 {
+  @include t-body-14;
+}
+
+.font-16 {
+  @include t-body-16;
+}
+
+.font-20 {
+  @include t-body-20;
+}
+
+.font-24 {
+  @include t-body-24;
+}
+
+.font-40 {
+  @include t-body-40;
+}
+
+.font-primary {
+  color: colors.$text-primary;
+}
+
+.font-secondary {
+  color: colors.$text-secondary;
+}
+
+.font-static-primary {
+  color: #122110;
+}
+
+.font-300 {
+  font-weight: 300;
+}
+
+.font-400 {
+  font-weight: 400;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+.font-600 {
+  font-weight: 500;
+}
+
+.font-700 {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
