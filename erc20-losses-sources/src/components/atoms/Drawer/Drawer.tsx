@@ -19,7 +19,7 @@ export default function Drawer({
   children,
   onClose,
   position = "left",
-  width = 280,
+  width = 300,
 }: Props) {
   const handlers = useSwipeable({
     onSwipedLeft: (eventData) => onClose(),

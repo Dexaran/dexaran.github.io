@@ -3,10 +3,9 @@ import React from "react";
 import Svg from "@/components/atoms/Svg";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 
-import { NewButton } from "../components/atoms/buttons/NewButton";
-const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
+export const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
 
-const USERFUL_LINKS = [
+export const USERFUL_LINKS = [
   {
     name: "ERC-223 page",
     href: "https://dexaran.github.io/erc223/",
