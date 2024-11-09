@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { ReactNode } from "react";
 
 import Svg from "@/components/atoms/Svg";
@@ -18,7 +17,7 @@ export const GitHubComment = ({
 }) => {
   return (
     <div className="flex gap-[10px]">
-      <Image
+      <img
         src={logo}
         alt="photo"
         height={38}
@@ -77,7 +76,7 @@ export const TwitterComment = ({
       {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex gap-1 items-center">
-          <Image
+          <img
             src={logo}
             alt="photo"
             height={48}
@@ -126,7 +125,7 @@ export const RedditPost = ({
     <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px]">
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
-          <Image
+          <img
             src={redditLogo}
             alt="photo"
             height={48}
@@ -142,7 +141,7 @@ export const RedditPost = ({
               <p className="font-bold text-[13px] text-[#F2F2F2]">{redditName}</p>
               <p className="text-[13px] text-[#8BA2AD] text-ellipsis overflow-hidden text-nowrap max-w-[88px] xl:max-w-max">{`Posted by ${nickname}`}</p>
             </div>
-            <Image
+            <img
               src="/reddit-logo.svg"
               alt="reddit-logo"
               width={104}
@@ -177,7 +176,7 @@ export const RedditComment = ({
     <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px]">
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
-          <Image
+          <img
             src={logo}
             alt="photo"
             height={48}
@@ -195,7 +194,7 @@ export const RedditComment = ({
                 commented on <span className="text-[#6D8DF4] font-semibold">post</span>
               </p>
             </div>
-            <Image
+            <img
               src="/reddit-logo.svg"
               alt="reddit-logo"
               width={104}
@@ -229,7 +228,7 @@ export const BeincryptoPost = () => {
       </div>
       <div className="flex justify-between gap-4 mt-4">
         <div className="flex gap-2 w-full">
-          <Image
+          <img
             src="/posts/post9.png"
             alt="photo"
             height={33}
@@ -246,7 +245,7 @@ export const BeincryptoPost = () => {
           </div>
         </div>
         <div className="flex gap-2 w-full">
-          <Image
+          <img
             src="/posts/post8.png"
             alt="photo"
             height={33}
@@ -269,14 +268,14 @@ export const BeincryptoPost = () => {
 export const Etherscan = () => {
   return (
     <div className="flex flex-col border border-border-secondary rounded-[12px] overflow-hidden">
-      <Image
+      <img
         src="/posts/etherscan.png"
         alt="photo"
         width={580}
         height={398}
         className="hidden xl:block w-full"
       />
-      <Image
+      <img
         src="/posts/etherscan_mobile.png"
         alt="photo"
         width={296}
