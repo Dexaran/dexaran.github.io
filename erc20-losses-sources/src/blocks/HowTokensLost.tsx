@@ -185,8 +185,8 @@ const Slideshow = () => {
     }
 
     if (!isInit) {
-      // setIsPlaying(true);
-      // setInit(true);
+      setIsPlaying(true);
+      setInit(true);
     }
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
