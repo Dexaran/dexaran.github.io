@@ -136,7 +136,7 @@ export const Problem = () => {
                   }
                 />
                 <a
-                  href="https://github.com/ethereum/EIPs/pull/610 #issuecomment-296711733"
+                  href="https://github.com/ethereum/EIPs/pull/610#issuecomment-296711733"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[12px] xl:text-[16px] xl:pl-[48px] mt-2 whitespace-pre-line"
@@ -174,7 +174,7 @@ export const Problem = () => {
                   name="Scam Sniffer | Web3 Anti-Scam"
                   nickname="@realScamSniffer"
                   content={
-                    <p className="whitespace-pre-line text-[#F7F9F9] text-[18px]">
+                    <p className="whitespace-pre-line text-[#F7F9F9]">
                       {`the victim gave the token approval to the scammer by signing "increaseAllowance" transactions.`}
                     </p>
                   }

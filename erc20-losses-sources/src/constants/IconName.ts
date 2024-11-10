@@ -10,6 +10,7 @@ export const svgIconsNames = [
   "pause",
   "clock",
   "calendar",
+  "report",
   "next",
   "arrow-up",
   "arrow-bottom",

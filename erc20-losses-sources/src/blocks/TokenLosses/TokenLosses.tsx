@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import {
   downloadResult,
   excludedMap,
+  formatDate,
   FormattedResult,
   formatTokenResult,
   FromEtherscan,
@@ -78,7 +79,8 @@ function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan }) {
       processSate.setResultTokenNumber(++counter);
     }
 
-    processSate.setDateString(new Date().toDateString());
+    // TODO add real date
+    processSate.setDateString(formatDate(new Date()));
 
     const processedResult = handleExclusions(resultsArray, excludedMap);
 

@@ -31,7 +31,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
           {item.ticker}
           <a
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             href={getNetworkExplorerAddressUrl(1, item.tokenAddress)}
             onClick={(e) => {
               e.stopPropagation();
@@ -75,7 +75,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
                 <p className={styles.tokenCardBalanceContract}>
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     href={getNetworkExplorerAddressUrl(1, record.contract)}
                   >{`${renderShortAddress(record.contract, 7)}`}</a>
                   <Icons
@@ -128,7 +128,7 @@ export const MobileResultItem = ({ item, index }: { item: any; index: number }) 
                   <p className={styles.tokenCardBalanceContract}>
                     <a
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       href={getNetworkExplorerAddressUrl(1, record.contract)}
                     >{`${renderShortAddress(record.contract, 7)}`}</a>
                     <Icons

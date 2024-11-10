@@ -3,25 +3,24 @@ import React from "react";
 import Svg from "@/components/atoms/Svg";
 import { useSnackbar } from "@/providers/SnackbarProvider";
 
-import { NewButton } from "../components/atoms/buttons/NewButton";
-const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
+export const ADDRESS_FOR_DONATION = "0x2ca1377dfa03577ce5bbb815c98eda1ac7632e7d";
 
-const USERFUL_LINKS = [
+export const USERFUL_LINKS = [
   {
     name: "ERC-223 page",
     href: "https://dexaran.github.io/erc223/",
   },
   {
     name: "ERC-20 security flaw",
-    href: "#",
+    href: "https://medium.com/dex223/known-problems-of-erc20-token-standard-e98887b9532c",
   },
   {
     name: "Problems of ERC-20 standard",
-    href: "#",
+    href: "https://dexaran820.medium.com/security-problems-of-erc-20-standard-cc2a1e300441",
   },
   {
-    name: "Callisto statement",
-    href: "#",
+    name: "Callisto Security statement",
+    href: "https://callisto.network/erc-20-standard-security-department-statement/",
   },
 ];
 const SOCIAL_MEDIA_LINKS = [
@@ -52,7 +51,7 @@ export const Footer = () => {
               </a>
             ))}
           </div>
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
             <p className="text-[14px] text-secondary-text font-semibold mb-1">Social media</p>
             {SOCIAL_MEDIA_LINKS.map(({ name, href }) => (
               <a
@@ -65,7 +64,7 @@ export const Footer = () => {
                 {name}
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
         <div className="hidden xl:flex flex-col justify-between gap-10">
           <div
