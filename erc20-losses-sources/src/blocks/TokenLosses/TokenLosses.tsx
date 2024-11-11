@@ -3,6 +3,8 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from "rea
 import { numericFormatter } from "react-number-format";
 
 import { NewButton } from "@/components/atoms/buttons/NewButton";
+import DialogHeader from "@/components/atoms/DialogHeader";
+import Drawer from "@/components/atoms/Drawer/Drawer";
 import Svg from "@/components/atoms/Svg";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import {
@@ -187,6 +189,7 @@ const AddressesEditor = ({
   addresses: string;
   onSave: (addresses: string) => void;
 }) => {
+  const isMobile = useIsMobile();
   const addressesArray = addresses !== "" ? addresses.split("\n") : [];
   const [isEdit, setEdit] = useState(false);
   const [localAddresses, setLocalAddresses] = useState("");
@@ -203,6 +206,37 @@ const AddressesEditor = ({
     setLocalAddresses("");
     setEdit(false);
   };
+
+  const [viewportHeight, setViewportHeight] = useState<number | null>(300);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const updateHeight = () => {
+        // Check if visualViewport API is available
+        const height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        setViewportHeight(height);
+      };
+
+      // Initial height update
+      updateHeight();
+
+      // Listen for visual viewport resize events
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", updateHeight);
+      } else {
+        // Fallback for environments without visualViewport support
+        window.addEventListener("resize", updateHeight);
+      }
+
+      return () => {
+        if (window.visualViewport) {
+          window.visualViewport.removeEventListener("resize", updateHeight);
+        } else {
+          window.removeEventListener("resize", updateHeight);
+        }
+      };
+    }
+  }, []);
 
   return (
     <div className="flex flex-col rounded-3 xl:rounded-[24px] relative h-full">
@@ -233,7 +267,15 @@ const AddressesEditor = ({
           >
             Token address
           </div>
-          {isEdit ? (
+          {isMobile || !isEdit ? (
+            <button
+              className="bg-main-secondary p-2 xl:pl-4 xl:pr-6 text-[16px] font-semibold text-primary-text rounded-2 flex gap-2 cursor-pointer"
+              onClick={() => setEdit(true)}
+            >
+              <Svg iconName="edit" size={24} />
+              <span className="hidden xl:block">Edit</span>
+            </button>
+          ) : (
             <div className="flex gap-3 w-full xl:w-auto">
               <button
                 className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto"
@@ -248,14 +290,41 @@ const AddressesEditor = ({
                 Cancel
               </button>
             </div>
-          ) : (
-            <button
-              className="bg-main-secondary p-2 xl:pl-4 xl:pr-6 text-[16px] font-semibold text-primary-text rounded-2 flex gap-2 cursor-pointer"
-              onClick={() => setEdit(true)}
-            >
-              <Svg iconName="edit" size={24} />
-              <span className="hidden xl:block">Edit</span>
-            </button>
+          )}
+          {isMobile && (
+            <Drawer isOpen={isEdit} onClose={() => setEdit(false)} position="bottom">
+              <div className="flex flex-col">
+                <div className="bg-tertiary-bg">
+                  <DialogHeader title="Network fee" onClose={() => setEdit(false)} />
+                </div>
+                <div
+                  className="flex p-4"
+                  style={{
+                    height: `min( calc(100svh - 133px), ${viewportHeight - 133}px )`,
+                  }}
+                >
+                  <textarea
+                    className="w-full h-full bg-textarea-bg rounded-2 text-[12px] leading-[18px] font-mono text-primary-text px-4 pr-1 py-4 resize-none border border-border-primary"
+                    value={localAddresses}
+                    onChange={(event) => setLocalAddresses(event.target.value)}
+                  />
+                </div>
+                <div className="flex gap-3 w-full px-4 py-[10px] bg-tertiary-bg">
+                  <button
+                    className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto"
+                    onClick={() => saveHandler()}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="bg-transparent border border-primary-text py-[7px] px-6 text-[16px] font-semibold text-primary-text rounded-2 cursor-pointer w-full xl:w-auto"
+                    onClick={() => cancelHandler()}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </Drawer>
           )}
         </div>
       </div>
@@ -266,14 +335,7 @@ const AddressesEditor = ({
           !isEdit && "overflow-y-scroll overflow-x-auto",
         )}
       >
-        {isEdit ? (
-          <textarea
-            className="w-full h-[400px] bg-textarea-bg rounded-b-3 xl:rounded-b-[24px] text-[10px] leading-[18px] xl:text-[16px] xl:leading-[36px] font-mono text-primary-text px-4 xl:px-10 py-4 resize-none"
-            // disabled={buttonState.state === 2}
-            value={localAddresses}
-            onChange={(event) => setLocalAddresses(event.target.value)}
-          />
-        ) : (
+        {isMobile || !isEdit ? (
           <>
             <div className="flex flex-col min-w-[96px] xl:min-w-[104px] border-r border-border-secondary gap-3 py-4 pl-5">
               {addressesArray.map((address) => (
@@ -292,6 +354,13 @@ const AddressesEditor = ({
               {addressesArray.length > 10 && <div className="min-h-5" />}
             </div>
           </>
+        ) : (
+          <textarea
+            className="w-full h-[400px] bg-textarea-bg rounded-b-3 xl:rounded-b-[24px] text-[10px] leading-[18px] xl:text-[16px] xl:leading-[36px] font-mono text-primary-text px-4 xl:px-10 py-4 resize-none"
+            // disabled={buttonState.state === 2}
+            value={localAddresses}
+            onChange={(event) => setLocalAddresses(event.target.value)}
+          />
         )}
       </div>
     </div>

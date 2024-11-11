@@ -8,7 +8,7 @@ export default function Document() {
       <Head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content"
         />
         <link rel="shortcut icon" href={`${basePath}/static/favicon.ico`} />
       </Head>
