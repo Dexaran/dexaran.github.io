@@ -17,7 +17,7 @@ export const Calculator = () => {
           leftContent={
             <div className="flex flex-col gap-4 w-full text-[18px] text-[#E3E3E3]">
               <p>
-                {`For each token contract address in the left input the script calculates how much of this tokens are permanently stuck in all the addresses from both the right input and the left inputs.`}
+                {`For each token contract address in the left input the script calculates how much of this tokens are permanently stuck in all the addresses from both the right and the left inputs.`}
               </p>
               <p>
                 {`Found a problem with the script? `}
