@@ -295,7 +295,7 @@ const AddressesEditor = ({
             <Drawer isOpen={isEdit} onClose={() => setEdit(false)} position="bottom">
               <div className="flex flex-col">
                 <div className="bg-tertiary-bg">
-                  <DialogHeader title="Network fee" onClose={() => setEdit(false)} />
+                  <DialogHeader title="Edit token addresses" onClose={() => setEdit(false)} />
                 </div>
                 <div
                   className="flex p-4"
