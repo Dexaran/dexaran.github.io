@@ -337,7 +337,7 @@ const AddressesEditor = ({
       >
         {isMobile || !isEdit ? (
           <>
-            <div className="flex flex-col min-w-[96px] xl:min-w-[104px] border-r border-border-secondary gap-3 py-4 pl-5">
+            <div className="flex flex-col h-max min-h-full min-w-[96px] xl:min-w-[104px] border-r border-border-secondary gap-3 py-4 pl-5">
               {addressesArray.map((address) => (
                 <TokenName key={address} address={address} />
               ))}
