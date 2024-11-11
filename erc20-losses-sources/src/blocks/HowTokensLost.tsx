@@ -250,7 +250,7 @@ export const HowTokensLost = () => {
         <NeonBlock
           icon="question-tag"
           color="red"
-          overlineText="How these tokens are lost?"
+          overlineText="How are these tokens lost?"
           anchor="howTokensList"
           leftContent={
             <div className="flex flex-col gap-4 w-full text-[16px] xl:text-[18px] text-[#E3E3E3]">
