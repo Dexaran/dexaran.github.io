@@ -1,0 +1,1 @@
+export const RESULT_DATE = "2024-11-01T12:00:00.000Z";

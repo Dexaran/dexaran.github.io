@@ -5,6 +5,7 @@ import React, { createContext, useEffect, useState } from "react";
 import Web3 from "web3";
 
 import { basePath } from "@/constants/build-config/isProd";
+import { RESULT_DATE } from "@/constants/result_date";
 import {
   CHAIN,
   formatDate,
@@ -48,7 +49,7 @@ export default function Home() {
   const [resultSum, setResultSum] = useState(PrecalculatedResultSum);
   const [resultTokenNumber, setResultTokenNumber] = useState(PrecalculatedResultTokenNumber);
 
-  const [dateString, setDateString] = useState(formatDate(new Date()));
+  const [dateString, setDateString] = useState(formatDate(new Date(RESULT_DATE)));
   const [buttonState, setButtonState] = useState({ state: 1, text: START_TEXT }); // 0-disabled, 1-normal, 2-STOP
 
   // Update tokens list with etherscan result

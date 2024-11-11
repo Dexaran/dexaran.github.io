@@ -204,4 +204,4 @@ export const getTokenName = async (address: string, tokenObject?: any) => {
   return tokenInfo.ticker;
 };
 
-export const formatDate = (date: Date) => dayjs(date).format("DD MMM YYYY");
+export const formatDate = (date: Date) => dayjs(date).format("D MMM, YYYY");

@@ -363,7 +363,7 @@ export const TokenLosses = () => {
           >
             <p className="text-primary-text text-[16px] xl:text-[18px] xl:leading-[32px]">
               When calculating lost tokens, we are pulling prices from{" "}
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://etherscan.io/tokens" target="_blank" rel="noopener noreferrer">
                 this APIs
               </a>
             </p>
@@ -397,7 +397,7 @@ export const TokenLosses = () => {
               }}
             >
               <Svg iconName="calendar" size={24} className="text-secondary-text" />
-              Calculation date: 1 Nov, 2024
+              Calculation date: {dateString}
             </div>
             <div
               className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 xl:ml-3"

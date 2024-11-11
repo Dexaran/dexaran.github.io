@@ -28,7 +28,7 @@ export const Hero = () => {
           <h1 className="text-[20px] leading-[36px] xl:text-[24px] xl:leading-[40px] font-goldman text-primary-text">
             Amount of money lost
           </h1>
-          <p className="text-secondary-text">Last update: 1 Nov, 2024</p>
+          <p className="text-secondary-text">Last update: {dateString}</p>
           <p className="text-red text-[28px] leading-[40px] xl:text-[36px] xl:leading-[48px] font-goldman mt-3">
             {numericFormatter(`${resultSum}`, {
               decimalSeparator: ".",
