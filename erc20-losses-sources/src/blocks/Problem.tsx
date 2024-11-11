@@ -41,9 +41,6 @@ export const Problem = () => {
               <p>
                 {`As of 11/1/2023 there were $60,000,000 worth of ERC-20 tokens lost. The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
               </p>
-              <p>
-                {`The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
-              </p>
               <p className="text-[20px] leading-[36px] font-bold text-primary-text xl:hidden">
                 Historical discussions
               </p>
