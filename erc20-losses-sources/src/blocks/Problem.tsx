@@ -39,13 +39,10 @@ export const Problem = () => {
                 {`In 2018 there were approximately $1,000,000 worth of funds lost because of this ERC-20 standard flaw.`}
               </p>
               <p>
-                {`As of 11/1/2023 there are $228,722,284 worth of ERC-20 tokens lost. The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
+                {`As of 11/1/2023 there were $60,000,000 worth of ERC-20 tokens lost. The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
               </p>
               <p>
                 {`The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
-              </p>
-              <p>
-                {`The problem was discovered in 2017. At the moment of disclosure there were $16,000 worth of tokens lost.`}
               </p>
               <p className="text-[20px] leading-[36px] font-bold text-primary-text xl:hidden">
                 Historical discussions
