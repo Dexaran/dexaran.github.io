@@ -397,7 +397,7 @@ export const TokenLosses = () => {
               }}
             >
               <Svg iconName="calendar" size={24} className="text-secondary-text" />
-              Calculation date: {dateString}
+              Calculation date: 1 Nov, 2024
             </div>
             <div
               className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 xl:ml-3"
