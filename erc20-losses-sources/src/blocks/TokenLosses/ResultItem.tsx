@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { numericFormatter } from "react-number-format";
 
 import { WhiteSecondaryButton } from "@/components/atoms/buttons/Button/Button";
-import Collapse from "@/components/atoms/Collapse";
+import { Collapse } from "@/components/atoms/Collapse";
 import { Icons } from "@/components/atoms/Icons";
 import { ToolTip } from "@/components/atoms/Tooltip/Tooltip";
 import { useSnackbar } from "@/providers/SnackbarProvider";

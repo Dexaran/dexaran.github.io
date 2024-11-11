@@ -15,7 +15,7 @@ export const Calculator = () => {
           anchor="calculator"
           // withoutTopLine={true}
           leftContent={
-            <div className="flex flex-col gap-4 w-full text-[18px] text-[#E3E3E3]">
+            <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
               <p>
                 {`For each token contract address in the left input the script calculates how much of this tokens are permanently stuck in all the addresses from both the right and the left inputs.`}
               </p>

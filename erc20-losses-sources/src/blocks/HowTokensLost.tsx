@@ -1,8 +1,10 @@
 import clsx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
+import { ShowMoreMobile } from "@/components/atoms/ShowMore";
 import Svg from "@/components/atoms/Svg";
 import NeonBlock from "@/components/organisms/NeonBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { clsxMerge } from "@/utils/clsxMerge";
 
 import {
@@ -175,6 +177,7 @@ const Slideshow = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isInit, setInit] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const slideshowRef = useRef<HTMLDivElement>(null);
 
   // Auto-play effect
   useEffect(() => {
@@ -193,6 +196,26 @@ const Slideshow = () => {
     };
   }, [currentSlide, isPlaying, isInit]);
 
+  // Set up IntersectionObserver to start/stop playing based on visibility
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    setIsPlaying(entry.isIntersecting);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null, // Uses the viewport as the root
+      threshold: 0.1,
+    });
+
+    if (slideshowRef.current) {
+      observer.observe(slideshowRef.current);
+    }
+
+    return () => {
+      if (slideshowRef.current) observer.unobserve(slideshowRef.current);
+    };
+  }, [handleIntersection]);
   const togglePlayPause = () => {
     if (!isPlaying) {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
@@ -201,7 +224,7 @@ const Slideshow = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" ref={slideshowRef}>
       <p className="xl:hidden text-[20px] leading-[36px] font-bold my-4">
         Public records of ERC-20 losses on media
       </p>
@@ -238,7 +261,7 @@ const Slideshow = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col min-h-[960px]">{slides[currentSlide].content}</div>
+      <div className="flex flex-col">{slides[currentSlide].content}</div>
     </div>
   );
 };
@@ -253,13 +276,15 @@ export const HowTokensLost = () => {
           overlineText="How are these tokens lost?"
           anchor="howTokensList"
           leftContent={
-            <div className="flex flex-col gap-4 w-full text-[16px] xl:text-[18px] text-[#E3E3E3]">
+            <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
               <p>
                 {`Most often, users mistakenly send tokens to a contract that is not intended to operate with tokens, for example, to the contract address of the token itself. Such a contract cannot send tokens, it is not intended to hold tokens at all, it is intended to be the token.`}
               </p>
-              <p>
-                {`However, this is just the tip of the iceberg and it is easy to calculate how many tokens were lost this way (which is exactly what this script does). In fact, every deposit of tokens to a contract that does not allow sending tokens out and was performed using the "transfer()" function results in the loss of tokens, but calculation of the total loss amount would require an analysis of all transactions in the entire history of Ethereum.`}
-              </p>
+              <ShowMoreMobile>
+                <p>
+                  {`However, this is just the tip of the iceberg and it is easy to calculate how many tokens were lost this way (which is exactly what this script does). In fact, every deposit of tokens to a contract that does not allow sending tokens out and was performed using the "transfer()" function results in the loss of tokens, but calculation of the total loss amount would require an analysis of all transactions in the entire history of Ethereum.`}
+                </p>
+              </ShowMoreMobile>
             </div>
           }
           rightContent={<Slideshow />}

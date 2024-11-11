@@ -1,8 +1,8 @@
 import debounce from "lodash.debounce";
 import { useCallback, useLayoutEffect, useState } from "react";
 
-export const useIsMobile = (): boolean => {
-  const [isMobile, setIsMobile] = useState(true);
+export const useIsMobile = (defaultIsMobile: boolean = true): boolean => {
+  const [isMobile, setIsMobile] = useState(defaultIsMobile);
 
   const updateSize = useCallback(() => {
     const is = window.innerWidth < 576;

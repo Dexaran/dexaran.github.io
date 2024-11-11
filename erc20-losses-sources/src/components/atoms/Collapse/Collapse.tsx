@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./Collapse.module.scss";
 
-export default function Collapse({ children, open, style }: any) {
+export function Collapse({ children, open, style }: any) {
   const [height, setHeight] = useState<number | undefined>(open ? undefined : 0);
 
   const isOpen = useRef<boolean>(open);

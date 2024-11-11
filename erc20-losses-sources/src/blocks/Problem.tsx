@@ -1,5 +1,6 @@
 import React from "react";
 
+import { ShowMoreMobile } from "@/components/atoms/ShowMore";
 import NeonBlock from "@/components/organisms/NeonBlock";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -17,7 +18,7 @@ export const Problem = () => {
           anchor="problem"
           withoutTopLine={true}
           leftContent={
-            <div className="flex flex-col gap-4 w-full text-[18px] text-[#E3E3E3]">
+            <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
               <p>
                 {`ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
               </p>
@@ -32,18 +33,23 @@ export const Problem = () => {
                 </a>
                 .
               </p>
-              <p>
-                {`The problem was discovered in 2017. At the moment of disclosure there were $16,000 worth of tokens lost.`}
-              </p>
-              <p>
-                {`In 2018 there were approximately $1,000,000 worth of funds lost because of this ERC-20 standard flaw.`}
-              </p>
-              <p>
-                {`As of 11/1/2023 there were $60,000,000 worth of ERC-20 tokens lost. The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
-              </p>
+              <ShowMoreMobile>
+                <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
+                  <p>
+                    {`The problem was discovered in 2017. At the moment of disclosure there were $16,000 worth of tokens lost.`}
+                  </p>
+                  <p>
+                    {`In 2018 there were approximately $1,000,000 worth of funds lost because of this ERC-20 standard flaw.`}
+                  </p>
+                  <p>
+                    {`As of 11/1/2023 there were $60,000,000 worth of ERC-20 tokens lost. The amount is growing every day because there is no easy solution other than switching to a more secure standard.`}
+                  </p>
+                </div>
+              </ShowMoreMobile>
               <p className="text-[20px] leading-[36px] font-bold text-primary-text xl:hidden">
                 Historical discussions
               </p>
+
               <div className="flex flex-col xl:mt-4">
                 <RedditComment
                   logo="/posts/post7.png"
