@@ -460,18 +460,18 @@ export const TokenLosses = () => {
           </div>
           <div className="flex flex-col items-start xl:flex-row gap-2 xl:gap-0">
             <div
-              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2"
+              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 border border-border-secondary"
               style={{
-                boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2)",
+                boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
               }}
             >
               <Svg iconName="calendar" size={24} className="text-secondary-text" />
               Calculation date: {dateString}
             </div>
             <div
-              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 xl:ml-3"
+              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 xl:ml-3 border border-border-secondary"
               style={{
-                boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2)",
+                boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
               }}
             >
               <Svg iconName="calculator" size={24} className="text-secondary-text" />
@@ -489,7 +489,7 @@ export const TokenLosses = () => {
         <div
           className="flex flex-col bg-primary-bg border-2 border-border-secondary pt-4 xl:pt-8 rounded-3 xl:rounded-[32px] mt-4 xl:mt-10"
           style={{
-            boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2)",
+            boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
           }}
         >
           <div className="px-4 xl:px-10">
@@ -515,7 +515,7 @@ export const TokenLosses = () => {
               </p>
             </div>
           </div>
-          <div className="xl:max-h-[640px] mt-4 xl:mt-10 overflow-y-auto px-4 xl:px-10">
+          <div className="xl:max-h-[640px] mt-4 xl:mt-10 overflow-y-auto px-4 xl:pl-10 xl:pr-7">
             <div className="flex flex-col gap-5">
               {resultsList.map((item, index) => {
                 return isMobile ? (

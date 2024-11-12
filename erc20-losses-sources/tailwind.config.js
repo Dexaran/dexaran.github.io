@@ -35,10 +35,24 @@ module.exports = {
         "blue-bg": "#28323C",
 
         "main-primary": "#82BDAB",
+        "main-primary-hover": "#D2FFF2",
         "main-secondary": "#38554C",
         "main-blue": "#8EBCE7",
         "main-red": "#C04F4F"
       },
+      fontSize: {
+        8: ["8px", "12px"],
+        10: ["10px", "14px"],
+        12: ["12px", "16px"],
+        14: ["14px", "20px"],
+        16: ["16px", "24px"],
+        18: ["18px", "32px"],
+        20: ["20px", "36px"],
+        24: ["24px", "40px"],
+        30: ["30px", "44px"],
+        32: ["32px", "48px"],
+        58: ["58px", "80px"],
+      },  
       borderRadius: {
         0: "0px",
         1: "4px",
