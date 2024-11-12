@@ -89,7 +89,8 @@ export const TwitterComment = ({
               <p className="font-bold text-[14px] xl:text-[16px] text-[#F7F9F9] text-ellipsis overflow-hidden text-nowrap max-w-[160px] xl:max-w-max">
                 {name}
               </p>
-              <Svg iconName="x-check" color="#F7F9F9" size={16} />
+              <Svg iconName="x-check" color="#F7F9F9" className="block xl:hidden" size={16} />
+              <Svg iconName="x-check" color="#F7F9F9" className="hidden xl:block" size={20} />
             </div>
             <div className="flex gap-[6px] items-center">
               <p className="text-[14px] xl:text-[16px] text-[#8B98A5]">{nickname}</p>

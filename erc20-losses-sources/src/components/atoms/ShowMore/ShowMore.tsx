@@ -66,8 +66,8 @@ export function ShowMoreMobile({ children, style }: any) {
       </div>
       <div
         className={clsx(
-          "xl:hidden flex items-center gap-2 text-main-primary cursor-pointer py-2 text-[16px] leading-[24px] font-semibold",
-          isOpen && "mt-4",
+          "xl:hidden flex items-center gap-2 text-main-primary cursor-pointer py-2 text-16 font-semibold",
+          isOpen && "mt-2 xl:mt-4",
         )}
         onClick={() => setOpen(!open)}
       >

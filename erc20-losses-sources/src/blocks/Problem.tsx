@@ -18,7 +18,7 @@ export const Problem = () => {
           anchor="problem"
           withoutTopLine={true}
           leftContent={
-            <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
+            <div className="flex flex-col gap-2 xl:gap-4 w-full text-16 xl:text-18 text-[#E3E3E3]">
               <p>
                 {`ERC-20 standard implements two methods of transferring tokens. One is designed for address-to-address transfers, another is designed for contract deposits. Both methods do not implement error handling which is a major security flaw. By the standard the burden of determining the method of transferring tokens is placed on the user and in case of picking a "wrong" method for a contract deposit the tokens get permanently stuck.`}
               </p>
@@ -34,7 +34,7 @@ export const Problem = () => {
                 .
               </p>
               <ShowMoreMobile>
-                <div className="flex flex-col gap-4 w-full text-[16px] leading-[24px] xl:text-[18px] xl:leading-[32px] text-[#E3E3E3]">
+                <div className="flex flex-col gap-2 xl:gap-4 w-full text-16 xl:text-18 text-[#E3E3E3]">
                   <p>
                     {`The problem was discovered in 2017. At the moment of disclosure there were $16,000 worth of tokens lost.`}
                   </p>
@@ -50,14 +50,14 @@ export const Problem = () => {
                 Historical discussions
               </p>
 
-              <div className="flex flex-col xl:mt-4">
+              <div className="hidden xl:flex flex-col xl:mt-4">
                 <RedditComment
                   logo="/posts/post7.png"
                   nickname="Frdwrd"
                   postLink="https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/"
                   link="https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/"
                   content={
-                    <p className="whitespace-pre-line text-[14px] xl:text-[16px] text-[#F2F2F2]">
+                    <p className="whitespace-pre-line text-14 xl:text-16 text-[#F2F2F2]">
                       {`Hey Dexaran,
                     
                     While preparing to make a decision, we read ERC23 and ERC223 as well as your previous threads on the subject. We decided to err on the side of well-tested code.`}
@@ -90,7 +90,7 @@ export const Problem = () => {
                         I want to draw attention to the fact that there are two ways to transfer
                         tokens in the ERC20 standard:
                       </p>
-                      <div className="flex flex-col pl-3 gap-[16px]">
+                      <div className="flex flex-col pl-3 gap-4">
                         <p>
                           1.{" "}
                           <span className="bg-[#343942] font-mono rounded-[6px] px-[6px] py-1">
@@ -143,6 +143,30 @@ export const Problem = () => {
                 >
                   {`https://github.com/ethereum/EIPs/pull/610
                   #issuecomment-296711733`}
+                </a>
+              </div>
+              <div className="xl:hidden flex flex-col mt-4">
+                <RedditComment
+                  logo="/posts/post7.png"
+                  nickname="Frdwrd"
+                  postLink="https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/"
+                  link="https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/"
+                  content={
+                    <p className="whitespace-pre-line text-14 xl:text-16 text-[#F2F2F2]">
+                      {`Hey Dexaran,
+                    
+                    While preparing to make a decision, we read ERC23 and ERC223 as well as your previous threads on the subject. We decided to err on the side of well-tested code.`}
+                    </p>
+                  }
+                />
+                <a
+                  href="https://www.reddit.com/r/storj/comments/6ajjo3/comment/dhf95qz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[12px] xl:text-[16px] mt-2"
+                >
+                  {`https://www.reddit.com/r/storj/comments
+                /6ajjo3/comment/dhf95qz/`}
                 </a>
               </div>
               <div className="flex flex-col mt-4 xl:mt-10">
