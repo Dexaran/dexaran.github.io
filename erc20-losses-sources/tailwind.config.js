@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme')
+import plugin from "tailwindcss/plugin";
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -65,5 +66,11 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant, e }) {
+      addVariant("hocus", ["&:hover", "&:focus-visible"]);
+      addVariant("group-hocus", [".group:hover &", ".group:focus-visible &"]);
+      addVariant("peer-hocus", [".peer:hover ~ &", ".peer:focus-visible ~ &"]);
+    }),
+  ],
 };

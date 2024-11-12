@@ -5,8 +5,10 @@ import { numericFormatter } from "react-number-format";
 import { NewButton } from "@/components/atoms/buttons/NewButton";
 import DialogHeader from "@/components/atoms/DialogHeader";
 import Drawer from "@/components/atoms/Drawer/Drawer";
+import Preloader from "@/components/atoms/Preloader";
 import Svg from "@/components/atoms/Svg";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useSnackbar } from "@/providers/SnackbarProvider";
 import {
   downloadResult,
   excludedMap,
@@ -24,12 +26,12 @@ import {
 import { processOneToken } from "./functions";
 import { MobileResultItem } from "./MobileResultItem";
 import { ResultItem } from "./ResultItem";
-import styles from "./TokenLosses.module.scss";
 import { handleExclusions } from "./utils";
 
 function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan }) {
   const processSate: any = useContext(ProcessContext);
   const interruptFlag = useRef(false);
+  const { showMessage } = useSnackbar();
 
   async function buttonClick() {
     if (processSate.buttonState.state === 2) {
@@ -81,7 +83,6 @@ function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan }) {
       processSate.setResultTokenNumber(++counter);
     }
 
-    // TODO add real date
     processSate.setDateString(formatDate(new Date()));
 
     const processedResult = handleExclusions(resultsArray, excludedMap);
@@ -93,14 +94,18 @@ function Button({ fromEtherscan }: { fromEtherscan: FromEtherscan }) {
     processSate.setResults(processedResult);
 
     interruptFlag.current = false;
+    showMessage("Token losses have been successfully calculated");
     processSate.setButtonState({ state: 1, text: START_TEXT });
   }
 
+  const isLoading = processSate.buttonState?.state === 2;
+
   return (
     <NewButton
-      isLoading={processSate.buttonState.state === 2}
+      isLoading={isLoading}
       disabled={!processSate.buttonState.state}
       onClick={buttonClick}
+      className={clsx(isLoading && "hidden")}
     >
       {processSate.buttonState.text}
     </NewButton>
@@ -116,17 +121,25 @@ const CalculationProgress = ({ isDefaultResult }: { isDefaultResult: boolean }) 
     setProgress((processSate.resultsList.length / chainTokens.length) * 100);
   }, [chainTokens.length, processSate.resultsList.length]);
 
+  const isLoading = processSate.buttonState?.state === 2;
   return (
-    <div
-      className={clsx(
-        styles.calculationProgress,
-        (isDefaultResult || progress >= 100 || progress === 0) && styles.hide,
-      )}
-    >
-      <div className={styles.progressContainer}>
-        <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+    <div className={clsx("flex flex-col items-center gap-4 xl:gap-5", !isLoading && "hidden")}>
+      <div className="w-full bg-textarea-bg rounded-2 xl:rounded-3 h-[48px] xl:h-[60px] relative">
+        <div
+          className={clsx(
+            "bg-main-primary h-full duration-500 rounded-l-2 xl:rounded-l-3 max-w-full",
+            progress > 98 && "rounded-r-2 xl:rounded-r-3",
+          )}
+          style={{
+            width: `${progress}%`,
+            boxShadow: "0px 0px 24px rgba(96, 255, 226, 0.4)",
+          }}
+        />
       </div>
-      <p>{`Calculating ${processSate.resultsList.length}/${chainTokens.length}`}</p>
+      <div className="flex items-center gap-2">
+        <Preloader size={24} />
+        <p className="text-16 text-primary-text">{`Calculating ${processSate.resultsList.length}/${chainTokens.length}`}</p>
+      </div>
     </div>
   );
 };
