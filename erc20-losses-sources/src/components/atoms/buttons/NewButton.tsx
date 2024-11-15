@@ -46,7 +46,8 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> &
 const buttonVariantClassnameMap: Record<ButtonVariant, Record<ButtonColor, string>> = {
   [ButtonVariant.CONTAINED]: {
     [ButtonColor.RED]: "bg-red text-primary-text hocus:bg-red-hover",
-    [ButtonColor.GREEN]: "bg-green text-black hocus:bg-main-primary-hover",
+    [ButtonColor.GREEN]:
+      "bg-green text-black hocus:bg-main-primary-hover hocus:shadow-button-primary",
     [ButtonColor.LIGHT_GREEN]:
       "bg-green-bg text-secondary-text border-transparent border hocus:border-green hocus:bg-green-bg-hover hocus:text-primary-text",
   },

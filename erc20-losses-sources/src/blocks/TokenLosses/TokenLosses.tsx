@@ -282,7 +282,7 @@ const AddressesEditor = ({
           </div>
           {isMobile || !isEdit ? (
             <button
-              className="bg-main-secondary p-2 xl:pl-4 xl:pr-6 text-[16px] font-semibold text-primary-text rounded-2 flex gap-2 cursor-pointer"
+              className="bg-main-secondary p-2 xl:pl-4 xl:pr-6 text-[16px] font-semibold text-primary-text rounded-2 flex gap-2 cursor-pointer duration-200 hocus:shadow-button-secondary"
               onClick={() => setEdit(true)}
             >
               <Svg iconName="edit" size={24} />
@@ -291,13 +291,13 @@ const AddressesEditor = ({
           ) : (
             <div className="flex gap-3 w-full xl:w-auto">
               <button
-                className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto"
+                className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto duration-200 hocus:shadow-button-primary hocus:bg-main-primary-hover"
                 onClick={() => saveHandler()}
               >
                 Save
               </button>
               <button
-                className="bg-transparent border border-primary-text py-[7px] px-6 text-[16px] font-semibold text-primary-text rounded-2 cursor-pointer w-full xl:w-auto"
+                className="bg-transparent border border-primary-text py-[7px] px-6 text-[16px] font-semibold text-primary-text rounded-2 cursor-pointer w-full xl:w-auto duration-200 hocus:shadow-button-primary hocus:bg-main-secondary"
                 onClick={() => cancelHandler()}
               >
                 Cancel
@@ -324,13 +324,13 @@ const AddressesEditor = ({
                 </div>
                 <div className="flex gap-3 w-full px-4 py-[10px] bg-tertiary-bg">
                   <button
-                    className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto"
+                    className="bg-main-primary py-2 px-6 text-[16px] font-semibold text-primary-bg rounded-2 cursor-pointer w-full xl:w-auto duration-200 hocus:shadow-button-primary hocus:bg-main-primary-hover"
                     onClick={() => saveHandler()}
                   >
                     Save
                   </button>
                   <button
-                    className="bg-transparent border border-primary-text py-[7px] px-6 text-[16px] font-semibold text-primary-text rounded-2 cursor-pointer w-full xl:w-auto"
+                    className="bg-transparent border border-primary-text py-[7px] px-6 text-[16px] font-semibold text-primary-text rounded-2 cursor-pointer w-full xl:w-auto duration-200 hocus:shadow-button-primary hocus:bg-main-secondary"
                     onClick={() => cancelHandler()}
                   >
                     Cancel
@@ -398,7 +398,23 @@ export const TokenLosses = () => {
 
   return (
     <div className="flex flex-col items-center" id="calculate">
-      <div className="flex flex-col w-full max-w-[1280px] p-4 xl:p-10">
+      <div className="flex flex-col w-full max-w-[1280px] p-4 xl:p-10 relative">
+        {/* Green blur bg */}
+        <div
+          className={clsx(
+            "absolute z-[-2] bg-blurry-circles-green/50 pointer-events-none rounded-full blur-[250px] xl:blur-[500px]",
+            "top-[80px] xl:top-[80px] right-[calc(50%-300px)] xl:right-[-720px]",
+            "h-[400px] w-[400px] xl:h-[1000px] xl:w-[800px]",
+          )}
+        />
+        <div
+          className={clsx(
+            "absolute z-[-2] bg-blurry-circles-green/50 pointer-events-none rounded-full blur-[250px]",
+            "xl:top-[520px] xl:left-[-140px]",
+            "hidden xl:block h-[400px] w-[400px]",
+          )}
+        />
+
         <div className="flex items-center gap-2 xl:gap-10">
           <div className="flex justify-center items-center w-6 h-6 xl:w-12 xl:h-12 bg-main-secondary border xl:border-2 border-main-primary rounded-full text-[16px] xl:text-[24px] xl:font-semibold text-primary-text">
             1
@@ -461,8 +477,24 @@ export const TokenLosses = () => {
         </div>
         <div
           id="result"
-          className="flex flex-col xl:flex-row xl:justify-between xl:items-center mt-5 xl:mt-10"
+          className="flex flex-col xl:flex-row xl:justify-between xl:items-center mt-5 xl:mt-10 relative"
         >
+          {/* Red blur bg */}
+          <div
+            className={clsx(
+              "absolute z-[-2] bg-blurry-circles-red/50 pointer-events-none rounded-full blur-[250px]",
+              "top-[230px] xl:top-0 right-[calc(50%-300px)] xl:right-[-470px]",
+              "h-[400px] w-[400px]",
+            )}
+          />
+          <div
+            className={clsx(
+              "absolute z-[-2] bg-blurry-circles-red/50 pointer-events-none rounded-full blur-[250px]",
+              "xl:top-[450px] xl:left-[-140px]",
+              "hidden xl:block h-[400px] w-[400px]",
+            )}
+          />
+
           <div className="flex items-center gap-2 xl:gap-10 mb-4 xl:mb-0">
             <div className="flex justify-center items-center w-6 h-6 xl:w-12 xl:h-12 bg-main-secondary border xl:border-2 border-main-primary rounded-full text-[16px] xl:text-[24px] xl:font-semibold text-primary-text">
               2
@@ -491,7 +523,7 @@ export const TokenLosses = () => {
               Calculated for {resultTokenNumber} tokens
             </div>
             <button
-              className="flex items-center bg-main-secondary py-3 pl-4 pr-6 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 cursor-pointer xl:ml-5"
+              className="flex items-center bg-main-secondary py-3 pl-4 pr-6 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 cursor-pointer xl:ml-5 duration-200 hocus:shadow-button-secondary"
               onClick={() => downloadResult(resultsList)}
             >
               <Svg iconName="download" size={24} />

@@ -37,6 +37,10 @@
     .neonIcon:before {
       background: colors.$palette-green;
     }
+
+    .neonIcon:after {
+      background: rgba(32, 125, 114, 0.5);
+    }
   }
 
   &.blue {
@@ -78,6 +82,9 @@
 
     .neonIcon:before {
       background: colors.$palette-red;
+    }
+    .neonIcon:after {
+      background: rgba(125, 32, 32, 0.5);
     }
   }
 
@@ -236,6 +243,23 @@
     width: 100%;
     height: 100%;
     filter: blur(20px);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(250px);
+    pointer-events: none;
+    z-index: -1;
+    top: calc(-200px + 50%);
+    left: calc(-200px - 50%);
+    @include media.for-mobile {
+      width: 180px;
+      height: 180px;
+      top: calc(-90px + 50%);
+      left: calc(-90px - 50%);
+    }
   }
 
   @include media.for-tablet {

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { ReactNode } from "react";
 
 import Svg from "@/components/atoms/Svg";
@@ -23,11 +24,11 @@ export const GitHubComment = ({
         alt="photo"
         height={38}
         width={38}
-        className="w-[38px] h-[38px] border border-[#30363D] rounded-full hidden xl:block"
+        className="w-[38px] h-[38px] border border-[#30363D] rounded-full hidden xl:block group-hocus:border-main-red duration-200"
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col group-hocus:shadow-card-hover-red duration-200">
         {/* Header */}
-        <div className="flex justify-between items-center text-[15px] bg-[#161B22] px-4 xl:px-[18px] py-2 xl:py-[11px] rounded-t-[6px] border border-[#30363D]">
+        <div className="flex justify-between items-center text-[15px] bg-[#161B22] px-4 xl:px-[18px] py-2 xl:py-[11px] rounded-t-[6px] border border-[#30363D] group-hocus:border-main-red group-hocus:border-b-[#30363D] duration-200">
           <div className="flex justify-start gap-1">
             <p className="font-bold text-[12px] leading-[12px] xl:text-[16px] xl:leading-[16px]">
               {nickname}
@@ -51,7 +52,7 @@ export const GitHubComment = ({
           </div>
         </div>
         {/* Body */}
-        <div className="px-[18px] py-[15px] bg-[#0D1117] rounded-b-[6px] border border-[#30363D] border-t-0 text-[14px] xl:text-[16px] font-medium">
+        <div className="px-[18px] py-[15px] bg-[#0D1117] rounded-b-[6px] border border-[#30363D] border-t-0 text-[14px] xl:text-[16px] font-medium group-hocus:border-main-red duration-200">
           {content}
         </div>
       </div>
@@ -73,7 +74,7 @@ export const TwitterComment = ({
   link: string;
 }) => {
   return (
-    <div className="flex flex-col bg-[#17202A] px-[16px] py-[14px] border border-[#455362] rounded-[12px] gap-3">
+    <div className="flex flex-col bg-[#17202A] px-[16px] py-[14px] border border-[#455362] rounded-[12px] gap-3 group-hocus:shadow-card-hover-red duration-200 group-hocus:border-main-red">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex gap-1 items-center">
@@ -124,7 +125,7 @@ export const RedditPost = ({
   link: string;
 }) => {
   return (
-    <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px]">
+    <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px] group-hocus:shadow-card-hover-red duration-200 group-hocus:border-main-red">
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
           <img
@@ -175,7 +176,7 @@ export const RedditComment = ({
   postLink: string;
 }) => {
   return (
-    <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px]">
+    <div className="flex flex-col bg-[#0D1416] px-[16px] py-[16px] border border-[#3A444C] rounded-[8px] group-hocus:shadow-card-hover-red duration-200 group-hocus:border-main-red">
       <div className="flex gap-3">
         <div className="flex flex-col items-center gap-2">
           <img
@@ -214,7 +215,7 @@ export const RedditComment = ({
 
 export const BeincryptoPost = () => {
   return (
-    <div className="flex flex-col bg-white px-4 py-4 xl:px-5 xl:py-5 border border-border-secondary rounded-3 xl:rounded-[20px]">
+    <div className="flex flex-col bg-white px-4 py-4 xl:px-5 xl:py-5 border border-border-secondary rounded-3 xl:rounded-[20px] group-hocus:shadow-card-hover-red duration-200 group-hocus:border-main-red">
       <div className="flex gap-4">
         <p className="text-[12px] text-[#10161F]">
           <span className="text-[#2E5FF1]">Home</span>/Technology
@@ -269,7 +270,7 @@ export const BeincryptoPost = () => {
 };
 export const Etherscan = () => {
   return (
-    <div className="flex flex-col border border-border-secondary rounded-[12px] overflow-hidden">
+    <div className="flex flex-col border border-border-secondary rounded-[12px] overflow-hidden group-hocus:shadow-card-hover-red duration-200 group-hocus:border-main-red">
       <img
         src={`${basePath}/posts/etherscan.png`}
         alt="photo"

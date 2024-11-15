@@ -39,7 +39,10 @@ module.exports = {
         "main-primary-hover": "#D2FFF2",
         "main-secondary": "#38554C",
         "main-blue": "#8EBCE7",
-        "main-red": "#C04F4F"
+        "main-red": "#C04F4F",
+
+        "blurry-circles-green": "#207D72",
+        "blurry-circles-red": "#7D2020",
       },
       fontSize: {
         8: ["8px", "12px"],
@@ -65,6 +68,20 @@ module.exports = {
         20: "80px",
         full: "50%",
       },
+      keyframes: {
+        "breathing-pattern": {
+          from: { opacity: "0.1" },
+          to: { opacity: "0.5" },
+        },
+      },
+      animation: {
+        "breathing-pattern": "breathing-pattern 2s infinite linear alternate",
+      },
+      boxShadow: {
+        "button-primary": "0px 0px 24px rgba(96, 255, 226, 0.4)",
+        "button-secondary": "0px 0px 10px rgba(190, 255, 243, 0.8)",
+        "card-hover-red": "0px 0px 24px rgba(255, 96, 96, 0.4)",
+      }
     },
   },
   plugins: [

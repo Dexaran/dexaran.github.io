@@ -97,7 +97,10 @@ export const ResultItem = ({ item, index }: { item: any; index: number }) => {
 
   return (
     <div
-      className="flex flex-col bg-secondary-bg px-5 rounded-3"
+      className={clsx(
+        "flex flex-col bg-secondary-bg px-5 rounded-3 duration-200",
+        !isOpen && "hocus:bg-tertiary-bg",
+      )}
       style={{
         boxShadow: "inset 0px 4px 20px #505462",
       }}
