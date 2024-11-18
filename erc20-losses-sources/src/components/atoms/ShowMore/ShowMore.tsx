@@ -6,7 +6,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import Svg from "../Svg";
 
 export function ShowMoreMobile({ children, style }: any) {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const [open, setOpen] = useState(false); // index < 3
   const isOpen = !isMobile || open;
   const [height, setHeight] = useState<number | undefined>(isOpen ? undefined : 0);

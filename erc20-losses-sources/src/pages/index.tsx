@@ -1,10 +1,8 @@
 import clsx from "clsx";
 import { Goldman, Open_Sans } from "next/font/google";
 import Head from "next/head";
-import React, { createContext, useEffect, useState } from "react";
-import Web3 from "web3";
+import React, { useEffect, useState } from "react";
 
-import { basePath } from "@/constants/build-config/isProd";
 import { RESULT_DATE } from "@/constants/result_date";
 import {
   CHAIN,

@@ -23,6 +23,7 @@ import {
   web3,
 } from "@/utils/calculations.util";
 
+import { AnimatedLine } from "./AnimatedLine";
 import { processOneToken } from "./functions";
 import { MobileResultItem } from "./MobileResultItem";
 import { ResultItem } from "./ResultItem";
@@ -123,7 +124,7 @@ const CalculationProgress = ({ isDefaultResult }: { isDefaultResult: boolean }) 
 
   const isLoading = processSate.buttonState?.state === 2;
   return (
-    <div className={clsx("flex flex-col items-center gap-4 xl:gap-5", !isLoading && "hidden")}>
+    <div className={clsx("flex flex-col items-center gap-4 lg:gap-5", !isLoading && "hidden")}>
       <div className="w-full bg-textarea-bg rounded-2 xl:rounded-3 h-[48px] xl:h-[60px] relative">
         <div
           className={clsx(
@@ -202,7 +203,7 @@ const AddressesEditor = ({
   addresses: string;
   onSave: (addresses: string) => void;
 }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const addressesArray = addresses !== "" ? addresses.split("\n") : [];
   const [isEdit, setEdit] = useState(false);
   const [localAddresses, setLocalAddresses] = useState("");
@@ -256,7 +257,7 @@ const AddressesEditor = ({
       <div
         className="absolute top-0 bottom-0 left-0 right-0 rounded-3 xl:rounded-[24px] pointer-events-none"
         style={{
-          boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.5)",
+          boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2)",
         }}
       />
       {/* Header */}
@@ -344,8 +345,9 @@ const AddressesEditor = ({
       {/* Body */}
       <div
         className={clsx(
-          "flex bg-secondary-bg rounded-b-3 xl:rounded-b-[24px] h-[400px] max-h-[400px]",
+          "flex bg-secondary-bg rounded-b-3 xl:rounded-b-[24px] h-[372px] max-h-[372px] lg:h-[400px] lg:max-h-[400px]",
           !isEdit && "overflow-y-scroll overflow-x-auto",
+          "scrollbar scrollbar-thumb-rounded-[30px] scrollbar-thumb-border-secondary scrollbar-track-transparent",
         )}
       >
         {isMobile || !isEdit ? (
@@ -355,7 +357,7 @@ const AddressesEditor = ({
                 <TokenName key={address} address={address} />
               ))}
             </div>
-            <div className="flex flex-col w-full gap-3 py-4 px-4 xl:px-5">
+            <div className="flex flex-col w-[164px] lg:w-full gap-3 py-4 pl-4 pr-1 xl:pl-5 xl:pr-1">
               {addressesArray.map((address) => (
                 <p
                   key={address}
@@ -369,8 +371,10 @@ const AddressesEditor = ({
           </>
         ) : (
           <textarea
-            className="w-full h-[400px] bg-textarea-bg rounded-b-3 xl:rounded-b-[24px] text-[10px] leading-[18px] xl:text-[16px] xl:leading-[36px] font-mono text-primary-text px-4 xl:px-10 py-4 resize-none"
-            // disabled={buttonState.state === 2}
+            className={clsx(
+              "w-full h-[372px] lg:h-[400px] bg-textarea-bg rounded-b-3 xl:rounded-b-[24px] text-[10px] leading-[18px] xl:text-[16px] xl:leading-[36px] font-mono text-primary-text px-4 xl:px-10 py-4 resize-none",
+              "scrollbar scrollbar-thumb-rounded-[30px] scrollbar-thumb-border-secondary scrollbar-track-transparent",
+            )}
             value={localAddresses}
             onChange={(event) => setLocalAddresses(event.target.value)}
           />
@@ -381,7 +385,7 @@ const AddressesEditor = ({
 };
 
 export const TokenLosses = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const {
     tokensList,
     updateTokensListHandler,
@@ -394,11 +398,24 @@ export const TokenLosses = () => {
     resultTokenNumber,
     resultsList,
     resultSum,
+    buttonState,
   }: any = useContext(ProcessContext);
 
+  const isLoading = buttonState?.state === 2;
   return (
     <div className="flex flex-col items-center" id="calculate">
-      <div className="flex flex-col w-full max-w-[1280px] p-4 xl:p-10 relative">
+      <div className="flex flex-col w-full max-w-[1280px] p-4 lg:p-10 relative">
+        {/* Line */}
+        <div
+          className={clsx(
+            "absolute z-[-1] pointer-events-none ",
+            "top-[calc(36px+16px-6px)] left-[calc(28px-2px)]",
+            "lg:top-[calc(40px+48px)] lg:left-[calc(64px-2px)]",
+          )}
+        >
+          <AnimatedLine isLoading={isLoading} />
+        </div>
+
         {/* Green blur bg */}
         <div
           className={clsx(
@@ -415,23 +432,28 @@ export const TokenLosses = () => {
           )}
         />
 
-        <div className="flex items-center gap-2 xl:gap-10">
-          <div className="flex justify-center items-center w-6 h-6 xl:w-12 xl:h-12 bg-main-secondary border xl:border-2 border-main-primary rounded-full text-[16px] xl:text-[24px] xl:font-semibold text-primary-text">
+        <div className="flex items-center gap-2 lg:gap-10">
+          <div className="flex justify-center items-center w-6 h-6 lg:w-12 lg:h-12 bg-main-secondary border lg:border-2 border-main-primary rounded-full text-[16px] lg:text-[24px] lg:font-semibold text-primary-text">
             1
           </div>
-          <p className="font-goldman font-bold text-[20px] leading-[36px] xl:text-[24px] xl:leading-[40px]">
+          <p className="font-goldman font-bold text-[20px] leading-[36px] lg:text-[24px] lg:leading-[40px]">
             Search for losses
           </p>
         </div>
         <div
-          className="flex flex-col bg-primary-bg border-2 border-border-secondary px-4 py-3 xl:px-10 xl:py-8 rounded-3 xl:rounded-[32px] mt-4 xl:mt-10"
+          className={clsx(
+            "flex flex-col bg-primary-bg border-2 border-border-secondary px-4 py-3 lg:px-10 lg:py-8 rounded-3 lg:rounded-[32px] mt-6 lg:mt-[calc(28px+40px)]",
+            isLoading ? "w-[310px] h-[calc(1228+40px)]" : "w-[310px] h-[1228px]",
+            isLoading ? "lg:w-[900px] lg:h-[calc(1332px+44px)]" : "lg:w-[900px] lg:h-[1332px]",
+            isLoading ? "2xl:w-[1200px] 2xl:h-[calc(800px+44px)]" : "2xl:w-[1200px] 2xl:h-[800px]",
+          )}
           style={{
             boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2)",
           }}
         >
-          <div className="flex flex-col xl:flex-row gap-5">
+          <div className="flex flex-col 2xl:flex-row gap-4 lg:gap-5">
             <div className="flex flex-col w-full">
-              <p className="text-[18px] leading-[32px] xl:text-[20px] xl:leading-[36px] font-bold text-primary-text mb-2 xl:mb-3">
+              <p className="text-[18px] leading-[32px] lg:text-[20px] lg:leading-[36px] font-bold text-primary-text mb-2 lg:mb-3">
                 Token addresses
               </p>
               <AddressesEditor
@@ -442,7 +464,7 @@ export const TokenLosses = () => {
               />
             </div>
             <div className="flex flex-col w-full">
-              <p className="text-[18px] leading-[32px] xl:text-[20px] xl:leading-[36px] font-bold text-primary-text mb-2 xl:mb-3">
+              <p className="text-[18px] leading-[32px] lg:text-[20px] lg:leading-[36px] font-bold text-primary-text mb-2 lg:mb-3">
                 Contracts to check
               </p>
               <AddressesEditor
@@ -454,21 +476,21 @@ export const TokenLosses = () => {
             </div>
           </div>
           <div
-            className="bg-secondary-bg rounded-2 mt-4 xl:mt-5 px-4 xl:px-5 py-2"
+            className="bg-secondary-bg rounded-2 mt-4 lg:mt-5 px-4 lg:px-5 py-2"
             style={{
               boxShadow: "inset 0px 4px 20px #505462",
             }}
           >
-            <p className="text-primary-text text-[16px] xl:text-[18px] xl:leading-[32px]">
+            <p className="text-primary-text text-16 lg:text-16 lg:leading-[32px]">
               When calculating lost tokens, we are pulling prices from{" "}
               <a href="https://etherscan.io/tokens" target="_blank" rel="noopener noreferrer">
                 this APIs
               </a>
             </p>
           </div>
-          <div className="flex xl:items-center bg-blue-bg border border-main-blue rounded-2 px-4 xl:px-5 py-2 gap-2 mt-4 xl:mt-5 mb-4 xl:mb-5">
-            <Svg iconName="info" className="text-main-blue w-5 h-5 min-w-5 xl:w-6 xl:h-6" />
-            <p className="text-primary-text text-[16px] xl:text-[18px] xl:leading-[32px]">
+          <div className="flex lg:items-center bg-blue-bg border border-main-blue rounded-2 px-4 lg:px-5 py-2 gap-2 mt-4 lg:mt-5 mb-4 lg:mb-5">
+            <Svg iconName="info" className="text-main-blue w-5 h-5 min-w-5 lg:w-6 lg:h-6" />
+            <p className="text-primary-text text-16 lg:text-16 lg:leading-[32px]">
               It can take few hours to go through thousands of tokens from the default list
             </p>
           </div>
@@ -477,35 +499,35 @@ export const TokenLosses = () => {
         </div>
         <div
           id="result"
-          className="flex flex-col xl:flex-row xl:justify-between xl:items-center mt-5 xl:mt-10 relative"
+          className="flex flex-col lg:flex-row lg:justify-between lg:items-center mt-6 lg:mt-[84px] relative"
         >
           {/* Red blur bg */}
           <div
             className={clsx(
               "absolute z-[-2] bg-blurry-circles-red/50 pointer-events-none rounded-full blur-[250px]",
-              "top-[230px] xl:top-0 right-[calc(50%-300px)] xl:right-[-470px]",
+              "top-[230px] lg:top-0 right-[calc(50%-300px)] lg:right-[-470px]",
               "h-[400px] w-[400px]",
             )}
           />
           <div
             className={clsx(
               "absolute z-[-2] bg-blurry-circles-red/50 pointer-events-none rounded-full blur-[250px]",
-              "xl:top-[450px] xl:left-[-140px]",
-              "hidden xl:block h-[400px] w-[400px]",
+              "lg:top-[450px] lg:left-[-140px]",
+              "hidden lg:block h-[400px] w-[400px]",
             )}
           />
 
-          <div className="flex items-center gap-2 xl:gap-10 mb-4 xl:mb-0">
-            <div className="flex justify-center items-center w-6 h-6 xl:w-12 xl:h-12 bg-main-secondary border xl:border-2 border-main-primary rounded-full text-[16px] xl:text-[24px] xl:font-semibold text-primary-text">
+          <div className="flex items-center gap-2 lg:gap-10 mb-4 lg:mb-0">
+            <div className="flex justify-center items-center w-6 h-6 lg:w-12 lg:h-12 bg-main-secondary border lg:border-2 border-main-primary rounded-full text-[16px] lg:text-[24px] lg:font-semibold text-primary-text">
               2
             </div>
-            <p className="font-goldman font-bold text-[20px] leading-[36px] xl:text-[24px] xl:leading-[40px]">
+            <p className="font-goldman font-bold text-[20px] leading-[36px] lg:text-[24px] lg:leading-[40px]">
               Results
             </p>
           </div>
-          <div className="flex flex-col items-start xl:flex-row gap-2 xl:gap-0">
+          <div className="flex flex-col items-start lg:flex-row gap-2 lg:gap-0">
             <div
-              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 border border-border-secondary"
+              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] lg:text-[16px] lg:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 border border-border-secondary"
               style={{
                 boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
               }}
@@ -514,7 +536,7 @@ export const TokenLosses = () => {
               Calculation date: {dateString}
             </div>
             <div
-              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 xl:ml-3 border border-border-secondary"
+              className="flex items-center bg-primary-bg p-3 text-[14px] leading-[20px] lg:text-[16px] lg:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 lg:ml-3 border border-border-secondary"
               style={{
                 boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
               }}
@@ -523,7 +545,7 @@ export const TokenLosses = () => {
               Calculated for {resultTokenNumber} tokens
             </div>
             <button
-              className="flex items-center bg-main-secondary py-3 pl-4 pr-6 text-[14px] leading-[20px] xl:text-[16px] xl:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 cursor-pointer xl:ml-5 duration-200 hocus:shadow-button-secondary"
+              className="flex items-center bg-main-secondary py-3 pl-4 pr-6 text-[14px] leading-[20px] lg:text-[16px] lg:leading-[24px] font-semibold text-primary-text rounded-2 gap-2 cursor-pointer lg:ml-5 duration-200 hocus:shadow-button-secondary"
               onClick={() => downloadResult(resultsList)}
             >
               <Svg iconName="download" size={24} />
@@ -532,25 +554,25 @@ export const TokenLosses = () => {
           </div>
         </div>
         <div
-          className="flex flex-col bg-primary-bg border-2 border-border-secondary pt-4 xl:pt-8 rounded-3 xl:rounded-[32px] mt-4 xl:mt-10"
+          className="flex flex-col bg-primary-bg border-2 border-border-secondary pt-4 lg:pt-8 rounded-3 lg:rounded-[32px] mt-4 lg:mt-10"
           style={{
             boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.4)",
           }}
         >
-          <div className="px-4 xl:px-10">
+          <div className="px-4 lg:px-10">
             <div
-              className="flex flex-col items-center xl:flex-row xl:justify-between xl:items-center px-5 py-[10px] bg-textarea-bg border border-main-red rounded-2 xl:rounded-3"
+              className="flex flex-col items-center lg:flex-row lg:justify-between lg:items-center px-5 py-[10px] bg-textarea-bg border border-main-red rounded-2 lg:rounded-3"
               style={{
                 boxShadow: "0px 0px 24px rgba(255, 96, 96, 0.4)",
               }}
             >
-              <div className="flex items-center gap-2 xl:gap-1">
+              <div className="flex items-center gap-2 lg:gap-1">
                 <Svg iconName="warning" size={24} className="text-main-red min-w-6" />
-                <p className="text-16 xl:text-18 xl:leading-[32px] font-semibold text-primary-text">
+                <p className="text-16 lg:text-18 lg:leading-[32px] font-semibold text-primary-text">
                   Total lost of ERC-20 tokens
                 </p>
               </div>
-              <p className="text-[20px] leading-[36px] xl:text-[24px] xl:leading-[40px] text-main-red font-bold font-goldman">
+              <p className="text-[20px] leading-[36px] lg:text-[24px] lg:leading-[40px] text-main-red font-bold font-goldman">
                 {numericFormatter(`${resultSum}`, {
                   decimalSeparator: ".",
                   thousandSeparator: ",",
@@ -560,7 +582,7 @@ export const TokenLosses = () => {
               </p>
             </div>
           </div>
-          <div className="xl:max-h-[640px] mt-4 xl:mt-10 overflow-y-auto px-4 xl:pl-10 xl:pr-7">
+          <div className="lg:max-h-[640px] mt-4 lg:mt-10 overflow-y-auto px-4 lg:pl-10 lg:pr-7">
             <div className="flex flex-col gap-5">
               {resultsList.map((item, index) => {
                 return isMobile ? (

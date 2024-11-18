@@ -1,14 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
 import React from "react";
 
 import { ShowMoreMobile } from "@/components/atoms/ShowMore";
+import Svg from "@/components/atoms/Svg";
 import NeonBlock from "@/components/organisms/NeonBlock";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { basePath } from "@/constants/build-config/isProd";
 
-import { GitHubComment, RedditComment, RedditPost, TwitterComment } from "./Posts";
+import { GitHubComment, RedditComment, TwitterComment } from "./Posts";
 
 export const Problem = () => {
-  const isMobile = useIsMobile();
   return (
     <div className="flex flex-col items-center">
       <div className="flex max-w-[1280px] p-4 xl:p-10 pt-[60px] xl:pt-[160px] gap-10">
@@ -142,11 +143,27 @@ export const Problem = () => {
                     date="Apr 24, 2017"
                     tags={["Contributor", "Author"]}
                     content={
-                      <p>
-                        I do find this idea very useful, but at the same time we also should get the
-                        ERC 20 finalised as many tokens already us it. We can then make an ERC 23
-                        for a new version based on ERC 20
-                      </p>
+                      <div className="flex flex-col gap-4">
+                        <p>
+                          I do find this idea very useful, but at the same time we also should get
+                          the ERC 20 finalised as many tokens already us it. We can then make an ERC
+                          23 for a new version based on ERC 20
+                        </p>
+                        <div className="flex items-center gap-1">
+                          <div className="flex justify-center items-center border border-[#30363D] bg-[#161B22] rounded-full p-1">
+                            <Svg iconName="github-reaction" color="#E6EDF3" size={16} />
+                          </div>
+                          <div className="flex justify-center items-center border border-[#30363D] bg-[#161B22] rounded-[30px] py-1 px-2 gap-[6px]">
+                            <img
+                              src={`${basePath}/posts/github-like.png`}
+                              alt="photo"
+                              height={12}
+                              width={12}
+                            />
+                            <span className="text-12 text-[#E6EDF3]">2</span>
+                          </div>
+                        </div>
+                      </div>
                     }
                   />
                   <span

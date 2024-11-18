@@ -85,6 +85,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("tailwind-scrollbar")({ nocompatible: true }),
     plugin(function ({ addVariant, e }) {
       addVariant("hocus", ["&:hover", "&:focus-visible"]);
       addVariant("group-hocus", [".group:hover &", ".group:focus-visible &"]);

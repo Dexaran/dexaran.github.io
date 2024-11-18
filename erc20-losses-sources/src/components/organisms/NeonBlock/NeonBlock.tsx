@@ -34,7 +34,7 @@ export default function NeonBlock({
   noAnimation = false,
   withoutTopLine = false,
 }: Props) {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
 
   const ref = useRef();
   const entryTopLine = useIntersectionObserver(ref, { threshold: 0 });

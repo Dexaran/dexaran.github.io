@@ -1,6 +1,7 @@
 export const svgIconsNames = [
   "previous",
   "github-dots",
+  "github-reaction",
   "problem",
   "x-logo",
   "x-check",
