@@ -34,7 +34,7 @@ export const Footer = () => {
   const { showMessage } = useSnackbar();
 
   return (
-    <footer className="flex flex-col items-center border-t border-[#383B3A] mt-4 xl:mt-[160px]">
+    <footer className="flex flex-col items-center border-t border-[#383B3A] mt-4 xl:mt-[120px]">
       <div className="max-w-[1280px] w-full flex justify-between px-5 py-4 xl:px-10 xl:py-5">
         <div className="hidden xl:flex gap-10">
           <div className="flex flex-col gap-2">
@@ -45,7 +45,7 @@ export const Footer = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-text hover:text-green duration-200"
+                className="text-primary-text"
               >
                 {name}
               </a>
@@ -73,10 +73,12 @@ export const Footer = () => {
               boxShadow: "inset 0px 0px 20px 10px rgba(83, 88, 99, 0.2);",
             }}
           >
-            <p>This is a non-profit project, but donations appreciated:</p>
+            <p className="text-14 text-secondary-text">
+              This is a non-profit project, but donations appreciated:
+            </p>
             <div className="flex items-center">
               <p
-                className="text-green cursor-pointer"
+                className="text-green cursor-pointer font-mono text-14"
                 onClick={async () => {
                   await navigator.clipboard.writeText(ADDRESS_FOR_DONATION);
                   showMessage("Wallet address copied");

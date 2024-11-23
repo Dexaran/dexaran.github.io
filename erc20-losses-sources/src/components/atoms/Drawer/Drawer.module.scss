@@ -1,14 +1,17 @@
+@use "src/styles/colors";
+
 .drawerContainer {
   --transition-speed: 0.3s;
 }
 
 .drawer {
-  background: #fff;
+  background: colors.$background-secondary;
   overflow: auto;
   position: fixed;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: transform var(--transition-speed) ease;
   z-index: 1000;
+  max-height: 100svh;
 }
 
 .drawer.right {
@@ -26,7 +29,8 @@
 }
 
 .drawer.bottom {
-  bottom: 0;
+  top: 0;
+  // bottom: 0;
   right: 0;
   left: 0;
   transform: translateY(100%);

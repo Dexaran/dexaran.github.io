@@ -46,7 +46,8 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> &
 const buttonVariantClassnameMap: Record<ButtonVariant, Record<ButtonColor, string>> = {
   [ButtonVariant.CONTAINED]: {
     [ButtonColor.RED]: "bg-red text-primary-text hocus:bg-red-hover",
-    [ButtonColor.GREEN]: "bg-green text-black hocus:bg-green-hover",
+    [ButtonColor.GREEN]:
+      "bg-green text-black hocus:bg-main-primary-hover hocus:shadow-button-primary",
     [ButtonColor.LIGHT_GREEN]:
       "bg-green-bg text-secondary-text border-transparent border hocus:border-green hocus:bg-green-bg-hover hocus:text-primary-text",
   },
@@ -84,7 +85,7 @@ const mobileButtonSizeClassnameMap: Record<ButtonSize, string> = {
 };
 
 const disabledClassnameMap: Record<ButtonVariant, string> = {
-  [ButtonVariant.CONTAINED]: "disabled:bg-quaternary-bg disabled:text-secondary-text",
+  [ButtonVariant.CONTAINED]: "disabled:opacity-50",
   [ButtonVariant.OUTLINED]: "disabled:text-secondary-text disabled:border-secondary-border",
 };
 

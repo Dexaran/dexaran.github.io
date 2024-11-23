@@ -10,9 +10,6 @@ body {
   margin: 0;
 }
 
-body,
-html,
-#__next,
 .wrapper {
   margin: 0;
   padding: 0;
@@ -106,4 +103,12 @@ p {
   border: 0px solid transparent;
   background-clip: padding-box;
   border-radius: 30px;
+}
+
+.relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }

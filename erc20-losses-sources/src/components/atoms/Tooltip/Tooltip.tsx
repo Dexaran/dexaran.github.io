@@ -53,7 +53,7 @@ export const MobileToolTip = ({ children }: any) => {
 
   return (
     <>
-      <div className={styles.mobileTooltipIcon} onClick={() => setIsOpen(true)}>
+      <div className="xl:hidden text-secondary-text" onClick={() => setIsOpen(true)}>
         <svg
           width="24"
           height="24"

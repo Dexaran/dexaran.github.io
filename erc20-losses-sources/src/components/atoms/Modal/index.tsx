@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { useEffect, useRef } from "react";
 
-import { goldman } from "@/pages";
+import { openSans } from "@/pages";
 
 import { Icons } from "../Icons";
 import styles from "./Modal.module.scss";
@@ -34,7 +34,7 @@ export const Modal = ({
   return (
     <ReactPortal wrapperId={id}>
       {isOpen ? (
-        <div className={clsx(goldman.className, styles.modal)} ref={nodeRef}>
+        <div className={clsx(openSans.className, styles.modal)} ref={nodeRef}>
           <div className={clsx(styles.modalContent, large && styles.large)}>
             <div
               className={clsx(

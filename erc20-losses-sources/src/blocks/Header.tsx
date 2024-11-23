@@ -122,7 +122,7 @@ export const Header = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-text hover:text-green duration-200"
+                  className="text-primary-text"
                 >
                   {name}
                 </a>

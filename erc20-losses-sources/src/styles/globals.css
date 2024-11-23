@@ -7,5 +7,9 @@ html {
 }
 
 a {
-  @apply text-green hover:underline
+  @apply text-main-primary hocus:underline hocus:text-main-primary-hover duration-200
+}
+
+#__next {
+  overflow: hidden;
 }
