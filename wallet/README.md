@@ -1,8 +1,6 @@
-## https://classicetherwallet.com - Content of ClassicEtherWallet.com is served directly from github.
+### Dexaran's wallet
 
-### ClassicEtherWallet
-
-ClassicEtherWallet is an open source, javascript, client-side tool for operating Ethereum Classic wallets.
+This wallet was used as the main wallet of the Ethereum CLassic network in 2016-2020. It is an open source, javascript, client-side tool for signing Ethereum transactions.
 
 - Official link: https://classicetherwallet.com
 - Served from github link: https://ethereumproject.github.io/etherwallet/
