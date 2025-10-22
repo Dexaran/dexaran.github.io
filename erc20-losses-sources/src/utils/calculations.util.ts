@@ -6,7 +6,7 @@ import Web3 from "web3";
 import { rpcMap } from "@/blocks/TokenLosses/const";
 import { checkEthAddress, getTokenInfo, loadExcludes } from "@/blocks/TokenLosses/functions";
 import { handleExclusions, numberWithCommas } from "@/blocks/TokenLosses/utils";
-import PrecalculatedResult from "@/constants/lost_tokens_result_19_11_2024.json";
+import PrecalculatedResult from "@/constants/lost_tokens_result_19_10_2025.json";
 
 export const START_TEXT = "Start search";
 export const CHAIN = "eth"; // eth or bsc or polygon
