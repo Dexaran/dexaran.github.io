@@ -55,7 +55,7 @@ export const Hero = () => {
           <h1 className="text-[20px] leading-[36px] xl:text-[24px] xl:leading-[40px] font-goldman text-primary-text">
             Amount of money lost
           </h1>
-          <p className="text-secondary-text mb-3">Last update: {dateString}</p>
+          <p className="text-secondary-text mb-3">Last update: 23 Oct, 2025</p>
           <Counter number={Math.floor(resultSum)} />
           <div className="w-[320px] xl:w-[580px] mt-1">
             <div
