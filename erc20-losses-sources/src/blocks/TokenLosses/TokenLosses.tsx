@@ -569,7 +569,7 @@ export const TokenLosses = () => {
               <div className="flex items-center gap-2 lg:gap-1">
                 <Svg iconName="warning" size={24} className="text-main-red min-w-6" />
                 <p className="text-16 lg:text-18 lg:leading-[32px] font-semibold text-primary-text">
-                  Total lost of ERC-20 tokens
+                  Total amount of lost ERC-20 tokens
                 </p>
               </div>
               <p className="text-[20px] leading-[36px] lg:text-[24px] lg:leading-[40px] text-main-red font-bold font-goldman">
