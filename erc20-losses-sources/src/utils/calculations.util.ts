@@ -98,7 +98,7 @@ preparedResult.sort(function (a, b) {
 export const PrecalculatedResultSum = preparedResult.reduce((acc, item) => acc + item.asDollar, 0);
 export const PrecalculatedResultTokenNumber = preparedResult.length;
 
-const API_ETHERSCAN_ENDPOINT = "https://api.dex223.io/v1/cache/explores/tokens/prices?explorer=etherscan";
+const API_ETHERSCAN_ENDPOINT = "https://api.dex223.io/v1/etherscan/";
 export const useEtherscan = () => {
   const [isEtherscanLoading, setIsEtherscanLoading] = useState(true);
   const [fromEtherscan, setFromEtherscan] = useState({} as FromEtherscan);
