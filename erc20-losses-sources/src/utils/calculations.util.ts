@@ -109,11 +109,11 @@ export const useEtherscan = () => {
     (async () => {
       setIsEtherscanLoading(true);
       const resultEtherscan = await axios.get(API_ETHERSCAN_ENDPOINT);
-      setFromEtherscan(resultEtherscan.data);
+      setFromEtherscan(resultEtherscan.data.data);
       let prefix = "";
       let counter = 0;
       let etherscanListResult = "";
-      for (const address of Object.keys(resultEtherscan.data)) {
+      for (const address of Object.keys(resultEtherscan.data.data)) {
         // Using the default iterator (could be `map.entries()` instead)
         etherscanListResult += prefix + address;
         prefix = "\n";
