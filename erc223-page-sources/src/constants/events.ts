@@ -109,7 +109,7 @@ export const events: IRecentEvent[] = [
     date: "15.08.2023",
   },
   {
-    title: "[🍿Ongoing/EIPs] ERC-223 is moving to 'last call'",
+    title: "ERC-223 is moving to 'last call'",
     url: "https://github.com/ethereum/EIPs/pull/7483",
     date: "14.08.2023",
     id: "ethereum-org",
@@ -160,7 +160,7 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing/github] Ethereum moderator 'removed ERC-223 because of a personal feeling that something is wrong with it'",
+      "Ethereum moderator 'removed ERC-223 because of a personal feeling that something is wrong with it'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854#issuecomment-1670628057",
     date: "9.08.2023",
   },
@@ -190,20 +190,20 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing] Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
+      "Github issue to bring ERC-223 back to the list of standards is opened because (1) it was a mistake, (2) it is no longer in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/issues/10854",
     date: "2.08.2023",
     id: "ethereum-org",
   },
   {
-    title: "[🍿Ongoing] ERC-223 status is changed from 'draft' to 'review'",
+    title: "ERC-223 status is changed from 'draft' to 'review'",
     url: "https://github.com/ethereum/EIPs/pull/7339",
     date: "2.08.2023",
     id: "ethereum-org",
   },
   {
     title:
-      "[🍿Ongoing] Discussion regarding improper removal of the ERC-223 from standards list was initiated at EthereumOrg discord. As per the discussion the removal was considered a mistake.",
+      "Discussion regarding improper removal of the ERC-223 from standards list was initiated at EthereumOrg discord. As per the discussion the removal was considered a mistake.",
     url: "https://discord.com/channels/714888181740339261/776139785550168084/1135924177904353390",
     date: "2.08.2023",
     id: "ethereum-org",
@@ -227,7 +227,7 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing] ERC-223 removed from the official token standards documentation as it is in 'draft'",
+      "ERC-223 removed from the official token standards documentation as it is in 'draft'",
     url: "https://github.com/ethereum/ethereum-org-website/pull/10841",
     date: "1.08.2023",
     id: "ethereum-org",
@@ -244,7 +244,7 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing] Cryptonomist releases an article regarding ERC-223 being added to the official token standards documentation",
+      "Cryptonomist releases an article regarding ERC-223 being added to the official token standards documentation",
     url: "https://twitter.com/Cryptonomist_en/status/1686017991006121984",
     date: "31.07.2023",
     id: "ethereum-org",
@@ -292,7 +292,7 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing] The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
+      "The fact of addition of ERC-223 to the token standards list on ethereum.org was announced on r/ethereum",
     url: "https://www.reddit.com/r/ethereum/comments/15cbwoe/erc223_is_added_to_token_standards_documentation/",
     date: "28.07.2023",
     id: "ethereum-org",
@@ -312,7 +312,7 @@ export const events: IRecentEvent[] = [
   },
   {
     title:
-      "[🍿Ongoing] ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/",
+      "ERC-223 was added to the list of token standards at ethereum.org/en/developers/docs/",
     urls: [
       {
         title: "part 1",
