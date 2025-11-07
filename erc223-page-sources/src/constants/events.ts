@@ -46,7 +46,7 @@ export const events: IRecentEvent[] = [
   {
     title:
       "[github] Dexaran is starting the creation of a process of final EIP modifications upon security vulnerability disclosures",
-    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257#issuecomment-1693740271",
+    url: "https://github.com/EthCatHerders/EIPIP/issues/257#issuecomment-1693740271",
     date: "25.08.2023",
     id: "AllERCDevs257",
     color: "#64DC84",
@@ -54,7 +54,7 @@ export const events: IRecentEvent[] = [
   {
     title:
       "[github] EIP editors decided there is no necessity to place a warning on ERC-20 regarding the loss of $201M tokens and related insecurity of the standard. Security concern was raised by Dexaran",
-    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/257",
+    url: "https://github.com/EthCatHerders/EIPIP/issues/257",
     date: "25.08.2023",
     id: "AllERCDevs257",
     color: "#64DC84",
@@ -150,12 +150,12 @@ export const events: IRecentEvent[] = [
   {
     title:
       "[github] Ethereum Foundation employee highlighted that EIP process does not allow for amendments upon vulnerability disclosure and nobody expected that a vulnerability can be discovered in a 'final' EIP",
-    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/255#issuecomment-1671895165",
+    url: "https://github.com/EthCatHerders/EIPIP/issues/255#issuecomment-1671895165",
     date: "9.08.2023",
   },
   {
     title: "[github] Escalation of ERC-20 vulnerability discovery at Ethereum Cat Herders",
-    url: "https://github.com/ethereum-cat-herders/EIPIP/issues/255#issuecomment-1671648545",
+    url: "https://github.com/EthCatHerders/EIPIP/issues/255#issuecomment-1671648545",
     date: "9.08.2023",
   },
   {
