@@ -9,7 +9,7 @@ import { handleExclusions, numberWithCommas } from "@/blocks/TokenLosses/utils";
 import PrecalculatedResult from "@/constants/lost_tokens_result_23_10_2025.json";
 
 export const START_TEXT = "Start search";
-export const CHAIN = "eth"; // eth or bsc or polygon 
+export const CHAIN = "eth"; // eth or bsc or polygon
 export const rpc = rpcMap.get("eth");
 
 // can use any of supported chains
