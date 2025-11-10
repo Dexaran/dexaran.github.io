@@ -27,7 +27,7 @@ jobs:
         run: cd erc20-losses-sources && npm install
 
       - name: Build my App
-        run: cd erc20-losses-sources && npm run build && npm run export
+        run: cd erc20-losses-sources && npm run build
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
