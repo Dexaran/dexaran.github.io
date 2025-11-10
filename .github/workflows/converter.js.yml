@@ -27,8 +27,14 @@ jobs:
       - name: Installing my packages
         run: cd token-converter-sources && npm install
 
+
       - name: Build my App
-        run: cd token-converter-sources && npm run build && npm run export
+        env:
+          NODE_ENV: production
+        run: cd token-converter-sources && npm run build
+
+      - name: Disable Jekyll
+        run: touch token-converter-sources//out/.nojekyll
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
