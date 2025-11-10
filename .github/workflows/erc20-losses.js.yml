@@ -29,7 +29,7 @@ jobs:
       - name: Build my App
         env:
           NODE_ENV: production
-        run: cd erc20-losses-sources && npm run build && npm run export
+        run: cd erc20-losses-sources && npm run build
 
       - name: Disable Jekyll
         run: touch erc20-losses-sources/out/.nojekyll
