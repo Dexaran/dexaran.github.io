@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint -c .eslintrc.json --ext .js,.jsx,.ts,.tsx src --quiet --fix",
-    "export": "output: export"
+    "export": "next export"
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.2",
