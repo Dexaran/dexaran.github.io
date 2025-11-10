@@ -29,17 +29,10 @@ jobs:
       - name: Build my App
         env:
           NODE_ENV: production
-        run: cd erc20-losses-sources && npm run build
+        run: cd erc20-losses-sources && npm run build && npm run export
 
       - name: Disable Jekyll
         run: touch erc20-losses-sources/out/.nojekyll
-
-      - name: Debug list out/_next
-        run: |
-          echo "---- ls -la erc20-losses-sources/out ----"
-          ls -la erc20-losses-sources/out | sed -n '1,200p'
-          echo "---- find _next ----"
-          find erc20-losses-sources/out -maxdepth 2 -type d -name "_next" -print
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
