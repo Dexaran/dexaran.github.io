@@ -17,21 +17,23 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - name: Installing my packages
         run: cd erc223-page-sources && npm install
 
       - name: Build my App
-        run: cd erc223-page-sources && npm run build && npm run export
+        env:
+          NODE_ENV: production
+        run: cd erc223-page-sources && npm run build
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          GITHUB_TOKEN: ${{ secrets.token }}
+          token: ${{ secrets.token }}
           BRANCH: master # The branch the action should deploy to.
           FOLDER: erc223-page-sources/out # The folder the action should deploy.
           target-folder: erc223

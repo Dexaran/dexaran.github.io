@@ -21,13 +21,18 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Installing my packages
         run: cd erc20-losses-sources && npm install
 
       - name: Build my App
-        run: cd erc20-losses-sources && npm run build && npm run export
+        env:
+          NODE_ENV: production
+        run: cd erc20-losses-sources && npm run build
+
+      - name: Disable Jekyll
+        run: touch erc20-losses-sources/out/.nojekyll
 
       - name: Move build to erc folder 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
