@@ -49,7 +49,7 @@ export const events: IRecentEvent[] = [
     url: "https://github.com/EthCatHerders/EIPIP/issues/257#issuecomment-1693740271",
     date: "25.08.2023",
     id: "AllERCDevs257",
-    color: "#64DC84",
+    color: "#64DC85",
   },
   {
     title:
