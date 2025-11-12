@@ -63,7 +63,7 @@ const EIP223Description = (
 );
 
 const EventsDescription =
-  "The chronology of events related to the emergence and development of the idea of creating this standard is accessible here. Get your popcorn🍿 ready! There was a lot of drama and a lot is still ahead.";
+  "A timeline of the events surrounding the origin and development of this standard is available here.";
 
 const mobileTabs: Array<{
   key: number;
