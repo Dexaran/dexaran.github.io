@@ -2,6 +2,12 @@ import { IRecentEvent } from "../types";
 
 export const events: IRecentEvent[] = [
   {
+    title: "TEST",
+    url: "TEST",
+    date: "12.11.2025",
+    color: "#64DC84",
+  },
+  {
     title: "[github] ERC-20 flaw is reported to ZetaChain developers as they inherit that in their ZRC-20.",
     url: "https://github.com/zeta-chain/protocol-contracts/issues/107",
     date: "8.12.2023",
