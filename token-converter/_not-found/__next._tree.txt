@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[97367,["/token-converter/_next/static/chunks/ff1a16fafef87110.js","/token-converter/_next/static/chunks/e232ebe0de3b2410.js"],"ViewportBoundary"]
+4:I[97367,["/token-converter/_next/static/chunks/ff1a16fafef87110.js","/token-converter/_next/static/chunks/e232ebe0de3b2410.js"],"MetadataBoundary"]
+5:"$Sreact.suspense"
+7:I[27201,["/token-converter/_next/static/chunks/ff1a16fafef87110.js","/token-converter/_next/static/chunks/e232ebe0de3b2410.js"],"IconMark"]
+:HL["/token-converter/_next/static/chunks/c3556453a3143949.css","style"]
+0:{"buildId":"YsHxjdJlvbbKtAO6zO1il","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"head":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isHeadPartial":false,"staleTime":300}
+3:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+6:[["$","title","0",{"children":"Token Converter"}],["$","meta","1",{"name":"description","content":"Easily convert ERC-20 toket to safer ERC-223 alternative"}],["$","link","2",{"rel":"icon","href":"/token-converter/favicon.ico?favicon.914fb653.ico","sizes":"40x40","type":"image/x-icon"}],["$","$L7","3",{}]]
