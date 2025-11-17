@@ -1,0 +1,467 @@
+@import "tailwindcss";
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+div[role="button"]:focus,
+div[role="dialog"]:focus {
+  outline: none;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.card-spacing-x {
+  @apply px-4 sm:px-6 lg:px-10;
+}
+
+.card-spacing-y {
+  @apply py-4 sm:py-6 lg:py-10;
+}
+
+.card-spacing-b {
+  @apply pb-4 sm:pb-5 lg:pb-10;
+}
+
+.card-spacing {
+  @apply px-4 sm:px-6 lg:px-10 pb-4 sm:pb-5 lg:pb-10;
+}
+
+@utility bg-navigation-active {
+  background: linear-gradient(180deg, #0F0F0F -6.77%, #283633 87.04%, #7DA491 100%);
+}
+
+@utility bg-navigation-hover {
+  background: linear-gradient(180deg, #0F0F0F -6.77%, #3B4E47 100%);
+}
+
+@utility bg-navigation-active-mobile {
+  background: linear-gradient(270deg, #1D1E1E 13.5%, #283633 97.85%, #7DA491 100%);
+}
+
+
+@theme {
+  --color-primary-bg: #1D1E1E;
+  --color-secondary-bg: #0F0F0F;
+  --color-tertiary-bg: #272727;
+  --color-quaternary-bg: #2E2F2F;
+  
+  --color-green: #7DA491;
+  --color-orange: #AF9A7A;
+  --color-yellow: #ECD245;
+  --color-yellow-light: #D2BD8B;
+  --color-red:#D24B4B;
+  --color-red-light: #CD8C8C;
+  --color-red-light-shadow: #C0A0A0;
+  --color-blue:#7D97A4;
+  --color-purple:#8089BD;
+  --color-black:#000000;
+  --color-white:#FFFFFF;
+  --color-green-bg: #3C4C4A;
+  --color-red-bg: #443535;
+  --color-orange-bg: #4A4237;
+  --color-yellow-bg: #4C483C;
+  --color-blue-bg: #2A3A45;
+  --color-purple-bg: #3C3D4C;
+  --color-erc-20-bg: #434B4A;
+  --color-erc-223-bg: #44434B;
+  --color-global-bg: #0F0F0F;
+    
+  --color-green-hover: #A5E7C5;
+  --color-green-bg-hover: #495C5A;
+  --color-green-hover-icon: #A5E7E6;
+  --color-red-light-hover: #F6B4B4;
+  --color-red-hover: #DA5D57;
+  --color-red-bg-hover: #655050;
+  --color-purple-hover: #A5AEE7;
+  --color-purple-bg-hover: #56586F;
+  --color-purple-hover-icon: #B8C4FF;
+  --color-blue-hover: #96B5C4;
+  --color-orange-hover: #B89158;
+  --color-yellow-bg-hover: #6C634F;
+  --color-primary-text: #D1DEDF;
+  --color-secondary-text: #A2AAA9;
+  --color-tertiary-text: #798180;
+  --color-erc-20-text: #97B9B6;
+  --color-erc-223-text: #949ED4;
+  --color-primary-border: #575A58;
+  --color-secondary-border: #383C3A;
+  --color-erc-20-border: #97B9B6;
+  --color-erc-223-border: #949ED4;
+
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  --spacing-0\.5: 2px;
+  --spacing-1: 4px;
+  --spacing-1\.5: 6px;
+  --spacing-2: 8px;
+  --spacing-2\.5: 10px;
+  --spacing-3: 12px;
+  --spacing-3\.5: 14px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-5\.5: 22px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 44px;
+  --spacing-12: 48px;
+
+  --radius-0: 0px;
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-2\.5: 10px;
+  --radius-3: 12px;
+  --radius-4: 16px;
+  --radius-5: 20px;
+  --radius-20: 80px;
+  --radius-full: 50%;
+
+  --text-0: 0px;
+  --text-0--line-height: 0px;
+  --text-8: 8px;
+  --text-8--line-height: 12px;
+  --text-10: 10px;
+  --text-10--line-height: 14px;
+  --text-12: 12px;
+  --text-12--line-height: 16px;
+  --text-14: 14px;
+  --text-14--line-height: 20px;
+  --text-16: 16px;
+  --text-16--line-height: 24px;
+  --text-18: 18px;
+  --text-18--line-height: 28px;
+  --text-20: 20px;
+  --text-20--line-height: 32px;
+  --text-24: 24px;
+  --text-24--line-height: 40px;
+  --text-28: 28px;
+  --text-28--line-height: 36px;
+  --text-32: 32px;
+  --text-32--line-height: 48px;
+  --text-40: 40px;
+  --text-40--line-height: 48px;
+}
+
+/*html {*/
+
+/*}*/
+
+body {
+  background: var(--color-global-bg);
+  color: var(--color-primary-text);
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+div[role="button"]:focus,
+div[role="dialog"]:focus {
+  outline: none;
+}
+
+.Dialog-overlay {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 88;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.drawer-overlay {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 88;
+}
+
+.drawer-container {
+  position: fixed;
+  z-index: 88;
+  overflow: auto;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appearBlur {
+  from {
+    backdrop-filter: blur(0px);
+    background-color: transparent;
+  }
+
+  to {
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.ledger-ck-modal > div:first-child {
+  backdrop-filter: blur(0px);
+  background-color: transparent;
+  animation: appearBlur 0.5s 0.5s forwards;
+}
+
+.ledger-ck-modal #ModalWrapper {
+  opacity: 0;
+  animation: appear 0.5s 0.5s forwards;
+}
+
+.ledger-ck-modal #ModalWrapper > div:first-child {
+  border: 1px solid #5A5A5A!important;
+  border-radius: 8px!important;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: var(--color-secondary-bg);
+  height: 8px;
+  transition-duration: 200ms;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  /*height: 8px;*/
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  /*margin-top: -8px; !* Centers thumb on the track *!*/
+
+  border-radius: 50%;
+  /*custom styles*/
+  background-color: var(--color-green);
+  height: 24px;
+  width: 24px;
+  transition: outline-color 200ms;
+  outline: 12px solid transparent;
+  /*box-shadow: theme("boxShadow.DEFAULT);*/
+
+  z-index: 20;
+  position: relative;
+
+  /*--color-tw-shadow-color: var(--color-green / 80%);*/
+}
+input[type="range"].variant-purple::-webkit-slider-thumb {
+  background-color: var(--color-purple);
+  /*--color-tw-shadow-color: var(--color-purple / 80%);*/
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  /*outline: 12px solid theme('colors.green / 20%');*/
+}
+
+input[type="range"].variant-purple:focus::-webkit-slider-thumb {
+  /*outline: 12px solid theme('colors.purple / 20%');*/
+}
+
+/******** Firefox styles ********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: var(--color-secondary-bg);
+  border-radius: 4px;
+  height: 8px;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 50%; /*Removes default border-radius that FF applies*/
+
+  /*custom styles*/
+  background-color: var(--color-green);
+  height: 24px;
+  width: 24px;
+}
+
+input[type="range"].variant-purple::-moz-range-thumb {
+  background-color: var(--color-purple);
+
+  /*--color-tw-shadow-color: var(--color-purple / 80%);*/
+}
+
+
+input[type="range"]:hover::-moz-range-thumb,
+input[type="range"]:focus::-moz-range-thumb {
+  /*outline: 12px solid var(--color-green / 20%);*/
+}
+
+input[type="range"].variant-purple:hover::-moz-range-thumb,
+input[type="range"].variant-purple:focus::-moz-range-thumb {
+  /*outline: 12px solid var(--color-purple / 20%);*/
+}
+
+
+.MuiCircularProgressIndeterminate {
+  display: inline-block;
+  animation-duration: 1.4s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: MuiCircularProgress-keyframes-circular-rotate;
+}
+
+.MuiCircularProgressCircleIndeterminate {
+  animation: MuiCircularProgress-keyframes-circular-dash 1.4s ease-in-out infinite;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0;
+}
+
+@keyframes MuiCircularProgress-keyframes-circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes MuiCircularProgress-keyframes-circular-dash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.main-loader {
+  height: 460px;
+  width: 460px;
+  border-radius: 50%;
+  transform-origin: center center;
+  /*background: linear-gradient(45deg, transparent, transparent 40%, var(--color-green"));*/
+  animation: animate 1s linear infinite;
+}
+
+@media screen and (max-width: 768px) {
+  .main-loader {
+    height: 240px;
+    width: 240px;
+  }
+}
+
+.main-loader:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  /*background: var(--color-global-bg);*/
+  border-radius: 50%;
+  z-index: 99999;
+}
+
+.main-loader:after {
+  transform-origin: center;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /*background: linear-gradient(45deg, transparent, transparent 40%, var(--color-green"));*/
+  border-radius: 50%;
+  filter: blur(30px);
+  z-index: 1;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) ;
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) ;
+    filter: hue-rotate(180deg);
+  }
+}
+
+.simplebar-scrollbar:before {
+  background: var(--color-primary-border) !important;
+}
+
+.simplebar-track.simplebar-horizontal {
+  height: 12px !important;
+  background: var(--color-primary-bg) !important;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 12px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .simplebar-scrollbar:before {
+    width: 4px !important;
+  }
+
+  .simplebar-track.simplebar-horizontal {
+    height: 8px !important;
+  }
+
+  .simplebar-track.simplebar-vertical {
+    width: 8px !important;
+  }
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 0.5!important;
+}
+
+.simplebar-scrollbar:hover:before {
+  opacity: 1!important;
+}
+
+[data-simplebar].simplebar-dragging .simplebar-scrollbar:before {
+  opacity: 1!important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0;           /* visually hide */
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;   /* makes the whole input clickable to open picker */
+  right: 0;
+}

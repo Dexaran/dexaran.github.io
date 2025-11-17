@@ -1,8 +1,0 @@
-@use "src/styles/colors";
-@use "src/styles/media";
-
-.temporaryBlock {
-  border-top: 1px solid colors.$border-primary;
-  padding: 40px;
-  color: colors.$text-primary;
-}

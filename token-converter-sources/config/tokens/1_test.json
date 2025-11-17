@@ -1,0 +1,293 @@
+[
+  {
+    "contract": "0xcCe968120e6Ded56F32fbfe5A2Ec06CBF1e7c8ED",
+    "symbol": "D223",
+    "logo": "https://www.dex223.io/images/tokens/D223.svg",
+    "decimals": 18,
+    "markets": [],
+    "isErc223": true
+  },
+  {
+    "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "symbol": "USDT",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      10,
+      11,
+      12,
+      13,
+      14,
+      18
+    ]
+  },
+  {
+    "contract": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+    "symbol": "BNB",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      6
+    ]
+  },
+  {
+    "contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "symbol": "USDC",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png",
+    "decimals": 6,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      10,
+      11,
+      12,
+      13,
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+    "symbol": "MATIC",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      9,
+      13,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
+    "symbol": "BUSD",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/4687.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      13,
+      14,
+      18
+    ]
+  },
+  {
+    "contract": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
+    "symbol": "SHIB",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/5994.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      9,
+      13,
+      18
+    ]
+  },
+  {
+    "contract": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "symbol": "DAI",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/4943.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "symbol": "WBTC",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3717.png",
+    "decimals": 8,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      10,
+      11,
+      13,
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+    "symbol": "LINK",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1975.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      11,
+      13,
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x2AF5D2aD76741191D15Dfe7bF6aC92d4Bd912Ca3",
+    "symbol": "LEO",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3957.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      13
+    ]
+  },
+  {
+    "contract": "0x8D983cb9388EaC77af0474fA441C4815500Cb7BB",
+    "symbol": "ATOM",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3794.png",
+    "decimals": 6,
+    "markets": [
+      1
+    ]
+  },
+  {
+    "contract": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "symbol": "UNI",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/7083.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      9,
+      11,
+      13,
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "contract": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+    "symbol": "OKB",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3897.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      6
+    ]
+  },
+  {
+    "contract": "0x582d872A1B094FC48F5DE31D3B73F2D9bE47def1",
+    "symbol": "TON",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/11419.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      13
+    ]
+  },
+  {
+    "contract": "0x0000000000085d4780B73119b644AE5ecd22b376",
+    "symbol": "TUSD",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2563.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      11,
+      13,
+      14,
+      18
+    ]
+  },
+  {
+    "contract": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+    "symbol": "LDO",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/8000.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      9,
+      11,
+      13,
+      17
+    ]
+  },
+  {
+    "contract": "0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b",
+    "symbol": "CRO",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3635.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      13
+    ]
+  },
+  {
+    "contract": "0xB50721BCf8d664c30412Cfbc6cf7a15145234ad1",
+    "symbol": "ARB",
+    "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/11841.png",
+    "decimals": 18,
+    "markets": [
+      1,
+      2,
+      5
+    ]
+  }
+]
